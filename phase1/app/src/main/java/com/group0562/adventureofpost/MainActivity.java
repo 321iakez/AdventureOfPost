@@ -1,4 +1,4 @@
-package com.example.adventureofpost;
+package com.group0562.adventureofpost;
 
 import androidx.appcompat.app.AppCompatActivity;
 

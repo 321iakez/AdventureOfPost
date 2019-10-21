@@ -1,4 +1,4 @@
-package com.example.adventureofpost;
+package com.group0562.adventureofpost;
 
 import org.junit.Test;
 
