@@ -1,10 +1,10 @@
-package com.group0562.adventureofpost.puzzleOne;
+package com.group0562.adventureofpost.sudoku;
 
 import com.group0562.adventureofpost.Puzzles;
 
-public class PuzzleOne extends Puzzles {
+public class Sudoku extends Puzzles {
 
-    public PuzzleOne() {
+    public Sudoku() {
         super(1000000000);
     }
 
