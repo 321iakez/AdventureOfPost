@@ -22,9 +22,9 @@ public abstract class Puzzles {
 
     // TODO: add pause and resume
 
-    abstract void updatePoints();
+    public abstract void updatePoints();
 
-    abstract void checkComplete();
+    public abstract void checkComplete();
 
     public void update() {
         updateTime();
