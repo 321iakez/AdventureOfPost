@@ -9,7 +9,7 @@ public class PuzzleThree extends Puzzles {
     private double center_x;
     private double center_y;
     private double r;
-
+    private boolean within = false;
 
     public PuzzleThree(long time, double radius, double[] bounds) {
 
@@ -24,8 +24,18 @@ public class PuzzleThree extends Puzzles {
         this.center_y = Math.random()*(PuzzleThree.bound[3]-2*this.r) + this.r;
     }
 
+    // call this before update in front end
+    void checkWithinBall(int cursor_x, int cursor_y){
+        if (Math.sqrt(Math.pow(this.center_x-cursor_x, 2)+Math.pow(this.center_y-cursor_y, 2)) <= r){
+            this.within = true;
+        }
+    }
+
     @Override
     public void updatePoints() {
+        if (this.within){
+            this.puzzleStats.setPoints(1);
+        }
 
     }
 
