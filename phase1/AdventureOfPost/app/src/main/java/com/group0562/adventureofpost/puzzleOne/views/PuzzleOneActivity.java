@@ -1,4 +1,6 @@
 package com.group0562.adventureofpost.puzzleOne.views;
 
-public class PuzzleOneActivity {
+import androidx.appcompat.app.AppCompatActivity;
+
+public class PuzzleOneActivity extends AppCompatActivity {
 }
