@@ -35,12 +35,16 @@ public class PuzzleThree extends Puzzles {
     public void updatePoints() {
         if (this.within){
             this.puzzleStats.setPoints(1);
+            this.setBallLocation();
         }
 
     }
 
     @Override
     public void checkComplete() {
-
+        if (this.puzzleStats.getPoints() >= 50){
+            this.setPuzzleComplete(true);
+            this.puzzleStats.setPoints((int)this.puzzleStats.getTime());
+        }
     }
 }

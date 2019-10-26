@@ -43,4 +43,8 @@ public abstract class Puzzles {
 
         // TODO: display live points in phase 2
     }
+
+    public void setPuzzleComplete(boolean b){
+        this.puzzleComplete = b;
+    }
 }
