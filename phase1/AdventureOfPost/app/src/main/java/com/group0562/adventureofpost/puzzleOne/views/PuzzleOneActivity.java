@@ -8,4 +8,3 @@ public class PuzzleOneActivity extends AppCompatActivity {
         System.out.println("h");
     }
 }
-
