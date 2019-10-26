@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class PuzzleOneActivity extends AppCompatActivity {
 
     public PuzzleOneActivity() {
-
+        System.out.println("h");
     }
 }
+
