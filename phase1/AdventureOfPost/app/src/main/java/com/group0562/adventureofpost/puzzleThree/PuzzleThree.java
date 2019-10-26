@@ -9,12 +9,11 @@ public class PuzzleThree extends Puzzles {
     private double center_x;
     private double center_y;
     private double r;
-    private int points;
+
 
     public PuzzleThree(long time, double radius, double[] bounds) {
 
         super(time);
-        this.points = 0;
         this.r = radius;
         this.setBallLocation();
         PuzzleThree.bound = bounds;
