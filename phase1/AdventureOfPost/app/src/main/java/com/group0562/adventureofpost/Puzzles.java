@@ -1,4 +1,4 @@
-package com.group0562.adventureofpost.puzzles;
+package com.group0562.adventureofpost;
 
 import com.group0562.adventureofpost.model.PuzzleStats;
 

@@ -1,13 +1,12 @@
-package com.group0562.adventureofpost.views;
+package com.group0562.adventureofpost;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
 import com.group0562.adventureofpost.R;
-import com.group0562.adventureofpost.presenters.MainPresenter;
 
-public class MainActivity extends AppCompatActivity implements MainPresenter.view {
+public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

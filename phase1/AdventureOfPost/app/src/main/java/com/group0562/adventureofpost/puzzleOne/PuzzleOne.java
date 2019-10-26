@@ -1,6 +1,6 @@
-package com.group0562.adventureofpost.puzzles.puzzleOne;
+package com.group0562.adventureofpost.puzzleOne;
 
-import com.group0562.adventureofpost.puzzles.Puzzles;
+import com.group0562.adventureofpost.Puzzles;
 
 public class PuzzleOne extends Puzzles {
 
