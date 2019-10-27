@@ -47,4 +47,6 @@ public abstract class Puzzles {
     public void setPuzzleComplete(boolean b){
         this.puzzleComplete = b;
     }
+
+    public boolean getPuzzleComplete() {return this.puzzleComplete;}
 }
