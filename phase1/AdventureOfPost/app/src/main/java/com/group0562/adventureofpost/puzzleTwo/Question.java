@@ -1,5 +1,7 @@
 package com.group0562.adventureofpost.puzzleTwo;
 
+import java.util.Random;
+
 public class Question {
     private String question;
     private String answer;
@@ -27,15 +29,23 @@ public class Question {
         }
     }
 
-    //TODO this will be changed later
     String[] getOptions() {
         return this.options;
     }
 
-    //TODO generate shuffled options array
-    /*
-    String [] getShufffledOptions() {
+    void shuffleOptions(String[] options) {
+        int n = options.length;
+        Random random = new Random();
+        random.nextInt();
+        for (int i = 0; i < n; i++) {
+            int change = i + random.nextInt(n - i);
+            String helper = options[i];
+            options[i] = options[change];
+            options[change] = helper;
+
+        }
 
     }
-     */
+
+
 }
