@@ -54,4 +54,42 @@ public class Board {
             }
         }
     }
-}
+
+    // allows insertion of numbers into the board
+    void insertNum(int row, int col, int input){
+
+    }
+
+    // delete the entry from a slot in the board
+    void removeNum(int row, int col){
+
+    }
+
+    // returns a hint to the user, by giving one square everytime a hint is requested.
+    void hint(){
+
+    }
+
+    // finishes the entire board for the user. Ends the game.
+    void finishBoard(){
+
+    }
+
+    // helper method that checks whether there is a horizontal conflict among the user input.
+    void checkHorizConflict(){
+
+    }
+
+    // helper method that checks for vertical conflicts among the user input.
+    void checkVertConflict(){
+
+    }
+
+    // helper method that checks for region conflict among the user input.
+    void checkRegionConflict(){
+
+    }
+
+
+
+    }
