@@ -19,21 +19,21 @@ public class PuzzleThree extends Puzzles {
         PuzzleThree.bound = bounds;
     }
 
-    private void setBallLocation(){
-        this.center_x = Math.random()*(PuzzleThree.bound[1]-2*this.r) + this.r;
-        this.center_y = Math.random()*(PuzzleThree.bound[3]-2*this.r) + this.r;
+    private void setBallLocation() {
+        this.center_x = Math.random() * (PuzzleThree.bound[1] - 2 * this.r) + this.r;
+        this.center_y = Math.random() * (PuzzleThree.bound[3] - 2 * this.r) + this.r;
     }
 
     // call this before update in front end
-    void checkWithinBall(int cursor_x, int cursor_y){
-        if (Math.sqrt(Math.pow(this.center_x-cursor_x, 2)+Math.pow(this.center_y-cursor_y, 2)) <= r){
+    void checkWithinBall(int cursor_x, int cursor_y) {
+        if (Math.sqrt(Math.pow(this.center_x - cursor_x, 2) + Math.pow(this.center_y - cursor_y, 2)) <= r) {
             this.within = true;
         }
     }
 
     @Override
     public void updatePoints() {
-        if (this.within){
+        if (this.within) {
             this.puzzleStats.setPoints(1);
             this.setBallLocation();
         }
@@ -42,9 +42,9 @@ public class PuzzleThree extends Puzzles {
 
     @Override
     public void checkComplete() {
-        if (this.puzzleStats.getPoints() >= 50){
+        if (this.puzzleStats.getPoints() >= 50) {
             this.setPuzzleComplete(true);
-            this.puzzleStats.setPoints((int)this.puzzleStats.getTime());
+            this.puzzleStats.setPoints((int) this.puzzleStats.getTime());
         }
     }
 }

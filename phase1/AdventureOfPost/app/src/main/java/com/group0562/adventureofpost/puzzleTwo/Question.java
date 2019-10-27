@@ -6,10 +6,10 @@ public class Question {
     private String[] options = new String[4];
 
     //TODO Constructer and formatting of questions.txt need to change to implement shuffle
-    Question (String content) {
+    Question(String content) {
         String[] splitContent = content.split(";;");
         this.question = splitContent[0];
-        for (int i = 1 ; i < splitContent.length - 1 ; i ++) {
+        for (int i = 1; i < splitContent.length - 1; i++) {
             this.options[i - 1] = splitContent[i];
         }
         this.answer = splitContent[5];
@@ -20,7 +20,7 @@ public class Question {
     }
 
     boolean checkCorrect(String response) {
-        if (response.equals(this.answer)){
+        if (response.equals(this.answer)) {
             return true;
         } else {
             return false;

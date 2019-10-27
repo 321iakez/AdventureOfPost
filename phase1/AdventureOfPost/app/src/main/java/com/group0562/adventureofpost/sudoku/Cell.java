@@ -27,7 +27,7 @@ public class Cell {
     /**
      * Value constructor.
      *
-     * @param value the value of the cell.
+     * @param value  the value of the cell.
      * @param locked whether the cell is locked or not.
      */
     public Cell(int value, boolean locked) {

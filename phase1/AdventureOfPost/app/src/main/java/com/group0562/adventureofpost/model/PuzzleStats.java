@@ -20,9 +20,13 @@ public class PuzzleStats {
         time -= timeElapsed;
     }
 
-    public void setPoints(int pt) { this.points += pt; }
+    public void setPoints(int pt) {
+        this.points += pt;
+    }
 
-    public int getPoints() { return points; }
+    public int getPoints() {
+        return points;
+    }
 
     public int getLives() {
         return lives;
