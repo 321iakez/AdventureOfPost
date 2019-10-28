@@ -60,14 +60,18 @@ public class Board {
         }
     }
 
-    // allows insertion of numbers into the board
+    // allows insertion of numbers into the board, but only if
     void insertNum(int row, int col, int input) {
-
+        if !board[row][col].isLocked() {
+            board[row][col].setValue(input);
+        }
     }
 
     // delete the entry from a slot in the board
     void removeNum(int row, int col) {
-
+        if !board[row][col].isLocked(){
+            board[row][col].setValue(0);
+        }
     }
 
     // returns a hint to the user, by giving one square everytime a hint is requested.
@@ -83,17 +87,17 @@ public class Board {
     }
 
     // helper method that checks whether there is a horizontal conflict among the user input.
-    void checkHorizConflict() {
+    void boolean checkHorizConflict() {
 
     }
 
     // helper method that checks for vertical conflicts among the user input.
-    void checkVertConflict() {
+    void boolean checkVertConflict() {
 
     }
 
     // helper method that checks for region conflict among the user input.
-    void checkRegionConflict() {
+    void boolean checkRegionConflict() {
 
     }
 }
