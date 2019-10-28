@@ -62,7 +62,8 @@ public class Board {
 
     // allows insertion of numbers into the board, but only if
     void insertNum(int row, int col, int input) {
-        if !board[row][col].isLocked() {
+        if (!board[row][col].isLocked() & checkHorizConflict(input, row, col) &
+                !checkRegionConflict(input, row, col) & ! checkVertConflict(input, row, col)) {
             board[row][col].setValue(input);
         }
     }
@@ -87,17 +88,53 @@ public class Board {
     }
 
     // helper method that checks whether there is a horizontal conflict among the user input.
-    void boolean checkHorizConflict() {
-
+    void boolean checkHorizConflict(int input, int row, int col) {
+        for(int column; column < cols; column++){
+            if (column == col){}
+            else {
+                if (board[row][column].getValue() == input){
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     // helper method that checks for vertical conflicts among the user input.
-    void boolean checkVertConflict() {
-
+    void boolean checkVertConflict(int input, int row, int col) {
+        for(int currow; currow < rows; currow++){
+            if (currow = row){}
+            else{
+                if (board[currow][col].getValue() == input){
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     // helper method that checks for region conflict among the user input.
-    void boolean checkRegionConflict() {
+    void boolean checkRegionConflict(int input, int row, int col) {
+        int horReg = (row-1) / 2;
+        int verReg = (col-1) / 2;
+        for (int currow = horReg*2-1; currow < horReg*2+1;currow++){
+            for (int curcol = verReg*2-1; curcol < verReg*2+1; curcol++){
+                if (board[currow][curcol].getValue() == input){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
 
+    boolean checkFull(){
+        for (int row; row < rows; row ++){
+            for (int col; col < cols; col++){
+                if(board[row][col].getValue() == 0){
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 }

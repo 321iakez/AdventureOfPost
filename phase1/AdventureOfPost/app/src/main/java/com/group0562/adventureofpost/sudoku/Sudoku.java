@@ -58,9 +58,12 @@ public class Sudoku extends Puzzles {
     }
 
     @Override
-    public void checkComplete() {
-        gameBoard.checkVertConflict();
-        gameBoard.checkHorizConflict();
-        gameBoard.checkRegionConflict();
+
+    /**since every user input must follow not have any conflicts with the existing board, the game
+     * if complete iff the board is full.
+     */
+
+    public boolean checkComplete() {
+        return gameBoard.checkFull();
     }
 }
