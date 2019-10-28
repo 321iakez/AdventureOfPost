@@ -60,6 +60,10 @@ public class Board {
         }
     }
 
+    Cell getCell(int row, int col) {
+        return board[row][col];
+    }
+
     // allows insertion of numbers into the board, but only if
     void insertNum(int row, int col, int input) {
         if (!board[row][col].isLocked() & checkHorizConflict(input, row, col) &
