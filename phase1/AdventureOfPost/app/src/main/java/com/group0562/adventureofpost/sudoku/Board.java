@@ -13,6 +13,11 @@ public class Board {
     private int cols;
 
     /**
+     * The number of hints left.
+     */
+    private int hintsLeft = 3;
+
+    /**
      * A 2-D array of Cell instances representing the virtual board.
      */
     private Cell[][] board;
@@ -67,7 +72,9 @@ public class Board {
 
     // returns a hint to the user, by giving one square everytime a hint is requested.
     void hint() {
-
+        if (hintsLeft > 0) {
+            hintsLeft--;
+        }
     }
 
     // finishes the entire board for the user. Ends the game.
