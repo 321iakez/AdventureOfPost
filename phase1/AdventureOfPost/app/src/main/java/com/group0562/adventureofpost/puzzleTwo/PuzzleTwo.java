@@ -5,17 +5,26 @@ import com.group0562.adventureofpost.Puzzles;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class PuzzleTwo extends Puzzles {
     private int PuzzlesSolved;
+    private ArrayList<Question> questions;
 
-    public PuzzleTwo() {
+    /*
+    Constructor for PuzzleTwo class
+     */
+    public PuzzleTwo() throws IOException{
         super(new PuzzleTwoStats(30));
         PuzzlesSolved = 0;
+        questions = pullQuestions();
     }
 
-    //Reader a file of questions and returns a list of
+
+    /*
+    Reads File "Question.txt" and generates ArrayList of type Questions with contents of file
+     */
     private ArrayList<Question> pullQuestions() throws IOException {
         FileReader fr = new FileReader("Questions.txt");
         BufferedReader br = new BufferedReader(fr);
