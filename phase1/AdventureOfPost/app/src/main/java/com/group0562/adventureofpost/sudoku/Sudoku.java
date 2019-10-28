@@ -57,13 +57,12 @@ public class Sudoku extends Puzzles {
         return puzzle;
     }
 
-    @Override
-
-    /**since every user input must follow not have any conflicts with the existing board, the game
+    /**
+     * since every user input must follow not have any conflicts with the existing board, the game
      * if complete iff the board is full.
      */
-
-    public boolean checkComplete() {
-        return gameBoard.checkFull();
+    @Override
+    public void checkComplete() {
+        boolean result = gameBoard.checkFull();
     }
 }
