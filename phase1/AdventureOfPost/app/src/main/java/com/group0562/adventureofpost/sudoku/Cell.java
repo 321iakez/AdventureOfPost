@@ -1,5 +1,7 @@
 package com.group0562.adventureofpost.sudoku;
 
+import com.group0562.adventureofpost.R;
+
 public class Cell {
 
     /**
@@ -49,5 +51,9 @@ public class Cell {
 
     public void setValue(int value) {
         this.value = value;
+    }
+
+    public int getCellImage() {
+        return R.drawable.blank;
     }
 }
