@@ -13,7 +13,7 @@ public class PuzzleThree extends Puzzles {
 
     public PuzzleThree(long time, double radius, double[] bounds) {
 
-        super(time);
+        super(new PuzzleThreeStats(time));
         this.r = radius;
         this.setBallLocation();
         PuzzleThree.bound = bounds;
@@ -31,13 +31,23 @@ public class PuzzleThree extends Puzzles {
         }
     }
 
+//    @Override
+//    public void updatePoints() {
+//        if (this.within) {
+//            this.puzzleStats.setPoints(1);
+//            this.setBallLocation();
+//        }
+//
+//    }
+
     @Override
-    public void updatePoints() {
+    public void update() {
+        super.update();
+
         if (this.within) {
-            this.puzzleStats.setPoints(1);
+            notifyObservers();
             this.setBallLocation();
         }
-
     }
 
     @Override

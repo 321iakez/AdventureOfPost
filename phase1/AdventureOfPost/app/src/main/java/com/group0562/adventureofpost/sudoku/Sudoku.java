@@ -12,7 +12,7 @@ public class Sudoku extends Puzzles {
     private Board gameBoard;
 
     public Sudoku() {
-        super(1000000000);
+        super(new SudokuStats(100000));
 
         gameBoard = new Board(getRandomPuzzle(), 6, 6);
     }
@@ -55,11 +55,6 @@ public class Sudoku extends Puzzles {
         }
 
         return puzzle;
-    }
-
-    @Override
-    public void updatePoints() {
-
     }
 
     @Override

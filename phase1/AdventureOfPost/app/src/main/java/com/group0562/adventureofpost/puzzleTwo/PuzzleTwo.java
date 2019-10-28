@@ -11,7 +11,7 @@ public class PuzzleTwo extends Puzzles {
     private int PuzzlesSolved;
 
     public PuzzleTwo() {
-        super(30);
+        super(new PuzzleTwoStats(30));
         PuzzlesSolved = 0;
     }
 
@@ -30,8 +30,8 @@ public class PuzzleTwo extends Puzzles {
 
     public void update() {
         //String[] options = ;
-        updateTime();
-        updatePoints();
+//        updateTime();
+//        updatePoints();
         checkComplete();
 
 
@@ -49,10 +49,10 @@ public class PuzzleTwo extends Puzzles {
         update();
     }
 
-    @Override
-    public void updatePoints() {
-
-    }
+//    @Override
+//    public void updatePoints() {
+//
+//    }
 
     //TODO: This is just temp, need to change for actual check complete condiditons
     @Override
