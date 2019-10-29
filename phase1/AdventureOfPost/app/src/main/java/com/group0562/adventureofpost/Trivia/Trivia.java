@@ -1,22 +1,21 @@
-package com.group0562.adventureofpost.puzzleTwo;
+package com.group0562.adventureofpost.Trivia;
 
 import com.group0562.adventureofpost.Puzzles;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
-public class PuzzleTwo extends Puzzles {
+public class Trivia extends Puzzles {
     private int PuzzlesSolved;
     private ArrayList<Question> questions;
 
     /*
-    Constructor for PuzzleTwo class
+    Constructor for Trivia class
      */
-    public PuzzleTwo() throws IOException{
-        super(new PuzzleTwoStats(30));
+    public Trivia() throws IOException{
+        super(new TriviaStats(30));
         PuzzlesSolved = 0;
         questions = pullQuestions();
     }

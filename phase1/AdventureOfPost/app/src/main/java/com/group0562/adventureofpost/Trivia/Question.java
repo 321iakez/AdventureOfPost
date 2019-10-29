@@ -1,4 +1,4 @@
-package com.group0562.adventureofpost.puzzleTwo;
+package com.group0562.adventureofpost.Trivia;
 
 import java.util.Random;
 
