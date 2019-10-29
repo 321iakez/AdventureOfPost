@@ -7,32 +7,35 @@
     tools:context=".GameActivity">
 
     <Button
-        android:id="@+id/button9"
+        android:id="@+id/CCButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Circle Clicker"
-        app:layout_constraintBottom_toTopOf="@+id/button11"
+        android:text="@string/circle_clicker"
+        android:onClick="onClickCircleClicker"
+        app:layout_constraintBottom_toTopOf="@id/SudokuButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button10"
+        android:id="@+id/TriviaButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Trivia"
+        android:text="@string/trivia"
+        android:onClick="onClickTrivia"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button11"
+        app:layout_constraintTop_toBottomOf="@id/SudokuButton"
         app:layout_constraintVertical_bias="0.504" />
 
     <Button
-        android:id="@+id/button11"
+        android:id="@+id/SudokuButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Sudoku"
+        android:text="@string/sudoku"
+        android:onClick="onClickSudoku"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"

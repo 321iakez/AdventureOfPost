@@ -5,5 +5,8 @@
     <string name="Username">Username</string>
     <string name="Password">Password</string>
     <string name="Register">Register</string>
+    <string name="circle_clicker">Circle Clicker</string>
+    <string name="trivia">Trivia</string>
+    <string name="sudoku">Sudoku</string>
 
 </resources>
