@@ -9,8 +9,6 @@ import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 
 
-import java.io.IOException;
-
 public class MainActivity extends AppCompatActivity {
     //TODO I dont know if this is correct
     public final static String EXTRA_MESSAGE = "com.group0562.AdventureOfPost.MESSAGE";
@@ -22,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //TODO Currently will bring user to the SudokuActivity screen
-    public void sendMessage(View view) throws IOException {
+    public void sendMessage(View view){
         Intent intent = new Intent(this, GameActivity.class);
         EditText editText = (EditText) findViewById(R.id.editText);
         String message = editText.getText().toString();
