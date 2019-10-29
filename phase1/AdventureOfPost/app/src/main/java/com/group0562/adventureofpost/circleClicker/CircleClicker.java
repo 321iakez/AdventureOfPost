@@ -1,49 +1,56 @@
 package com.group0562.adventureofpost.circleClicker;
 
 import android.graphics.Canvas;
+import android.graphics.Paint;
 
 import com.group0562.adventureofpost.Puzzles;
 
 
 public class CircleClicker extends Puzzles {
     /* bound indexes follow from left, right, up and down */
-    private static double[] bound;
+    static double[] bound;
+    private Circle circle;
+    private Paint paint;
     private double center_x;
     private double center_y;
     private double r;
     private boolean within = false;
 
-    public CircleClicker(long time, double radius, double[] bounds) {
+    public CircleClicker(long time, float radius, double[] bounds, Paint p) {
 
         super(new CircleClickerStats(time));
-        this.r = radius;
-        this.setBallLocation();
+        this.paint = p;
+        circle = new Circle(50, 50, radius, this.paint);
+        circle.setBallLocation();
+        //this.r = radius;
+        //this.setBallLocation();
         CircleClicker.bound = bounds;
     }
 
-    private void setBallLocation() {
+    /*private void setBallLocation() {
         this.center_x = Math.random() * (CircleClicker.bound[1] - 2 * this.r) + this.r;
         this.center_y = Math.random() * (CircleClicker.bound[3] - 2 * this.r) + this.r;
-    }
+    }*/
 
     // call this before update in front end
-    void checkWithinBall(int cursor_x, int cursor_y) {
-        if (Math.sqrt(Math.pow(this.center_x - cursor_x, 2) + Math.pow(this.center_y - cursor_y, 2)) <= r) {
-            this.within = true;
+    void checkWithinBall(double cursor_x, double cursor_y) {
+        this.within = circle.checkWithinBall(cursor_x, cursor_y);
+        if(this.within){
+            update();
+            checkComplete();
         }
     }
 
-    public void draw(Canvas canvas){
-
+    void draw(Canvas canvas){
+        circle.draw(canvas);
     }
 
     @Override
     public void update() {
         super.update();
-
         if (this.within) {
             notifyObservers();
-            this.setBallLocation();
+            circle.setBallLocation();
         }
     }
 
