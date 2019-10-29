@@ -1,11 +1,11 @@
-package com.group0562.adventureofpost.puzzleThree;
+package com.group0562.adventureofpost.circleClicker;
 
 import com.group0562.adventureofpost.model.PuzzleStats;
 
 import java.util.Observable;
 
-public class PuzzleThreeStats extends PuzzleStats {
-    public PuzzleThreeStats(long time) {
+public class CircleClickerStats extends PuzzleStats {
+    public CircleClickerStats(long time) {
         super(time);
     }
 
