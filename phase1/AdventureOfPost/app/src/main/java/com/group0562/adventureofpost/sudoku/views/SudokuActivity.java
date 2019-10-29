@@ -24,4 +24,6 @@ public class SudokuActivity extends AppCompatActivity {
         gameBoard = findViewById(R.id.board);
 
     }
+
+
 }

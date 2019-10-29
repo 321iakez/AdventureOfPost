@@ -1,4 +1,4 @@
-package com.group0562.adventureofpost.Trivia;
+package com.group0562.adventureofpost.trivia;
 
 import com.group0562.adventureofpost.Puzzles;
 
@@ -54,7 +54,6 @@ public class Trivia extends Puzzles {
         if (puzzleStats.getTime() == 0 | getPuzzleComplete()) {
             onStop();
         }
-        update();
     }
 
 //    @Override

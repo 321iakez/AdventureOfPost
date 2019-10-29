@@ -1,4 +1,4 @@
-package com.group0562.adventureofpost.Trivia;
+package com.group0562.adventureofpost.trivia;
 
 import com.group0562.adventureofpost.model.PuzzleStats;
 

@@ -8,9 +8,8 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.group0562.adventureofpost.sudoku.views.SudokuActivity;
-
-import java.sql.SQLOutput;
+import com.group0562.adventureofpost.circleClicker.views.CircleClickerActivity;
+import com.group0562.adventureofpost.trivia.views.TriviaActivity;
 
 public class MainActivity extends AppCompatActivity {
     //TODO i dont know if this is correct
@@ -24,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
     //TODO Currently will bring user to the SudokuActivity screen
     public void sendMessage(View view) {
-        Intent intent = new Intent(this, SudokuActivity.class);
+        Intent intent = new Intent(this, TriviaActivity.class);
         EditText editText = (EditText) findViewById(R.id.editText);
         String message = editText.getText().toString();
         intent.putExtra(EXTRA_MESSAGE, message);
