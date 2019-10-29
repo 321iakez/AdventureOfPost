@@ -10,6 +10,8 @@ import java.util.ArrayList;
 public class Trivia extends Puzzles {
     private int PuzzlesSolved;
     private ArrayList<Question> questions;
+    private ArrayList<Question> rndQuestions;
+    //TODO gonna change later
 
     /*
     Constructor for Trivia class
@@ -17,13 +19,18 @@ public class Trivia extends Puzzles {
     public Trivia() throws IOException{
         super(new TriviaStats(30));
         PuzzlesSolved = 0;
-        questions = pullQuestions();
+        //questions = pullQuestions();
+        rndQuestions = new ArrayList<>();
+        rndQuestions.add(new Question("What does Paul Gries smell like?;;Cinnamon;;Nothing;;Milk;;Lavendar;;Nothing"));
+        rndQuestions.add(new Question("Which program has the highest domestic tuition?;;Economics;;Computer Science;;Engineering;;Commerce;;Engineering"));
+        rndQuestions.add(new Question("What was the Computer Science POSt cutoff for the 2018-19 year?;;82.5;;85;;89.5;;86;;82.5"));
     }
 
 
     /*
     Reads File "Question.txt" and generates ArrayList of type Questions with contents of file
      */
+    //TODO SOMETHING IS WRONG HERE LOL
     private ArrayList<Question> pullQuestions() throws IOException {
         FileReader fr = new FileReader("Questions.txt");
         BufferedReader br = new BufferedReader(fr);
@@ -36,10 +43,18 @@ public class Trivia extends Puzzles {
         return questions;
     }
 
+    public Question getQuestion() {
+        if (PuzzlesSolved == 3) {
+            PuzzlesSolved = 0;
+        }
+        return rndQuestions.get(PuzzlesSolved++);
+    }
+
+    /* TODO later
     public void update() {
-        //String[] options = ;
-//        updateTime();
-//        updatePoints();
+        String[] options = ;
+        updateTime();
+        updatePoints();
         checkComplete();
 
 
@@ -56,10 +71,12 @@ public class Trivia extends Puzzles {
         }
     }
 
-//    @Override
-//    public void updatePoints() {
-//
-//    }
+    @Override
+    public void updatePoints() {
+
+    }
+
+     */
 
     //TODO: This is just temp, need to change for actual check complete condiditons
     @Override

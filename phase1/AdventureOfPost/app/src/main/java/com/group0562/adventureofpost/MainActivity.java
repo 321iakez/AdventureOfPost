@@ -9,10 +9,13 @@ import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.group0562.adventureofpost.circleClicker.views.CircleClickerActivity;
+import com.group0562.adventureofpost.trivia.Trivia;
 import com.group0562.adventureofpost.trivia.views.TriviaActivity;
 
+import java.io.IOException;
+
 public class MainActivity extends AppCompatActivity {
-    //TODO i dont know if this is correct
+    //TODO I dont know if this is correct
     public final static String EXTRA_MESSAGE = "com.group0562.AdventureOfPost.MESSAGE";
 
     @Override
@@ -22,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //TODO Currently will bring user to the SudokuActivity screen
-    public void sendMessage(View view) {
+    public void sendMessage(View view) throws IOException {
         Intent intent = new Intent(this, TriviaActivity.class);
         EditText editText = (EditText) findViewById(R.id.editText);
         String message = editText.getText().toString();

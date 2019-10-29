@@ -7,7 +7,7 @@ public class Question {
     private String answer;
     private String[] options = new String[4];
 
-    //TODO Constructer and formatting of questions.txt need to change to implement shuffle
+    //TODO Constructor and formatting of questions.txt need to change to implement shuffle
     Question(String content) {
         String[] splitContent = content.split(";;");
         this.question = splitContent[0];
@@ -17,7 +17,7 @@ public class Question {
         this.answer = splitContent[5];
     }
 
-    String getQuestion() {
+    public String getQuestion() {
         return this.question;
     }
 
@@ -29,7 +29,7 @@ public class Question {
         }
     }
 
-    String[] getOptions() {
+    public String[] getOptions() {
         return this.options;
     }
 
