@@ -1,5 +1,7 @@
 package com.group0562.adventureofpost.circleClicker;
 
+import android.graphics.Canvas;
+
 import com.group0562.adventureofpost.Puzzles;
 
 
@@ -31,14 +33,9 @@ public class CircleClicker extends Puzzles {
         }
     }
 
-//    @Override
-//    public void updatePoints() {
-//        if (this.within) {
-//            this.puzzleStats.setPoints(1);
-//            this.setBallLocation();
-//        }
-//
-//    }
+    public void draw(Canvas canvas){
+
+    }
 
     @Override
     public void update() {
