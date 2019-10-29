@@ -20,8 +20,10 @@ public class CircleClickerGameView extends View {
         this.paint = new Paint();
         this.paint.setColor(Color.BLACK);
         this.paint.setStrokeWidth(CircleClickerGameView.Stroke_Thickness);
-        double[] bounds = {0,100,0,100};
-        clicker = new CircleClicker(60, 10, bounds, this.paint);
+        double[] bounds = {0,800,0,1500};
+        CircleClicker.setBound(bounds);
+        clicker = new CircleClicker(60, 20, this.paint);
+        //CircleClicker.setBound(bounds);
     }
 
     @Override

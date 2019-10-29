@@ -16,21 +16,18 @@ public class CircleClicker extends Puzzles {
     private double r;
     private boolean within = false;
 
-    public CircleClicker(long time, float radius, double[] bounds, Paint p) {
+    public CircleClicker(long time, float radius, Paint p) {
 
         super(new CircleClickerStats(time));
         this.paint = p;
         circle = new Circle(50, 50, radius, this.paint);
         circle.setBallLocation();
-        //this.r = radius;
-        //this.setBallLocation();
-        CircleClicker.bound = bounds;
+        //CircleClicker.bound = bounds;
     }
 
-    /*private void setBallLocation() {
-        this.center_x = Math.random() * (CircleClicker.bound[1] - 2 * this.r) + this.r;
-        this.center_y = Math.random() * (CircleClicker.bound[3] - 2 * this.r) + this.r;
-    }*/
+    public static void setBound(double[] bound) {
+        CircleClicker.bound = bound;
+    }
 
     // call this before update in front end
     void checkWithinBall(double cursor_x, double cursor_y) {
