@@ -1,9 +1,9 @@
-package com.group0562.adventureofpost.puzzleThree;
+package com.group0562.adventureofpost.circleClicker;
 
 import com.group0562.adventureofpost.Puzzles;
 
 
-public class PuzzleThree extends Puzzles {
+public class CircleClicker extends Puzzles {
     /* bound indexes follow from left, right, up and down */
     private static double[] bound;
     private double center_x;
@@ -11,17 +11,17 @@ public class PuzzleThree extends Puzzles {
     private double r;
     private boolean within = false;
 
-    public PuzzleThree(long time, double radius, double[] bounds) {
+    public CircleClicker(long time, double radius, double[] bounds) {
 
-        super(new PuzzleThreeStats(time));
+        super(new CircleClickerStats(time));
         this.r = radius;
         this.setBallLocation();
-        PuzzleThree.bound = bounds;
+        CircleClicker.bound = bounds;
     }
 
     private void setBallLocation() {
-        this.center_x = Math.random() * (PuzzleThree.bound[1] - 2 * this.r) + this.r;
-        this.center_y = Math.random() * (PuzzleThree.bound[3] - 2 * this.r) + this.r;
+        this.center_x = Math.random() * (CircleClicker.bound[1] - 2 * this.r) + this.r;
+        this.center_y = Math.random() * (CircleClicker.bound[3] - 2 * this.r) + this.r;
     }
 
     // call this before update in front end
