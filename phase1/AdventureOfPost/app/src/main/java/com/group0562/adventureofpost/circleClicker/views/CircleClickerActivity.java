@@ -14,7 +14,5 @@ public class CircleClickerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_circle_clicker);
     }
 
-    public void update() {
 
-    }
 }

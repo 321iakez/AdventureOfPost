@@ -5,13 +5,14 @@ import android.graphics.Paint;
 
 import static java.lang.Math.*;
 
-public class Circle {
+public class Circle extends Shape{
     private double coordinate_x;
     private double coordinate_y;
     private double radius;
     private Paint paint;
 
     public Circle(float x, float y, float r, Paint p){
+        super(x, y);
         this.coordinate_x = x;
         this.coordinate_y = y;
         this.radius = r;
@@ -23,9 +24,7 @@ public class Circle {
 
     void setBallLocation() {
         this.coordinate_x = random() * (CircleClicker.bound[1] - 2 * this.radius) + this.radius;
-        //this.coordinate_x = random() * (100 - 2 * this.radius) + this.radius;
         this.coordinate_y = random() * (CircleClicker.bound[3] - 2 * this.radius) + this.radius;
-        //this.coordinate_y = random() * (100 - 2 * this.radius) + this.radius;
     }
 
     boolean checkWithinBall(double cursor_x, double cursor_y) {

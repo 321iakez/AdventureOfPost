@@ -22,7 +22,6 @@ public class CircleClicker extends Puzzles {
         this.paint = p;
         circle = new Circle(50, 50, radius, this.paint);
         circle.setBallLocation();
-        //CircleClicker.bound = bounds;
     }
 
     public static void setBound(double[] bound) {
