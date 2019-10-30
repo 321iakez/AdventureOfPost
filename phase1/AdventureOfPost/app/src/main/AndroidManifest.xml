@@ -10,7 +10,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".GameActivity"></activity>
+        <activity
+            android:name=".shapeClicker.views.SCSettingsActivity"
+            android:label="@string/title_activity_scsettings"></activity>
+        <activity android:name=".GameActivity" />
         <activity android:name=".trivia.views.TriviaActivity" />
         <activity android:name=".shapeClicker.views.ShapeClickerActivity" />
         <activity android:name=".sudoku.views.SudokuActivity" />
