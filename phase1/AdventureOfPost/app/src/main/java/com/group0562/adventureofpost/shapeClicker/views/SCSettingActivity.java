@@ -8,12 +8,12 @@ import androidx.preference.PreferenceFragmentCompat;
 
 import com.group0562.adventureofpost.R;
 
-public class SCSettingsActivity extends AppCompatActivity {
+public class SCSettingActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.settings_activity);
+        setContentView(R.layout.sc_settings_activity);
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.settings, new SettingsFragment())
@@ -27,7 +27,7 @@ public class SCSettingsActivity extends AppCompatActivity {
     public static class SettingsFragment extends PreferenceFragmentCompat {
         @Override
         public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
-            setPreferencesFromResource(R.xml.root_preferences, rootKey);
+            setPreferencesFromResource(R.xml.sc_preferences, rootKey);
         }
     }
 }
