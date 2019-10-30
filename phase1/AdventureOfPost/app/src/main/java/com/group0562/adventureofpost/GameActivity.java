@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import com.group0562.adventureofpost.circleClicker.views.CircleClickerActivity;
+import com.group0562.adventureofpost.shapeClicker.views.ShapeClickerActivity;
 import com.group0562.adventureofpost.sudoku.views.SudokuActivity;
 import com.group0562.adventureofpost.trivia.views.TriviaActivity;
 
@@ -21,8 +21,8 @@ public class GameActivity extends AppCompatActivity {
         setContentView(R.layout.activity_game);
     }
 
-    public void onClickCircleClicker(View view) {
-        Intent intent = new Intent(this, CircleClickerActivity.class);
+    public void onClickShapeClicker(View view) {
+        Intent intent = new Intent(this, ShapeClickerActivity.class);
         TextView textView = (TextView) findViewById(R.id.CCButton);
         String message = textView.getText().toString();
         intent.putExtra(EXTRA_MESSAGE, message);

@@ -1,4 +1,4 @@
-package com.group0562.adventureofpost.circleClicker;
+package com.group0562.adventureofpost.shapeClicker;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;

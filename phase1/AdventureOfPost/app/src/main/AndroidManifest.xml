@@ -12,7 +12,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".GameActivity"></activity>
         <activity android:name=".trivia.views.TriviaActivity" />
-        <activity android:name=".circleClicker.views.CircleClickerActivity" />
+        <activity android:name=".shapeClicker.views.ShapeClickerActivity" />
         <activity android:name=".sudoku.views.SudokuActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>

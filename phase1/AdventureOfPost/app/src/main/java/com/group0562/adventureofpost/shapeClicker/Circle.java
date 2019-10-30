@@ -1,4 +1,4 @@
-package com.group0562.adventureofpost.circleClicker;
+package com.group0562.adventureofpost.shapeClicker;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -20,8 +20,8 @@ public class Circle extends Shape{
     }
 
     void setBallLocation() {
-        this.coordinate_x = random() * (CircleClicker.bound[1] - 2 * this.radius) + this.radius;
-        this.coordinate_y = random() * (CircleClicker.bound[3] - 2 * this.radius) + this.radius;
+        this.coordinate_x = random() * (ShapeClicker.bound[1] - 2 * this.radius) + this.radius;
+        this.coordinate_y = random() * (ShapeClicker.bound[3] - 2 * this.radius) + this.radius;
     }
 
     boolean checkWithinBall(double cursor_x, double cursor_y) {
