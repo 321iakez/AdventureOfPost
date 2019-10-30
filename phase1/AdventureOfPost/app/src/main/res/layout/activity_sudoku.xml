@@ -6,17 +6,105 @@
     android:layout_height="match_parent"
     tools:context=".sudoku.views.SudokuActivity">
 
-    <com.group0562.adventureofpost.sudoku.views.BoardComp
-        android:id='@+id/board'
-        android:layout_width="378dp"
-        android:layout_height="378dp"
-        android:layout_marginTop="200dp"
-        android:background="@color/colorAccent"
+    <TableLayout
+        android:layout_width="337dp"
+        android:layout_height="337dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginEnd="36dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.014">
+        app:layout_constraintVertical_bias="0.147">
 
-    </com.group0562.adventureofpost.sudoku.views.BoardComp>
+        <TableRow
+            android:id="@+id/tableRow1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <fragment
+                android:id="@+id/cellGroupFragment"
+                android:name="com.group0562.adventureofpost.sudoku.views.SudokuCellFragment"
+                android:layout_width="92dp"
+                android:layout_height="106dp"
+                android:layout_weight="1"
+                android:tag="0" />
+
+            <fragment
+                android:id="@+id/cellGroupFragment2"
+                android:name="com.group0562.adventureofpost.sudoku.views.SudokuCellFragment"
+                android:layout_width="92dp"
+                android:layout_height="106dp"
+                android:layout_weight="1"
+                android:tag="1" />
+
+            <fragment
+                android:id="@+id/cellGroupFragment3"
+                android:name="com.group0562.adventureofpost.sudoku.views.SudokuCellFragment"
+                android:layout_width="92dp"
+                android:layout_height="106dp"
+                android:layout_weight="1"
+                android:tag="2" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <fragment
+                android:id="@+id/cellGroupFragment4"
+                android:name="com.group0562.adventureofpost.sudoku.views.SudokuCellFragment"
+                android:layout_width="92dp"
+                android:layout_height="106dp"
+                android:layout_weight="1"
+                android:tag="3" />
+
+            <fragment
+                android:id="@+id/cellGroupFragment5"
+                android:name="com.group0562.adventureofpost.sudoku.views.SudokuCellFragment"
+                android:layout_width="92dp"
+                android:layout_height="106dp"
+                android:layout_weight="1"
+                android:tag="4" />
+
+            <fragment
+                android:id="@+id/cellGroupFragment6"
+                android:name="com.group0562.adventureofpost.sudoku.views.SudokuCellFragment"
+                android:layout_width="92dp"
+                android:layout_height="106dp"
+                android:layout_weight="1"
+                android:tag="5" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="117dp">
+
+            <fragment
+                android:id="@+id/cellGroupFragment7"
+                android:name="com.group0562.adventureofpost.sudoku.views.SudokuCellFragment"
+                android:layout_width="92dp"
+                android:layout_height="106dp"
+                android:layout_weight="1"
+                android:tag="6" />
+
+            <fragment
+                android:id="@+id/cellGroupFragment8"
+                android:name="com.group0562.adventureofpost.sudoku.views.SudokuCellFragment"
+                android:layout_width="92dp"
+                android:layout_height="106dp"
+                android:layout_weight="1"
+                android:tag="7" />
+
+            <fragment
+                android:id="@+id/cellGroupFragment9"
+                android:name="com.group0562.adventureofpost.sudoku.views.SudokuCellFragment"
+                android:layout_width="92dp"
+                android:layout_height="106dp"
+                android:layout_weight="1"
+                android:tag="8" />
+        </TableRow>
+
+    </TableLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
