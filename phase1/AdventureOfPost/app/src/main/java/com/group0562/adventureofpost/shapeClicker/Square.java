@@ -6,7 +6,6 @@ import android.graphics.Paint;
 import static java.lang.Math.*;
 
 public class Square extends Shape {
-    private double radius;
     private Paint paint;
 
     public Square(double x, double y, double r, Paint p){

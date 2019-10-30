@@ -6,7 +6,7 @@ import android.graphics.Canvas;
 public abstract class Shape {
     protected double coordinate_x;
     protected double coordinate_y;
-    private double radius;
+    protected double radius;
     private Paint paint;
 
     public Shape(double x, double y, double r){
