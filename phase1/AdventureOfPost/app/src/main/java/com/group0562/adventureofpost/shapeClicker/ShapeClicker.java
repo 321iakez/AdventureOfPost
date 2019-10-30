@@ -21,7 +21,7 @@ public class ShapeClicker extends Puzzles {
         super(new ShapeClickerStats(time));
         this.paint = p;
         circle = new Circle(50, 50, radius, this.paint);
-        circle.setBallLocation();
+        circle.setLocation();
     }
 
     public static void setBound(double[] bound) {
@@ -30,7 +30,7 @@ public class ShapeClicker extends Puzzles {
 
     // call this before update in front end
     void checkWithinBall(double cursor_x, double cursor_y) {
-        this.within = circle.checkWithinBall(cursor_x, cursor_y);
+        this.within = circle.checkWithin(cursor_x, cursor_y);
         if(this.within){
             update();
             checkComplete();
@@ -46,7 +46,7 @@ public class ShapeClicker extends Puzzles {
         super.update();
         if (this.within) {
             notifyObservers();
-            circle.setBallLocation();
+            circle.setLocation();
         }
     }
 
