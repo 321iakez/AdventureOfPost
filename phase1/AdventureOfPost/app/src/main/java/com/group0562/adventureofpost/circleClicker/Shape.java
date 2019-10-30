@@ -1,16 +1,18 @@
 package com.group0562.adventureofpost.circleClicker;
 
 import android.graphics.Paint;
+import android.graphics.Canvas;
 
-public class Shape {
-    private double coordinate_x;
-    private double coordinate_y;
-    private double length;
+public abstract class Shape {
+    protected double coordinate_x;
+    protected double coordinate_y;
+    private double radius;
     private Paint paint;
 
-    public Shape(double x, double y){
+    public Shape(double x, double y, double r){
         this.coordinate_x = x;
         this.coordinate_y = y;
+        this.radius = r;
     }
 
     public double getCoordinate_x() {
@@ -36,4 +38,11 @@ public class Shape {
     public void setPaint(Paint paint) {
         this.paint = paint;
     }
+
+    public abstract void draw(Canvas canvas);
+
+    public abstract void setLocation();
+
+    abstract boolean checkWithin(double cursor_x, double cursor_y);
+
 }

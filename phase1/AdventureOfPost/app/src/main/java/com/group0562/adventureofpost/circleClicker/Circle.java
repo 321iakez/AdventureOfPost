@@ -6,19 +6,16 @@ import android.graphics.Paint;
 import static java.lang.Math.*;
 
 public class Circle extends Shape{
-    private double coordinate_x;
-    private double coordinate_y;
     private double radius;
     private Paint paint;
 
-    public Circle(float x, float y, float r, Paint p){
-        super(x, y);
-        this.coordinate_x = x;
-        this.coordinate_y = y;
-        this.radius = r;
+    public Circle(double x, double y, double r, Paint p){
+        super(x, y, r);
         this.paint = p;
     }
-    public void draw(Canvas canvas){
+
+    @Override
+    public void draw(Canvas canvas) {
         canvas.drawCircle((float)this.coordinate_x, (float) this.coordinate_y, (float)this.radius, this.paint);
     }
 
@@ -30,4 +27,6 @@ public class Circle extends Shape{
     boolean checkWithinBall(double cursor_x, double cursor_y) {
         return (sqrt(pow(this.coordinate_x - cursor_x, 2) + pow(this.coordinate_y - cursor_y, 2)) <= this.radius);
     }
+
+
 }
