@@ -6,7 +6,7 @@ import android.graphics.Canvas;
 public abstract class Shape {
     protected double coordinate_x;
     protected double coordinate_y;
-    protected double radius;
+    protected static double radius;
     private Paint paint;
 
     public Shape(double x, double y, double r){
@@ -38,6 +38,8 @@ public abstract class Shape {
     public void setPaint(Paint paint) {
         this.paint = paint;
     }
+
+    public static void setRadius(double r) {Shape.radius = r;}
 
     public abstract void draw(Canvas canvas);
 

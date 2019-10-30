@@ -14,8 +14,30 @@
   ~ limitations under the License.
   -->
 
-<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
-
+    <ListPreference
+        android:id="@+id/sc_color_menu"
+        android:defaultValue="true"
+        android:entries="@array/sc_color_entries"
+        android:entryValues="@array/sc_color_values"
+        android:key="@string/sc_color_key"
+        android:title="@string/sc_color_title" />
+    <ListPreference
+        android:id="@+id/sc_difficulty_menu"
+        android:defaultValue="true"
+        android:entries="@array/sc_difficulty_entries"
+        android:entryValues="@array/sc_difficulty_values"
+        android:key="@string/sc_difficulty_key"
+        android:title="@string/sc_difficulty_level"
+        app:persistent="true" />
+    <ListPreference
+        android:id="@+id/sc_shape_menu"
+        android:defaultValue="true"
+        android:entries="@array/sc_shape_entries"
+        android:entryValues="@array/sc_shape_values"
+        android:key="@string/sc_shape_key"
+        android:title="@string/sc_shape_title" />
 </PreferenceScreen>

@@ -9,4 +9,42 @@
         <item>reply</item>
         <item>reply_all</item>
     </string-array>
+
+    <string-array name="sc_shape_entries">
+        <item>Circle</item>
+        <item>Square</item>
+        <item>Triangle</item>
+    </string-array>
+
+    <string-array name="sc_shape_values">
+        <item>Circle</item>
+        <item>Square</item>
+        <item>Triangle</item>
+    </string-array>
+
+    <string-array name="sc_difficulty_entries">
+        <item>Easy</item>
+        <item>Hard</item>
+    </string-array>
+
+    <string-array name="sc_difficulty_values">
+        <item>Easy</item>
+        <item>Hard</item>
+    </string-array>
+
+    <string-array name="sc_color_entries">
+        <item>Black</item>
+        <item>White</item>
+        <item>Blue</item>
+        <item>Green</item>
+        <item>Yellow</item>
+    </string-array>
+
+    <string-array name="sc_color_values">
+        <item>#000</item>
+        <item>#FFFFFF</item>
+        <item>#9C27B0</item>
+        <item>#8BC34A</item>
+        <item>#FFEB3B</item>
+    </string-array>
 </resources>

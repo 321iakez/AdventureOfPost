@@ -20,50 +20,18 @@
     <string name="sc_color_title">Color</string>
     <string name="sc_color_default_value">Black</string>
     <string name="sc_color_summary">Black</string>
-    <string-array name="sc_color_entries">
-        <item>Black</item>
-        <item>White</item>
-        <item>Blue</item>
-        <item>Green</item>
-        <item>Yellow</item>
-    </string-array>
-
-    <string-array name="sc_color_values">
-        <item>Black</item>
-        <item>White</item>
-        <item>Blue</item>
-        <item>Green</item>
-        <item>Yellow</item>
-    </string-array>
-
+    <string name="sc_color_key">scColorKey</string>
 
     <!-- SC difficulty Preferences -->
     <string name="sc_difficulty_title">Difficulty</string>
     <string name="sc_difficulty_default_value">Easy</string>
     <string name="sc_difficulty_summary">Easy</string>
-    <string-array name="sc_difficulty_entries">
-        <item>Easy</item>
-        <item>Hard</item>
-    </string-array>
-
-    <string-array name="sc_difficulty_values">
-        <item>Easy</item>
-        <item>Hard</item>
-    </string-array>
+    <string name="sc_difficulty_key">scDifficultyKey</string>
 
     <!-- SC shape Preferences -->
     <string name="sc_shape_title">Shape</string>
     <string name="sc_shape_default_value">Circle</string>
     <string name="sc_shape_summary">Circle</string>
-    <string-array name="sc_shape_entries">
-        <item>Circle</item>
-        <item>Square</item>
-        <item>Triangle</item>
-    </string-array>
+    <string name="sc_shape_key">scShapeKey</string>
 
-    <string-array name="sc_shape_values">
-        <item>Circle</item>
-        <item>Square</item>
-        <item>Triangle</item>
-    </string-array>
 </resources>

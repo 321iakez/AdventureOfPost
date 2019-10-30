@@ -9,19 +9,16 @@ import com.group0562.adventureofpost.Puzzles;
 public class ShapeClicker extends Puzzles {
     /* bound indexes follow from left, right, up and down */
     static double[] bound;
-    private Circle circle;
+    private Shape s_object;
     private Paint paint;
-    private double center_x;
-    private double center_y;
-    private double r;
+    private static String shape;
     private boolean within = false;
 
     public ShapeClicker(long time, float radius, Paint p) {
-
         super(new ShapeClickerStats(time));
         this.paint = p;
-        circle = new Circle(50, 50, radius, this.paint);
-        circle.setLocation();
+        s_object = new Circle(50, 50, radius, this.paint);
+        s_object.setLocation();
     }
 
     public static void setBound(double[] bound) {
@@ -30,7 +27,7 @@ public class ShapeClicker extends Puzzles {
 
     // call this before update in front end
     void checkWithinBall(double cursor_x, double cursor_y) {
-        this.within = circle.checkWithin(cursor_x, cursor_y);
+        this.within = s_object.checkWithin(cursor_x, cursor_y);
         if(this.within){
             update();
             checkComplete();
@@ -38,15 +35,17 @@ public class ShapeClicker extends Puzzles {
     }
 
     void draw(Canvas canvas){
-        circle.draw(canvas);
+        s_object.draw(canvas);
     }
+
+    public static void setShape(String type_of_shape){ShapeClicker.shape = type_of_shape;}
 
     @Override
     public void update() {
         super.update();
         if (this.within) {
             notifyObservers();
-            circle.setLocation();
+            s_object.setLocation();
         }
     }
 
