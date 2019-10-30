@@ -1,0 +1,64 @@
+package com.group0562.adventureofpost.shapeClicker;
+
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Path;
+import static java.lang.Math.*;
+
+public class Triangle extends Shape {
+    private Paint paint;
+    private Vertex v1;
+    private Vertex v2;
+    private Vertex v3;
+
+    public Triangle(double x, double y, double r, Paint p){
+        super(x,y,r);
+        this.paint = p;
+        this.v1 = new Vertex();
+        this.v2 = new Vertex();
+        this.v3 = new Vertex();
+        v1.x = this.coordinate_x - this.radius;
+        v1.y = this.coordinate_y;
+        v2.x = this.coordinate_x;
+        v2.y = this.coordinate_y+sqrt(3)*this.radius;
+        v3.x = this.coordinate_x+this.radius;
+        v3.y = this.coordinate_y;
+
+    }
+
+
+    @Override
+    public void draw(Canvas canvas) {
+     Path path = new Path();
+     path.setFillType(Path.FillType.EVEN_ODD);
+     path.moveTo((float)v1.x, (float)v1.y);
+     path.lineTo((float)v2.x, (float)v2.y);
+     path.lineTo((float)v3.x,(float)v3.y);
+     path.close();
+     canvas.drawPath(path, this.paint);
+
+    }
+
+    @Override
+    public void setLocation() {
+        this.coordinate_x = random() * (ShapeClicker.bound[1] - 2 * this.radius) + this.radius;
+        this.coordinate_y = random() * (ShapeClicker.bound[3] - 2 * this.radius);
+    }
+
+    @Override
+    boolean checkWithin(double cursor_x, double cursor_y) {
+        if(cursor_x < v1.x)
+            return false;
+        else if(cursor_x > v3.x)
+            return false;
+        else if(cursor_y < v1.y)
+            return false;
+        else if (cursor_y > v2.y)
+            return false;
+        else if (cursor_x <= this.coordinate_x & cursor_y - this.coordinate_y > sqrt(3)*(cursor_x - v1.x))
+            return false;
+        else if (cursor_x > this.coordinate_x & cursor_y - this.coordinate_y > sqrt(3)*(v3.x - cursor_x))
+            return false;
+        return true;
+    }
+}
