@@ -17,8 +17,8 @@ public class Square extends Shape {
 
     @Override
     public void setLocation() {
-        this.coordinate_x = random() * (CircleClicker.bound[1] - 2 * this.radius) + this.radius;
-        this.coordinate_y = random() * (CircleClicker.bound[3] - 2 * this.radius) + this.radius;
+        this.coordinate_x = random() * (ShapeClicker.bound[1] - 2 * this.radius) + this.radius;
+        this.coordinate_y = random() * (ShapeClicker.bound[3] - 2 * this.radius) + this.radius;
     }
 
     @Override
@@ -38,6 +38,6 @@ public class Square extends Shape {
     public void draw(Canvas canvas){
         canvas.drawRect((float)(this.coordinate_x-this.radius), (float)(this.coordinate_y + this.radius),
                 (float)(this.coordinate_x + this.radius), (float)(this.coordinate_y + this.radius), paint);
-    };
+    }
 
 }
