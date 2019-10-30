@@ -1,4 +1,4 @@
-package com.group0562.adventureofpost.circleClicker.views;
+package com.group0562.adventureofpost.shapeClicker.views;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,7 +6,7 @@ import android.os.Bundle;
 
 import com.group0562.adventureofpost.R;
 
-public class CircleClickerActivity extends AppCompatActivity {
+public class ShapeClickerActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

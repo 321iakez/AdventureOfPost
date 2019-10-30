@@ -1,4 +1,4 @@
-package com.group0562.adventureofpost.circleClicker;
+package com.group0562.adventureofpost.shapeClicker;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -6,7 +6,7 @@ import android.graphics.Paint;
 import com.group0562.adventureofpost.Puzzles;
 
 
-public class CircleClicker extends Puzzles {
+public class ShapeClicker extends Puzzles {
     /* bound indexes follow from left, right, up and down */
     static double[] bound;
     private Circle circle;
@@ -16,16 +16,16 @@ public class CircleClicker extends Puzzles {
     private double r;
     private boolean within = false;
 
-    public CircleClicker(long time, float radius, Paint p) {
+    public ShapeClicker(long time, float radius, Paint p) {
 
-        super(new CircleClickerStats(time));
+        super(new ShapeClickerStats(time));
         this.paint = p;
         circle = new Circle(50, 50, radius, this.paint);
         circle.setBallLocation();
     }
 
     public static void setBound(double[] bound) {
-        CircleClicker.bound = bound;
+        ShapeClicker.bound = bound;
     }
 
     // call this before update in front end
