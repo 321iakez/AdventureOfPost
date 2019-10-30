@@ -21,7 +21,7 @@ public class GameActivity extends AppCompatActivity {
         setContentView(R.layout.activity_game);
     }
 
-    public void onClickCircleClicker(View view) {
+    public void onClickShapeClicker(View view) {
         Intent intent = new Intent(this, ShapeClickerActivity.class);
         TextView textView = (TextView) findViewById(R.id.CCButton);
         String message = textView.getText().toString();
