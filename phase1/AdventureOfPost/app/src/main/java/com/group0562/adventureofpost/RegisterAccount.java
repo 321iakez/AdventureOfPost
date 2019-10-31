@@ -20,7 +20,7 @@ public class RegisterAccount extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_account);
-
+        db = new DatabaseHelper(this);
         registerUser = findViewById(R.id.username);
         registerPass = findViewById(R.id.password);
         registerButton = findViewById(R.id.registerButton);
@@ -39,7 +39,7 @@ public class RegisterAccount extends AppCompatActivity {
                         Boolean checkmail = db.checkMail(newUser);
                         if(checkmail){
                             Boolean insert = db.insert(newUser, newPass);
-                            if(insert == true){
+                            if(insert){
                                 Toast.makeText(getApplicationContext(), "Registered Successfully", Toast.LENGTH_SHORT).show();
                             }
                         }
