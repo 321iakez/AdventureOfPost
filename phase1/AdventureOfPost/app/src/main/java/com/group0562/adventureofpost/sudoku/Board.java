@@ -60,7 +60,7 @@ public class Board {
     private void loadBoard(int[][] board) {
         for (int row = 0; row < rows; row++) {
             for (int col = 0; col < cols; col++) {
-                Cell cell = new Cell(board[row][col], board[row][col] == 0);
+                Cell cell = new Cell(board[row][col], board[row][col] != 0);
                 this.board[row][col] = cell;
             }
         }
@@ -72,7 +72,7 @@ public class Board {
 
     // allows insertion of numbers into the board, but only if
     public boolean insertNum(int row, int col, int input) {
-        if (!board[row][col].isLocked() & checkConflict(input, row, col)) {
+        if (!board[row][col].isLocked()) {
             board[row][col].setValue(input);
             return true;
         }
@@ -100,6 +100,7 @@ public class Board {
     }
 
     private boolean checkConflict(int input, int row, int col) {
+        // TODO: fix index out of bounds issue, most likely in checkRegionConflict()
         return (!checkHorizConflict(input, row, col) & !checkRegionConflict(input, row, col) &
                 !checkVertConflict(input, row, col));
     }

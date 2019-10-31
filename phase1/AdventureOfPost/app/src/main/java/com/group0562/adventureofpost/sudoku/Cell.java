@@ -52,8 +52,4 @@ public class Cell {
     public void setValue(int value) {
         this.value = value;
     }
-
-    public int getCellImage() {
-        return R.drawable.blank;
-    }
 }

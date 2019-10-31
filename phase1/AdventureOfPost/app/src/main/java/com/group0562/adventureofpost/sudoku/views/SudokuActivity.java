@@ -44,11 +44,12 @@ public class SudokuActivity extends AppCompatActivity implements SudokuCellFragm
         int newValue = Integer.parseInt(numClicked.getTag().toString());
 
         // Update backend board
-//        boolean updateSuccess = presenter.getGameBoard().insertNum(currentRow, currentCol, newValue);
+        boolean updateSuccess = presenter.getGameBoard().insertNum(currentRow, currentCol, newValue);
 
         // Load value on board
-//        if (updateSuccess)
-        cellGroupFrag.loadValues(newValue, currentRow, currentCol);
+        if (updateSuccess) {
+            cellGroupFrag.loadValues(newValue, currentRow, currentCol);
+        }
     }
 
     @Override

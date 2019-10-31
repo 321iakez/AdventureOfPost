@@ -18,12 +18,6 @@ public class SudokuTest {
 
     @Test
     public void getRandomPuzzle() {
-        Sudoku inst = new Sudoku();
-        int[][] puzzle = inst.getRandomPuzzle();
 
-        for (int[] row: puzzle) {
-            System.out.println(Arrays.toString(row));
-            assertEquals(6, row.length);
-        }
     }
 }
