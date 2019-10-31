@@ -21,6 +21,7 @@ import com.group0562.adventureofpost.R;
 public class SudokuCellFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
+//    private int[][] cells =
 
     public SudokuCellFragment() {
         // Required empty public constructor

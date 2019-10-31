@@ -7,15 +7,16 @@
     tools:context=".sudoku.views.SudokuActivity">
 
     <TableLayout
+        android:id="@+id/tableLayout"
         android:layout_width="337dp"
         android:layout_height="337dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginEnd="36dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.147">
+        app:layout_constraintVertical_bias="0.103">
 
         <TableRow
             android:id="@+id/tableRow1"
@@ -37,14 +38,6 @@
                 android:layout_height="106dp"
                 android:layout_weight="1"
                 android:tag="1" />
-
-            <fragment
-                android:id="@+id/cellGroupFragment3"
-                android:name="com.group0562.adventureofpost.sudoku.views.SudokuCellFragment"
-                android:layout_width="92dp"
-                android:layout_height="106dp"
-                android:layout_weight="1"
-                android:tag="2" />
 
         </TableRow>
 
@@ -68,13 +61,6 @@
                 android:layout_weight="1"
                 android:tag="4" />
 
-            <fragment
-                android:id="@+id/cellGroupFragment6"
-                android:name="com.group0562.adventureofpost.sudoku.views.SudokuCellFragment"
-                android:layout_width="92dp"
-                android:layout_height="106dp"
-                android:layout_weight="1"
-                android:tag="5" />
         </TableRow>
 
         <TableRow
@@ -97,14 +83,85 @@
                 android:layout_weight="1"
                 android:tag="7" />
 
-            <fragment
-                android:id="@+id/cellGroupFragment9"
-                android:name="com.group0562.adventureofpost.sudoku.views.SudokuCellFragment"
-                android:layout_width="92dp"
-                android:layout_height="106dp"
-                android:layout_weight="1"
-                android:tag="8" />
         </TableRow>
 
     </TableLayout>
+
+    <LinearLayout
+        android:id="@+id/numPad1"
+        style="?android:buttonBarStyle"
+        android:layout_width="389dp"
+        android:layout_height="63dp"
+        android:layout_weight="1"
+        app:layout_constraintTop_toBottomOf="@id/tableLayout"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.59">
+
+        <Button
+            android:id="@+id/num1"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/num1" />
+
+        <Button
+            android:id="@+id/num2"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/num2" />
+
+        <Button
+            android:id="@+id/num3"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/num3" />
+
+        <Button
+            android:id="@+id/num4"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/num4" />
+
+        <Button
+            android:id="@+id/num5"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/num5" />
+
+        <Button
+            android:id="@+id/num6"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/num6" />
+
+        <Button
+            android:id="@+id/num7"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/num7" />
+
+        <Button
+            android:id="@+id/num8"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/num8" />
+
+        <Button
+            android:id="@+id/num9"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/num9" />
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

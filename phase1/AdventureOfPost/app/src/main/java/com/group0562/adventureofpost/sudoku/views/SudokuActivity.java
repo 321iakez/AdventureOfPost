@@ -10,8 +10,6 @@ import com.group0562.adventureofpost.R;
 
 public class SudokuActivity extends AppCompatActivity implements SudokuCellFragment.OnFragmentInteractionListener {
 
-    private BoardComp gameBoard;
-
     private TextView hintsLeft;
 
     private TextView timerText;
