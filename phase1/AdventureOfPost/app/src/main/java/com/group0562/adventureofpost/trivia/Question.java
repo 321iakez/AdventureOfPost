@@ -21,11 +21,7 @@ public class Question {
     }
 
     boolean checkCorrect(String response) {
-        if (response.equals(this.answer)) {
-            return true;
-        } else {
-            return false;
-        }
+        return response.equals(this.answer);
     }
 
     public String[] getOptions() {
