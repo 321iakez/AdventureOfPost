@@ -31,19 +31,19 @@ public class RegisterAccount extends AppCompatActivity {
                 String newUser = registerUser.getText().toString();
                 String newPass = registerPass.getText().toString();
                 String cPass = registercPass.getText().toString();
-                if(newUser.equals("")||newPass.equals("")||cPass.equals("")){
+                if (newUser.equals("") || newPass.equals("") || cPass.equals("")) {
                     Toast.makeText(getApplicationContext(), "Fields are Empty", Toast.LENGTH_SHORT).show();
-                }
-                else{
-                    if(newPass.equals(cPass)){
+                } else {
+                    if (newPass.equals(cPass)) {
                         Boolean checkmail = db.checkMail(newUser);
-                        if(checkmail){
+                        if (checkmail) {
                             Boolean insert = db.insert(newUser, newPass);
-                            if(insert){
+                            if (insert) {
                                 Toast.makeText(getApplicationContext(), "Registered Successfully", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(RegisterAccount.this, MainActivity.class);
+                                startActivity(intent);
                             }
-                        }
-                        else{
+                        } else {
                             Toast.makeText(getApplicationContext(), "Email Already Exists", Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -52,5 +52,4 @@ public class RegisterAccount extends AppCompatActivity {
             }
         });
     }
-    }
-
+}

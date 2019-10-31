@@ -6,26 +6,50 @@ import android.view.View;
 import android.content.Intent;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.group0562.adventureofpost.trivia.DatabaseHelper;
 
 
 public class MainActivity extends AppCompatActivity {
     //TODO I dont know if this is correct
     public final static String EXTRA_MESSAGE = "com.group0562.AdventureOfPost.MESSAGE";
     EditText userName, passWord;
-    Button register;
+    Button register, login;
+    DatabaseHelper db;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        register = (Button)findViewById(R.id.button2);
+        db = new DatabaseHelper(this);
+        register = findViewById(R.id.button2);
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
                 onClickRegisterNew(v);
+            }
+        });
+        userName = findViewById(R.id.editText2);
+        passWord = findViewById(R.id.editText);
+        login = findViewById(R.id.button);
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String email = userName.getText().toString();
+                String pass = passWord.getText().toString();
+                Boolean checkemailpassword = db.emailpassword(email, pass);
+                if(checkemailpassword){
+                    Toast.makeText(getApplicationContext(),"successfully login", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(MainActivity.this, GameActivity.class);
+                    startActivity(intent);
+                }
+                else{
+                    Toast.makeText(getApplicationContext(), "Wrong email or password", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
