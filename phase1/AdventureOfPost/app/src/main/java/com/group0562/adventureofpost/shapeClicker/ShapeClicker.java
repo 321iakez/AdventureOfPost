@@ -18,6 +18,7 @@ public class ShapeClicker extends Puzzles {
     ShapeClicker(long time, Paint p) {
         super(new ShapeClickerStats(time));
         this.paint = p;
+        puzzleStats = new ShapeClickerStats(time);
         s_object = new Circle(50, 50, this.paint);
         s_object.setLocation();
     }
@@ -26,13 +27,14 @@ public class ShapeClicker extends Puzzles {
         ShapeClicker.bound = bound;
     }
 
-
     void checkWithinBall(double cursor_x, double cursor_y) {
         this.within = s_object.checkWithin(cursor_x, cursor_y);
-        if(this.within){
-            update();
-            checkComplete();
-        }
+        update();
+        checkComplete();
+        //if(this.within){
+            //update();
+        //    checkComplete();
+        //}
     }
 
     void draw(Canvas canvas){
@@ -64,7 +66,12 @@ public class ShapeClicker extends Puzzles {
     public void update() {
         super.update();
         if (this.within) {
+            this.puzzleStats.setPoints(1);
             notifyObservers();
+            s_object.setLocation();
+        }
+        else {
+            this.puzzleStats.setLives(1);
             s_object.setLocation();
         }
     }

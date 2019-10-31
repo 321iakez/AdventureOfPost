@@ -44,7 +44,6 @@ public class SCSettingActivity extends AppCompatActivity {
     }
 
     public void onClickBackToGame(View view) {
-        Intent intent = new Intent(this, ShapeClickerActivity.class);
         sc_back_to_game = findViewById(R.id.sc_back_to_game);
         SharedPreferences sc_color_list = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences sc_shape_list = PreferenceManager.getDefaultSharedPreferences(this);

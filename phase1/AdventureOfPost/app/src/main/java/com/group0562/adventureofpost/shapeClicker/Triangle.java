@@ -3,6 +3,9 @@ package com.group0562.adventureofpost.shapeClicker;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
+
+import com.group0562.adventureofpost.model.PuzzleStats;
+
 import static java.lang.Math.*;
 
 public class Triangle extends Shape {
@@ -13,7 +16,7 @@ public class Triangle extends Shape {
     private Vertex v3;
 
     public Triangle(double x, double y, Paint p){
-        super(x,y);
+        super(x, y);
         this.paint = p;
         this.v1 = new Vertex();
         this.v2 = new Vertex();

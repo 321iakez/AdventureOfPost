@@ -10,10 +10,13 @@ import android.view.View;
 
 import androidx.annotation.Nullable;
 
+import com.group0562.adventureofpost.model.PuzzleStats;
+
 public class ShapeClickerGameView extends View {
     private static Paint paint;
     private static final float Stroke_Thickness = 3;
     private ShapeClicker clicker;
+    PuzzleStats puzzleStats;
 
     public ShapeClickerGameView(Context context, @Nullable AttributeSet attrs){
         super(context, attrs);
@@ -24,6 +27,7 @@ public class ShapeClickerGameView extends View {
         ShapeClicker.setBound(bounds);
         clicker = new ShapeClicker(60, ShapeClickerGameView.paint);
         Shape.setRadius("Easy");
+        this.puzzleStats = clicker.puzzleStats;
     }
 
     public static void setColor(String color){
@@ -37,14 +41,17 @@ public class ShapeClickerGameView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         canvas.drawColor(Color.CYAN);
-        clicker.draw(canvas);
+        this.clicker.draw(canvas);
+        this.puzzleStats.draw(canvas);
+        this.puzzleStats.updateTime();
+        invalidate();
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         double x = event.getX();
         double y = event.getY();
-        clicker.checkWithinBall(x, y);
+        this.clicker.checkWithinBall(x, y);
         invalidate();
         return super.onTouchEvent(event);
     }

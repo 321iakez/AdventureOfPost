@@ -3,11 +3,14 @@ package com.group0562.adventureofpost.shapeClicker;
 import android.graphics.Paint;
 import android.graphics.Canvas;
 
+import com.group0562.adventureofpost.model.PuzzleStats;
+
 public abstract class Shape {
     double coordinate_x;
     double coordinate_y;
     static double radius;
     private Paint paint;
+
 
     Shape(double x, double y){
         this.coordinate_x = x;

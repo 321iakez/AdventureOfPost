@@ -1,5 +1,7 @@
 package com.group0562.adventureofpost.model;
 
+import android.graphics.Canvas;
+
 import java.util.Observer;
 
 public abstract class PuzzleStats implements Observer {
@@ -13,11 +15,11 @@ public abstract class PuzzleStats implements Observer {
         this.time = time;
         this.points = 0;
         this.startTime = System.currentTimeMillis();
-        this.lives = 1;
+        this.lives = 10;
     }
 
     public void setLives(int lives) {
-        this.lives = lives;
+        this.lives -= lives;
     }
 
     public void setPoints(int pt) {
@@ -43,4 +45,6 @@ public abstract class PuzzleStats implements Observer {
     }
 
     public abstract void updatePoints();
+
+    public void draw(Canvas canvas){};
 }

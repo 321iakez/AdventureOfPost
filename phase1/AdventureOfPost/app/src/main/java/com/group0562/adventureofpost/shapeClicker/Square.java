@@ -3,6 +3,8 @@ package com.group0562.adventureofpost.shapeClicker;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 
+import com.group0562.adventureofpost.model.PuzzleStats;
+
 import static java.lang.Math.*;
 
 public class Square extends Shape {
