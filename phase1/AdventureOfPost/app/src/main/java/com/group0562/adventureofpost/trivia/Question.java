@@ -11,9 +11,8 @@ public class Question {
     Question(String content) {
         String[] splitContent = content.split(";;");
         this.question = splitContent[0];
-        for (int i = 1; i < splitContent.length - 1; i++) {
-            this.options[i - 1] = splitContent[i];
-        }
+        if (splitContent.length - 1 - 1 >= 0)
+            System.arraycopy(splitContent, 1, this.options, 0, splitContent.length - 1 - 1);
         this.answer = splitContent[5];
     }
 
