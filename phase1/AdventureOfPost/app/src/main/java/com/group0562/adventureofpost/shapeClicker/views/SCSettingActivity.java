@@ -1,15 +1,14 @@
 package com.group0562.adventureofpost.shapeClicker.views;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.widget.RelativeLayout;
+import android.view.View;
+import android.widget.Button;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.preference.ListPreference;
 import androidx.preference.PreferenceFragmentCompat;
 
 import com.group0562.adventureofpost.R;
@@ -20,6 +19,7 @@ import com.group0562.adventureofpost.shapeClicker.ShapeClickerGameView;
 import java.util.List;
 
 public class SCSettingActivity extends AppCompatActivity {
+    private Button sc_back_to_game;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,18 +33,7 @@ public class SCSettingActivity extends AppCompatActivity {
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
-        SharedPreferences sc_color_list = PreferenceManager.getDefaultSharedPreferences(this);
-        SharedPreferences sc_shape_list = PreferenceManager.getDefaultSharedPreferences(this);
-        SharedPreferences sc_difficulty_list = PreferenceManager.getDefaultSharedPreferences(this);
-        String color_choice = sc_color_list.getString(getString(R.string.sc_color_key), "FF000000");
-        String shape_choice = sc_shape_list.getString(getString(R.string.sc_shape_key), "Circle");
-        String difficulty_choice = sc_difficulty_list.getString(getString(R.string.sc_difficulty_key), "Easy");
-        if (color_choice.equals("true")) {ShapeClickerGameView.setColor("FF000000");}
-        else {ShapeClickerGameView.setColor(color_choice); }
-        if (difficulty_choice.equals("Hard")){Shape.setRadius(15.0);}
-        if (!shape_choice.equals("true")){ShapeClicker.setShape(difficulty_choice);}
     }
-
 
 
     public static class SettingsFragment extends PreferenceFragmentCompat {
@@ -52,5 +41,20 @@ public class SCSettingActivity extends AppCompatActivity {
         public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
             setPreferencesFromResource(R.xml.sc_preferences, rootKey);
         }
+    }
+
+    public void onClickBackToGame(View view) {
+        Intent intent = new Intent(this, ShapeClickerActivity.class);
+        sc_back_to_game = findViewById(R.id.sc_back_to_game);
+        SharedPreferences sc_color_list = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences sc_shape_list = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences sc_difficulty_list = PreferenceManager.getDefaultSharedPreferences(this);
+        String color_choice = sc_color_list.getString(getString(R.string.sc_color_key), "Black");
+        String shape_choice = sc_shape_list.getString(getString(R.string.sc_shape_key), "Circle");
+        String difficulty_choice = sc_difficulty_list.getString(getString(R.string.sc_difficulty_key), "Easy");
+        ShapeClickerGameView.setColor(color_choice);
+        Shape.setRadius(difficulty_choice);
+        ShapeClicker.setShape(shape_choice);
+        finish();
     }
 }

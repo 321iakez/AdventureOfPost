@@ -7,21 +7,22 @@ import static java.lang.Math.*;
 
 public class Triangle extends Shape {
     private Paint paint;
+    final String message = "Triangle";
     private Vertex v1;
     private Vertex v2;
     private Vertex v3;
 
-    public Triangle(double x, double y, double r, Paint p){
-        super(x,y,r);
+    public Triangle(double x, double y, Paint p){
+        super(x,y);
         this.paint = p;
         this.v1 = new Vertex();
         this.v2 = new Vertex();
         this.v3 = new Vertex();
-        v1.x = this.coordinate_x - this.radius;
+        v1.x = this.coordinate_x - Shape.radius;
         v1.y = this.coordinate_y;
         v2.x = this.coordinate_x;
-        v2.y = this.coordinate_y+sqrt(3)*this.radius;
-        v3.x = this.coordinate_x+this.radius;
+        v2.y = this.coordinate_y+sqrt(3)*Shape.radius;
+        v3.x = this.coordinate_x+Shape.radius;
         v3.y = this.coordinate_y;
 
     }
@@ -41,8 +42,8 @@ public class Triangle extends Shape {
 
     @Override
     public void setLocation() {
-        this.coordinate_x = random() * (ShapeClicker.bound[1] - 2 * this.radius) + this.radius;
-        this.coordinate_y = random() * (ShapeClicker.bound[3] - 2 * this.radius);
+        this.coordinate_x = random() * (ShapeClicker.bound[1] - 2 * Shape.radius) + Shape.radius;
+        this.coordinate_y = random() * (ShapeClicker.bound[3] - 2 * Shape.radius);
     }
 
     @Override
