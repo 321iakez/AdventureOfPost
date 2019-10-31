@@ -5,6 +5,7 @@
     <string name="login">Login</string>
     <string name="Username">Username</string>
     <string name="Password">Password</string>
+    <string name="CPass">Confirm Password</string>
     <string name="Register">Register</string>
     <string name="shape_clicker">Shape Clicker</string>
     <string name="trivia">Trivia</string>
