@@ -2,8 +2,7 @@ package com.group0562.adventureofpost.sudoku;
 
 import com.group0562.adventureofpost.Puzzles;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -11,10 +10,10 @@ public class Sudoku extends Puzzles {
 
     private Board gameBoard;
 
-    public Sudoku() {
+    public Sudoku(InputStream file) {
         super(new SudokuStats(100000));
 
-        gameBoard = new Board(getRandomPuzzle(), 6, 6);
+        gameBoard = new Board(getRandomPuzzle(file), 6, 6);
     }
 
     /**
@@ -22,17 +21,10 @@ public class Sudoku extends Puzzles {
      *
      * @return a 2-D integer array puzzle.
      */
-    public int[][] getRandomPuzzle() {
+    public int[][] getRandomPuzzle(InputStream file) {
         // Read file
-        File f = new File("src/main/java/com/group0562/adventureofpost/sudoku/sudoku.csv");
         Random rand = new Random();
-
-        Scanner scanner = null;
-        try {
-            scanner = new Scanner(f);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+        Scanner scanner = new Scanner(file);
 
         // Randomly select a line from the puzzles
         int n = 0;
@@ -64,5 +56,9 @@ public class Sudoku extends Puzzles {
     @Override
     public void checkComplete() {
         boolean result = gameBoard.checkFull();
+    }
+
+    public Board getGameBoard() {
+        return gameBoard;
     }
 }
