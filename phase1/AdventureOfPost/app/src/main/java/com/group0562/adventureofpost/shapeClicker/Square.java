@@ -36,7 +36,7 @@ public class Square extends Shape {
     }
 
     public void draw(Canvas canvas){
-        canvas.drawRect((float)(this.coordinate_x-Shape.radius), (float)(this.coordinate_y + Shape.radius),
+        canvas.drawRect((float)(this.coordinate_x-Shape.radius), (float)(this.coordinate_y - Shape.radius),
                 (float)(this.coordinate_x + Shape.radius), (float)(this.coordinate_y + Shape.radius), this.paint);
     }
 

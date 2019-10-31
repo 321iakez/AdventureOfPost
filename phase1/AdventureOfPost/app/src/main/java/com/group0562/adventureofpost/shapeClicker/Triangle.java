@@ -24,7 +24,6 @@ public class Triangle extends Shape {
         v2.y = this.coordinate_y+sqrt(3)*Shape.radius;
         v3.x = this.coordinate_x+Shape.radius;
         v3.y = this.coordinate_y;
-
     }
 
 
@@ -44,6 +43,13 @@ public class Triangle extends Shape {
     public void setLocation() {
         this.coordinate_x = random() * (ShapeClicker.bound[1] - 2 * Shape.radius) + Shape.radius;
         this.coordinate_y = random() * (ShapeClicker.bound[3] - 2 * Shape.radius);
+        v1.x = this.coordinate_x - Shape.radius;
+        v1.y = this.coordinate_y;
+        v2.x = this.coordinate_x;
+        v2.y = this.coordinate_y+sqrt(3)*Shape.radius;
+        v3.x = this.coordinate_x+Shape.radius;
+        v3.y = this.coordinate_y;
+
     }
 
     @Override
