@@ -30,6 +30,7 @@ public class Question {
     }
 
     public String[] getOptions() {
+        shuffleOptions(options);
         return this.options;
     }
 
@@ -42,7 +43,6 @@ public class Question {
             String helper = options[i];
             options[i] = options[change];
             options[change] = helper;
-
         }
 
     }

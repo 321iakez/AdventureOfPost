@@ -19,6 +19,7 @@ public class Trivia extends Puzzles {
     public Trivia() throws IOException{
         super(new TriviaStats(30));
         PuzzlesSolved = 0;
+        //TODO Once pullQuestions() is fixed uncomment line below
         //questions = pullQuestions();
         rndQuestions = new ArrayList<>();
         rndQuestions.add(new Question("What does Paul Gries smell like?;;Cinnamon;;Nothing;;Milk;;Lavendar;;Nothing"));
