@@ -29,7 +29,7 @@ public class Question {
         return this.options;
     }
 
-    void shuffleOptions(String[] options) {
+    private void shuffleOptions(String[] options) {
         int n = options.length;
         Random random = new Random();
         random.nextInt();
