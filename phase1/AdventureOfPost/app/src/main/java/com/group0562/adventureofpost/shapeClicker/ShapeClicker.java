@@ -13,19 +13,20 @@ public class ShapeClicker extends Puzzles {
     private Paint paint;
     private static String shape;
     private boolean within = false;
+    private static boolean changed;
 
-    public ShapeClicker(long time, float radius, Paint p) {
+    ShapeClicker(long time, Paint p) {
         super(new ShapeClickerStats(time));
         this.paint = p;
-        s_object = new Circle(50, 50, radius, this.paint);
+        s_object = new Circle(50, 50, this.paint);
         s_object.setLocation();
     }
 
-    public static void setBound(double[] bound) {
+    static void setBound(double[] bound) {
         ShapeClicker.bound = bound;
     }
 
-    // call this before update in front end
+
     void checkWithinBall(double cursor_x, double cursor_y) {
         this.within = s_object.checkWithin(cursor_x, cursor_y);
         if(this.within){
@@ -35,10 +36,29 @@ public class ShapeClicker extends Puzzles {
     }
 
     void draw(Canvas canvas){
+        checkChangedObject();
         s_object.draw(canvas);
     }
 
-    public static void setShape(String type_of_shape){ShapeClicker.shape = type_of_shape;}
+    public static void setShape(String type_of_shape){
+        ShapeClicker.shape = type_of_shape;
+        ShapeClicker.changed = true;
+    }
+
+    private void checkChangedObject(){
+        if (ShapeClicker.changed){
+            if (ShapeClicker.shape.equals("Circle")){
+                s_object = new Circle(s_object.getCoordinate_x(), s_object.getCoordinate_y(), this.paint);
+            }
+            else if (ShapeClicker.shape.equals("Square")){
+                s_object = new Square(s_object.getCoordinate_x(), s_object.getCoordinate_y(), this.paint);
+            }
+            else{
+                s_object = new Triangle(s_object.getCoordinate_x(), s_object.getCoordinate_y(), this.paint);
+            }
+        }
+        ShapeClicker.changed = false;
+    }
 
     @Override
     public void update() {

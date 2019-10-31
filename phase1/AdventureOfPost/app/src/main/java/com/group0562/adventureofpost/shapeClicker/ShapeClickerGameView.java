@@ -22,12 +22,17 @@ public class ShapeClickerGameView extends View {
         ShapeClickerGameView.paint.setStrokeWidth(ShapeClickerGameView.Stroke_Thickness);
         double[] bounds = {0,800,0,1500};
         ShapeClicker.setBound(bounds);
-        clicker = new ShapeClicker(60, 40, ShapeClickerGameView.paint);
-    }
-    public static void setColor(String color){
-        ShapeClickerGameView.paint.setColor(Color.YELLOW);
+        clicker = new ShapeClicker(60, ShapeClickerGameView.paint);
+        Shape.setRadius("Easy");
     }
 
+    public static void setColor(String color){
+        if(color.equals("Black")) {ShapeClickerGameView.paint.setColor(Color.BLACK);}
+        else if(color.equals("White")) {ShapeClickerGameView.paint.setColor(Color.WHITE);}
+        else if(color.equals("Blue")) {ShapeClickerGameView.paint.setColor(Color.BLUE);}
+        else if(color.equals("Yellow")) {ShapeClickerGameView.paint.setColor(Color.YELLOW);}
+        else {ShapeClickerGameView.paint.setColor(Color.GREEN);}
+    }
 
     @Override
     protected void onDraw(Canvas canvas) {

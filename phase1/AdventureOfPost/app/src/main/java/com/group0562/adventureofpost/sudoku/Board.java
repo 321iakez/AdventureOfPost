@@ -1,5 +1,7 @@
 package com.group0562.adventureofpost.sudoku;
 
+import androidx.annotation.NonNull;
+
 public class Board {
 
     /**
@@ -23,15 +25,6 @@ public class Board {
     private Cell[][] board;
 
     /**
-     * Default constructor.
-     */
-    public Board() {
-        rows = 6;
-        cols = 6;
-        board = new Cell[6][6];
-    }
-
-    /**
      * Constructor with preloaded board.
      *
      * @param board  the 2-D array representing the preloaded board.
@@ -44,6 +37,19 @@ public class Board {
         this.board = new Cell[rowDim][colDim];
 
         loadBoard(board);
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        StringBuilder result = new StringBuilder();
+        for (int row = 0; row < rows; row++) {
+            for (int col = 0; col < cols; col++) {
+                result.append(getCell(row, col).getValue() + ' ');
+            }
+            result.append('\n');
+        }
+        return result.toString();
     }
 
     /**
@@ -60,16 +66,18 @@ public class Board {
         }
     }
 
-    Cell getCell(int row, int col) {
+    public Cell getCell(int row, int col) {
         return board[row][col];
     }
 
     // allows insertion of numbers into the board, but only if
-    void insertNum(int row, int col, int input) {
-        if (!board[row][col].isLocked() & checkHorizConflict(input, row, col) &
-                !checkRegionConflict(input, row, col) & !checkVertConflict(input, row, col)) {
+    public boolean insertNum(int row, int col, int input) {
+        if (!board[row][col].isLocked() & checkConflict(input, row, col)) {
             board[row][col].setValue(input);
+            return true;
         }
+
+        return false;
     }
 
     // delete the entry from a slot in the board
@@ -91,50 +99,49 @@ public class Board {
 
     }
 
-    // helper method that checks whether there is a horizontal conflict among the user input.
-//    void
+    private boolean checkConflict(int input, int row, int col) {
+        return (!checkHorizConflict(input, row, col) & !checkRegionConflict(input, row, col) &
+                !checkVertConflict(input, row, col));
+    }
 
-    boolean checkHorizConflict(int input, int row, int col) {
+    // helper method that checks whether there is a horizontal conflict among the user input.
+    private boolean checkHorizConflict(int input, int row, int col) {
         for (int column = 0; column < cols; column++) {
             if (column == col) {
             } else {
                 if (board[row][column].getValue() == input) {
-                    return false;
+                    return true;
                 }
             }
         }
-        return true;
+        return false;
     }
 
     // helper method that checks for vertical conflicts among the user input.
-//    void
-
-    boolean checkVertConflict(int input, int row, int col) {
+    private boolean checkVertConflict(int input, int row, int col) {
         for (int currow = 0; currow < rows; currow++) {
             if (currow == row) {
             } else {
                 if (board[currow][col].getValue() == input) {
-                    return false;
+                    return true;
                 }
             }
         }
-        return true;
+        return false;
     }
 
     // helper method that checks for region conflict among the user input.
-//    void
-
-    boolean checkRegionConflict(int input, int row, int col) {
+    private boolean checkRegionConflict(int input, int row, int col) {
         int horReg = (row - 1) / 2;
         int verReg = (col - 1) / 2;
         for (int currow = horReg * 2 - 1; currow < horReg * 2 + 1; currow++) {
             for (int curcol = verReg * 2 - 1; curcol < verReg * 2 + 1; curcol++) {
                 if (board[currow][curcol].getValue() == input) {
-                    return false;
+                    return true;
                 }
             }
         }
-        return true;
+        return false;
     }
 
     boolean checkFull() {

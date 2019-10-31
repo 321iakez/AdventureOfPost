@@ -4,22 +4,21 @@ import android.graphics.Paint;
 import android.graphics.Canvas;
 
 public abstract class Shape {
-    protected double coordinate_x;
-    protected double coordinate_y;
-    protected static double radius;
+    double coordinate_x;
+    double coordinate_y;
+    static double radius;
     private Paint paint;
 
-    public Shape(double x, double y, double r){
+    Shape(double x, double y){
         this.coordinate_x = x;
         this.coordinate_y = y;
-        this.radius = r;
     }
 
-    public double getCoordinate_x() {
+    double getCoordinate_x() {
         return coordinate_x;
     }
 
-    public double getCoordinate_y() {
+    double getCoordinate_y() {
         return coordinate_y;
     }
 
@@ -39,7 +38,12 @@ public abstract class Shape {
         this.paint = paint;
     }
 
-    public static void setRadius(double r) {Shape.radius = r;}
+    public static double getRadius(){return Shape.radius;}
+
+    public static void setRadius(String level) {
+        if (level.equals("Hard")){Shape.radius = 15;}
+        else {Shape.radius = 40;}
+    }
 
     public abstract void draw(Canvas canvas);
 

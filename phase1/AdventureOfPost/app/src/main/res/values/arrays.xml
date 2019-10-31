@@ -41,10 +41,10 @@
     </string-array>
 
     <string-array name="sc_color_values">
-        <item>#000</item>
-        <item>#FFFFFF</item>
-        <item>#9C27B0</item>
-        <item>#8BC34A</item>
-        <item>#FFEB3B</item>
+        <item>Black</item>
+        <item>White</item>
+        <item>Blue</item>
+        <item>Green</item>
+        <item>Yellow</item>
     </string-array>
 </resources>
