@@ -19,12 +19,21 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    //TODO Currently will bring user to the SudokuActivity screen
-    public void sendMessage(View view){
+    public void onClickLogin(View view){
         Intent intent = new Intent(this, GameActivity.class);
-        EditText editText = (EditText) findViewById(R.id.editText);
-        String message = editText.getText().toString();
-        intent.putExtra(EXTRA_MESSAGE, message);
+        //TODO I don't know if these lines are required
+        //EditText editText = (EditText) findViewById(R.id.editText);
+        //String message = editText.getText().toString();
+        //intent.putExtra(EXTRA_MESSAGE, message);
+        startActivity(intent);
+    }
+
+    public void onClickRegisterNew(View view){
+        Intent intent = new Intent(this, RegisterAccount.class);
+        //TODO I don't know if these lines are required
+        //EditText editText = (EditText) findViewById(R.id.editText);
+        //String message = editText.getText().toString();
+        //intent.putExtra(EXTRA_MESSAGE, message);
         startActivity(intent);
     }
 }

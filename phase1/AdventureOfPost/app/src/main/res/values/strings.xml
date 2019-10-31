@@ -1,4 +1,5 @@
 <resources>
+    <!-- MainActivity Strings -->
     <string name="app_name">Adventure of POSt</string>
     <string name="the_adventure_of_post">The Adventure of POSt</string>
     <string name="login">Login</string>
@@ -10,6 +11,10 @@
     <string name="sudoku">Sudoku</string>
     <string name="shape_clicker_setting">Difficulty Setting</string>
     <string name="title_activity_scsettings">Settings</string>
+    <string name="answer">Answer</string>
+    <string name="security_question">Security Question</string>
+    <string name="register_account">Register Account</string>
+    <string name="register_message">Don\'t have account?</string>
 
     <!-- SC Preference title -->
     <string name="sc_color_of_shaped_object">Color of Shaped Object</string>
