@@ -69,11 +69,25 @@ public class Board {
         }
     }
 
+    /**
+     * Access cell at (row, col) on the game board.
+     *
+     * @param row the row number.
+     * @param col the column number.
+     * @return the Cell instance at given location.
+     */
     public Cell getCell(int row, int col) {
         return board[row][col];
     }
 
-    // allows insertion of numbers into the board, but only if
+    /**
+     * Insert given number for cell at given location.
+     *
+     * @param row   the row number.
+     * @param col   the column number.
+     * @param input the new number of the cell.
+     * @return a boolean indicating whether the insertion was successful or not.
+     */
     public boolean insertNum(int row, int col, int input) {
         if (!board[row][col].isLocked()) {
             board[row][col].setValue(input);
@@ -83,13 +97,23 @@ public class Board {
         return false;
     }
 
-    // delete the entry from a slot in the board
+    /**
+     * Remove the value from the given cell on the board.
+     *
+     * @param row the row number.
+     * @param col the column number.
+     */
     public void removeNum(int row, int col) {
         if (!board[row][col].isLocked()) {
             board[row][col].setValue(0);
         }
     }
 
+    /**
+     * Resets the entire board to original state.
+     *
+     * @return a list of (rows, cols) that need to be updated.
+     */
     public List<int[]> resetBoard() {
         List<int[]> resetCells = new ArrayList<>();
         for (int row = 0; row < rows; row++) {
@@ -115,13 +139,28 @@ public class Board {
 
     }
 
+    /**
+     * Check conflict with other cells whenever a new number is inserted
+     *
+     * @param input the number inserted.
+     * @param row   the row number.
+     * @param col   the column number.
+     * @return a bool indicating whether there is conflict or not.
+     */
     private boolean checkConflict(int input, int row, int col) {
         // TODO: fix index out of bounds issue, most likely in checkRegionConflict()
         return (checkHorizConflict(input, row, col) | checkRegionConflict(input, row, col) |
                 checkVertConflict(input, row, col));
     }
 
-    // helper method that checks whether there is a horizontal conflict among the user input.
+    /**
+     * Helper method that checks whether there is a horizontal conflict among the user input.
+     *
+     * @param input the number inserted.
+     * @param row   the row number.
+     * @param col   the column number.
+     * @return a bool indicating whether there is horizontal conflict or not.
+     */
     private boolean checkHorizConflict(int input, int row, int col) {
         for (int column = 0; column < cols; column++) {
             if (column == col && board[row][column].getValue() == input) {
@@ -131,7 +170,14 @@ public class Board {
         return false;
     }
 
-    // helper method that checks for vertical conflicts among the user input.
+    /**
+     * Helper method that checks whether there is a vertical conflict among the user input.
+     *
+     * @param input the number inserted.
+     * @param row   the row number.
+     * @param col   the column number.
+     * @return a bool indicating whether there is vertical conflict or not.
+     */
     private boolean checkVertConflict(int input, int row, int col) {
         for (int currRow = 0; currRow < rows; currRow++) {
             if (currRow == row && board[currRow][col].getValue() == input) {
@@ -141,7 +187,14 @@ public class Board {
         return false;
     }
 
-    // helper method that checks for region conflict among the user input.
+    /**
+     * Helper method that checks whether there is a region conflict among the user input.
+     *
+     * @param input the number inserted.
+     * @param row   the row number.
+     * @param col   the column number.
+     * @return a bool indicating whether there is region conflict or not.
+     */
     private boolean checkRegionConflict(int input, int row, int col) {
         int horReg = (row - 1) / 2;
         int verReg = (col - 1) / 2;
@@ -155,6 +208,11 @@ public class Board {
         return false;
     }
 
+    /**
+     * Check whether the board is full or not.
+     *
+     * @return a bool indicating whether the board is full or not.
+     */
     boolean checkFull() {
         for (int row = 0; row < rows; row++) {
             for (int col = 0; col < cols; col++) {
