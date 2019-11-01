@@ -30,7 +30,7 @@ public class ShapeClickerStats extends PuzzleStats {
     }
 
     public void draw(Canvas canvas){
-        String time_text = "Time: " + this.getTime();
+        String time_text = "Time: " + this.getTime()/1000;
         String points_text = "Points: " + this.getPoints();
         String lives_text = "Lives: " + this.getLives();
         String combined = time_text + " " + points_text + " " + lives_text;

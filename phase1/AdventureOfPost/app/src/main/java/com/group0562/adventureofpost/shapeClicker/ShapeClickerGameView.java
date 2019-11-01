@@ -25,7 +25,7 @@ public class ShapeClickerGameView extends View {
         ShapeClickerGameView.paint.setStrokeWidth(ShapeClickerGameView.Stroke_Thickness);
         double[] bounds = {0,800,0,1500};
         ShapeClicker.setBound(bounds);
-        clicker = new ShapeClicker(60, ShapeClickerGameView.paint);
+        clicker = new ShapeClicker(60000, ShapeClickerGameView.paint);
         Shape.setRadius("Easy");
         this.puzzleStats = clicker.puzzleStats;
     }
