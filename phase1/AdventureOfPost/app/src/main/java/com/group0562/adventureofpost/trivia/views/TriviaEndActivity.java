@@ -1,10 +1,13 @@
 package com.group0562.adventureofpost.trivia.views;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.group0562.adventureofpost.GameActivity;
 import com.group0562.adventureofpost.R;
 
 public class TriviaEndActivity extends AppCompatActivity {
@@ -27,5 +30,10 @@ public class TriviaEndActivity extends AppCompatActivity {
         TextView scoreTextView = (TextView) findViewById(R.id.Score);
         scoreTextView.setText(score);
 
+    }
+
+    public void onClickNext(View view) {
+        Intent intent = new Intent(this, GameActivity.class);
+        startActivity(intent);
     }
 }
