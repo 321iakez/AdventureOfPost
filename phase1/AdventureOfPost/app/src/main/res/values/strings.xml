@@ -54,5 +54,6 @@
     <string name="num9">9</string>
     <string name="remove_button">Remove</string>
     <string name="reset_button">Reset</string>
+    <string name="next">Next</string>
 
 </resources>

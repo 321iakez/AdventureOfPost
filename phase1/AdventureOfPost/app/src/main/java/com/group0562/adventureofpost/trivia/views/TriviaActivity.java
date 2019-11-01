@@ -24,6 +24,7 @@ public class TriviaActivity extends AppCompatActivity{
     }
 
     public void onClickA(View v) {
+        game.updatePoints(0);
         if (game.hasNext()){
             Question q = game.getQuestion();
             String[] s = q.getOptions();
@@ -39,12 +40,15 @@ public class TriviaActivity extends AppCompatActivity{
             mTextView4.setText(s[3]);
         } else {
             Intent intent = new Intent(this, TriviaEndActivity.class);
+            int[] stats = game.getStats();
+            intent.putExtra("stats", stats);
             startActivity(intent);
         }
     }
 
     public void onClickB(View v) {
         if (game.hasNext()){
+            game.updatePoints(1);
             Question q = game.getQuestion();
             String[] s = q.getOptions();
             TextView mTextView = (TextView) findViewById(R.id.textView3);
@@ -59,11 +63,14 @@ public class TriviaActivity extends AppCompatActivity{
             mTextView4.setText(s[3]);
         } else {
             Intent intent = new Intent(this, TriviaEndActivity.class);
+            int[] stats = game.getStats();
+            intent.putExtra("stats", stats);
             startActivity(intent);
         }
     }
 
     public void onClickC(View v) {
+        game.updatePoints(2);
         if (game.hasNext()){
             Question q = game.getQuestion();
             String[] s = q.getOptions();
@@ -79,11 +86,14 @@ public class TriviaActivity extends AppCompatActivity{
             mTextView4.setText(s[3]);
         } else {
             Intent intent = new Intent(this, TriviaEndActivity.class);
+            int[] stats = game.getStats();
+            intent.putExtra("stats", stats);
             startActivity(intent);
         }
     }
 
     public void onClickD(View v) {
+        game.updatePoints(3);
         if (game.hasNext()){
             Question q = game.getQuestion();
             String[] s = q.getOptions();
@@ -99,6 +109,8 @@ public class TriviaActivity extends AppCompatActivity{
             mTextView4.setText(s[3]);
         } else {
             Intent intent = new Intent(this, TriviaEndActivity.class);
+            int[] stats = game.getStats();
+            intent.putExtra("stats", stats);
             startActivity(intent);
         }
     }

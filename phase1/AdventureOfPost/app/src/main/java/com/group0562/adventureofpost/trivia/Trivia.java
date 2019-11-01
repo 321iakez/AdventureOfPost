@@ -11,26 +11,52 @@ public class Trivia extends Puzzles {
     private int PuzzlesSolved;
     private ArrayList<Question> questions;
     private ArrayList<Question> rndQuestions;
+    private int correct;
+    private int incorrect;
+    private int score;
     //TODO gonna change later
 
     /*
     Constructor for Trivia class
      */
-    public Trivia() throws IOException{
+    public Trivia() throws IOException {
         super(new TriviaStats(30));
         PuzzlesSolved = 0;
+        //TODO These are temporary stats and will change as group work on universal stats
+        correct = 0;
+        incorrect = 0;
+        score = 0;
         //TODO Once pullQuestions() is fixed uncomment line below
         //questions = pullQuestions();
+
+        //Since some error with file reader using hardcoded questions for phase 1
         rndQuestions = new ArrayList<>();
         rndQuestions.add(new Question("What does Paul Gries smell like?;;Cinnamon;;Nothing;;Milk;;Lavendar;;Nothing"));
         rndQuestions.add(new Question("Which program has the highest domestic tuition?;;Economics;;Computer Science;;Engineering;;Commerce;;Engineering"));
         rndQuestions.add(new Question("What was the Computer Science POSt cutoff for the 2018-19 year?;;82.5;;85;;89.5;;86;;82.5"));
     }
 
+    public int[] getStats() {
+        return new int[]{correct, incorrect, score};
+    }
+
+    private boolean checkCorrect(int n) {
+        return rndQuestions.get(PuzzlesSolved - 1).checkCorrect(rndQuestions.get(PuzzlesSolved - 1).getOptions()[n]);
+    }
+
+    public void updatePoints(int n) {
+        if (checkCorrect(n)) {
+            this.score += 10;
+            this.correct += 1;
+        } else {
+            this.score -= 5;
+            this.incorrect += 1;
+        }
+    }
 
     /*
-    Reads File "Question.txt" and generates ArrayList of type Questions with contents of file
-     */
+        Reads File "Question.txt" and generates ArrayList of type Questions with contents of file
+         */
     //TODO SOMETHING IS WRONG HERE LOL
     private ArrayList<Question> pullQuestions() throws IOException {
         FileReader fr = new FileReader("Questions.txt");
