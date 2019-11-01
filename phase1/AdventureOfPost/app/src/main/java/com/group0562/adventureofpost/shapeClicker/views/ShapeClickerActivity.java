@@ -22,12 +22,14 @@ public class ShapeClickerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_circle_clicker);
     }
 
+    //to start the setting screen once clicked
     public void onClickSCSetting(View view) {
         Intent intent = new Intent(this, SCSettingActivity.class);
         sc_setting = findViewById(R.id.SCSettingButton);
         startActivity(intent);
     }
 
+    //to start the finish screen once clicked
     public void onClickSCDone(View view){
         Intent intent = new Intent(this, ShapeClickerEndActivity.class);
         sc_done = findViewById(R.id.sc_finish_button);

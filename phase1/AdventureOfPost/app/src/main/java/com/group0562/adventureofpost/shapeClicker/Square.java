@@ -7,10 +7,14 @@ import com.group0562.adventureofpost.model.PuzzleStats;
 
 import static java.lang.Math.*;
 
+
 public class Square extends Shape {
     private Paint paint;
     static final String message = "Square";
 
+    /**
+     * Constructor of a Square, including setting the coordinates of its center
+     */
     Square(double x, double y, Paint p){
         super(x, y);
         this.paint = p;

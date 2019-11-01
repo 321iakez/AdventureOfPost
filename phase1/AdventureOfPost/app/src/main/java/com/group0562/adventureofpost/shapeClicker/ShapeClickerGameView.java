@@ -19,11 +19,30 @@ import com.group0562.adventureofpost.shapeClicker.views.ShapeClickerActivity;
 import com.group0562.adventureofpost.shapeClicker.views.ShapeClickerEndActivity;
 
 public class ShapeClickerGameView extends View {
+
+    /**
+     * paint used for display
+     */
     private static Paint paint;
+
+    /**
+     * stroke width of the paint
+     */
     private static final float Stroke_Thickness = 3;
+
+    /**
+     * the ShapeClicker that is used in the view to be displayed
+     */
     private ShapeClicker clicker;
+
+    /**
+     * the three stats of the puzzle
+     */
     PuzzleStats puzzleStats;
 
+    /**
+     * constructor for ShapeClickerGameView for player to react with the puzzle, inherit the View class
+     */
     public ShapeClickerGameView(Context context, @Nullable AttributeSet attrs){
         super(context, attrs);
         ShapeClickerGameView.paint = new Paint();
@@ -36,6 +55,10 @@ public class ShapeClickerGameView extends View {
         this.puzzleStats = clicker.puzzleStats;
     }
 
+    /**
+     * Change the color of shapes displayed
+     * @param color the color being changed to
+     */
     public static void setColor(String color){
         if(color.equals("Black")) {ShapeClickerGameView.paint.setColor(Color.BLACK);}
         else if(color.equals("White")) {ShapeClickerGameView.paint.setColor(Color.WHITE);}
@@ -44,6 +67,9 @@ public class ShapeClickerGameView extends View {
         else {ShapeClickerGameView.paint.setColor(Color.GREEN);}
     }
 
+    /**
+     * This method is called to draw the shapes and stats on the screen
+     */
     @Override
     protected void onDraw(Canvas canvas) {
         canvas.drawColor(Color.CYAN);
@@ -53,6 +79,11 @@ public class ShapeClickerGameView extends View {
         invalidate();
     }
 
+    /**
+     * This method is called when the player click on the screen, with x and y coordinates
+     * Checks if the player taps within the shape
+     * @param event the tapping of player on screen
+     */
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         double x = event.getX();

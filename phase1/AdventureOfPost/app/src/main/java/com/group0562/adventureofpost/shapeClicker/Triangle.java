@@ -19,6 +19,10 @@ public class Triangle extends Shape {
     private Vertex v2;
     private Vertex v3;
 
+    /**
+     * constructor for a triangle, including setting the coordinates of its three vertices and
+     * mid point of an edge
+     */
     public Triangle(double x, double y, Paint p){
         super(x, y);
         this.paint = p;

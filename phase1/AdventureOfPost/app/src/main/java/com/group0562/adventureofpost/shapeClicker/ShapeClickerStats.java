@@ -8,8 +8,14 @@ import com.group0562.adventureofpost.model.PuzzleStats;
 
 import java.util.Observable;
 
+
 public class ShapeClickerStats extends PuzzleStats {
     private Paint paint;
+
+    /**
+     * constructor of ShapeClickerStats, inherited from PuzzleStats
+     * @param time the time limit for ShapeClicker
+     */
     public ShapeClickerStats(long time) {
         super(time);
         this.paint = new Paint();
@@ -18,6 +24,9 @@ public class ShapeClickerStats extends PuzzleStats {
         this.paint.setTextSize(50);
     }
 
+    /**
+     * update the time and points for the ShapeClicker
+     */
     @Override
     public void update(Observable o, Object arg) {
         updateTime();
@@ -29,6 +38,9 @@ public class ShapeClickerStats extends PuzzleStats {
         setPoints(1);
     }
 
+    /**
+     * Show the remaining time, remaining lives and points gained to the player
+     */
     public void draw(Canvas canvas){
         String time_text;
         String lives_text;
