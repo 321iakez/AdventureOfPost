@@ -72,6 +72,11 @@ public class SudokuCellFragment extends Fragment {
         cell.setTypeface(null, Typeface.BOLD);
     }
 
+    public void removeValue(int row, int col) {
+        TextView cell = view.findViewById(cells[row][col]);
+        cell.setText("");
+    }
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);

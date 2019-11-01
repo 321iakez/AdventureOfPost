@@ -2,6 +2,9 @@ package com.group0562.adventureofpost.sudoku;
 
 import androidx.annotation.NonNull;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Board {
 
     /**
@@ -81,10 +84,23 @@ public class Board {
     }
 
     // delete the entry from a slot in the board
-    void removeNum(int row, int col) {
+    public void removeNum(int row, int col) {
         if (!board[row][col].isLocked()) {
             board[row][col].setValue(0);
         }
+    }
+
+    public List<int[]> resetBoard() {
+        List<int[]> resetCells = new ArrayList<>();
+        for (int row = 0; row < rows; row++) {
+            for (int col = 0; col < cols; col++) {
+                if (!getCell(row, col).isLocked() && getCell(row, col).getValue() != 0) {
+                    getCell(row, col).setValue(0);
+                    resetCells.add(new int[]{row, col});
+                }
+            }
+        }
+        return resetCells;
     }
 
     // returns a hint to the user, by giving one square everytime a hint is requested.
@@ -101,18 +117,15 @@ public class Board {
 
     private boolean checkConflict(int input, int row, int col) {
         // TODO: fix index out of bounds issue, most likely in checkRegionConflict()
-        return (!checkHorizConflict(input, row, col) & !checkRegionConflict(input, row, col) &
-                !checkVertConflict(input, row, col));
+        return (checkHorizConflict(input, row, col) | checkRegionConflict(input, row, col) |
+                checkVertConflict(input, row, col));
     }
 
     // helper method that checks whether there is a horizontal conflict among the user input.
     private boolean checkHorizConflict(int input, int row, int col) {
         for (int column = 0; column < cols; column++) {
-            if (column == col) {
-            } else {
-                if (board[row][column].getValue() == input) {
-                    return true;
-                }
+            if (column == col && board[row][column].getValue() == input) {
+                return true;
             }
         }
         return false;
@@ -120,12 +133,9 @@ public class Board {
 
     // helper method that checks for vertical conflicts among the user input.
     private boolean checkVertConflict(int input, int row, int col) {
-        for (int currow = 0; currow < rows; currow++) {
-            if (currow == row) {
-            } else {
-                if (board[currow][col].getValue() == input) {
-                    return true;
-                }
+        for (int currRow = 0; currRow < rows; currRow++) {
+            if (currRow == row && board[currRow][col].getValue() == input) {
+                return true;
             }
         }
         return false;

@@ -11,6 +11,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.group0562.adventureofpost.R;
 import com.group0562.adventureofpost.sudoku.Sudoku;
 
+import java.util.List;
+
 public class SudokuActivity extends AppCompatActivity implements SudokuCellFragment.OnFragmentInteractionListener {
 
     private int currentRow = 0;
@@ -26,7 +28,7 @@ public class SudokuActivity extends AppCompatActivity implements SudokuCellFragm
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sudoku);
 
-        presenter = new Sudoku(getResources().openRawResource(R.raw.sudoku));
+        presenter = new Sudoku(getResources().openRawResource(R.raw.sudoku), getApplicationContext());
         cellGroupFrag = (SudokuCellFragment) getSupportFragmentManager().findFragmentById(R.id.boardFragment);
 
         // Display initial board values
@@ -51,6 +53,27 @@ public class SudokuActivity extends AppCompatActivity implements SudokuCellFragm
         if (updateSuccess) {
             cellGroupFrag.loadValues(newValue, currentRow, currentCol);
         }
+
+        // Update
+        presenter.update();
+    }
+
+    public void onClickRemove(View view) {
+        presenter.getGameBoard().removeNum(currentRow, currentCol);
+        cellGroupFrag.removeValue(currentRow, currentCol);
+
+        // Update
+        presenter.update();
+    }
+
+    public void onClickReset(View view) {
+        List<int[]> resetCells = presenter.getGameBoard().resetBoard();
+        for (int[] cellLoc : resetCells) {
+            cellGroupFrag.removeValue(cellLoc[0], cellLoc[1]);
+        }
+
+        // Update
+        presenter.update();
     }
 
     @Override

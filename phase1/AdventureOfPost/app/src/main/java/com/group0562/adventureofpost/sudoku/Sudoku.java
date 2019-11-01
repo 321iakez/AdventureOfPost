@@ -1,5 +1,8 @@
 package com.group0562.adventureofpost.sudoku;
 
+import android.content.Context;
+import android.widget.Toast;
+
 import com.group0562.adventureofpost.Puzzles;
 
 import java.io.InputStream;
@@ -9,10 +12,11 @@ import java.util.Scanner;
 public class Sudoku extends Puzzles {
 
     private Board gameBoard;
+    private Context view;
 
-    public Sudoku(InputStream file) {
+    public Sudoku(InputStream file, Context context) {
         super(new SudokuStats(100000));
-
+        view = context;
         gameBoard = new Board(getRandomPuzzle(file), 6, 6);
     }
 
@@ -55,7 +59,23 @@ public class Sudoku extends Puzzles {
      */
     @Override
     public void checkComplete() {
-        boolean result = gameBoard.checkFull();
+        if (gameBoard.checkFull()) {
+            setPuzzleComplete(true);
+        }
+    }
+
+    @Override
+    public void update() {
+        checkComplete();
+
+        if (getPuzzleComplete()) {
+            onStop();
+        }
+    }
+
+    @Override
+    public void onStop() {
+        Toast.makeText(view, "Puzzle Completed!", Toast.LENGTH_SHORT).show();
     }
 
     public Board getGameBoard() {
