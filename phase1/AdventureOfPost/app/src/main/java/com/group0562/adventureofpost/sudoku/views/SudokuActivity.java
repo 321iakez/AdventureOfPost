@@ -50,8 +50,11 @@ public class SudokuActivity extends AppCompatActivity implements SudokuCellFragm
         boolean updateSuccess = presenter.getGameBoard().insertNum(currentRow, currentCol, newValue);
 
         // Load value on board
+        System.out.println(updateSuccess);
         if (updateSuccess) {
             cellGroupFrag.loadValues(newValue, currentRow, currentCol);
+        } else {
+            Toast.makeText(getApplicationContext(), "Conflict detected!", Toast.LENGTH_SHORT).show();
         }
 
         // Update

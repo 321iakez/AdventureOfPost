@@ -89,7 +89,8 @@ public class Board {
      * @return a boolean indicating whether the insertion was successful or not.
      */
     public boolean insertNum(int row, int col, int input) {
-        if (!board[row][col].isLocked()) {
+        System.out.println(checkConflict(input, row, col));
+        if (!board[row][col].isLocked() && !checkConflict(input, row, col)) {
             board[row][col].setValue(input);
             return true;
         }
@@ -149,8 +150,8 @@ public class Board {
      */
     private boolean checkConflict(int input, int row, int col) {
         // TODO: fix index out of bounds issue, most likely in checkRegionConflict()
-        return (checkHorizConflict(input, row, col) | checkRegionConflict(input, row, col) |
-                checkVertConflict(input, row, col));
+        // TODO: add region conflict check once that's fixed
+        return (checkHorizConflict(input, row, col) | checkVertConflict(input, row, col));
     }
 
     /**
@@ -162,8 +163,8 @@ public class Board {
      * @return a bool indicating whether there is horizontal conflict or not.
      */
     private boolean checkHorizConflict(int input, int row, int col) {
-        for (int column = 0; column < cols; column++) {
-            if (column == col && board[row][column].getValue() == input) {
+        for (int currCol = 0; currCol < cols; currCol++) {
+            if (board[row][currCol].getValue() == input && currCol != col) {
                 return true;
             }
         }
@@ -180,7 +181,7 @@ public class Board {
      */
     private boolean checkVertConflict(int input, int row, int col) {
         for (int currRow = 0; currRow < rows; currRow++) {
-            if (currRow == row && board[currRow][col].getValue() == input) {
+            if (board[currRow][col].getValue() == input && currRow != row) {
                 return true;
             }
         }
