@@ -2,6 +2,9 @@ package com.group0562.adventureofpost.sudoku;
 
 import androidx.annotation.NonNull;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Board {
 
     /**
@@ -66,13 +69,28 @@ public class Board {
         }
     }
 
+    /**
+     * Access cell at (row, col) on the game board.
+     *
+     * @param row the row number.
+     * @param col the column number.
+     * @return the Cell instance at given location.
+     */
     public Cell getCell(int row, int col) {
         return board[row][col];
     }
 
-    // allows insertion of numbers into the board, but only if
+    /**
+     * Insert given number for cell at given location.
+     *
+     * @param row   the row number.
+     * @param col   the column number.
+     * @param input the new number of the cell.
+     * @return a boolean indicating whether the insertion was successful or not.
+     */
     public boolean insertNum(int row, int col, int input) {
-        if (!board[row][col].isLocked()) {
+        System.out.println(checkConflict(input, row, col));
+        if (!board[row][col].isLocked() && !checkConflict(input, row, col)) {
             board[row][col].setValue(input);
             return true;
         }
@@ -80,11 +98,34 @@ public class Board {
         return false;
     }
 
-    // delete the entry from a slot in the board
-    void removeNum(int row, int col) {
+    /**
+     * Remove the value from the given cell on the board.
+     *
+     * @param row the row number.
+     * @param col the column number.
+     */
+    public void removeNum(int row, int col) {
         if (!board[row][col].isLocked()) {
             board[row][col].setValue(0);
         }
+    }
+
+    /**
+     * Resets the entire board to original state.
+     *
+     * @return a list of (rows, cols) that need to be updated.
+     */
+    public List<int[]> resetBoard() {
+        List<int[]> resetCells = new ArrayList<>();
+        for (int row = 0; row < rows; row++) {
+            for (int col = 0; col < cols; col++) {
+                if (!getCell(row, col).isLocked() && getCell(row, col).getValue() != 0) {
+                    getCell(row, col).setValue(0);
+                    resetCells.add(new int[]{row, col});
+                }
+            }
+        }
+        return resetCells;
     }
 
     // returns a hint to the user, by giving one square everytime a hint is requested.
@@ -99,39 +140,62 @@ public class Board {
 
     }
 
+    /**
+     * Check conflict with other cells whenever a new number is inserted
+     *
+     * @param input the number inserted.
+     * @param row   the row number.
+     * @param col   the column number.
+     * @return a bool indicating whether there is conflict or not.
+     */
     private boolean checkConflict(int input, int row, int col) {
         // TODO: fix index out of bounds issue, most likely in checkRegionConflict()
-        return (!checkHorizConflict(input, row, col) & !checkRegionConflict(input, row, col) &
-                !checkVertConflict(input, row, col));
+        // TODO: add region conflict check once that's fixed
+        return (checkHorizConflict(input, row, col) | checkVertConflict(input, row, col));
     }
 
-    // helper method that checks whether there is a horizontal conflict among the user input.
+    /**
+     * Helper method that checks whether there is a horizontal conflict among the user input.
+     *
+     * @param input the number inserted.
+     * @param row   the row number.
+     * @param col   the column number.
+     * @return a bool indicating whether there is horizontal conflict or not.
+     */
     private boolean checkHorizConflict(int input, int row, int col) {
-        for (int column = 0; column < cols; column++) {
-            if (column == col) {
-            } else {
-                if (board[row][column].getValue() == input) {
-                    return true;
-                }
+        for (int currCol = 0; currCol < cols; currCol++) {
+            if (board[row][currCol].getValue() == input && currCol != col) {
+                return true;
             }
         }
         return false;
     }
 
-    // helper method that checks for vertical conflicts among the user input.
+    /**
+     * Helper method that checks whether there is a vertical conflict among the user input.
+     *
+     * @param input the number inserted.
+     * @param row   the row number.
+     * @param col   the column number.
+     * @return a bool indicating whether there is vertical conflict or not.
+     */
     private boolean checkVertConflict(int input, int row, int col) {
-        for (int currow = 0; currow < rows; currow++) {
-            if (currow == row) {
-            } else {
-                if (board[currow][col].getValue() == input) {
-                    return true;
-                }
+        for (int currRow = 0; currRow < rows; currRow++) {
+            if (board[currRow][col].getValue() == input && currRow != row) {
+                return true;
             }
         }
         return false;
     }
 
-    // helper method that checks for region conflict among the user input.
+    /**
+     * Helper method that checks whether there is a region conflict among the user input.
+     *
+     * @param input the number inserted.
+     * @param row   the row number.
+     * @param col   the column number.
+     * @return a bool indicating whether there is region conflict or not.
+     */
     private boolean checkRegionConflict(int input, int row, int col) {
         int horReg = (row - 1) / 2;
         int verReg = (col - 1) / 2;
@@ -145,6 +209,11 @@ public class Board {
         return false;
     }
 
+    /**
+     * Check whether the board is full or not.
+     *
+     * @return a bool indicating whether the board is full or not.
+     */
     boolean checkFull() {
         for (int row = 0; row < rows; row++) {
             for (int col = 0; col < cols; col++) {
