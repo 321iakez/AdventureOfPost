@@ -44,10 +44,11 @@ public class Trivia extends Puzzles {
         return questions;
     }
 
+    public boolean hasNext() {
+        return PuzzlesSolved != 3;
+    }
+
     public Question getQuestion() {
-        if (PuzzlesSolved == 3) {
-            PuzzlesSolved = 0;
-        }
         return rndQuestions.get(PuzzlesSolved++);
     }
 

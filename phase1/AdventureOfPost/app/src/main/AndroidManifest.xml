@@ -10,7 +10,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".shapeClicker.views.ShapeClickerEndActivity"></activity>
+        <activity android:name=".trivia.views.TriviaEndActivity"></activity>
+        <activity android:name=".shapeClicker.views.ShapeClickerEndActivity" />
         <activity android:name=".RegisterAccount" />
         <activity
             android:name=".shapeClicker.views.SCSettingActivity"

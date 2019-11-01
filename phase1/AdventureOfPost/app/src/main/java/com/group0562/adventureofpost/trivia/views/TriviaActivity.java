@@ -2,6 +2,7 @@ package com.group0562.adventureofpost.trivia.views;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -23,63 +24,83 @@ public class TriviaActivity extends AppCompatActivity{
     }
 
     public void onClickA(View v) {
-        Question q = game.getQuestion();
-        String[] s = q.getOptions();
-        TextView mTextView = (TextView) findViewById(R.id.textView3);
-        mTextView.setText(q.getQuestion());
-        TextView mTextView1 = (TextView) findViewById(R.id.button4);
-        mTextView1.setText(s[0]);
-        TextView mTextView2 = (TextView) findViewById(R.id.button5);
-        mTextView2.setText(s[1]);
-        TextView mTextView3 = (TextView) findViewById(R.id.button6);
-        mTextView3.setText(s[2]);
-        TextView mTextView4 = (TextView) findViewById(R.id.button7);
-        mTextView4.setText(s[3]);
+        if (game.hasNext()){
+            Question q = game.getQuestion();
+            String[] s = q.getOptions();
+            TextView mTextView = (TextView) findViewById(R.id.textView3);
+            mTextView.setText(q.getQuestion());
+            TextView mTextView1 = (TextView) findViewById(R.id.button4);
+            mTextView1.setText(s[0]);
+            TextView mTextView2 = (TextView) findViewById(R.id.button5);
+            mTextView2.setText(s[1]);
+            TextView mTextView3 = (TextView) findViewById(R.id.button6);
+            mTextView3.setText(s[2]);
+            TextView mTextView4 = (TextView) findViewById(R.id.button7);
+            mTextView4.setText(s[3]);
+        } else {
+            Intent intent = new Intent(this, TriviaEndActivity.class);
+            startActivity(intent);
+        }
     }
 
     public void onClickB(View v) {
-        Question q = game.getQuestion();
-        String[] s = q.getOptions();
-        TextView mTextView = (TextView) findViewById(R.id.textView3);
-        mTextView.setText(q.getQuestion());
-        TextView mTextView1 = (TextView) findViewById(R.id.button4);
-        mTextView1.setText(s[0]);
-        TextView mTextView2 = (TextView) findViewById(R.id.button5);
-        mTextView2.setText(s[1]);
-        TextView mTextView3 = (TextView) findViewById(R.id.button6);
-        mTextView3.setText(s[2]);
-        TextView mTextView4 = (TextView) findViewById(R.id.button7);
-        mTextView4.setText(s[3]);
+        if (game.hasNext()){
+            Question q = game.getQuestion();
+            String[] s = q.getOptions();
+            TextView mTextView = (TextView) findViewById(R.id.textView3);
+            mTextView.setText(q.getQuestion());
+            TextView mTextView1 = (TextView) findViewById(R.id.button4);
+            mTextView1.setText(s[0]);
+            TextView mTextView2 = (TextView) findViewById(R.id.button5);
+            mTextView2.setText(s[1]);
+            TextView mTextView3 = (TextView) findViewById(R.id.button6);
+            mTextView3.setText(s[2]);
+            TextView mTextView4 = (TextView) findViewById(R.id.button7);
+            mTextView4.setText(s[3]);
+        } else {
+            Intent intent = new Intent(this, TriviaEndActivity.class);
+            startActivity(intent);
+        }
     }
 
     public void onClickC(View v) {
-        Question q = game.getQuestion();
-        String[] s = q.getOptions();
-        TextView mTextView = (TextView) findViewById(R.id.textView3);
-        mTextView.setText(q.getQuestion());
-        TextView mTextView1 = (TextView) findViewById(R.id.button4);
-        mTextView1.setText(s[0]);
-        TextView mTextView2 = (TextView) findViewById(R.id.button5);
-        mTextView2.setText(s[1]);
-        TextView mTextView3 = (TextView) findViewById(R.id.button6);
-        mTextView3.setText(s[2]);
-        TextView mTextView4 = (TextView) findViewById(R.id.button7);
-        mTextView4.setText(s[3]);
+        if (game.hasNext()){
+            Question q = game.getQuestion();
+            String[] s = q.getOptions();
+            TextView mTextView = (TextView) findViewById(R.id.textView3);
+            mTextView.setText(q.getQuestion());
+            TextView mTextView1 = (TextView) findViewById(R.id.button4);
+            mTextView1.setText(s[0]);
+            TextView mTextView2 = (TextView) findViewById(R.id.button5);
+            mTextView2.setText(s[1]);
+            TextView mTextView3 = (TextView) findViewById(R.id.button6);
+            mTextView3.setText(s[2]);
+            TextView mTextView4 = (TextView) findViewById(R.id.button7);
+            mTextView4.setText(s[3]);
+        } else {
+            Intent intent = new Intent(this, TriviaEndActivity.class);
+            startActivity(intent);
+        }
     }
 
     public void onClickD(View v) {
-        Question q = game.getQuestion();
-        String[] s = q.getOptions();
-        TextView mTextView = (TextView) findViewById(R.id.textView3);
-        mTextView.setText(q.getQuestion());
-        TextView mTextView1 = (TextView) findViewById(R.id.button4);
-        mTextView1.setText(s[0]);
-        TextView mTextView2 = (TextView) findViewById(R.id.button5);
-        mTextView2.setText(s[1]);
-        TextView mTextView3 = (TextView) findViewById(R.id.button6);
-        mTextView3.setText(s[2]);
-        TextView mTextView4 = (TextView) findViewById(R.id.button7);
-        mTextView4.setText(s[3]);
+        if (game.hasNext()){
+            Question q = game.getQuestion();
+            String[] s = q.getOptions();
+            TextView mTextView = (TextView) findViewById(R.id.textView3);
+            mTextView.setText(q.getQuestion());
+            TextView mTextView1 = (TextView) findViewById(R.id.button4);
+            mTextView1.setText(s[0]);
+            TextView mTextView2 = (TextView) findViewById(R.id.button5);
+            mTextView2.setText(s[1]);
+            TextView mTextView3 = (TextView) findViewById(R.id.button6);
+            mTextView3.setText(s[2]);
+            TextView mTextView4 = (TextView) findViewById(R.id.button7);
+            mTextView4.setText(s[3]);
+        } else {
+            Intent intent = new Intent(this, TriviaEndActivity.class);
+            startActivity(intent);
+        }
     }
 
     public void onClickStart(View v) throws IOException{
