@@ -18,7 +18,7 @@ public class ShapeClicker extends Puzzles {
     ShapeClicker(long time, Paint p) {
         super(new ShapeClickerStats(time));
         this.paint = p;
-        puzzleStats = new ShapeClickerStats(time);
+//        puzzleStats = new ShapeClickerStats(time);
         s_object = new Circle(50, 50, this.paint);
         s_object.setLocation();
     }
@@ -78,9 +78,17 @@ public class ShapeClicker extends Puzzles {
 
     @Override
     public void checkComplete() {
-        if (this.puzzleStats.getPoints() >= 50) {
+        if (this.puzzleStats.getTime()<= 0) {
             this.setPuzzleComplete(true);
-            this.puzzleStats.setPoints((int) this.puzzleStats.getTime());
+            this.end();
         }
+        else if (this.puzzleStats.getPoints() >= 50) {
+            this.setPuzzleComplete(true);
+            this.puzzleStats.setPoints((int) this.puzzleStats.getTime()/1000);
+            this.end();
+        }
+    }
+    public int end(){
+        return this.puzzleStats.getPoints();
     }
 }
