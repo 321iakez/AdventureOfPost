@@ -65,6 +65,13 @@ public class SudokuCellFragment extends Fragment {
         return view;
     }
 
+    /**
+     * Load given value into UI cell at (row, col).
+     *
+     * @param value the value to be displayed.
+     * @param row   the row number.
+     * @param col   the column number.
+     */
     public void loadValues(int value, int row, int col) {
         TextView cell = view.findViewById(cells[row][col]);
         cell.setText(String.valueOf(value));
@@ -72,6 +79,12 @@ public class SudokuCellFragment extends Fragment {
         cell.setTypeface(null, Typeface.BOLD);
     }
 
+    /**
+     * Remove value for UI cell at (row, col).
+     *
+     * @param row the row number.
+     * @param col the column number.
+     */
     public void removeValue(int row, int col) {
         TextView cell = view.findViewById(cells[row][col]);
         cell.setText("");

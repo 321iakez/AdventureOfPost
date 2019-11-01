@@ -54,7 +54,7 @@ public class Sudoku extends Puzzles {
     }
 
     /**
-     * since every user input must follow not have any conflicts with the existing board, the game
+     * Since every user input must follow not have any conflicts with the existing board, the game
      * if complete iff the board is full.
      */
     @Override
