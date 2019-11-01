@@ -47,8 +47,8 @@ public class TriviaActivity extends AppCompatActivity{
     }
 
     public void onClickB(View v) {
+        game.updatePoints(1);
         if (game.hasNext()){
-            game.updatePoints(1);
             Question q = game.getQuestion();
             String[] s = q.getOptions();
             TextView mTextView = (TextView) findViewById(R.id.textView3);
