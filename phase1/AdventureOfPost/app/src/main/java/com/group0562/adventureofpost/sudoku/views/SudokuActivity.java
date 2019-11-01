@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -54,7 +55,11 @@ public class SudokuActivity extends AppCompatActivity implements SudokuCellFragm
 
     @Override
     public void onFragmentInteraction(int row, int col) {
-        currentRow = row;
-        currentCol = col;
+        if (presenter.getGameBoard().getCell(row, col).isLocked()) {
+            Toast.makeText(getApplicationContext(), "Can not change start piece", Toast.LENGTH_SHORT).show();
+        } else {
+            currentRow = row;
+            currentCol = col;
+        }
     }
 }
