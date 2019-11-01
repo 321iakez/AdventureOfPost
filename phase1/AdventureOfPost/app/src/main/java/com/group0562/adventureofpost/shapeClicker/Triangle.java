@@ -11,6 +11,10 @@ import static java.lang.Math.*;
 public class Triangle extends Shape {
     private Paint paint;
     final String message = "Triangle";
+
+    /**
+     * three vertices of this triangle.
+     */
     private Vertex v1;
     private Vertex v2;
     private Vertex v3;
@@ -29,7 +33,9 @@ public class Triangle extends Shape {
         v3.y = this.coordinate_y;
     }
 
-
+    /**
+     *draw a equilateral triangle using its mid point of edge and length of edge.
+     */
     @Override
     public void draw(Canvas canvas) {
      Path path = new Path();
@@ -41,7 +47,9 @@ public class Triangle extends Shape {
      canvas.drawPath(path, this.paint);
 
     }
-
+    /**
+     * randomly reset the center of an edge
+     */
     @Override
     public void setLocation() {
         this.coordinate_x = random() * (ShapeClicker.bound[1] - 2 * Shape.radius) + Shape.radius;
@@ -55,6 +63,12 @@ public class Triangle extends Shape {
 
     }
 
+    /**
+     *
+     * @param cursor_x the x coordinate of the position player tap on.
+     * @param cursor_y the y coordinate of the position player tap on.
+     * @return a boolean whether the player taps on the triangle.
+     */
     @Override
     boolean checkWithin(double cursor_x, double cursor_y) {
         if(cursor_x < v1.x)

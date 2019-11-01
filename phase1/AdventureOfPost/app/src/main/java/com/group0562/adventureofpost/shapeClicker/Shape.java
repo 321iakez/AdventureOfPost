@@ -6,12 +6,32 @@ import android.graphics.Canvas;
 import com.group0562.adventureofpost.model.PuzzleStats;
 
 public abstract class Shape {
+
+    /**
+     * the x coordinate of the center point (mid point of a edge for triangles) of the shape.
+     */
     double coordinate_x;
+
+    /**
+     * the y coordinate of the center point (mid point of a edge for triangles) of the shape.
+     */
     double coordinate_y;
+
+    /**
+     * the distance from the center point of shape to one of its sides.
+     */
     static double radius;
+
+    /**
+     * the paint used when drawing the shape.
+     */
     private Paint paint;
 
-
+    /**
+     * Constructor of the shape class
+     * @param x  the initial x coordinate of the center point (mid point of a edge for triangles) of the shape.
+     * @param y  the initial y coordinate of the center point (mid point of a edge for triangles) of the shape.
+     */
     Shape(double x, double y){
         this.coordinate_x = x;
         this.coordinate_y = y;
@@ -48,6 +68,9 @@ public abstract class Shape {
         else {Shape.radius = 40;}
     }
 
+    /**
+     * different draw methods and algorithm for different shapes
+     */
     public abstract void draw(Canvas canvas);
 
     public abstract void setLocation();
