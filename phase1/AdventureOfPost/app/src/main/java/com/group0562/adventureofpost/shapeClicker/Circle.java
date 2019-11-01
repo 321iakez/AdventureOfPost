@@ -11,7 +11,9 @@ public class Circle extends Shape{
     private Paint paint;
     final String message = "Circle";
 
-
+    /**
+     * Constructor of a Circle, including setting the coordinates of its center.
+     */
     Circle(double x, double y, Paint p){
         super(x, y);
         this.paint = p;
