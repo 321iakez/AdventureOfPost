@@ -43,6 +43,7 @@ public class SCSettingActivity extends AppCompatActivity {
         }
     }
 
+    //to switch the settings and go back to the game page
     public void onClickBackToGame(View view) {
         sc_back_to_game = findViewById(R.id.sc_back_to_game);
         SharedPreferences sc_color_list = PreferenceManager.getDefaultSharedPreferences(this);
