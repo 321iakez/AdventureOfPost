@@ -16,6 +16,7 @@
     <string name="security_question">Security Question</string>
     <string name="register_account">Register Account</string>
     <string name="register_message">Don\'t have account?</string>
+    <string name="return_to_main_menu">Return to main menu</string>
 
     <!-- SC Preference title -->
     <string name="sc_color_of_shaped_object">Color of Shaped Object</string>

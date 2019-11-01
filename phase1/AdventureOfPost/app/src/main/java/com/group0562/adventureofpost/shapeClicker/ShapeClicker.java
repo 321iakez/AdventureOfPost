@@ -4,6 +4,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 
 import com.group0562.adventureofpost.Puzzles;
+import com.group0562.adventureofpost.shapeClicker.views.SCEndResultView;
 
 
 public class ShapeClicker extends Puzzles {
@@ -18,7 +19,6 @@ public class ShapeClicker extends Puzzles {
     ShapeClicker(long time, Paint p) {
         super(new ShapeClickerStats(time));
         this.paint = p;
-//        puzzleStats = new ShapeClickerStats(time);
         s_object = new Circle(50, 50, this.paint);
         s_object.setLocation();
     }
@@ -31,10 +31,6 @@ public class ShapeClicker extends Puzzles {
         this.within = s_object.checkWithin(cursor_x, cursor_y);
         update();
         checkComplete();
-        //if(this.within){
-            //update();
-        //    checkComplete();
-        //}
     }
 
     void draw(Canvas canvas){
@@ -78,17 +74,16 @@ public class ShapeClicker extends Puzzles {
 
     @Override
     public void checkComplete() {
-        if (this.puzzleStats.getTime()<= 0) {
+        if(this.puzzleStats.getPoints() == 70){
+            SCEndResultView.setBeat_the_game(true);
             this.setPuzzleComplete(true);
-            this.end();
         }
-        else if (this.puzzleStats.getPoints() >= 50) {
+        if (this.puzzleStats.getPoints() >= 70) {
             this.setPuzzleComplete(true);
-            this.puzzleStats.setPoints((int) this.puzzleStats.getTime()/1000);
-            this.end();
         }
-    }
-    public int end(){
-        return this.puzzleStats.getPoints();
+        if (this.puzzleStats.getLives() < 1){
+            this.setPuzzleComplete(false);
+            SCEndResultView.setBeat_the_game(false);
+        }
     }
 }

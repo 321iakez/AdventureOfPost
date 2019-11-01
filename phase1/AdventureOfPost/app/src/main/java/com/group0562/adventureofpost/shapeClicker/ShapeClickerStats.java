@@ -30,9 +30,13 @@ public class ShapeClickerStats extends PuzzleStats {
     }
 
     public void draw(Canvas canvas){
-        String time_text = "Time: " + this.getTime()/1000;
+        String time_text;
+        String lives_text;
+        if (this.getTime() >= 0){time_text = "Time: " + (int)this.getTime()/1000;}
+        else {time_text = "Time: 0";}
+        if (this.getLives() > 0){lives_text = "Lives: " + this.getLives();}
+        else {lives_text = "Lives: 0";}
         String points_text = "Points: " + this.getPoints();
-        String lives_text = "Lives: " + this.getLives();
         String combined = time_text + " " + points_text + " " + lives_text;
         canvas.drawText(combined, 25, 40, paint);
     }

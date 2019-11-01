@@ -15,6 +15,7 @@ import com.group0562.adventureofpost.R;
 public class ShapeClickerActivity extends AppCompatActivity {
     public final static String EXTRA_MESSAGE = "com.group0562.AdventureOfPost.MESSAGE";
     Button sc_setting;
+    Button sc_done;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,6 +25,12 @@ public class ShapeClickerActivity extends AppCompatActivity {
     public void onClickSCSetting(View view) {
         Intent intent = new Intent(this, SCSettingActivity.class);
         sc_setting = findViewById(R.id.SCSettingButton);
+        startActivity(intent);
+    }
+
+    public void onClickSCDone(View view){
+        Intent intent = new Intent(this, ShapeClickerEndActivity.class);
+        sc_done = findViewById(R.id.sc_finish_button);
         startActivity(intent);
     }
 }
