@@ -151,7 +151,7 @@ public class Board {
     private boolean checkConflict(int input, int row, int col) {
         // TODO: fix index out of bounds issue, most likely in checkRegionConflict()
         // TODO: add region conflict check once that's fixed
-        return (checkHorizConflict(input, row, col) | checkVertConflict(input, row, col));
+        return (checkHorizConflict(input, row, col) | checkVertConflict(input, row, col) | checkRegionConflict(input, row, col));
     }
 
     /**
@@ -197,10 +197,10 @@ public class Board {
      * @return a bool indicating whether there is region conflict or not.
      */
     private boolean checkRegionConflict(int input, int row, int col) {
-        int horReg = (row - 1) / 2;
-        int verReg = (col - 1) / 2;
-        for (int currow = horReg * 2 - 1; currow < horReg * 2 + 1; currow++) {
-            for (int curcol = verReg * 2 - 1; curcol < verReg * 2 + 1; curcol++) {
+        int horReg = (col) / 3;
+        int verReg = (row) / 2;
+        for (int currow = verReg*2; currow < verReg * 2 + 2; currow++) {
+            for (int curcol = horReg * 3; curcol < horReg*3 + 3; curcol++) {
                 if (board[currow][curcol].getValue() == input) {
                     return true;
                 }
