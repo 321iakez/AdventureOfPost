@@ -52,8 +52,12 @@
     <string name="num7">7</string>
     <string name="num8">8</string>
     <string name="num9">9</string>
+
     <string name="remove_button">Remove</string>
     <string name="reset_button">Reset</string>
     <string name="next">Next</string>
+
+    <string name="move_stats_header">Moves</string>
+    <string name="conflict_stats_header">Conflicts</string>
 
 </resources>

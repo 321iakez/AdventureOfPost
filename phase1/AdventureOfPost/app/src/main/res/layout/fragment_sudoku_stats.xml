@@ -1,0 +1,63 @@
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:tag="board"
+    tools:context=".sudoku.views.SudokuStatsFragment">
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:textAlignment="center">
+
+        <TextView
+            android:id="@+id/statsMoveHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:minWidth="30dp"
+            android:text="@string/move_stats_header"
+            android:textAlignment="center" />
+
+        <TextView
+            android:id="@+id/statsConflictHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:minWidth="30dp"
+            android:text="@string/conflict_stats_header"
+            android:textAlignment="center" />
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:textAlignment="center">
+
+        <TextView
+            android:id="@+id/statsMoveNum"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:minWidth="30dp"
+            android:text=""
+            android:textAlignment="center" />
+
+        <TextView
+            android:id="@+id/statsConflictNum"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:minWidth="30dp"
+            android:text=""
+            android:textAlignment="center" />
+
+    </TableRow>
+</TableLayout>

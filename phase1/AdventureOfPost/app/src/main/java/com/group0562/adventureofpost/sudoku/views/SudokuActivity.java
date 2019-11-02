@@ -3,7 +3,6 @@ package com.group0562.adventureofpost.sudoku.views;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,15 +12,16 @@ import com.group0562.adventureofpost.sudoku.Sudoku;
 
 import java.util.List;
 
-public class SudokuActivity extends AppCompatActivity implements SudokuCellFragment.OnFragmentInteractionListener {
+public class SudokuActivity extends AppCompatActivity implements
+        SudokuCellFragment.OnFragmentInteractionListener,
+        SudokuStatsFragment.OnFragmentInteractionListener {
 
     private int currentRow = 0;
     private int currentCol = 0;
-    private TextView hintsLeft;
-    private TextView timerText;
     private Sudoku presenter;
 
     private SudokuCellFragment cellGroupFrag;
+    private SudokuStatsFragment statsFrag;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +30,7 @@ public class SudokuActivity extends AppCompatActivity implements SudokuCellFragm
 
         presenter = new Sudoku(getResources().openRawResource(R.raw.sudoku), getApplicationContext());
         cellGroupFrag = (SudokuCellFragment) getSupportFragmentManager().findFragmentById(R.id.boardFragment);
+        statsFrag = (SudokuStatsFragment) getSupportFragmentManager().findFragmentById(R.id.statsFragment);
 
         // Display initial board values
         for (int row = 0; row < 6; row++) {
@@ -52,8 +53,10 @@ public class SudokuActivity extends AppCompatActivity implements SudokuCellFragm
         // Load value on board
         if (updateSuccess) {
             cellGroupFrag.loadValues(newValue, currentRow, currentCol);
+            updateStats(true, false);
         } else {
             Toast.makeText(getApplicationContext(), "Conflict detected!", Toast.LENGTH_SHORT).show();
+            updateStats(false, true);
         }
 
         // Update
@@ -75,7 +78,22 @@ public class SudokuActivity extends AppCompatActivity implements SudokuCellFragm
         }
 
         // Update
+        updateStats(false, false);
         presenter.update();
+    }
+
+    public void updateStats(boolean newMove, boolean newConflict) {
+        if (newMove) {
+            presenter.getGameBoard().addMoves();
+        }
+
+        if (newConflict) {
+            presenter.getGameBoard().addConflicts();
+        }
+
+        int moves = presenter.getGameBoard().getMoves();
+        int conflicts = presenter.getGameBoard().getConflicts();
+        statsFrag.updateStats(moves, conflicts);
     }
 
     @Override
@@ -88,5 +106,10 @@ public class SudokuActivity extends AppCompatActivity implements SudokuCellFragm
             currentRow = row;
             currentCol = col;
         }
+    }
+
+    @Override
+    public void onFragmentInteraction(View view) {
+
     }
 }
