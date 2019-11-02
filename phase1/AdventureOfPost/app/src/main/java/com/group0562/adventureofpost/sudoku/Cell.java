@@ -1,7 +1,5 @@
 package com.group0562.adventureofpost.sudoku;
 
-import com.group0562.adventureofpost.R;
-
 public class Cell {
 
     /**
@@ -20,19 +18,12 @@ public class Cell {
     private boolean locked;
 
     /**
-     * Default constructor for empty cell.
-     */
-    public Cell() {
-        this(0, false);
-    }
-
-    /**
      * Value constructor.
      *
      * @param value  the value of the cell.
      * @param locked whether the cell is locked or not.
      */
-    public Cell(int value, boolean locked) {
+    Cell(int value, boolean locked) {
         this.value = value;
         this.locked = locked;
     }
@@ -49,7 +40,7 @@ public class Cell {
         return value;
     }
 
-    public void setValue(int value) {
+    void setValue(int value) {
         this.value = value;
     }
 }

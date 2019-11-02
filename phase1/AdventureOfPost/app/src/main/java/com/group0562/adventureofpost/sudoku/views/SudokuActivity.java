@@ -1,12 +1,15 @@
 package com.group0562.adventureofpost.sudoku.views;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.group0562.adventureofpost.GameActivity;
 import com.group0562.adventureofpost.R;
 import com.group0562.adventureofpost.sudoku.Sudoku;
 
@@ -94,6 +97,20 @@ public class SudokuActivity extends AppCompatActivity implements
         int moves = presenter.getGameBoard().getMoves();
         int conflicts = presenter.getGameBoard().getConflicts();
         statsFrag.updateStats(moves, conflicts);
+    }
+
+    public void endDialog() {
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getApplicationContext());
+        dialogBuilder.setTitle("Puzzle Completed!")
+                .setMessage("Congratulation! You have completed the puzzle.")
+                .setPositiveButton("Restart", (dialog, which) -> this.recreate())
+                .setNeutralButton("Home", (dialog, which) -> {
+                    Intent intent = new Intent(this, GameActivity.class);
+                    this.startActivity(intent);
+                });
+
+        AlertDialog dialog = dialogBuilder.create();
+        dialog.show();
     }
 
     @Override

@@ -5,7 +5,7 @@ import com.group0562.adventureofpost.model.PuzzleStats;
 import java.util.Observable;
 
 public class SudokuStats extends PuzzleStats {
-    public SudokuStats(long time) {
+    SudokuStats(long time) {
         super(time);
     }
 

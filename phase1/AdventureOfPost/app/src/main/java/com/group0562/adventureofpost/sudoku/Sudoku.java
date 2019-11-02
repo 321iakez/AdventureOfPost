@@ -1,9 +1,9 @@
 package com.group0562.adventureofpost.sudoku;
 
 import android.content.Context;
-import android.widget.Toast;
 
 import com.group0562.adventureofpost.Puzzles;
+import com.group0562.adventureofpost.sudoku.views.SudokuActivity;
 
 import java.io.InputStream;
 import java.util.Random;
@@ -25,7 +25,7 @@ public class Sudoku extends Puzzles {
      *
      * @return a 2-D integer array puzzle.
      */
-    public int[][] getRandomPuzzle(InputStream file) {
+    private int[][] getRandomPuzzle(InputStream file) {
         // Read file
         Random rand = new Random();
         Scanner scanner = new Scanner(file);
@@ -66,7 +66,7 @@ public class Sudoku extends Puzzles {
 
     @Override
     public void update() {
-
+        onStop();
         // Check complete
         checkComplete();
         if (getPuzzleComplete()) {
@@ -76,7 +76,7 @@ public class Sudoku extends Puzzles {
 
     @Override
     public void onStop() {
-        Toast.makeText(view, "Puzzle Completed!", Toast.LENGTH_SHORT).show();
+        ((SudokuActivity) view).endDialog();
     }
 
     public Board getGameBoard() {

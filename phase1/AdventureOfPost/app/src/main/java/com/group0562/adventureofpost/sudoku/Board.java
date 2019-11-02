@@ -44,7 +44,7 @@ public class Board {
      * @param rowDim the number of rows of the preloaded board.
      * @param colDim the number of columns of the preloaded board.
      */
-    public Board(int[][] board, int rowDim, int colDim) {
+    Board(int[][] board, int rowDim, int colDim) {
         rows = rowDim;
         cols = colDim;
         this.board = new Cell[rowDim][colDim];
@@ -115,7 +115,6 @@ public class Board {
      * @return a boolean indicating whether the insertion was successful or not.
      */
     public boolean insertNum(int row, int col, int input) {
-        System.out.println(checkConflict(input, row, col));
         if (!board[row][col].isLocked() && !checkConflict(input, row, col)) {
             board[row][col].setValue(input);
             return true;
