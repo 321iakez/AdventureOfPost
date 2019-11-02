@@ -38,8 +38,9 @@ public class ShapeClicker extends Puzzles {
 
     /**
      * constructor for this ShapeClicker
+     *
      * @param time the time limit for this ShapeClicker
-     * @param p the paint for the shapes
+     * @param p    the paint for the shapes
      */
     ShapeClicker(long time, Paint p) {
         super(new ShapeClickerStats(time));
@@ -57,6 +58,7 @@ public class ShapeClicker extends Puzzles {
 
     /**
      * check if the location tapped is within the shape
+     *
      * @param cursor_x x coordinate of the location tapped
      * @param cursor_y y coordinate of the location tapped
      */
@@ -69,7 +71,7 @@ public class ShapeClicker extends Puzzles {
     /**
      * Draw the shape for this ShapeClicker
      */
-    void draw(Canvas canvas){
+    void draw(Canvas canvas) {
         checkChangedObject();
         s_object.draw(canvas);
     }
@@ -77,7 +79,7 @@ public class ShapeClicker extends Puzzles {
     /**
      * Change the type of shape of the ShapeClicker
      */
-    public static void setShape(String type_of_shape){
+    public static void setShape(String type_of_shape) {
         ShapeClicker.shape = type_of_shape;
         ShapeClicker.changed = true;
     }
@@ -85,15 +87,13 @@ public class ShapeClicker extends Puzzles {
     /**
      * construct the new shape after changing the type of shape. Set this.changed to false for further changes.
      */
-    private void checkChangedObject(){
-        if (ShapeClicker.changed){
-            if (ShapeClicker.shape.equals("Circle")){
+    private void checkChangedObject() {
+        if (ShapeClicker.changed) {
+            if (ShapeClicker.shape.equals("Circle")) {
                 s_object = new Circle(s_object.getCoordinate_x(), s_object.getCoordinate_y(), this.paint);
-            }
-            else if (ShapeClicker.shape.equals("Square")){
+            } else if (ShapeClicker.shape.equals("Square")) {
                 s_object = new Square(s_object.getCoordinate_x(), s_object.getCoordinate_y(), this.paint);
-            }
-            else{
+            } else {
                 s_object = new Triangle(s_object.getCoordinate_x(), s_object.getCoordinate_y(), this.paint);
             }
         }
@@ -110,8 +110,7 @@ public class ShapeClicker extends Puzzles {
             this.puzzleStats.setPoints(1);
             notifyObservers();
             s_object.setLocation();
-        }
-        else {
+        } else {
             this.puzzleStats.setLives(1);
             s_object.setLocation();
         }
@@ -122,14 +121,14 @@ public class ShapeClicker extends Puzzles {
      */
     @Override
     public void checkComplete() {
-        if(this.puzzleStats.getPoints() == 70){
+        if (this.puzzleStats.getPoints() == 70) {
             SCEndResultView.setBeat_the_game(true);
             this.setPuzzleComplete(true);
         }
         if (this.puzzleStats.getPoints() >= 70) {
             this.setPuzzleComplete(true);
         }
-        if (this.puzzleStats.getLives() < 1){
+        if (this.puzzleStats.getLives() < 1) {
             this.setPuzzleComplete(false);
             SCEndResultView.setBeat_the_game(false);
         }

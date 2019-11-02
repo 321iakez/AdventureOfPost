@@ -14,6 +14,6 @@ public class Vertex {
     /**
      * constructor of a vertex
      */
-     public Vertex(){
-     }
+    public Vertex() {
+    }
 }

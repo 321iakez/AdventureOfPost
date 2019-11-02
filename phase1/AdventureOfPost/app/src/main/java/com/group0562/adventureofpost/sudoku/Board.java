@@ -28,6 +28,16 @@ public class Board {
     private Cell[][] board;
 
     /**
+     * Number of moves user made.
+     */
+    private int moves;
+
+    /**
+     * Number of conflict user caused.
+     */
+    private int conflicts;
+
+    /**
      * Constructor with preloaded board.
      *
      * @param board  the 2-D array representing the preloaded board.
@@ -53,6 +63,22 @@ public class Board {
             result.append('\n');
         }
         return result.toString();
+    }
+
+    public int getMoves() {
+        return moves;
+    }
+
+    public int getConflicts() {
+        return conflicts;
+    }
+
+    public void addConflicts() {
+        conflicts++;
+    }
+
+    public void addMoves() {
+        moves++;
     }
 
     /**
@@ -116,6 +142,11 @@ public class Board {
      * @return a list of (rows, cols) that need to be updated.
      */
     public List<int[]> resetBoard() {
+        // Reset stats
+        moves = 0;
+        conflicts = 0;
+
+        // Reset board
         List<int[]> resetCells = new ArrayList<>();
         for (int row = 0; row < rows; row++) {
             for (int col = 0; col < cols; col++) {
@@ -149,9 +180,8 @@ public class Board {
      * @return a bool indicating whether there is conflict or not.
      */
     private boolean checkConflict(int input, int row, int col) {
-        // TODO: fix index out of bounds issue, most likely in checkRegionConflict()
-        // TODO: add region conflict check once that's fixed
-        return (checkHorizConflict(input, row, col) | checkVertConflict(input, row, col) | checkRegionConflict(input, row, col));
+        return (checkHorizConflict(input, row, col) | checkVertConflict(input, row, col) |
+                checkRegionConflict(input, row, col));
     }
 
     /**
@@ -199,9 +229,9 @@ public class Board {
     private boolean checkRegionConflict(int input, int row, int col) {
         int horReg = (col) / 3;
         int verReg = (row) / 2;
-        for (int currow = verReg*2; currow < verReg * 2 + 2; currow++) {
-            for (int curcol = horReg * 3; curcol < horReg*3 + 3; curcol++) {
-                if (board[currow][curcol].getValue() == input) {
+        for (int currRow = verReg * 2; currRow < verReg * 2 + 2; currRow++) {
+            for (int currCol = horReg * 3; currCol < horReg * 3 + 3; currCol++) {
+                if (board[currRow][currCol].getValue() == input && (currRow != row && currCol != col)) {
                     return true;
                 }
             }

@@ -7,24 +7,24 @@ import com.group0562.adventureofpost.model.PuzzleStats;
 
 import static java.lang.Math.*;
 
-public class Circle extends Shape{
+public class Circle extends Shape {
     private Paint paint;
     final String message = "Circle";
 
     /**
      * Constructor of a Circle, including setting the coordinates of its center.
      */
-    Circle(double x, double y, Paint p){
+    Circle(double x, double y, Paint p) {
         super(x, y);
         this.paint = p;
     }
 
     /**
-     *draw the circle using its center and radius
+     * draw the circle using its center and radius
      */
     @Override
     public void draw(Canvas canvas) {
-        canvas.drawCircle((float)this.coordinate_x, (float) this.coordinate_y, (float)Shape.radius, this.paint);
+        canvas.drawCircle((float) this.coordinate_x, (float) this.coordinate_y, (float) Shape.radius, this.paint);
     }
 
     /**
@@ -37,7 +37,6 @@ public class Circle extends Shape{
     }
 
     /**
-     *
      * @param cursor_x the x coordinate of the position player tap on.
      * @param cursor_y the y coordinate of the position player tap on.
      * @return a boolean whether the player taps on the circle.
