@@ -90,35 +90,35 @@
             android:tag="6"
             android:text="@string/num6" />
 
-        <Button
-            android:id="@+id/num7"
-            style="?android:buttonBarStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:onClick="onClickNumpad"
-            android:tag="7"
-            android:text="@string/num7" />
+<!--        <Button-->
+<!--            android:id="@+id/num7"-->
+<!--            style="?android:buttonBarStyle"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_weight="1"-->
+<!--            android:onClick="onClickNumpad"-->
+<!--            android:tag="7"-->
+<!--            android:text="@string/num7" />-->
 
-        <Button
-            android:id="@+id/num8"
-            style="?android:buttonBarStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:onClick="onClickNumpad"
-            android:tag="8"
-            android:text="@string/num8" />
+<!--        <Button-->
+<!--            android:id="@+id/num8"-->
+<!--            style="?android:buttonBarStyle"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_weight="1"-->
+<!--            android:onClick="onClickNumpad"-->
+<!--            android:tag="8"-->
+<!--            android:text="@string/num8" />-->
 
-        <Button
-            android:id="@+id/num9"
-            style="?android:buttonBarStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:onClick="onClickNumpad"
-            android:tag="9"
-            android:text="@string/num9" />
+<!--        <Button-->
+<!--            android:id="@+id/num9"-->
+<!--            style="?android:buttonBarStyle"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_weight="1"-->
+<!--            android:onClick="onClickNumpad"-->
+<!--            android:tag="9"-->
+<!--            android:text="@string/num9" />-->
     </LinearLayout>
 
     <Button
