@@ -66,7 +66,6 @@ public class Sudoku extends Puzzles {
 
     @Override
     public void update() {
-        onStop();
         // Check complete
         checkComplete();
         if (getPuzzleComplete()) {
