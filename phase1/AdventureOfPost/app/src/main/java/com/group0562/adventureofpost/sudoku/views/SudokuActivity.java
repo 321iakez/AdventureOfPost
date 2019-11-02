@@ -50,7 +50,6 @@ public class SudokuActivity extends AppCompatActivity implements SudokuCellFragm
         boolean updateSuccess = presenter.getGameBoard().insertNum(currentRow, currentCol, newValue);
 
         // Load value on board
-        System.out.println(updateSuccess);
         if (updateSuccess) {
             cellGroupFrag.loadValues(newValue, currentRow, currentCol);
         } else {
@@ -80,10 +79,12 @@ public class SudokuActivity extends AppCompatActivity implements SudokuCellFragm
     }
 
     @Override
-    public void onFragmentInteraction(int row, int col) {
+    public void onFragmentInteraction(int row, int col, View view) {
         if (presenter.getGameBoard().getCell(row, col).isLocked()) {
             Toast.makeText(getApplicationContext(), "Can not change start piece", Toast.LENGTH_SHORT).show();
         } else {
+            cellGroupFrag.loadBackground(currentRow, currentCol, R.drawable.table_border_cell);
+            view.setBackgroundResource(R.drawable.table_selected_cell);
             currentRow = row;
             currentCol = col;
         }

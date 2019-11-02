@@ -57,12 +57,24 @@ public class SudokuCellFragment extends Fragment {
                 cell.setOnClickListener(v -> {
                     int viewRow = Character.getNumericValue(v.getTag().toString().charAt(0));
                     int viewCol = Character.getNumericValue(v.getTag().toString().charAt(1));
-                    mListener.onFragmentInteraction(viewRow, viewCol);
+                    mListener.onFragmentInteraction(viewRow, viewCol, v);
                 });
             }
         }
 
         return view;
+    }
+
+    /**
+     * Loads a new background for cell at (row, col).
+     *
+     * @param row        the row number.
+     * @param col        the column number.
+     * @param background the drawable ID.
+     */
+    public void loadBackground(int row, int col, int background) {
+        TextView cell = view.findViewById(cells[row][col]);
+        cell.setBackgroundResource(background);
     }
 
     /**
@@ -114,6 +126,6 @@ public class SudokuCellFragment extends Fragment {
      * activity.
      */
     public interface OnFragmentInteractionListener {
-        void onFragmentInteraction(int row, int col);
+        void onFragmentInteraction(int row, int col, View view);
     }
 }
