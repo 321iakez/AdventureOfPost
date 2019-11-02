@@ -43,12 +43,12 @@ public class ShapeClickerGameView extends View {
     /**
      * constructor for ShapeClickerGameView for player to react with the puzzle, inherit the View class
      */
-    public ShapeClickerGameView(Context context, @Nullable AttributeSet attrs){
+    public ShapeClickerGameView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         ShapeClickerGameView.paint = new Paint();
         ShapeClickerGameView.paint.setColor(Color.BLACK);
         ShapeClickerGameView.paint.setStrokeWidth(ShapeClickerGameView.Stroke_Thickness);
-        double[] bounds = {0,800,0,1500};
+        double[] bounds = {0, 800, 0, 1500};
         ShapeClicker.setBound(bounds);
         clicker = new ShapeClicker(60000, ShapeClickerGameView.paint);
         Shape.setRadius("Easy");
@@ -57,14 +57,21 @@ public class ShapeClickerGameView extends View {
 
     /**
      * Change the color of shapes displayed
+     *
      * @param color the color being changed to
      */
-    public static void setColor(String color){
-        if(color.equals("Black")) {ShapeClickerGameView.paint.setColor(Color.BLACK);}
-        else if(color.equals("White")) {ShapeClickerGameView.paint.setColor(Color.WHITE);}
-        else if(color.equals("Blue")) {ShapeClickerGameView.paint.setColor(Color.BLUE);}
-        else if(color.equals("Yellow")) {ShapeClickerGameView.paint.setColor(Color.YELLOW);}
-        else {ShapeClickerGameView.paint.setColor(Color.GREEN);}
+    public static void setColor(String color) {
+        if (color.equals("Black")) {
+            ShapeClickerGameView.paint.setColor(Color.BLACK);
+        } else if (color.equals("White")) {
+            ShapeClickerGameView.paint.setColor(Color.WHITE);
+        } else if (color.equals("Blue")) {
+            ShapeClickerGameView.paint.setColor(Color.BLUE);
+        } else if (color.equals("Yellow")) {
+            ShapeClickerGameView.paint.setColor(Color.YELLOW);
+        } else {
+            ShapeClickerGameView.paint.setColor(Color.GREEN);
+        }
     }
 
     /**
@@ -82,6 +89,7 @@ public class ShapeClickerGameView extends View {
     /**
      * This method is called when the player click on the screen, with x and y coordinates
      * Checks if the player taps within the shape
+     *
      * @param event the tapping of player on screen
      */
     @Override

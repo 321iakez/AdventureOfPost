@@ -29,10 +29,11 @@ public abstract class Shape {
 
     /**
      * Constructor of the shape class
-     * @param x  the initial x coordinate of the center point (mid point of a edge for triangles) of the shape.
-     * @param y  the initial y coordinate of the center point (mid point of a edge for triangles) of the shape.
+     *
+     * @param x the initial x coordinate of the center point (mid point of a edge for triangles) of the shape.
+     * @param y the initial y coordinate of the center point (mid point of a edge for triangles) of the shape.
      */
-    Shape(double x, double y){
+    Shape(double x, double y) {
         this.coordinate_x = x;
         this.coordinate_y = y;
     }
@@ -61,11 +62,16 @@ public abstract class Shape {
         this.paint = paint;
     }
 
-    public static double getRadius(){return Shape.radius;}
+    public static double getRadius() {
+        return Shape.radius;
+    }
 
     public static void setRadius(String level) {
-        if (level.equals("Hard")){Shape.radius = 15;}
-        else {Shape.radius = 40;}
+        if (level.equals("Hard")) {
+            Shape.radius = 15;
+        } else {
+            Shape.radius = 40;
+        }
     }
 
     /**

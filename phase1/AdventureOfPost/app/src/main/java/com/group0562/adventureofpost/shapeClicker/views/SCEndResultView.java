@@ -21,7 +21,7 @@ public class SCEndResultView extends View {
     /**
      * Constructor of SCEndResultView, shown to players when they press finish button
      */
-    public SCEndResultView(Context context, @Nullable AttributeSet attrs){
+    public SCEndResultView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         this.paint = new Paint();
         this.paint.setColor(Color.BLACK);
@@ -34,14 +34,15 @@ public class SCEndResultView extends View {
      * Two different message may be displayed, depends on beat_the_game.
      */
     protected void onDraw(Canvas canvas) {
-        if(SCEndResultView.beat_the_game) {
+        if (SCEndResultView.beat_the_game) {
             canvas.drawText("Congrats! You have completed this puzzle!", 25, 40, this.paint);
+        } else {
+            canvas.drawText("Almost! Sharpen your skill and come back!", 25, 40, this.paint);
         }
-        else{canvas.drawText("Almost! Sharpen your skill and come back!", 25, 40, this.paint);}
     }
 
 
-    public static void setBeat_the_game(boolean t){
+    public static void setBeat_the_game(boolean t) {
         SCEndResultView.beat_the_game = t;
     }
 }

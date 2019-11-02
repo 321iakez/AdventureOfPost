@@ -15,7 +15,7 @@ public class Square extends Shape {
     /**
      * Constructor of a Square, including setting the coordinates of its center
      */
-    Square(double x, double y, Paint p){
+    Square(double x, double y, Paint p) {
         super(x, y);
         this.paint = p;
 
@@ -31,18 +31,17 @@ public class Square extends Shape {
     }
 
     /**
-     *
      * @param cursor_x the x coordinate of the position player tap on.
      * @param cursor_y the y coordinate of the position player tap on.
      * @return a boolean whether the player taps on the square.
      */
     @Override
     boolean checkWithin(double cursor_x, double cursor_y) {
-        if(cursor_x < this.coordinate_x - Shape.radius)
+        if (cursor_x < this.coordinate_x - Shape.radius)
             return false;
-        else if(cursor_x > this.coordinate_x + Shape.radius)
+        else if (cursor_x > this.coordinate_x + Shape.radius)
             return false;
-        else if(cursor_y < this.coordinate_y - Shape.radius)
+        else if (cursor_y < this.coordinate_y - Shape.radius)
             return false;
         else if (cursor_y > this.coordinate_y + Shape.radius)
             return false;
@@ -51,11 +50,11 @@ public class Square extends Shape {
     }
 
     /**
-     *draw the square using its center and coordinates of four sides.
+     * draw the square using its center and coordinates of four sides.
      */
-    public void draw(Canvas canvas){
-        canvas.drawRect((float)(this.coordinate_x-Shape.radius), (float)(this.coordinate_y - Shape.radius),
-                (float)(this.coordinate_x + Shape.radius), (float)(this.coordinate_y + Shape.radius), this.paint);
+    public void draw(Canvas canvas) {
+        canvas.drawRect((float) (this.coordinate_x - Shape.radius), (float) (this.coordinate_y - Shape.radius),
+                (float) (this.coordinate_x + Shape.radius), (float) (this.coordinate_y + Shape.radius), this.paint);
     }
 
 }

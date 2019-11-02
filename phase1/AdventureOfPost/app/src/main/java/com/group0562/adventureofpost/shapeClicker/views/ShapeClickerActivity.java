@@ -16,6 +16,7 @@ public class ShapeClickerActivity extends AppCompatActivity {
     public final static String EXTRA_MESSAGE = "com.group0562.AdventureOfPost.MESSAGE";
     Button sc_setting;
     Button sc_done;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,7 +31,7 @@ public class ShapeClickerActivity extends AppCompatActivity {
     }
 
     /*to start the finish screen once clicked*/
-    public void onClickSCDone(View view){
+    public void onClickSCDone(View view) {
         Intent intent = new Intent(this, ShapeClickerEndActivity.class);
         sc_done = findViewById(R.id.sc_finish_button);
         startActivity(intent);
