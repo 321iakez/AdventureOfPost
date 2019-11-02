@@ -8,16 +8,40 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Trivia extends Puzzles {
-    private int PuzzlesSolved;
-    private ArrayList<Question> questions;
-    private ArrayList<Question> rndQuestions;
-    private int correct;
-    private int incorrect;
-    private int score;
-    //TODO gonna change later
 
-    /*
-    Constructor for Trivia class
+    /**
+     * the number of puzzles that the user has currently solved
+     */
+    private int PuzzlesSolved;
+
+    /**
+     * An arrayList of all the possible questions that can be asked
+     */
+    private ArrayList<Question> questions;
+
+    /**
+     * An arrayList of 3 randomly selected questions (Currently not randomly selected, to be random in phase 2)
+     */
+    private ArrayList<Question> rndQuestions;
+
+    /**
+     * number of correct responses
+     */
+    private int correct;
+
+    /**
+     * Number of incorrect responses
+     */
+    private int incorrect;
+
+    /**
+     * The player's score, +10 for each correct answer and -5 for each incorrect answer
+     */
+    private int score;
+    //TODO remove score for phase two and calculate as a function of correct/incorrect and time
+
+    /**
+     * Constructor for trivia class
      */
     public Trivia() throws IOException {
         super(new TriviaStats(30));
@@ -29,25 +53,34 @@ public class Trivia extends Puzzles {
         //TODO Once pullQuestions() is fixed uncomment line below
         //questions = pullQuestions();
 
-        //Since some error with file reader using hardcoded questions for phase 1
-        //create a new arraylist of questions and hardcode questions and answers (will use txt file for phase 2)
+        /*
+        * Since some error with file reader using hardcoded questions for phase 1
+        * create a new arrayList of questions and hardcode questions and answers (will use txt file for phase 2)
+        */
         rndQuestions = new ArrayList<>();
         rndQuestions.add(new Question("What does Paul Gries smell like?;;Cinnamon;;Nothing;;Milk;;Lavendar;;Nothing"));
         rndQuestions.add(new Question("Which program has the highest domestic tuition?;;Economics;;Computer Science;;Engineering;;Commerce;;Engineering"));
         rndQuestions.add(new Question("What was the Computer Science POSt cutoff for the 2018-19 year?;;82.5;;85;;89.5;;86;;82.5"));
     }
 
-    //getter for the 3 stats of this puzzle
+    /**
+     * returns the user's stats in an array of length 3
+     */
     public int[] getStats() {
         return new int[]{correct, incorrect, score};
     }
 
-    //returns true if and only if the user selected the correct answer, using question.checkCorrect()
+    /**
+     * returns true iff the user selected the correct answer, using question.checkCorrect()
+     * @param n the option number
+     */
     private boolean checkCorrect(int n) {
         return rndQuestions.get(PuzzlesSolved - 1).checkCorrect(rndQuestions.get(PuzzlesSolved - 1).getOptions()[n]);
     }
-
-    //updates statistics based on user's correctness
+    /**
+     * updates statistics based on user's correctness
+     * @param n the option number
+     */
     public void updatePoints(int n) {
         if (checkCorrect(n)) {
             this.score += 10;
@@ -58,7 +91,7 @@ public class Trivia extends Puzzles {
         }
     }
 
-    /*
+    /**
         Reads File "Question.txt" and generates ArrayList of type Questions with contents of file
          */
     //TODO IN PHASE 2, CURRENTLY UNABLE TO FIND QUESTIONS.TXT FILE
@@ -74,12 +107,16 @@ public class Trivia extends Puzzles {
         return questions;
     }
 
-    //checks whether user has finished 3 questions, returns true if user has completed 2 or less puzzles
+    /**
+     * Checks whether user has finished 3 questions, returns true iff user has completed <= 2 puzzles
+     */
     public boolean hasNext() {
         return PuzzlesSolved != 3;
     }
 
-    //gets questions from questions array based on number of questions answered
+    /**
+     * Gets questions from question array based on number of questions answered
+     */
     public Question getQuestion() {
         return rndQuestions.get(PuzzlesSolved++);
     }
@@ -112,7 +149,7 @@ public class Trivia extends Puzzles {
 
      */
 
-    //TODO: This is just temp, need to change for actual check complete condiditons
+    //TODO: This is just temp, need to change for actual check complete conditions
     @Override
     public void checkComplete() {
     }

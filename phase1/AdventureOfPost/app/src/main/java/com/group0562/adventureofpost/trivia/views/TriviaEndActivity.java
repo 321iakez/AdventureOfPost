@@ -12,6 +12,10 @@ import com.group0562.adventureofpost.R;
 
 public class TriviaEndActivity extends AppCompatActivity {
 
+    /**
+     * Handles when user completes all 3 questions
+     * @param savedInstanceState the saved instance state
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,7 +41,10 @@ public class TriviaEndActivity extends AppCompatActivity {
 
     }
 
-    //returns the user to the game screen, readies them to play another puzzle
+    /**
+     * Returns user to puzzles screen
+     * @param view the view
+     */
     public void onClickNext(View view) {
         Intent intent = new Intent(this, GameActivity.class);
         startActivity(intent);

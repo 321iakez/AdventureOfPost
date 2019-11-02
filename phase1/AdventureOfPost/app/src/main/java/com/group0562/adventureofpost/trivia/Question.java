@@ -4,17 +4,29 @@ import java.util.Random;
 
 public class Question {
 
-    //String question stores the text of the question
+    /**
+    * String question stores the text of the question
+    */
     private String question;
 
-    //String answer stores the text of the answer to the question
+    /**
+    * String answer stores the text of the answer to the question
+    */
     private String answer;
 
-    //Array options of length 4 stores the possible options, including one correct and 3 incorrect
+    /**
+    * Array options of length 4 stores the possible options, including one correct and 3 incorrect
+     */
     private String[] options = new String[4];
 
-    //TODO Constructor and formatting of questions.txt need to change to implement shuffle
+    /**
+     * Question constructor initializes variables by processing input string content
+    TODO Constructor and formatting of questions.txt need to change to implement shuffle
+    * @param content the string from a questions.txt line containing raw data
+     *
+    */
     Question(String content) {
+
         String[] splitContent = content.split(";;");
         this.question = splitContent[0];
         if (splitContent.length - 1 - 1 >= 0)
@@ -22,23 +34,32 @@ public class Question {
         this.answer = splitContent[5];
     }
 
-    //getter for question
+    /**
+     * Getter for question
+     */
     public String getQuestion() {
         return this.question;
     }
 
-    //checks whether a user's response is equal to the answer
+    /**
+     * Checks whether a user response is equal to the answer, returning true if so
+     * @param response the user's answer
+     */
     boolean checkCorrect(String response) {
         return response.equals(this.answer);
     }
 
-    //returns the four possible answers to the question
+    /**
+     * Returns the four possible options for answers to be displayed
+     */
     public String[] getOptions() {
         //shuffleOptions(options);
         return this.options;
     }
 
-    //shuffles the array of options, use this for phase 2
+    /**
+     * Shuffles array of options, to be used in phase 2
+     */
     private void shuffleOptions(String[] options) {
         int n = options.length;
         Random random = new Random();

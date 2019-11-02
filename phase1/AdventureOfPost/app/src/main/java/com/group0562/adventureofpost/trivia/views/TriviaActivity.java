@@ -15,6 +15,9 @@ import java.io.*;
 
 public class TriviaActivity extends AppCompatActivity{
 
+    /*
+    * an instance of Trivia
+    */
     Trivia game;
 
     @Override
@@ -23,7 +26,10 @@ public class TriviaActivity extends AppCompatActivity{
         setContentView(R.layout.activity_trivia);
     }
 
-    //user clicks 1st option
+    /**
+     * Handles case where user clicks first button
+     * @param v the view
+     */
     public void onClickA(View v) {
         game.updatePoints(0);
 
@@ -32,7 +38,7 @@ public class TriviaActivity extends AppCompatActivity{
             Question q = game.getQuestion();
             String[] s = q.getOptions();
 
-            //updates top textview to show next question
+            //updates top textView to show next question
             TextView mTextView = (TextView) findViewById(R.id.textView3);
             mTextView.setText(q.getQuestion());
 
@@ -59,7 +65,10 @@ public class TriviaActivity extends AppCompatActivity{
         }
     }
 
-    //user clicks 2nd option
+    /**
+     * Handles case where user clicks second button
+     * @param v the view
+     */
     public void onClickB(View v) {
         game.updatePoints(1);
         if (game.hasNext()){
@@ -83,7 +92,10 @@ public class TriviaActivity extends AppCompatActivity{
         }
     }
 
-    //user clicks 3rd option
+    /**
+     * Handles case where user clicks third button
+     * @param v the view
+     */
     public void onClickC(View v) {
         game.updatePoints(2);
         if (game.hasNext()){
@@ -107,7 +119,10 @@ public class TriviaActivity extends AppCompatActivity{
         }
     }
 
-    //user clicks 4th option
+    /**
+     * Handles case where user clicks fourth button
+     * @param v the view
+     */
     public void onClickD(View v) {
         game.updatePoints(3);
         if (game.hasNext()){
@@ -131,7 +146,10 @@ public class TriviaActivity extends AppCompatActivity{
         }
     }
 
-    //user clicks start button
+    /**
+     * Handles case where user clicks start button
+     * @param v the view
+     */
     public void onClickStart(View v) throws IOException{
         game = new Trivia();
         Question q = game.getQuestion();
