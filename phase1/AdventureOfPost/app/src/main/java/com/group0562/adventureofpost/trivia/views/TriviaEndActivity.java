@@ -17,12 +17,17 @@ public class TriviaEndActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trivia_end);
         int[] values = getIntent().getIntArrayExtra("stats");
-        String correct, incorrect, score;
 
+
+
+        //the player stats
+        String correct, incorrect, score;
         correct = "correct: " + values[0];
         incorrect = "Incorrect: " + values[1];
         score = "Score: " + values[2];
 
+
+        //display the player stats on the user screen
         TextView correctTextView = (TextView) findViewById(R.id.Correct);
         correctTextView.setText(correct);
         TextView incorrectTextView = (TextView) findViewById(R.id.Incorrect);
@@ -32,6 +37,7 @@ public class TriviaEndActivity extends AppCompatActivity {
 
     }
 
+    //returns the user to the game screen, readies them to play another puzzle
     public void onClickNext(View view) {
         Intent intent = new Intent(this, GameActivity.class);
         startActivity(intent);

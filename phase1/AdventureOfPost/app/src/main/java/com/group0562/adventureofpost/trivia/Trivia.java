@@ -30,20 +30,24 @@ public class Trivia extends Puzzles {
         //questions = pullQuestions();
 
         //Since some error with file reader using hardcoded questions for phase 1
+        //create a new arraylist of questions and hardcode questions and answers (will use txt file for phase 2)
         rndQuestions = new ArrayList<>();
         rndQuestions.add(new Question("What does Paul Gries smell like?;;Cinnamon;;Nothing;;Milk;;Lavendar;;Nothing"));
         rndQuestions.add(new Question("Which program has the highest domestic tuition?;;Economics;;Computer Science;;Engineering;;Commerce;;Engineering"));
         rndQuestions.add(new Question("What was the Computer Science POSt cutoff for the 2018-19 year?;;82.5;;85;;89.5;;86;;82.5"));
     }
 
+    //getter for the 3 stats of this puzzle
     public int[] getStats() {
         return new int[]{correct, incorrect, score};
     }
 
+    //returns true if and only if the user selected the correct answer, using question.checkCorrect()
     private boolean checkCorrect(int n) {
         return rndQuestions.get(PuzzlesSolved - 1).checkCorrect(rndQuestions.get(PuzzlesSolved - 1).getOptions()[n]);
     }
 
+    //updates statistics based on user's correctness
     public void updatePoints(int n) {
         if (checkCorrect(n)) {
             this.score += 10;
@@ -57,7 +61,7 @@ public class Trivia extends Puzzles {
     /*
         Reads File "Question.txt" and generates ArrayList of type Questions with contents of file
          */
-    //TODO SOMETHING IS WRONG HERE LOL
+    //TODO IN PHASE 2, CURRENTLY UNABLE TO FIND QUESTIONS.TXT FILE
     private ArrayList<Question> pullQuestions() throws IOException {
         FileReader fr = new FileReader("Questions.txt");
         BufferedReader br = new BufferedReader(fr);
@@ -70,10 +74,12 @@ public class Trivia extends Puzzles {
         return questions;
     }
 
+    //checks whether user has finished 3 questions, returns true if user has completed 2 or less puzzles
     public boolean hasNext() {
         return PuzzlesSolved != 3;
     }
 
+    //gets questions from questions array based on number of questions answered
     public Question getQuestion() {
         return rndQuestions.get(PuzzlesSolved++);
     }

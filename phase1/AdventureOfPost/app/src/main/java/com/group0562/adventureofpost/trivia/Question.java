@@ -3,8 +3,14 @@ package com.group0562.adventureofpost.trivia;
 import java.util.Random;
 
 public class Question {
+
+    //String question stores the text of the question
     private String question;
+
+    //String answer stores the text of the answer to the question
     private String answer;
+
+    //Array options of length 4 stores the possible options, including one correct and 3 incorrect
     private String[] options = new String[4];
 
     //TODO Constructor and formatting of questions.txt need to change to implement shuffle
@@ -16,19 +22,23 @@ public class Question {
         this.answer = splitContent[5];
     }
 
+    //getter for question
     public String getQuestion() {
         return this.question;
     }
 
+    //checks whether a user's response is equal to the answer
     boolean checkCorrect(String response) {
         return response.equals(this.answer);
     }
 
+    //returns the four possible answers to the question
     public String[] getOptions() {
-        shuffleOptions(options);
+        //shuffleOptions(options);
         return this.options;
     }
 
+    //shuffles the array of options, use this for phase 2
     private void shuffleOptions(String[] options) {
         int n = options.length;
         Random random = new Random();
