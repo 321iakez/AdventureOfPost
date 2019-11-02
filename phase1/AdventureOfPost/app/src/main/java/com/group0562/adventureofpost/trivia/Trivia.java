@@ -15,9 +15,10 @@ public class Trivia extends Puzzles {
     private int PuzzlesSolved;
 
     /**
-     * An arrayList of all the possible questions that can be asked
+     * An arrayList of all the possible questions that can be asked to be used in phase 2
+     * private ArrayList<Question> questions;
      */
-    private ArrayList<Question> questions;
+
 
     /**
      * An arrayList of 3 randomly selected questions (Currently not randomly selected, to be random in phase 2)
@@ -43,7 +44,7 @@ public class Trivia extends Puzzles {
     /**
      * Constructor for trivia class
      */
-    public Trivia() throws IOException {
+    public Trivia(){
         super(new TriviaStats(30));
         PuzzlesSolved = 0;
         //TODO These are temporary stats and will change as group work on universal stats

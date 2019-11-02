@@ -32,11 +32,11 @@ public class TriviaEndActivity extends AppCompatActivity {
 
 
         //display the player stats on the user screen
-        TextView correctTextView = (TextView) findViewById(R.id.Correct);
+        TextView correctTextView = findViewById(R.id.Correct);
         correctTextView.setText(correct);
-        TextView incorrectTextView = (TextView) findViewById(R.id.Incorrect);
+        TextView incorrectTextView = findViewById(R.id.Incorrect);
         incorrectTextView.setText(incorrect);
-        TextView scoreTextView = (TextView) findViewById(R.id.Score);
+        TextView scoreTextView = findViewById(R.id.Score);
         scoreTextView.setText(score);
 
     }
