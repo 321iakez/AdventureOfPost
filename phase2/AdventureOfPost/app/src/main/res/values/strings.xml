@@ -1,0 +1,63 @@
+<resources>
+    <!-- MainActivity Strings -->
+    <string name="app_name">Adventure of POSt</string>
+    <string name="the_adventure_of_post">The Adventure of POSt</string>
+    <string name="login">Login</string>
+    <string name="Username">Username</string>
+    <string name="Password">Password</string>
+    <string name="CPass">Confirm Password</string>
+    <string name="Register">Register</string>
+    <string name="shape_clicker">Shape Clicker</string>
+    <string name="trivia">Trivia</string>
+    <string name="sudoku">Sudoku</string>
+    <string name="shape_clicker_setting">Setting</string>
+    <string name="title_activity_scsettings">Settings</string>
+    <string name="answer">Answer</string>
+    <string name="security_question">Security Question</string>
+    <string name="register_account">Register Account</string>
+    <string name="register_message">Don\'t have account?</string>
+    <string name="return_to_main_menu">Return to main menu</string>
+
+    <!-- SC Preference title -->
+    <string name="sc_color_of_shaped_object">Color of Shaped Object</string>
+    <string name="sc_difficulty_level">Difficulty Level</string>
+    <string name="sc_shape_of_object">Difficulty Level</string>
+
+    <!-- SC Color of Shaped Object Preferences -->
+    <string name="sc_color_title">Color</string>
+    <string name="sc_color_default_value">Black</string>
+    <string name="sc_color_summary">Black</string>
+    <string name="sc_color_key">scColorKey</string>
+
+    <!-- SC difficulty Preferences -->
+    <string name="sc_difficulty_title">Difficulty</string>
+    <string name="sc_difficulty_default_value">Easy</string>
+    <string name="sc_difficulty_summary">Easy</string>
+    <string name="sc_difficulty_key">scDifficultyKey</string>
+
+    <!-- SC shape Preferences -->
+    <string name="sc_shape_title">Shape</string>
+    <string name="sc_shape_default_value">Circle</string>
+    <string name="sc_shape_summary">Circle</string>
+    <string name="sc_shape_key">scShapeKey</string>
+
+
+    <!-- Sudoku texts -->
+    <string name="num1">1</string>
+    <string name="num2">2</string>
+    <string name="num3">3</string>
+    <string name="num4">4</string>
+    <string name="num5">5</string>
+    <string name="num6">6</string>
+    <string name="num7">7</string>
+    <string name="num8">8</string>
+    <string name="num9">9</string>
+
+    <string name="remove_button">Remove</string>
+    <string name="reset_button">Reset</string>
+    <string name="next">Next</string>
+
+    <string name="move_stats_header">Moves</string>
+    <string name="conflict_stats_header">Conflicts</string>
+
+</resources>
