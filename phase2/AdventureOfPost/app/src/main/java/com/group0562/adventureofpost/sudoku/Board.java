@@ -65,19 +65,19 @@ public class Board {
         return result.toString();
     }
 
-    public int getMoves() {
+    int getMoves() {
         return moves;
     }
 
-    public int getConflicts() {
+    int getConflicts() {
         return conflicts;
     }
 
-    public void addConflicts() {
+    void addConflicts() {
         conflicts++;
     }
 
-    public void addMoves() {
+    void addMoves() {
         moves++;
     }
 
@@ -102,7 +102,7 @@ public class Board {
      * @param col the column number.
      * @return the Cell instance at given location.
      */
-    public Cell getCell(int row, int col) {
+    Cell getCell(int row, int col) {
         return board[row][col];
     }
 
@@ -114,7 +114,7 @@ public class Board {
      * @param input the new number of the cell.
      * @return a boolean indicating whether the insertion was successful or not.
      */
-    public boolean insertNum(int row, int col, int input) {
+    boolean insertNum(int row, int col, int input) {
         if (input == 0 | !checkConflict(input, row, col)) {
             board[row][col].setValue(input);
             return true;
@@ -128,7 +128,7 @@ public class Board {
      *
      * @return a list of (rows, cols) that need to be updated.
      */
-    public List<int[]> resetBoard() {
+    List<int[]> resetBoard() {
         // Reset stats
         moves = 0;
         conflicts = 0;
