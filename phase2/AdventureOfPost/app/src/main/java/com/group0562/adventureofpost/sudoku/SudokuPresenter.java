@@ -1,23 +1,24 @@
 package com.group0562.adventureofpost.sudoku;
 
-import android.content.Context;
-
 import com.group0562.adventureofpost.Puzzles;
-import com.group0562.adventureofpost.sudoku.ui.SudokuActivity;
 
 import java.io.InputStream;
+import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
-public class Sudoku extends Puzzles {
+public class SudokuPresenter extends Puzzles {
 
     private Board gameBoard;
-    private Context view;
+    private SudokuView view;
 
-    public Sudoku(InputStream file, Context context) {
+    private int currRow = 0;
+    private int currCol = 0;
+
+    public SudokuPresenter(InputStream file, SudokuView view) {
         super(new SudokuStats(100000));
-        view = context;
-        gameBoard = new Board(getRandomPuzzle(file), 6, 6);
+        this.view = view;
+        this.gameBoard = new Board(getRandomPuzzle(file), 6, 6);
     }
 
     /**
@@ -75,10 +76,58 @@ public class Sudoku extends Puzzles {
 
     @Override
     public void onStop() {
-        ((SudokuActivity) view).endDialog();
+        view.onGameComplete();
     }
 
-    public Board getGameBoard() {
-        return gameBoard;
+    public int getCurrCol() {
+        return currCol;
+    }
+
+    public int getCurrRow() {
+        return currRow;
+    }
+
+    public void setCurrCol(int currCol) {
+        this.currCol = currCol;
+    }
+
+    public void setCurrRow(int currRow) {
+        this.currRow = currRow;
+    }
+
+    public void removeNum() {
+        gameBoard.insertNum(currRow, currCol, 0);
+    }
+
+    public boolean addNum(int input) {
+        return gameBoard.insertNum(currRow, currCol, input);
+    }
+
+    public int getCellValue() {
+        return gameBoard.getCell(currRow, currCol).getValue();
+    }
+
+    public boolean getCellLocked() {
+        return gameBoard.getCell(currRow, currCol).isLocked();
+    }
+
+    public List<int[]> resetGameBoard() {
+        return gameBoard.resetBoard();
+    }
+
+    public int getMoves() {
+        return gameBoard.getMoves();
+    }
+
+    public int getConflicts() {
+        return gameBoard.getConflicts();
+    }
+
+    public void addMoves() {
+        gameBoard.addMoves();
+    }
+
+    public void addConflicts() {
+        gameBoard.addConflicts();
     }
 }

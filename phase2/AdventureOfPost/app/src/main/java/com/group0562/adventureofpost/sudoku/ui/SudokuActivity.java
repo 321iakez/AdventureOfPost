@@ -11,17 +11,16 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.group0562.adventureofpost.GameActivity;
 import com.group0562.adventureofpost.R;
-import com.group0562.adventureofpost.sudoku.Sudoku;
+import com.group0562.adventureofpost.sudoku.SudokuPresenter;
+import com.group0562.adventureofpost.sudoku.SudokuView;
 
 import java.util.List;
 
 public class SudokuActivity extends AppCompatActivity implements
         SudokuCellFragment.OnFragmentInteractionListener,
-        SudokuStatsFragment.OnFragmentInteractionListener {
+        SudokuStatsFragment.OnFragmentInteractionListener, SudokuView {
 
-    private int currentRow = 0;
-    private int currentCol = 0;
-    private Sudoku presenter;
+    private SudokuPresenter presenter;
 
     private SudokuCellFragment cellGroupFrag;
     private SudokuStatsFragment statsFrag;
@@ -31,14 +30,14 @@ public class SudokuActivity extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sudoku);
 
-        presenter = new Sudoku(getResources().openRawResource(R.raw.sudoku), getApplicationContext());
+        presenter = new SudokuPresenter(getResources().openRawResource(R.raw.sudoku), this);
         cellGroupFrag = (SudokuCellFragment) getSupportFragmentManager().findFragmentById(R.id.boardFragment);
         statsFrag = (SudokuStatsFragment) getSupportFragmentManager().findFragmentById(R.id.statsFragment);
 
         // Display initial board values
         for (int row = 0; row < 6; row++) {
             for (int col = 0; col < 6; col++) {
-                int cellValue = presenter.getGameBoard().getCell(row, col).getValue();
+                int cellValue = presenter.getCellValue();
                 if (cellValue != 0) {
                     cellGroupFrag.loadValues(cellValue, row, col);
                 }
@@ -51,11 +50,11 @@ public class SudokuActivity extends AppCompatActivity implements
         int newValue = Integer.parseInt(numClicked.getTag().toString());
 
         // Update backend board
-        boolean updateSuccess = presenter.getGameBoard().insertNum(currentRow, currentCol, newValue);
+        boolean updateSuccess = presenter.addNum(newValue);
 
         // Load value on board
         if (updateSuccess) {
-            cellGroupFrag.loadValues(newValue, currentRow, currentCol);
+            cellGroupFrag.loadValues(newValue, presenter.getCurrRow(), presenter.getCurrCol());
             updateStats(true, false);
         } else {
             Toast.makeText(getApplicationContext(), "Conflict detected!", Toast.LENGTH_SHORT).show();
@@ -67,15 +66,15 @@ public class SudokuActivity extends AppCompatActivity implements
     }
 
     public void onClickRemove(View view) {
-        presenter.getGameBoard().removeNum(currentRow, currentCol);
-        cellGroupFrag.removeValue(currentRow, currentCol);
+        presenter.removeNum();
+        cellGroupFrag.removeValue(presenter.getCurrRow(), presenter.getCurrCol());
 
         // Update
         presenter.update();
     }
 
     public void onClickReset(View view) {
-        List<int[]> resetCells = presenter.getGameBoard().resetBoard();
+        List<int[]> resetCells = presenter.resetGameBoard();
         for (int[] cellLoc : resetCells) {
             cellGroupFrag.removeValue(cellLoc[0], cellLoc[1]);
         }
@@ -87,15 +86,15 @@ public class SudokuActivity extends AppCompatActivity implements
 
     public void updateStats(boolean newMove, boolean newConflict) {
         if (newMove) {
-            presenter.getGameBoard().addMoves();
+            presenter.addMoves();
         }
 
         if (newConflict) {
-            presenter.getGameBoard().addConflicts();
+            presenter.addConflicts();
         }
 
-        int moves = presenter.getGameBoard().getMoves();
-        int conflicts = presenter.getGameBoard().getConflicts();
+        int moves = presenter.getMoves();
+        int conflicts = presenter.getConflicts();
         statsFrag.updateStats(moves, conflicts);
     }
 
@@ -115,18 +114,23 @@ public class SudokuActivity extends AppCompatActivity implements
 
     @Override
     public void onFragmentInteraction(int row, int col, View view) {
-        if (presenter.getGameBoard().getCell(row, col).isLocked()) {
+        if (presenter.getCellLocked()) {
             Toast.makeText(getApplicationContext(), "Can not change start piece", Toast.LENGTH_SHORT).show();
         } else {
-            cellGroupFrag.loadBackground(currentRow, currentCol, R.drawable.table_border_cell);
+            cellGroupFrag.loadBackground(presenter.getCurrRow(), presenter.getCurrCol(), R.drawable.table_border_cell);
             view.setBackgroundResource(R.drawable.table_selected_cell);
-            currentRow = row;
-            currentCol = col;
+            presenter.setCurrRow(row);
+            presenter.setCurrCol(col);
         }
     }
 
     @Override
     public void onFragmentInteraction(View view) {
 
+    }
+
+    @Override
+    public void onGameComplete() {
+        endDialog();
     }
 }

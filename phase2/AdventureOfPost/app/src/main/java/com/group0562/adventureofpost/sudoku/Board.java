@@ -115,24 +115,12 @@ public class Board {
      * @return a boolean indicating whether the insertion was successful or not.
      */
     public boolean insertNum(int row, int col, int input) {
-        if (!board[row][col].isLocked() && !checkConflict(input, row, col)) {
+        if (input == 0 | !checkConflict(input, row, col)) {
             board[row][col].setValue(input);
             return true;
         }
 
         return false;
-    }
-
-    /**
-     * Remove the value from the given cell on the board.
-     *
-     * @param row the row number.
-     * @param col the column number.
-     */
-    public void removeNum(int row, int col) {
-        if (!board[row][col].isLocked()) {
-            board[row][col].setValue(0);
-        }
     }
 
     /**

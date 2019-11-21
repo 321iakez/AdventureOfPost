@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 import static org.junit.Assert.*;
 
-public class SudokuTest {
+public class SudokuPresenterTest {
 
     @Test
     public void updatePoints() {
