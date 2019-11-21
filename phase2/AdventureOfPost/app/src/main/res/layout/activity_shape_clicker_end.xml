@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".shapeClicker.views.ShapeClickerEndActivity">
+    tools:context=".shapeClicker.ui.ShapeClickerEndActivity">
 
     <Button
         android:id="@+id/return_home"
@@ -21,7 +21,7 @@
 
     <view
         android:id="@+id/view3"
-        class="com.group0562.adventureofpost.shapeClicker.views.SCEndResultView"
+        class="com.group0562.adventureofpost.shapeClicker.ui.SCEndResultView"
         android:layout_width="385dp"
         android:layout_height="563dp"
         app:layout_constraintBottom_toBottomOf="parent"

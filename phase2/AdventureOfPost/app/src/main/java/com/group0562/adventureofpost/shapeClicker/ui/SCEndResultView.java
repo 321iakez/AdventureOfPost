@@ -1,4 +1,4 @@
-package com.group0562.adventureofpost.shapeClicker.views;
+package com.group0562.adventureofpost.shapeClicker.ui;
 
 import android.content.Context;
 import android.graphics.Canvas;

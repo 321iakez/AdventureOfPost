@@ -4,7 +4,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 
 import com.group0562.adventureofpost.Puzzles;
-import com.group0562.adventureofpost.shapeClicker.views.SCEndResultView;
+import com.group0562.adventureofpost.shapeClicker.ui.SCEndResultView;
 
 
 public class ShapeClicker extends Puzzles {

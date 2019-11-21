@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".sudoku.views.SudokuActivity">
+    tools:context=".sudoku.ui.SudokuActivity">
 
     <fragment
         android:id="@+id/boardFragment"
-        android:name="com.group0562.adventureofpost.sudoku.views.SudokuCellFragment"
+        android:name="com.group0562.adventureofpost.sudoku.ui.SudokuCellFragment"
         android:layout_width="337dp"
         android:layout_height="337dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -145,7 +145,7 @@
 
     <fragment
         android:id="@+id/statsFragment"
-        android:name="com.group0562.adventureofpost.sudoku.views.SudokuStatsFragment"
+        android:name="com.group0562.adventureofpost.sudoku.ui.SudokuStatsFragment"
         android:layout_width="378dp"
         android:layout_height="35dp"
         android:layout_marginBottom="32dp"

@@ -1,6 +1,5 @@
-package com.group0562.adventureofpost.shapeClicker.views;
+package com.group0562.adventureofpost.shapeClicker.ui;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -15,8 +14,6 @@ import com.group0562.adventureofpost.R;
 import com.group0562.adventureofpost.shapeClicker.Shape;
 import com.group0562.adventureofpost.shapeClicker.ShapeClicker;
 import com.group0562.adventureofpost.shapeClicker.ShapeClickerGameView;
-
-import java.util.List;
 
 public class SCSettingActivity extends AppCompatActivity {
     private Button sc_back_to_game;

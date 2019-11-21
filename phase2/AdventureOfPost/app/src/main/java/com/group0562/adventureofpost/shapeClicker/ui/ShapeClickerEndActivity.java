@@ -1,4 +1,4 @@
-package com.group0562.adventureofpost.shapeClicker.views;
+package com.group0562.adventureofpost.shapeClicker.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.Button;
 
 import com.group0562.adventureofpost.GameActivity;
-import com.group0562.adventureofpost.MainActivity;
 import com.group0562.adventureofpost.R;
 
 public class ShapeClickerEndActivity extends AppCompatActivity {

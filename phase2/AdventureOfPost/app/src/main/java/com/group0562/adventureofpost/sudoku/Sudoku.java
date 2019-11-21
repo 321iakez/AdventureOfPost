@@ -3,7 +3,7 @@ package com.group0562.adventureofpost.sudoku;
 import android.content.Context;
 
 import com.group0562.adventureofpost.Puzzles;
-import com.group0562.adventureofpost.sudoku.views.SudokuActivity;
+import com.group0562.adventureofpost.sudoku.ui.SudokuActivity;
 
 import java.io.InputStream;
 import java.util.Random;

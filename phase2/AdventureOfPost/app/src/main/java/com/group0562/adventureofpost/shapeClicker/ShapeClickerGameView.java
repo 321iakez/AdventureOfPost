@@ -1,22 +1,17 @@
 package com.group0562.adventureofpost.shapeClicker;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
-import android.os.Bundle;
 
 
 import androidx.annotation.Nullable;
 
 import com.group0562.adventureofpost.model.PuzzleStats;
-import com.group0562.adventureofpost.shapeClicker.views.SCSettingActivity;
-import com.group0562.adventureofpost.shapeClicker.views.ShapeClickerActivity;
-import com.group0562.adventureofpost.shapeClicker.views.ShapeClickerEndActivity;
 
 public class ShapeClickerGameView extends View {
 

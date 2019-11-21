@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/table_border_group"
     android:tag="board"
-    tools:context=".sudoku.views.SudokuCellFragment">
+    tools:context=".sudoku.ui.SudokuCellFragment">
 
     <TableRow
         android:layout_width="match_parent"

@@ -1,4 +1,4 @@
-package com.group0562.adventureofpost.trivia.views;
+package com.group0562.adventureofpost.trivia.ui;
 
 import android.content.Intent;
 import android.os.Bundle;

@@ -7,9 +7,9 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.group0562.adventureofpost.shapeClicker.views.ShapeClickerActivity;
-import com.group0562.adventureofpost.sudoku.views.SudokuActivity;
-import com.group0562.adventureofpost.trivia.views.TriviaActivity;
+import com.group0562.adventureofpost.shapeClicker.ui.ShapeClickerActivity;
+import com.group0562.adventureofpost.sudoku.ui.SudokuActivity;
+import com.group0562.adventureofpost.trivia.ui.TriviaActivity;
 
 public class GameActivity extends AppCompatActivity {
     //TODO don't know if this is correct

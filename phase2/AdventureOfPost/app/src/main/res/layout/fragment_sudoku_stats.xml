@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:tag="board"
-    tools:context=".sudoku.views.SudokuStatsFragment">
+    tools:context=".sudoku.ui.SudokuStatsFragment">
 
     <TableRow
         android:layout_width="match_parent"
