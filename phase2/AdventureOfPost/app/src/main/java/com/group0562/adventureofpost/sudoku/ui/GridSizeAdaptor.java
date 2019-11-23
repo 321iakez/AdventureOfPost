@@ -1,4 +1,4 @@
-package com.group0562.adventureofpost.sudoku.views;
+package com.group0562.adventureofpost.sudoku.ui;
 
 import android.view.View;
 import android.view.ViewGroup;
