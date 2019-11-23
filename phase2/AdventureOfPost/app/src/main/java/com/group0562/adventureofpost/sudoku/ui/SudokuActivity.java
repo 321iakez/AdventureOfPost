@@ -37,7 +37,7 @@ public class SudokuActivity extends AppCompatActivity implements
         // Display initial board values
         for (int row = 0; row < 6; row++) {
             for (int col = 0; col < 6; col++) {
-                int cellValue = presenter.getCellValue();
+                int cellValue = presenter.getCellValue(row, col);
                 if (cellValue != 0) {
                     cellGroupFrag.loadValues(cellValue, row, col);
                 }
@@ -114,7 +114,7 @@ public class SudokuActivity extends AppCompatActivity implements
 
     @Override
     public void onFragmentInteraction(int row, int col, View view) {
-        if (presenter.getCellLocked()) {
+        if (presenter.getCellLocked(row, col)) {
             Toast.makeText(getApplicationContext(), "Can not change start piece", Toast.LENGTH_SHORT).show();
         } else {
             cellGroupFrag.loadBackground(presenter.getCurrRow(), presenter.getCurrCol(), R.drawable.table_border_cell);

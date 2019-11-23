@@ -103,12 +103,12 @@ public class SudokuPresenter extends Puzzles {
         return gameBoard.insertNum(currRow, currCol, input);
     }
 
-    public int getCellValue() {
-        return gameBoard.getCell(currRow, currCol).getValue();
+    public int getCellValue(int row, int col) {
+        return gameBoard.getCell(row, col).getValue();
     }
 
-    public boolean getCellLocked() {
-        return gameBoard.getCell(currRow, currCol).isLocked();
+    public boolean getCellLocked(int row, int col) {
+        return gameBoard.getCell(row, col).isLocked();
     }
 
     public List<int[]> resetGameBoard() {
