@@ -18,18 +18,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-
         db.execSQL("CREATE TABLE users (username text primary key, password text)");
-        Cursor c = db.rawQuery("SELECT name FROM sqlite_master WHERE type='table'", null);
-
-        ArrayList<String> arrTblNames = new ArrayList<String>();
-        if (c.moveToFirst()) {
-            while ( !c.isAfterLast() ) {
-                arrTblNames.add( c.getString( c.getColumnIndex("name")) );
-                c.moveToNext();
-            }
-        }
-        Log.i("Database", arrTblNames.toString());
     }
 
     @Override
