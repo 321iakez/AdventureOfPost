@@ -12,7 +12,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".trivia.ui.TriviaEndActivity"></activity>
         <activity android:name=".shapeClicker.ui.ShapeClickerEndActivity" />
-        <activity android:name=".RegisterAccount" />
+        <activity android:name=".login.RegisterActivity" />
         <activity
             android:name=".shapeClicker.ui.SCSettingActivity"
             android:label="@string/title_activity_scsettings" />
@@ -20,7 +20,7 @@
         <activity android:name=".trivia.ui.TriviaActivity" />
         <activity android:name=".shapeClicker.ui.ShapeClickerActivity" />
         <activity android:name=".sudoku.ui.SudokuActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".login.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
