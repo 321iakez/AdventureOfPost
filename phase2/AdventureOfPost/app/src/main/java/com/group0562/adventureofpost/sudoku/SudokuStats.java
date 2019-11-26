@@ -15,6 +15,12 @@ public class SudokuStats extends PuzzleStats {
     }
 
     @Override
+    public void updateTime(){
+        long currTime = System.currentTimeMillis();
+        this.setTime(currTime - getStartTime());
+    }
+
+    @Override
     public void update(Observable o, Object arg) {
         updateTime();
         updatePoints();

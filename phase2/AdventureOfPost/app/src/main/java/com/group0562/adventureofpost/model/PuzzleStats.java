@@ -28,6 +28,8 @@ public abstract class PuzzleStats implements Observer {
         this.points += pt;
     }
 
+    public void setTime(long time){this.time = time;}
+
     public int getPoints() {
         return points;
     }
@@ -39,6 +41,8 @@ public abstract class PuzzleStats implements Observer {
     public double getTime() {
         return time;
     }
+
+    public long getStartTime(){return startTime;}
 
     public void updateTime() {
         long currTime = System.currentTimeMillis();
