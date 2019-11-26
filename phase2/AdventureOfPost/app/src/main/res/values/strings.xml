@@ -60,4 +60,9 @@
     <string name="move_stats_header">Moves</string>
     <string name="conflict_stats_header">Conflicts</string>
 
+    <string name="TriviaDiff1">Easy</string>
+    <string name="TriviaDiff2">Medium</string>
+    <string name="TriviaDiff3">Hard</string>
+    <string name="TriviaSelectDiff">Select Difficulty</string>
+
 </resources>

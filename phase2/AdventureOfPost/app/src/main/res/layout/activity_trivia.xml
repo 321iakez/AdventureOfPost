@@ -10,7 +10,7 @@
         android:id="@+id/textView3"
         android:layout_width="match_parent"
         android:layout_height="208dp"
-        android:text="Rules: Click the correct answer"
+        android:text=""
         android:textAlignment="center"
         android:textSize="30sp"
         app:layout_constraintTop_toTopOf="parent"

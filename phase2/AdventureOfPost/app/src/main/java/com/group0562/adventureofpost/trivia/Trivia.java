@@ -43,11 +43,17 @@ public class Trivia extends Puzzles implements Serializable {
     //TODO remove score for phase two and calculate as a function of correct/incorrect and time
 
     /**
+     * difficulty of game
+     */
+    private String diff;
+
+    /**
      * Constructor for trivia class
      */
     public Trivia(){
         super(new TriviaStats(30));
         PuzzlesSolved = 0;
+        diff = "easy";
         //TODO These are temporary stats and will change as group work on universal stats
         correct = 0;
         incorrect = 0;
@@ -91,6 +97,10 @@ public class Trivia extends Puzzles implements Serializable {
             this.score -= 5;
             this.incorrect += 1;
         }
+    }
+
+    public void setDiff(String diff) {
+        this.diff = diff;
     }
 
     /**

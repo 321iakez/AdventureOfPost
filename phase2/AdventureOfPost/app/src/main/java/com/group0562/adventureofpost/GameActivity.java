@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.group0562.adventureofpost.shapeClicker.ui.ShapeClickerActivity;
 import com.group0562.adventureofpost.sudoku.ui.SudokuActivity;
 import com.group0562.adventureofpost.trivia.Trivia;
-import com.group0562.adventureofpost.trivia.ui.TriviaActivity;
+import com.group0562.adventureofpost.trivia.ui.TriviaStartActivity;
 
 public class GameActivity extends AppCompatActivity {
     public final static String EXTRA_MESSAGE = "com.group0562.AdventureOfPost.MESSAGE";
@@ -41,12 +41,10 @@ public class GameActivity extends AppCompatActivity {
     }
 
     public void onClickTrivia(View view) {
-        System.out.println("pass11");
         if(getIntent().hasExtra("game"))
             trivia = (Trivia)getIntent().getSerializableExtra("game");
         if(!trivia.getPuzzleComplete()) {
-            System.out.println("pass");
-            Intent intent = new Intent(this, TriviaActivity.class);
+            Intent intent = new Intent(this, TriviaStartActivity.class);
             TextView textView = findViewById(R.id.TriviaButton);
             String message = textView.getText().toString();
             intent.putExtra(EXTRA_MESSAGE, message);
