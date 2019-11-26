@@ -1,8 +1,9 @@
 package com.group0562.adventureofpost.trivia;
 
+import java.io.Serializable;
 import java.util.Random;
 
-public class Question {
+public class Question implements Serializable {
 
     /**
     * String question stores the text of the question

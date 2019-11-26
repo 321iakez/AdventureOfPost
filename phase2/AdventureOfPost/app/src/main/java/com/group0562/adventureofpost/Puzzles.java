@@ -2,9 +2,10 @@ package com.group0562.adventureofpost;
 
 import com.group0562.adventureofpost.model.PuzzleStats;
 
+import java.io.Serializable;
 import java.util.Observable;
 
-public abstract class Puzzles extends Observable {
+public abstract class Puzzles extends Observable implements Serializable {
 
     public PuzzleStats puzzleStats;
     private boolean puzzleComplete = false;

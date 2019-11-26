@@ -2,10 +2,11 @@ package com.group0562.adventureofpost.trivia;
 
 import com.group0562.adventureofpost.model.PuzzleStats;
 
+import java.io.Serializable;
 import java.util.Observable;
 
-public class TriviaStats extends PuzzleStats {
-    public TriviaStats(long time) {
+public class TriviaStats extends PuzzleStats implements Serializable {
+    TriviaStats(long time) {
         super(time);
     }
 

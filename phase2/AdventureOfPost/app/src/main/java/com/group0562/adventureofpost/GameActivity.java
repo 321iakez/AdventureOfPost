@@ -12,7 +12,6 @@ import com.group0562.adventureofpost.sudoku.ui.SudokuActivity;
 import com.group0562.adventureofpost.trivia.ui.TriviaActivity;
 
 public class GameActivity extends AppCompatActivity {
-    //TODO don't know if this is correct
     public final static String EXTRA_MESSAGE = "com.group0562.AdventureOfPost.MESSAGE";
 
     @Override

@@ -11,6 +11,8 @@ public abstract class PuzzleStats implements Observer {
     private int points;
     private int lives;
 
+    public PuzzleStats(){}
+
     public PuzzleStats(long time) {
         this.time = time;
         this.points = 0;

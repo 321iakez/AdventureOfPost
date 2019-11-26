@@ -5,9 +5,10 @@ import com.group0562.adventureofpost.Puzzles;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Trivia extends Puzzles {
+public class Trivia extends Puzzles implements Serializable {
 
     /**
      * the number of puzzles that the user has currently solved
