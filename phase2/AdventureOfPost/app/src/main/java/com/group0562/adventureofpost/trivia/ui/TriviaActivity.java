@@ -15,7 +15,7 @@ import java.io.*;
 
 public class TriviaActivity extends AppCompatActivity{
 
-    /*
+    /**
     * an instance of Trivia
     */
     Trivia game;
@@ -24,6 +24,7 @@ public class TriviaActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trivia);
+        game = (Trivia)getIntent().getSerializableExtra("game");
     }
 
     /**
@@ -67,8 +68,7 @@ public class TriviaActivity extends AppCompatActivity{
      * Handles case where user clicks start button
      * @param v the view
      */
-    public void onClickStart(View v) throws IOException{
-        game = new Trivia();
+    public void onClickStart(View v) {
         Question q = game.getQuestion();
         String[] s = q.getOptions();
         TextView mTextView = findViewById(R.id.textView3);

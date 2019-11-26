@@ -97,6 +97,7 @@ public class Trivia extends Puzzles implements Serializable {
         Reads File "Question.txt" and generates ArrayList of type Questions with contents of file
          */
     //TODO IN PHASE 2, CURRENTLY UNABLE TO FIND QUESTIONS.TXT FILE
+    /*
     private ArrayList<Question> pullQuestions() throws IOException {
         FileReader fr = new FileReader("Questions.txt");
         BufferedReader br = new BufferedReader(fr);
@@ -108,6 +109,7 @@ public class Trivia extends Puzzles implements Serializable {
         }
         return questions;
     }
+    */
 
     /**
      * Checks whether user has finished 3 questions, returns true iff user has completed <= 2 puzzles
