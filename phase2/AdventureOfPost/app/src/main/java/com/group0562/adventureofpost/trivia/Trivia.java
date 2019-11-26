@@ -15,7 +15,7 @@ public class Trivia extends Puzzles implements Serializable {
      */
     private int PuzzlesSolved;
 
-    /**
+    /*
      * An arrayList of all the possible questions that can be asked to be used in phase 2
      * private ArrayList<Question> questions;
      */
@@ -103,9 +103,9 @@ public class Trivia extends Puzzles implements Serializable {
         this.diff = diff;
     }
 
-    /**
+    /*
         Reads File "Question.txt" and generates ArrayList of type Questions with contents of file
-         */
+     */
     //TODO IN PHASE 2, CURRENTLY UNABLE TO FIND QUESTIONS.TXT FILE
     /*
     private ArrayList<Question> pullQuestions() throws IOException {
