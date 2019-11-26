@@ -22,8 +22,8 @@ public class TriviaEndActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trivia_end);
-        int[] values = getIntent().getIntArrayExtra("stats");
         game = (Trivia)getIntent().getSerializableExtra("game");
+        int[] values = game.getStats();
         game.setPuzzleComplete(true);
 
         //the player stats

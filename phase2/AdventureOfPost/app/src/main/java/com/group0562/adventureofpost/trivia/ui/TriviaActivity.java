@@ -83,9 +83,6 @@ public class TriviaActivity extends AppCompatActivity{
             mTextView4.setText(s[3]);
         } else {
             Intent intent = new Intent(this, TriviaEndActivity.class);
-            int[] stats = game.getStats();
-            //TODO this line could be removed since getStats will be different
-            intent.putExtra("stats", stats);
             intent.putExtra("game", game);
             startActivity(intent);
         }

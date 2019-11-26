@@ -163,7 +163,6 @@ public class Trivia extends Puzzles implements Serializable {
 
      */
 
-    //TODO: This is just temp, need to change for actual check complete conditions
     @Override
     public void checkComplete() {
     }
