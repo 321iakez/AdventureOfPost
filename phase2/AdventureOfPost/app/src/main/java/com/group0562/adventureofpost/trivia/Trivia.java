@@ -53,7 +53,7 @@ public class Trivia extends Puzzles implements Serializable {
         incorrect = 0;
         score = 0;
         //TODO Once pullQuestions() is fixed uncomment line below
-        questions = genQuestions();
+
     }
 
     /**
@@ -91,13 +91,14 @@ public class Trivia extends Puzzles implements Serializable {
         ArrayList<Question> list = new ArrayList<>();
 
         for (int i = 1; i <= 10 ; i++){
-            list.add(new Question(diff));
+            list.add(new Question(this.diff));
         }
         return list;
     }
 
     public void setDiff(String diff) {
         this.diff = diff;
+        questions = genQuestions();
     }
 
     /**

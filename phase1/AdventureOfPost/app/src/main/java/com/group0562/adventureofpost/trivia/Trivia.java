@@ -80,7 +80,7 @@ public class Trivia extends Puzzles {
     }
     /**
      * updates statistics based on user's correctness
-     * @param n the option number
+     * @param n the option number`
      */
     public void updatePoints(int n) {
         if (checkCorrect(n)) {

@@ -20,6 +20,8 @@ public class Question implements Serializable {
      */
     private String[] options = new String[4];
 
+    private String gameType;
+
     /**
      * Question constructor initializes variables by processing input string content
     TODO Constructor and formatting of questions.txt need to change to implement shuffle
@@ -28,7 +30,9 @@ public class Question implements Serializable {
     */
     Question(String diff) {
         int number1, number2, bound, answer, option;
-        Random random = new Random();
+        Random rand = new Random();
+
+        this.gameType = "add";
 
         switch (diff) {
             case "easy":
@@ -44,23 +48,74 @@ public class Question implements Serializable {
                 bound = 0;
                 break;
         }
+        String[] tempQuestions;
+        switch (this.gameType){
 
-        number1 = random.nextInt(bound);
-        number2 = random.nextInt(bound);
-        question = number1 + " + " + number2 + "= ? ";
-        answer = number1 + number2;
+            case "add":
+                tempQuestions = createAdditionQuestion(diff, bound);
+                break;
+            case "sub":
+                tempQuestions = createSubtractionQuestion(diff, bound);
+                break;
+            case "mult":
+                tempQuestions = createMultiplicationQuestion(diff, bound);
+             default:
+                 tempQuestions = createMultiplicationQuestion(diff, bound);
+                 break;
 
-        this.answer = Integer.toString(answer);
+        }
+
+        question = tempQuestions[0];
+        this.answer = tempQuestions[1];
 
         for (int i = 0; i <= 3; i++){
-            option = random.nextInt(2*bound);
-            if (option != answer) {
+            option = Integer.parseInt(this.answer) + rand.nextInt(bound) - rand.nextInt(bound);
+            if (option != Integer.parseInt(this.answer)) {
                 options[i] = Integer.toString(option);
             } else {
                 i--;
             }
         }
-        options[3] =Integer.toString(answer);
+        options[3] = this.answer;
+    }
+
+    public String[] createAdditionQuestion(String diff, int bound)
+    {
+        Random random = new Random();
+        int number1 = random.nextInt(bound);
+        int number2 = random.nextInt(bound);
+        String[] info = new String[5];
+        info[0] = number1 + " + " + number2 + "=? ";
+        info[1] = Integer.toString(number1 + number2);
+
+
+    return info;
+    }
+
+    public String[] createSubtractionQuestion(String diff, int bound)
+    {
+        Random random = new Random();
+        int number1 = random.nextInt(bound);
+        int number2 = random.nextInt(bound);
+        String[] info = new String[5];
+        info[0] = number1 + " - " + number2 + "=? ";
+        info[1] = Integer.toString(number1 - number2);
+
+
+        return info;
+    }
+
+    public String[] createMultiplicationQuestion(String diff, int bound)
+    {
+        Random random = new Random();
+        int number1 = random.nextInt(bound);
+        int number2 = random.nextInt(bound);
+        String[] info = new String[5];
+        info[0] = number1 + " x " + number2 + "=? ";
+        info[1] = Integer.toString(number1 * number2);
+
+
+        return info;
     }
 
     /**
