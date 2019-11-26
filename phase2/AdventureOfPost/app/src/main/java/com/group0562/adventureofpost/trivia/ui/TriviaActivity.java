@@ -25,6 +25,7 @@ public class TriviaActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trivia);
         game = (Trivia)getIntent().getSerializableExtra("game");
+        onClickOptionHelper();
     }
 
     /**
@@ -33,8 +34,7 @@ public class TriviaActivity extends AppCompatActivity{
      */
     public void onClickA(View v) {
         game.updatePoints(0);
-
-        onClickOptionHelper(v);
+        onClickOptionHelper();
     }
 
     /**
@@ -43,7 +43,7 @@ public class TriviaActivity extends AppCompatActivity{
      */
     public void onClickB(View v) {
         game.updatePoints(1);
-        onClickOptionHelper(v);
+        onClickOptionHelper();
     }
 
     /**
@@ -52,7 +52,7 @@ public class TriviaActivity extends AppCompatActivity{
      */
     public void onClickC(View v) {
         game.updatePoints(2);
-        onClickOptionHelper(v);
+        onClickOptionHelper();
     }
 
     /**
@@ -61,33 +61,13 @@ public class TriviaActivity extends AppCompatActivity{
      */
     public void onClickD(View v) {
         game.updatePoints(3);
-        onClickOptionHelper(v);
-    }
-
-    /**
-     * Handles case where user clicks start button
-     * @param v the view
-     */
-    public void onClickStart(View v) {
-        Question q = game.getQuestion();
-        String[] s = q.getOptions();
-        TextView mTextView = findViewById(R.id.textView3);
-        mTextView.setText(q.getQuestion());
-        TextView mTextView1 = findViewById(R.id.button4);
-        mTextView1.setText(s[0]);
-        TextView mTextView2 = findViewById(R.id.button5);
-        mTextView2.setText(s[1]);
-        TextView mTextView3 = findViewById(R.id.button6);
-        mTextView3.setText(s[2]);
-        TextView mTextView4 = findViewById(R.id.button7);
-        mTextView4.setText(s[3]);
+        onClickOptionHelper();
     }
 
     /**
      * Semi-universal button helper function that updates the button, scores and question
-     * @param v the view
      */
-    public void onClickOptionHelper(View v){
+    public void onClickOptionHelper(){
         if (game.hasNext()){
             Question q = game.getQuestion();
             String[] s = q.getOptions();
@@ -104,7 +84,7 @@ public class TriviaActivity extends AppCompatActivity{
         } else {
             Intent intent = new Intent(this, TriviaEndActivity.class);
             int[] stats = game.getStats();
-            //TODO this line could be removed and getStats would be different
+            //TODO this line could be removed since getStats will be different
             intent.putExtra("stats", stats);
             intent.putExtra("game", game);
             startActivity(intent);

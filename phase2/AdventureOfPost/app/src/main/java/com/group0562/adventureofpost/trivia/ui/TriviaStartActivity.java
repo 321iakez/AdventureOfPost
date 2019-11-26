@@ -11,7 +11,6 @@ import com.group0562.adventureofpost.R;
 import com.group0562.adventureofpost.trivia.Trivia;
 
 public class TriviaStartActivity extends AppCompatActivity {
-    public final static String EXTRA_MESSAGE = "com.group0562.AdventureOfPost.MESSAGE";
     Trivia game;
 
     @Override
