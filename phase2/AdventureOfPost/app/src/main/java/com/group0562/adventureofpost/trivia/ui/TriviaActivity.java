@@ -104,7 +104,9 @@ public class TriviaActivity extends AppCompatActivity{
         } else {
             Intent intent = new Intent(this, TriviaEndActivity.class);
             int[] stats = game.getStats();
+            //TODO this line could be removed and getStats would be different
             intent.putExtra("stats", stats);
+            intent.putExtra("game", game);
             startActivity(intent);
         }
     }

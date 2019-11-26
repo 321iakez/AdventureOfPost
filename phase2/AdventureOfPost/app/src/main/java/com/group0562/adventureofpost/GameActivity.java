@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -40,11 +41,20 @@ public class GameActivity extends AppCompatActivity {
     }
 
     public void onClickTrivia(View view) {
-        Intent intent = new Intent(this, TriviaActivity.class);
-        TextView textView = findViewById(R.id.TriviaButton);
-        String message = textView.getText().toString();
-        intent.putExtra(EXTRA_MESSAGE, message);
-        intent.putExtra("game", trivia);
-        startActivity(intent);
+        System.out.println("pass11");
+        if(getIntent().hasExtra("game"))
+            trivia = (Trivia)getIntent().getSerializableExtra("game");
+        if(!trivia.getComplete()) {
+            System.out.println("pass");
+            Intent intent = new Intent(this, TriviaActivity.class);
+            TextView textView = findViewById(R.id.TriviaButton);
+            String message = textView.getText().toString();
+            intent.putExtra(EXTRA_MESSAGE, message);
+            intent.putExtra("game", trivia);
+            startActivity(intent);
+        } else {
+            Toast.makeText(getApplicationContext(), "You already completed this game", Toast.LENGTH_SHORT).show();
+        }
+
     }
 }

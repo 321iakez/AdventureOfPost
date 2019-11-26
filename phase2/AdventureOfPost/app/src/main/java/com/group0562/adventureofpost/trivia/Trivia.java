@@ -42,11 +42,14 @@ public class Trivia extends Puzzles implements Serializable {
     private int score;
     //TODO remove score for phase two and calculate as a function of correct/incorrect and time
 
+    private boolean complete;
+
     /**
      * Constructor for trivia class
      */
     public Trivia(){
         super(new TriviaStats(30));
+        complete = false;
         PuzzlesSolved = 0;
         //TODO These are temporary stats and will change as group work on universal stats
         correct = 0;
@@ -65,6 +68,13 @@ public class Trivia extends Puzzles implements Serializable {
         rndQuestions.add(new Question("What was the Computer Science POSt cutoff for the 2018-19 year?;;82.5;;85;;89.5;;86;;82.5"));
     }
 
+    public boolean getComplete() {
+        return complete;
+    }
+
+    public void setComplete(boolean complete){
+        this.complete = complete;
+    }
     /**
      * returns the user's stats in an array of length 3
      */
