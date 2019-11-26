@@ -15,16 +15,10 @@ public class Trivia extends Puzzles implements Serializable {
      */
     private int PuzzlesSolved;
 
-    /*
-     * An arrayList of all the possible questions that can be asked to be used in phase 2
-     * private ArrayList<Question> questions;
-     */
-
-
     /**
-     * An arrayList of 3 randomly selected questions (Currently not randomly selected, to be random in phase 2)
+     * An arrayList of all the possible questions that can be asked to be used in phase 2
      */
-    private ArrayList<Question> rndQuestions;
+     private ArrayList<Question> questions;
 
     /**
      * number of correct responses
@@ -59,16 +53,7 @@ public class Trivia extends Puzzles implements Serializable {
         incorrect = 0;
         score = 0;
         //TODO Once pullQuestions() is fixed uncomment line below
-        //questions = pullQuestions();
-
-        /*
-        * Since some error with file reader using hardcoded questions for phase 1
-        * create a new arrayList of questions and hardcode questions and answers (will use txt file for phase 2)
-        */
-        rndQuestions = new ArrayList<>();
-        rndQuestions.add(new Question("What does Paul Gries smell like?;;Cinnamon;;Nothing;;Milk;;Lavendar;;Nothing"));
-        rndQuestions.add(new Question("Which program has the highest domestic tuition?;;Economics;;Computer Science;;Engineering;;Commerce;;Engineering"));
-        rndQuestions.add(new Question("What was the Computer Science POSt cutoff for the 2018-19 year?;;82.5;;85;;89.5;;86;;82.5"));
+        questions = genQuestions();
     }
 
     /**
@@ -83,7 +68,7 @@ public class Trivia extends Puzzles implements Serializable {
      * @param n the option number
      */
     private boolean checkCorrect(int n) {
-        return rndQuestions.get(PuzzlesSolved - 1).checkCorrect(rndQuestions.get(PuzzlesSolved - 1).getOptions()[n]);
+        return questions.get(PuzzlesSolved - 1).checkCorrect(questions.get(PuzzlesSolved - 1).getOptions()[n]);
     }
     /**
      * updates statistics based on user's correctness
@@ -99,40 +84,34 @@ public class Trivia extends Puzzles implements Serializable {
         }
     }
 
+    /**
+     * Generates 10 random questions
+     */
+    private ArrayList<Question> genQuestions() {
+        ArrayList<Question> list = new ArrayList<>();
+
+        for (int i = 1; i <= 10 ; i++){
+            list.add(new Question(diff));
+        }
+        return list;
+    }
+
     public void setDiff(String diff) {
         this.diff = diff;
     }
-
-    /*
-        Reads File "Question.txt" and generates ArrayList of type Questions with contents of file
-     */
-    //TODO IN PHASE 2, CURRENTLY UNABLE TO FIND QUESTIONS.TXT FILE
-    /*
-    private ArrayList<Question> pullQuestions() throws IOException {
-        FileReader fr = new FileReader("Questions.txt");
-        BufferedReader br = new BufferedReader(fr);
-        String currLine = br.readLine();
-        ArrayList<Question> questions = new ArrayList<>();
-        while (currLine != null) {
-            questions.add(new Question(currLine));
-            currLine = br.readLine();
-        }
-        return questions;
-    }
-    */
 
     /**
      * Checks whether user has finished 3 questions, returns true iff user has completed <= 2 puzzles
      */
     public boolean hasNext() {
-        return PuzzlesSolved != 3;
+        return PuzzlesSolved != questions.size();
     }
 
     /**
      * Gets questions from question array based on number of questions answered
      */
     public Question getQuestion() {
-        return rndQuestions.get(PuzzlesSolved++);
+        return questions.get(PuzzlesSolved++);
     }
 
     /* TODO later

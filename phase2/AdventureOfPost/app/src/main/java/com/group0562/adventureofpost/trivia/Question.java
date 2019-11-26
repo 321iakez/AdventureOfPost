@@ -23,16 +23,44 @@ public class Question implements Serializable {
     /**
      * Question constructor initializes variables by processing input string content
     TODO Constructor and formatting of questions.txt need to change to implement shuffle
-    * @param content the string from a questions.txt line containing raw data
+    * @param diff the string for the difficulty
      *
     */
-    Question(String content) {
+    Question(String diff) {
+        int number1, number2, bound, answer, option;
+        Random random = new Random();
 
-        String[] splitContent = content.split(";;");
-        this.question = splitContent[0];
-        if (splitContent.length - 1 - 1 >= 0)
-            System.arraycopy(splitContent, 1, this.options, 0, splitContent.length - 1 - 1);
-        this.answer = splitContent[5];
+        switch (diff) {
+            case "easy":
+                bound = 10;
+                break;
+            case "medium":
+                bound = 100;
+                break;
+            case "hard":
+                bound = 1000;
+                break;
+            default:
+                bound = 0;
+                break;
+        }
+
+        number1 = random.nextInt(bound);
+        number2 = random.nextInt(bound);
+        question = number1 + " + " + number2 + "= ? ";
+        answer = number1 + number2;
+
+        this.answer = Integer.toString(answer);
+
+        for (int i = 0; i <= 3; i++){
+            option = random.nextInt(2*bound);
+            if (option != answer) {
+                options[i] = Integer.toString(option);
+            } else {
+                i--;
+            }
+        }
+        options[3] =Integer.toString(answer);
     }
 
     /**
@@ -47,7 +75,7 @@ public class Question implements Serializable {
      * @param response the user's answer
      */
     boolean checkCorrect(String response) {
-        return response.equals(this.answer);
+        return Integer.parseInt(response) == Integer.parseInt(answer);
     }
 
     /**
