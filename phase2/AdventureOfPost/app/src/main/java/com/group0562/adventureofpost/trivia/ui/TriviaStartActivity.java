@@ -38,9 +38,6 @@ public class TriviaStartActivity extends AppCompatActivity {
 
     private void startIntent () {
         Intent intent = new Intent(this, TriviaActivity.class);
-        TextView textView = findViewById(R.id.TriviaButton);
-        String message = textView.getText().toString();
-        intent.putExtra(EXTRA_MESSAGE, message);
         intent.putExtra("game", game);
         startActivity(intent);
     }
