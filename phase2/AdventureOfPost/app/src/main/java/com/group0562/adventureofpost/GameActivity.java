@@ -44,7 +44,7 @@ public class GameActivity extends AppCompatActivity {
         System.out.println("pass11");
         if(getIntent().hasExtra("game"))
             trivia = (Trivia)getIntent().getSerializableExtra("game");
-        if(!trivia.getComplete()) {
+        if(!trivia.getPuzzleComplete()) {
             System.out.println("pass");
             Intent intent = new Intent(this, TriviaActivity.class);
             TextView textView = findViewById(R.id.TriviaButton);

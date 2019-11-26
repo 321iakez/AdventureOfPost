@@ -24,7 +24,7 @@ public class TriviaEndActivity extends AppCompatActivity {
         setContentView(R.layout.activity_trivia_end);
         int[] values = getIntent().getIntArrayExtra("stats");
         game = (Trivia)getIntent().getSerializableExtra("game");
-        game.setComplete(true);
+        game.setPuzzleComplete(true);
 
         //the player stats
         String correct, incorrect, score;
