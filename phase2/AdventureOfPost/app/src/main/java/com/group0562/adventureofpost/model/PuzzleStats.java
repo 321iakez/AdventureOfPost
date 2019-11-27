@@ -52,5 +52,5 @@ public abstract class PuzzleStats implements Observer {
 
     public abstract void updatePoints();
 
-    public void draw(Canvas canvas){};
+    public void draw(Canvas canvas){}
 }

@@ -12,7 +12,7 @@ public class GridSizeAdaptor extends BaseAdapter {
     /**
      * the list of buttons in order
      */
-    private ArrayList<Button> mButtons;
+    private ArrayList<Button> buttons;
 
     /**
      * the width and the height of a column
@@ -20,19 +20,19 @@ public class GridSizeAdaptor extends BaseAdapter {
     private int mColumnWidth, mColumnHeight;
 
     GridSizeAdaptor(ArrayList<Button> buttons, int columnWidth, int columnHeight) {
-        mButtons = buttons;
+        this.buttons = buttons;
         mColumnWidth = columnWidth;
         mColumnHeight = columnHeight;
     }
 
     @Override
     public int getCount() {
-        return mButtons.size();
+        return buttons.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return mButtons.get(position);
+        return buttons.get(position);
     }
 
     @Override
@@ -45,7 +45,7 @@ public class GridSizeAdaptor extends BaseAdapter {
         Button button;
 
         if (convertView == null) {
-            button = mButtons.get(position);
+            button = buttons.get(position);
         } else {
             button = (Button) convertView;
         }

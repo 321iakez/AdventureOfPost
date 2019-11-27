@@ -43,10 +43,7 @@ public class Square extends Shape {
             return false;
         else if (cursor_y < this.coordinate_y - Shape.radius)
             return false;
-        else if (cursor_y > this.coordinate_y + Shape.radius)
-            return false;
-        else
-            return true;
+        else return !(cursor_y > this.coordinate_y + Shape.radius);
     }
 
     /**

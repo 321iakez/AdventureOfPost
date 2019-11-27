@@ -85,8 +85,6 @@ public class Triangle extends Shape {
             return false;
         else if (cursor_x <= this.coordinate_x & cursor_y - this.coordinate_y > sqrt(3) * (cursor_x - v1.x))
             return false;
-        else if (cursor_x > this.coordinate_x & cursor_y - this.coordinate_y > sqrt(3) * (v3.x - cursor_x))
-            return false;
-        return true;
+        else return !(cursor_x > this.coordinate_x & cursor_y - this.coordinate_y > sqrt(3) * (v3.x - cursor_x));
     }
 }

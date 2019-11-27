@@ -17,18 +17,14 @@ import com.group0562.adventureofpost.sudoku.SudokuView;
 
 import java.util.List;
 
-public class SudokuActivity extends AppCompatActivity implements SudokuView
-//        SudokuCellFragment.OnFragmentInteractionListener,
-//        SudokuStatsFragment.OnFragmentInteractionListener, SudokuView {
-{
+public class SudokuActivity extends AppCompatActivity implements SudokuView, SudokuStatsFragment.OnFragmentInteractionListener {
 
     private SudokuPresenter presenter;
     private SudokuCellGridView gridView;
 
     private static int columnWidth, columnHeight;
 
-//    private SudokuCellFragment cellGroupFrag;
-//    private SudokuStatsFragment statsFrag;
+    private SudokuStatsFragment statsFrag;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,15 +33,14 @@ public class SudokuActivity extends AppCompatActivity implements SudokuView
 
         presenter = new SudokuPresenter(getResources().openRawResource(R.raw.sudoku), this);
         gridView = findViewById(R.id.grid);
-        gridView.createTileButtons(this, 6, 6);
+        gridView.createTileButtons(presenter, this, 6);
         gridView.setNumColumns(6);
         // Observer sets up desired dimensions as well as calls our display function
         gridView.getViewTreeObserver().addOnGlobalLayoutListener(
                 new ViewTreeObserver.OnGlobalLayoutListener() {
                     @Override
                     public void onGlobalLayout() {
-                        gridView.getViewTreeObserver().removeOnGlobalLayoutListener(
-                                this);
+                        gridView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
                         int displayWidth = gridView.getMeasuredWidth();
                         int displayHeight = gridView.getMeasuredHeight();
 
@@ -56,18 +51,18 @@ public class SudokuActivity extends AppCompatActivity implements SudokuView
                     }
                 });
 
-//        cellGroupFrag = (SudokuCellFragment) getSupportFragmentManager().findFragmentById(R.id.boardFragment);
-//        statsFrag = (SudokuStatsFragment) getSupportFragmentManager().findFragmentById(R.id.statsFragment);
+        statsFrag = (SudokuStatsFragment) getSupportFragmentManager().findFragmentById(R.id.statsFragment);
 
         // Display initial board values
-//        for (int row = 0; row < 6; row++) {
-//            for (int col = 0; col < 6; col++) {
-//                int cellValue = presenter.getCellValue(row, col);
-//                if (cellValue != 0) {
-//                    cellGroupFrag.loadValues(cellValue, row, col);
-//                }
-//            }
-//        }
+        for (int row = 0; row < 6; row++) {
+            for (int col = 0; col < 6; col++) {
+                int cellValue = presenter.getCellValue(row, col);
+                if (cellValue != 0) {
+                    System.out.println(cellValue);
+                    gridView.loadValues(row, col, cellValue);
+                }
+            }
+        }
 
 
     }
@@ -85,7 +80,7 @@ public class SudokuActivity extends AppCompatActivity implements SudokuView
 
         // Load value on board
         if (updateSuccess) {
-//            cellGroupFrag.loadValues(newValue, presenter.getCurrRow(), presenter.getCurrCol());
+            gridView.loadValues(presenter.getCurrRow(), presenter.getCurrCol(), newValue);
             updateStats(true, false);
         } else {
             Toast.makeText(getApplicationContext(), "Conflict detected!", Toast.LENGTH_SHORT).show();
@@ -98,7 +93,7 @@ public class SudokuActivity extends AppCompatActivity implements SudokuView
 
     public void onClickRemove(View view) {
         presenter.removeNum();
-//        cellGroupFrag.removeValue(presenter.getCurrRow(), presenter.getCurrCol());
+        gridView.removeValue(presenter.getCurrRow(), presenter.getCurrCol());
 
         // Update
         presenter.update();
@@ -107,7 +102,7 @@ public class SudokuActivity extends AppCompatActivity implements SudokuView
     public void onClickReset(View view) {
         List<int[]> resetCells = presenter.resetGameBoard();
         for (int[] cellLoc : resetCells) {
-//            cellGroupFrag.removeValue(cellLoc[0], cellLoc[1]);
+            gridView.removeValue(cellLoc[0], cellLoc[1]);
         }
 
         // Update
@@ -126,10 +121,10 @@ public class SudokuActivity extends AppCompatActivity implements SudokuView
 
         int moves = presenter.getMoves();
         int conflicts = presenter.getConflicts();
-//        statsFrag.updateStats(moves, conflicts);
+        statsFrag.updateStats(moves, conflicts);
     }
 
-    public void endDialog() {
+    private void endDialog() {
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getApplicationContext());
         dialogBuilder.setTitle("Puzzle Completed!")
                 .setMessage("Congratulation! You have completed the puzzle.")
@@ -143,22 +138,10 @@ public class SudokuActivity extends AppCompatActivity implements SudokuView
         dialog.show();
     }
 
-//    @Override
-//    public void onFragmentInteraction(int row, int col, View view) {
-//        if (presenter.getCellLocked(row, col)) {
-//            Toast.makeText(getApplicationContext(), "Can not change start piece", Toast.LENGTH_SHORT).show();
-//        } else {
-//            cellGroupFrag.loadBackground(presenter.getCurrRow(), presenter.getCurrCol(), R.drawable.table_border_cell);
-//            view.setBackgroundResource(R.drawable.table_selected_cell);
-//            presenter.setCurrRow(row);
-//            presenter.setCurrCol(col);
-//        }
-//    }
+    @Override
+    public void onFragmentInteraction(View view) {
 
-//    @Override
-//    public void onFragmentInteraction(View view) {
-//
-//    }
+    }
 
     @Override
     public void onGameComplete() {
