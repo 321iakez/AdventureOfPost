@@ -1,5 +1,5 @@
 <resources>
-    <!-- MainActivity Strings -->
+    <!-- LoginActivity Strings -->
     <string name="app_name">Adventure of POSt</string>
     <string name="the_adventure_of_post">The Adventure of POSt</string>
     <string name="login">Login</string>
@@ -17,6 +17,8 @@
     <string name="register_account">Register Account</string>
     <string name="register_message">Don\'t have account?</string>
     <string name="return_to_main_menu">Return to main menu</string>
+    <string name="username_error">Username cannot be empty</string>
+    <string name="password_error">Password cannot be empty</string>
 
     <!-- SC Preference title -->
     <string name="sc_color_of_shaped_object">Color of Shaped Object</string>

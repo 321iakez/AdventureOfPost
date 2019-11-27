@@ -21,7 +21,7 @@
         <activity android:name=".trivia.ui.TriviaActivity" />
         <activity android:name=".shapeClicker.ui.ShapeClickerActivity" />
         <activity android:name=".sudoku.ui.SudokuActivity" />
-        <activity android:name=".login.MainActivity">
+        <activity android:name=".login.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

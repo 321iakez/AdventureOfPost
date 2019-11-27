@@ -2,7 +2,6 @@ package com.group0562.adventureofpost.login;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -39,7 +38,7 @@ public class RegisterActivity extends AppCompatActivity {
             if (db.checkUsernameDup(username)) {
                 if (db.insert(username, password)) {
                     Toast.makeText(getApplicationContext(), "Registered Successfully", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
+                    Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                     startActivity(intent);
                 }
             } else {

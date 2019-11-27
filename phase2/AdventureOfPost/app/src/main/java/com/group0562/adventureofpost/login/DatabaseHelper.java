@@ -12,8 +12,8 @@ import java.util.ArrayList;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
 
-    DatabaseHelper(Context context) {
-        super(context, "adventureOfPost.db", null, 1);
+    DatabaseHelper() {
+        super(null, "adventureOfPost.db", null, 1);
     }
 
     @Override
