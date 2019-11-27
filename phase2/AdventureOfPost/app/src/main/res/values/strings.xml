@@ -19,6 +19,7 @@
     <string name="return_to_main_menu">Return to main menu</string>
     <string name="username_error">Username cannot be empty</string>
     <string name="password_error">Password cannot be empty</string>
+    <string name="reg_password_error">Password empty or don\'t match</string>
 
     <!-- SC Preference title -->
     <string name="sc_color_of_shaped_object">Color of Shaped Object</string>

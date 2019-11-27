@@ -6,18 +6,17 @@
     android:layout_height="match_parent"
     tools:context=".sudoku.ui.SudokuActivity">
 
-    <fragment
-        android:id="@+id/boardFragment"
-        android:name="com.group0562.adventureofpost.sudoku.ui.SudokuCellFragment"
-        android:layout_width="337dp"
-        android:layout_height="337dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <com.group0562.adventureofpost.sudoku.ui.SudokuCellGridView
+        android:id="@+id/grid"
+        android:layout_width="350dp"
+        android:layout_height="350dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
-        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.103" />
+        tools:context=".sudoku.ui.SudokuActivity">
+
+    </com.group0562.adventureofpost.sudoku.ui.SudokuCellGridView>
 
     <LinearLayout
         android:id="@+id/numPad1"
@@ -27,7 +26,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/boardFragment"
+        app:layout_constraintTop_toBottomOf="@+id/grid"
         app:layout_constraintVertical_bias="0.050000012">
 
         <Button
@@ -143,15 +142,15 @@
         app:layout_constraintStart_toEndOf="@+id/button3"
         app:layout_constraintTop_toBottomOf="@+id/numPad1" />
 
-    <fragment
-        android:id="@+id/statsFragment"
-        android:name="com.group0562.adventureofpost.sudoku.ui.SudokuStatsFragment"
-        android:layout_width="378dp"
-        android:layout_height="35dp"
-        android:layout_marginBottom="32dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.484"
-        app:layout_constraintStart_toStartOf="parent" />
+<!--    <fragment-->
+<!--        android:id="@+id/statsFragment"-->
+<!--        android:name="com.group0562.adventureofpost.sudoku.ui.SudokuStatsFragment"-->
+<!--        android:layout_width="378dp"-->
+<!--        android:layout_height="35dp"-->
+<!--        android:layout_marginBottom="32dp"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.484"-->
+<!--        app:layout_constraintStart_toStartOf="parent" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,5 +1,6 @@
-package com.group0562.adventureofpost.login;
+package com.group0562.adventureofpost.auth.ui;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -10,13 +11,16 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.group0562.adventureofpost.GameActivity;
 import com.group0562.adventureofpost.R;
+import com.group0562.adventureofpost.auth.AuthInteractor;
+import com.group0562.adventureofpost.auth.AuthPresenter;
+import com.group0562.adventureofpost.auth.AuthView;
 
 
-public class LoginActivity extends AppCompatActivity implements LoginView {
+public class LoginActivity extends AppCompatActivity implements AuthView {
 
     private EditText username;
     private EditText password;
-    private LoginPresenter presenter;
+    private AuthPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,15 +32,11 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
         findViewById(R.id.register).setOnClickListener(this::onClickRegister);
         findViewById(R.id.login).setOnClickListener(this::onClickLogin);
 
-//        presenter = new LoginPresenter(this, new LoginInteractor())
+        presenter = new AuthPresenter(this, new AuthInteractor());
     }
 
     public void onClickLogin(View view) {
-        // Acquire user inputs
-        String username = ((EditText) findViewById(R.id.username)).getText().toString();
-        String password = ((EditText) findViewById(R.id.password)).getText().toString();
-
-        presenter.validateCredentials(username, password);
+        presenter.validateCredentials(username.getText().toString(), password.getText().toString());
     }
 
     public void onClickRegister(View view) {
@@ -55,14 +55,19 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     }
 
     @Override
-    public void onLoginSuccess() {
+    public void onSuccess() {
         Toast.makeText(getApplicationContext(), "successfully login", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(this, GameActivity.class);
         startActivity(intent);
     }
 
     @Override
-    public void onLoginError() {
+    public void onFail() {
         Toast.makeText(getApplicationContext(), "Wrong username or password", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public Context getContext() {
+        return this;
     }
 }

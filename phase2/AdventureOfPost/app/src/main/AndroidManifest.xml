@@ -13,7 +13,7 @@
         <activity android:name=".trivia.ui.TriviaStartActivity"></activity>
         <activity android:name=".trivia.ui.TriviaEndActivity" />
         <activity android:name=".shapeClicker.ui.ShapeClickerEndActivity" />
-        <activity android:name=".login.RegisterActivity" />
+        <activity android:name=".auth.ui.RegisterActivity" />
         <activity
             android:name=".shapeClicker.ui.SCSettingActivity"
             android:label="@string/title_activity_scsettings" />
@@ -21,7 +21,7 @@
         <activity android:name=".trivia.ui.TriviaActivity" />
         <activity android:name=".shapeClicker.ui.ShapeClickerActivity" />
         <activity android:name=".sudoku.ui.SudokuActivity" />
-        <activity android:name=".login.LoginActivity">
+        <activity android:name=".auth.ui.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -1,19 +1,16 @@
-package com.group0562.adventureofpost.login;
+package com.group0562.adventureofpost.auth;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
-
-import java.util.ArrayList;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
 
-    DatabaseHelper() {
-        super(null, "adventureOfPost.db", null, 1);
+    DatabaseHelper(Context context) {
+        super(context, "adventureOfPost.db", null, 1);
     }
 
     @Override
@@ -27,13 +24,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    boolean insert(String username, String password) {
+    long insert(String username, String password) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("username", username);
         contentValues.put("password", password);
-        long ins = db.insert("users", null, contentValues);
-        return ins != 1;
+        return db.insert("users", null, contentValues);
     }
 
     boolean checkUsernameDup(String username) {
@@ -42,7 +38,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return cursor.getCount() <= 0;
     }
 
-    Boolean verify(String username, String password) {
+    boolean verify(String username, String password) {
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM users WHERE username =? AND password=?", new String[]{username, password});
         return cursor.getCount() > 0;
