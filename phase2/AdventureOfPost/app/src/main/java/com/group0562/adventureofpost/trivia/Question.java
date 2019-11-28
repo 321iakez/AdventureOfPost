@@ -26,7 +26,7 @@ public class Question implements Serializable {
     * @param diff the string for the difficulty
      *
     */
-    Question(int diff, String gameType) {
+    Question(int diff, int gameType) {
         int bound, option;
         Random rand = new Random();
 
@@ -45,21 +45,32 @@ public class Question implements Serializable {
                 break;
         }
         String[] tempQuestions;
-        switch (gameType){
+        switch (gameType) {
 
-            case "add":
+            case 1:
                 tempQuestions = createAdditionQuestion(bound);
                 break;
-            case "sub":
+            case 2:
                 tempQuestions = createSubtractionQuestion(bound);
                 break;
-            //TODO could change mult to default
+            //TODO could change mult to default, 3 is for multi fyi
             //case "mult":
-                //tempQuestions = createMultiplicationQuestion(bound);
-                //break;
+            //tempQuestions = createMultiplicationQuestion(bound);
+            //break;
             default:
-                tempQuestions = createMultiplicationQuestion(bound);
-                break;
+                if (bound == 1000) {
+                    tempQuestions = createMultiplicationQuestion(bound / 10);
+                    break;
+                }
+                else if (bound == 100){
+                    tempQuestions = createMultiplicationQuestion(bound/5);
+                    break;
+                }
+                else{
+                    tempQuestions = createMultiplicationQuestion(bound);
+                    break;
+                }
+
 
         }
 

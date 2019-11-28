@@ -41,6 +41,14 @@ public class Trivia extends Puzzles implements Serializable {
      */
     private int diff;
 
+
+
+    /**
+     * the gamemode in terms of operations, of the game. 1 means addition, 2 means subtraction,
+     * 3 means multiplication
+     */
+    private int op;
+
     /**
      * Constructor for trivia class
      */
@@ -48,6 +56,7 @@ public class Trivia extends Puzzles implements Serializable {
         super(new TriviaStats(30));
         PuzzlesSolved = 0;
         diff = 1;
+        op = 1;
         //TODO These are temporary stats and will change as group work on universal stats
         correct = 0;
         incorrect = 0;
@@ -76,7 +85,7 @@ public class Trivia extends Puzzles implements Serializable {
      */
     public void updatePoints(int n) {
         if (checkCorrect(n)) {
-            this.score += 10 * this.diff;
+            this.score += 10 * this.diff * this.op;
             this.correct += 1;
         } else {
             this.score -= 5;
@@ -92,7 +101,7 @@ public class Trivia extends Puzzles implements Serializable {
 
         for (int i = 1; i <= 10 ; i++){
             //TODO gameType is hardcoded right now will change for more options later
-            list.add(new Question(this.diff, "add"));
+            list.add(new Question(this.diff, this.op));
         }
         return list;
     }
@@ -102,22 +111,30 @@ public class Trivia extends Puzzles implements Serializable {
         questions = genQuestions();
     }
 
-    private void setGame(int correct, int incorrect){
+    public void setOperation(int op){
+        this.op = op;
+
+
+    }
+
+    private void setGame(int diff, int op, int correct, int incorrect){
 
         this.correct = correct;
         this.incorrect = incorrect;
         this.PuzzlesSolved = correct + incorrect;
         this.score = this.correct * 10 - this.incorrect * 5;
+        this.op = op;
+        this.diff = diff;
 
     }
 
     /**TODO can you implement this method
      * This method will take in a String saveState and decode it to load all the information
      * @param saveState the save state of the game
+     *saveState string in this structure:
      */
     public void loadGame(String saveState){
         //this is temp
-        setGame(1,5);
     }
 
     //TODO this will later include all game info like completion
@@ -127,7 +144,7 @@ public class Trivia extends Puzzles implements Serializable {
      * To be store in a database such that this data can be used to resume a game
      */
     public String pauseGame(){
-        return this.diff + Integer.toString(this.correct) + Integer.toString(this.incorrect);
+        return Integer.toString(this.diff) + Integer.toString(this.op) + Integer.toString(this.correct) + Integer.toString(this.incorrect);
 
     }
 

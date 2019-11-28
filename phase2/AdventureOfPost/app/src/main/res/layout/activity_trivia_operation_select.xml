@@ -9,7 +9,7 @@
         android:id="@+id/TriviaSelectDiff"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/TriviaSelectDiff"
+        android:text="Select gamemode"
         android:textAlignment="center"
         android:textSize="36sp"
         app:layout_constraintBottom_toBottomOf="parent"

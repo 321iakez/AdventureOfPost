@@ -21,17 +21,17 @@ public class TriviaOperationSelectActivity extends AppCompatActivity {
 
     //TODO this need to be hooked up to setOperation
     public void onClickAdd(View view) {
-        game.setDiff(1);
+        game.setOperation(1);
         startIntent();
     }
 
     public void onClickSub(View view) {
-        game.setDiff(2);
+        game.setOperation(2);
         startIntent();
     }
 
     public void onClickMult(View view) {
-        game.setDiff(3);
+        game.setOperation(3);
         startIntent();
     }
 
