@@ -11,6 +11,7 @@ import java.util.Observable;
 
 public class ShapeClickerStats extends PuzzleStats {
     private Paint paint;
+    private static long TIME_LIMIT;
 
     /**
      * constructor of ShapeClickerStats, inherited from PuzzleStats
@@ -19,6 +20,7 @@ public class ShapeClickerStats extends PuzzleStats {
      */
     public ShapeClickerStats(long time) {
         super(time);
+        TIME_LIMIT = time;
         this.paint = new Paint();
         this.paint.setColor(Color.BLACK);
         this.paint.setStrokeWidth(3);
@@ -59,4 +61,10 @@ public class ShapeClickerStats extends PuzzleStats {
         String combined = time_text + " " + points_text + " " + lives_text;
         canvas.drawText(combined, 25, 40, paint);
     }
+    public void reset(){
+        this.setTime(TIME_LIMIT);
+        this.setLives(10);
+        this.setPoints(0);
+    }
+
 }
