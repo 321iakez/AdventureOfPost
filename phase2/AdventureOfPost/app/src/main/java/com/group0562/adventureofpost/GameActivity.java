@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.group0562.adventureofpost.shapeClicker.ui.ShapeClickerActivity;
 import com.group0562.adventureofpost.sudoku.ui.SudokuActivity;
 import com.group0562.adventureofpost.trivia.Trivia;
+import com.group0562.adventureofpost.trivia.ui.TriviaOperationSelectActivity;
 import com.group0562.adventureofpost.trivia.ui.TriviaStartActivity;
 
 public class GameActivity extends AppCompatActivity {
@@ -48,7 +49,7 @@ public class GameActivity extends AppCompatActivity {
         if (getIntent().hasExtra("game"))
             trivia = (Trivia) getIntent().getSerializableExtra("game");
         if (!trivia.getPuzzleComplete()) {
-            Intent intent = new Intent(this, TriviaStartActivity.class);
+            Intent intent = new Intent(this, TriviaOperationSelectActivity.class);
             TextView textView = findViewById(R.id.TriviaButton);
             String message = textView.getText().toString();
             intent.putExtra(EXTRA_MESSAGE, message);

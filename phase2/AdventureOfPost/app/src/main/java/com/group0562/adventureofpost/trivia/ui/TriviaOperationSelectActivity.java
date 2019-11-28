@@ -36,7 +36,7 @@ public class TriviaOperationSelectActivity extends AppCompatActivity {
     }
 
     private void startIntent () {
-        Intent intent = new Intent(this, TriviaActivity.class);
+        Intent intent = new Intent(this, TriviaStartActivity.class);
         intent.putExtra("game", game);
         startActivity(intent);
     }
