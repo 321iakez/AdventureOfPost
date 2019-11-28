@@ -111,6 +111,14 @@ public class Trivia extends Puzzles implements Serializable {
 
     }
 
+    /**TODO can you implement this method
+     * This method will take in a String saveState and decode it to load all the information
+     * @param saveState
+     */
+    public void loadGame(String saveState){
+
+    }
+
     //TODO this will later include all game info like completion
     /**
      * Returns a String of the current stats of the game

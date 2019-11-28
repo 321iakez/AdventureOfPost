@@ -20,12 +20,18 @@ public class TriviaActivity extends AppCompatActivity{
     */
     Trivia game;
 
+    //TODO implement later a database check to see if theres a previous saveState
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trivia);
         game = (Trivia)getIntent().getSerializableExtra("game");
         onClickOptionHelper();
+        //loads previous game
+        if (getIntent().hasExtra("save")){
+            String saveState = getIntent().getStringExtra("save");
+            game.loadGame(saveState);
+        }
     }
 
     /**
@@ -88,12 +94,18 @@ public class TriviaActivity extends AppCompatActivity{
         }
     }
 
+    public void onClickSettings(View view){
+        Intent intent = new Intent(this, TriviaSettingsActivity.class);
+        String saveState = game.pauseGame();
+        intent.putExtra("save", saveState);
+        startActivity(intent);
+    }
 
     /**
      * Store the current game's info into user-specific data
      * TODO complete this function after database is figured out
      */
-    public void onClickPause(){}
+    public void onClickPause(View view){}
 
 
 
