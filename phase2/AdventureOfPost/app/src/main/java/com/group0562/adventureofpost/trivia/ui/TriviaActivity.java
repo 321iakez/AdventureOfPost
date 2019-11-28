@@ -88,4 +88,14 @@ public class TriviaActivity extends AppCompatActivity{
         }
     }
 
+
+    /**
+     * Store the current game's info into user-specific data
+     * TODO complete this function after database is figured out
+     */
+    public void onClickPause(){}
+
+
+
+
 }

@@ -101,6 +101,25 @@ public class Trivia extends Puzzles implements Serializable {
         questions = genQuestions();
     }
 
+    public void setGame(int correct, int incorrect){
+
+        this.correct = correct;
+        this.incorrect = incorrect;
+        this.PuzzlesSolved = correct + incorrect;
+        this.score = this.correct * 10 - this.incorrect * 5;
+
+    }
+
+    /**
+     * Returns a String of the current stats of the game
+     * stats contains difficulty, correct, incorrect
+     * To be store in a database such that this data can be used to resume a game
+     */
+    public String pauseGame(){
+        return this.diff + Integer.toString(this.correct) + Integer.toString(this.incorrect);
+
+    }
+
     /**
      * Checks whether user has finished 3 questions, returns true iff user has completed <= 2 puzzles
      */
