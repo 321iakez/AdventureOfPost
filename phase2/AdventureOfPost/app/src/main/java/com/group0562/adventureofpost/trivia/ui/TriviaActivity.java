@@ -27,11 +27,11 @@ public class TriviaActivity extends AppCompatActivity{
         setContentView(R.layout.activity_trivia);
         game = (Trivia)getIntent().getSerializableExtra("game");
         onClickOptionHelper();
-        //loads previous game
         if (getIntent().hasExtra("save")){
             String saveState = getIntent().getStringExtra("save");
             game.loadGame(saveState);
         }
+
     }
 
     /**
@@ -97,6 +97,7 @@ public class TriviaActivity extends AppCompatActivity{
     public void onClickSettings(View view){
         Intent intent = new Intent(this, TriviaSettingsActivity.class);
         String saveState = game.pauseGame();
+        intent.putExtra("game", game);
         intent.putExtra("save", saveState);
         startActivity(intent);
     }

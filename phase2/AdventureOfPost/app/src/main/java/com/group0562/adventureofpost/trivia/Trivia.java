@@ -102,7 +102,7 @@ public class Trivia extends Puzzles implements Serializable {
         questions = genQuestions();
     }
 
-    public void setGame(int correct, int incorrect){
+    private void setGame(int correct, int incorrect){
 
         this.correct = correct;
         this.incorrect = incorrect;
@@ -113,10 +113,11 @@ public class Trivia extends Puzzles implements Serializable {
 
     /**TODO can you implement this method
      * This method will take in a String saveState and decode it to load all the information
-     * @param saveState
+     * @param saveState the save state of the game
      */
     public void loadGame(String saveState){
-
+        //this is temp
+        setGame(1,5);
     }
 
     //TODO this will later include all game info like completion
