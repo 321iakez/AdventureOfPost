@@ -61,10 +61,6 @@ public class ShapeClickerStats extends PuzzleStats {
         String combined = time_text + " " + points_text + " " + lives_text;
         canvas.drawText(combined, 25, 40, paint);
     }
-    public void reset(){
-        this.setTime(TIME_LIMIT);
-        this.setLives(10);
-        this.setPoints(0);
-    }
+
 
 }

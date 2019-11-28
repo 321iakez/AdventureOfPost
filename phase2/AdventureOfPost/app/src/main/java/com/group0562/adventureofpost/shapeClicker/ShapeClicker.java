@@ -21,6 +21,8 @@ public class ShapeClicker extends Puzzles {
      */
     private Paint paint;
 
+    private static Paint INITIAL_PAINT;
+
     /**
      * string recording the type of shape being tapped
      */
@@ -36,6 +38,8 @@ public class ShapeClicker extends Puzzles {
      */
     private static boolean changed;
 
+    private static long TIME_LIMIT;
+
     /**
      * constructor for this ShapeClicker
      *
@@ -44,7 +48,9 @@ public class ShapeClicker extends Puzzles {
      */
     ShapeClicker(long time, Paint p) {
         super(new ShapeClickerStats(time));
+        TIME_LIMIT = time;
         this.paint = p;
+        INITIAL_PAINT = p;
         s_object = new Circle(50, 50, this.paint);
         s_object.setLocation();
     }
@@ -132,5 +138,14 @@ public class ShapeClicker extends Puzzles {
             this.setPuzzleComplete(false);
             SCEndResultView.setBeat_the_game(false);
         }
+    }
+    public static void reset(){
+        ShapeClicker sc = new ShapeClicker(TIME_LIMIT, INITIAL_PAINT);
+        sc.resetgame();
+    }
+    public void resetgame(){
+        this.puzzleStats.setTime(TIME_LIMIT);
+        this.puzzleStats.setLives(10);
+        this.puzzleStats.setPoints(0);
     }
 }

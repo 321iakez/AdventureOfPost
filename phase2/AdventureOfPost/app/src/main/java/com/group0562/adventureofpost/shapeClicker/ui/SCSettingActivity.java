@@ -52,6 +52,7 @@ public class SCSettingActivity extends AppCompatActivity {
         ShapeClickerGameView.setColor(color_choice);
         Shape.setRadius(difficulty_choice);
         ShapeClicker.setShape(shape_choice);
+        ShapeClicker.reset();
         finish();
     }
 }
