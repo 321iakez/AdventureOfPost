@@ -11,8 +11,6 @@ import com.group0562.adventureofpost.R;
 import com.group0562.adventureofpost.trivia.Question;
 import com.group0562.adventureofpost.trivia.Trivia;
 
-import java.io.*;
-
 public class TriviaActivity extends AppCompatActivity{
 
     /**
@@ -106,7 +104,11 @@ public class TriviaActivity extends AppCompatActivity{
      * Store the current game's info into user-specific data
      * TODO complete this function after database is figured out
      */
-    public void onClickPause(View view){}
+    public void onClickPause(View view){
+        Intent intent = new Intent(this, TriviaPauseActivity.class);
+        intent.putExtra("game", game);
+        startActivity(intent);
+    }
 
 
 

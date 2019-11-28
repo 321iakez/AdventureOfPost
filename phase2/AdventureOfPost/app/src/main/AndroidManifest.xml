@@ -10,9 +10,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".trivia.ui.TriviaPauseActivity"></activity>
         <activity
             android:name=".trivia.ui.TriviaSettingsActivity"
-            android:label="@string/title_activity_trivia_settings"></activity>
+            android:label="@string/title_activity_trivia_settings" />
         <activity android:name=".trivia.ui.TriviaStartActivity" />
         <activity android:name=".trivia.ui.TriviaEndActivity" />
         <activity android:name=".shapeClicker.ui.ShapeClickerEndActivity" />

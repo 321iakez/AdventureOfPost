@@ -21,7 +21,11 @@ public class GameActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
-        trivia = new Trivia();
+        if (getIntent().hasExtra("trivia")) {
+            trivia = (Trivia) getIntent().getSerializableExtra("trivia");
+        } else {
+            trivia = new Trivia();
+        }
     }
 
     public void onClickShapeClicker(View view) {
@@ -41,9 +45,9 @@ public class GameActivity extends AppCompatActivity {
     }
 
     public void onClickTrivia(View view) {
-        if(getIntent().hasExtra("game"))
-            trivia = (Trivia)getIntent().getSerializableExtra("game");
-        if(!trivia.getPuzzleComplete()) {
+        if (getIntent().hasExtra("game"))
+            trivia = (Trivia) getIntent().getSerializableExtra("game");
+        if (!trivia.getPuzzleComplete()) {
             Intent intent = new Intent(this, TriviaStartActivity.class);
             TextView textView = findViewById(R.id.TriviaButton);
             String message = textView.getText().toString();
