@@ -87,5 +87,8 @@
     <string name="save">Save</string>
     <string name="resume">Resume</string>
     <string name="save_and_exit">Save and Exit</string>
+    <string name="TriviaMult">Multiplication</string>
+    <string name="TriviaSub">Subtraction</string>
+    <string name="TriviaAdd">Addition</string>
 
 </resources>
