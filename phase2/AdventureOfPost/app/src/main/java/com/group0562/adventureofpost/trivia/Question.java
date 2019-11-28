@@ -20,19 +20,15 @@ public class Question implements Serializable {
      */
     private String[] options = new String[4];
 
-    private String gameType;
-
     /**
      * Question constructor initializes variables by processing input string content
     TODO Constructor and formatting of questions.txt need to change to implement shuffle
     * @param diff the string for the difficulty
      *
     */
-    Question(int diff) {
-        int number1, number2, bound, answer, option;
+    Question(int diff, String gameType) {
+        int bound, option;
         Random rand = new Random();
-
-        this.gameType = "add";
 
         switch (diff) {
             case 1:
@@ -49,7 +45,7 @@ public class Question implements Serializable {
                 break;
         }
         String[] tempQuestions;
-        switch (this.gameType){
+        switch (gameType){
 
             case "add":
                 tempQuestions = createAdditionQuestion(bound);
@@ -57,11 +53,13 @@ public class Question implements Serializable {
             case "sub":
                 tempQuestions = createSubtractionQuestion(bound);
                 break;
-            case "mult":
+            //TODO could change mult to default
+            //case "mult":
+                //tempQuestions = createMultiplicationQuestion(bound);
+                //break;
+            default:
                 tempQuestions = createMultiplicationQuestion(bound);
-             default:
-                 tempQuestions = createMultiplicationQuestion(bound);
-                 break;
+                break;
 
         }
 
@@ -79,7 +77,7 @@ public class Question implements Serializable {
         options[3] = this.answer;
     }
 
-    public String[] createAdditionQuestion(int bound)
+    private String[] createAdditionQuestion(int bound)
     {
         Random random = new Random();
         int number1 = random.nextInt(bound);
@@ -92,7 +90,7 @@ public class Question implements Serializable {
     return info;
     }
 
-    public String[] createSubtractionQuestion(int bound)
+    private String[] createSubtractionQuestion(int bound)
     {
         Random random = new Random();
         int number1 = random.nextInt(bound);
@@ -105,7 +103,7 @@ public class Question implements Serializable {
         return info;
     }
 
-    public String[] createMultiplicationQuestion(int bound)
+    private String[] createMultiplicationQuestion(int bound)
     {
         Random random = new Random();
         int number1 = random.nextInt(bound);

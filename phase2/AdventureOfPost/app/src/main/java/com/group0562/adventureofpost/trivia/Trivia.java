@@ -91,7 +91,8 @@ public class Trivia extends Puzzles implements Serializable {
         ArrayList<Question> list = new ArrayList<>();
 
         for (int i = 1; i <= 10 ; i++){
-            list.add(new Question(this.diff));
+            //TODO gameType is hardcoded right now will change for more options later
+            list.add(new Question(this.diff, "add"));
         }
         return list;
     }
@@ -110,6 +111,7 @@ public class Trivia extends Puzzles implements Serializable {
 
     }
 
+    //TODO this will later include all game info like completion
     /**
      * Returns a String of the current stats of the game
      * stats contains difficulty, correct, incorrect
