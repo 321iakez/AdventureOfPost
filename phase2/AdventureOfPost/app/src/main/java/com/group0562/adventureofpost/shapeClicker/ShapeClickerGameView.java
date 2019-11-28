@@ -28,7 +28,7 @@ public class ShapeClickerGameView extends View {
     /**
      * the ShapeClicker that is used in the view to be displayed
      */
-    private ShapeClicker clicker;
+    private SCDifficultMode clicker;
 
     /**
      * the three stats of the puzzle
@@ -45,7 +45,7 @@ public class ShapeClickerGameView extends View {
         ShapeClickerGameView.paint.setStrokeWidth(ShapeClickerGameView.Stroke_Thickness);
         double[] bounds = {0, 800, 0, 1500};
         ShapeClicker.setBound(bounds);
-        clicker = new ShapeClicker(60000, ShapeClickerGameView.paint);
+        clicker = new SCDifficultMode(60000, ShapeClickerGameView.paint);
         Shape.setRadius("Easy");
         this.puzzleStats = clicker.puzzleStats;
     }

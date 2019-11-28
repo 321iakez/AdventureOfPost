@@ -141,9 +141,9 @@ public class ShapeClicker extends Puzzles {
     }
     public static void reset(){
         ShapeClicker sc = new ShapeClicker(TIME_LIMIT, INITIAL_PAINT);
-        sc.resetgame();
+        sc.resetGame();
     }
-    public void resetgame(){
+    public void resetGame(){
         this.puzzleStats.setTime(TIME_LIMIT);
         this.puzzleStats.setLives(10);
         this.puzzleStats.setPoints(0);

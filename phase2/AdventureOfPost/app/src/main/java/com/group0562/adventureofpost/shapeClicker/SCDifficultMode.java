@@ -47,7 +47,7 @@ public class SCDifficultMode extends Puzzles {
         TIME_LIMIT = time;
         this.paint = p;
         INITIAL_PAINT = p;
-        ShapeBuilder builder = new ShapeBuilder(100, 15);
+        ShapeBuilder builder = new ShapeBuilder(25, 15, this.paint);
         this.s_object = builder.getS_objects();
         for(Shape item: this.s_object){item.setLocation();}
     }
@@ -89,30 +89,6 @@ public class SCDifficultMode extends Puzzles {
     }
 
     /**
-     * Change the type of shape of the ShapeClicker
-     *
-    public static void setShape(String type_of_shape) {
-        ShapeClicker.shape = type_of_shape;
-        ShapeClicker.changed = true;
-    }*/
-
-    /**
-     * construct the new shape after changing the type of shape. Set this.changed to false for further changes.
-     */
-    /*private void checkChangedObject() {
-        if (ShapeClicker.changed) {
-            if (ShapeClicker.shape.equals("Circle")) {
-                s_object = new Circle(s_object.getCoordinate_x(), s_object.getCoordinate_y(), this.paint);
-            } else if (ShapeClicker.shape.equals("Square")) {
-                s_object = new Square(s_object.getCoordinate_x(), s_object.getCoordinate_y(), this.paint);
-            } else {
-                s_object = new Triangle(s_object.getCoordinate_x(), s_object.getCoordinate_y(), this.paint);
-            }
-        }
-        ShapeClicker.changed = false;
-    }
-
-    /**
      * update the ShapeClicker during the player plays the puzzle
      */
     @Override
@@ -147,9 +123,9 @@ public class SCDifficultMode extends Puzzles {
     }
     public static void reset(){
         ShapeClicker sc = new ShapeClicker(TIME_LIMIT, INITIAL_PAINT);
-        sc.resetgame();
+        sc.resetGame();
     }
-    public void resetgame(){
+    public void resetGame(){
         this.puzzleStats.setTime(TIME_LIMIT);
         this.puzzleStats.setLives(10);
         this.puzzleStats.setPoints(0);
