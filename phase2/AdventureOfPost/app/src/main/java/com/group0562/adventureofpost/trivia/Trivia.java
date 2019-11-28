@@ -39,7 +39,7 @@ public class Trivia extends Puzzles implements Serializable {
     /**
      * difficulty of game
      */
-    private String diff;
+    private int diff;
 
     /**
      * Constructor for trivia class
@@ -47,7 +47,7 @@ public class Trivia extends Puzzles implements Serializable {
     public Trivia(){
         super(new TriviaStats(30));
         PuzzlesSolved = 0;
-        diff = "easy";
+        diff = 1;
         //TODO These are temporary stats and will change as group work on universal stats
         correct = 0;
         incorrect = 0;
@@ -76,7 +76,7 @@ public class Trivia extends Puzzles implements Serializable {
      */
     public void updatePoints(int n) {
         if (checkCorrect(n)) {
-            this.score += 10;
+            this.score += 10 * this.diff;
             this.correct += 1;
         } else {
             this.score -= 5;
@@ -96,7 +96,7 @@ public class Trivia extends Puzzles implements Serializable {
         return list;
     }
 
-    public void setDiff(String diff) {
+    public void setDiff(int diff) {
         this.diff = diff;
         questions = genQuestions();
     }

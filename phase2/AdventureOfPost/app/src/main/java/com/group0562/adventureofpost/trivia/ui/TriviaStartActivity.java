@@ -21,17 +21,17 @@ public class TriviaStartActivity extends AppCompatActivity {
     }
 
     public void onClickEasy(View view) {
-        game.setDiff("easy");
+        game.setDiff(1);
         startIntent();
     }
 
     public void onClickMedium(View view) {
-        game.setDiff("medium");
+        game.setDiff(2);
         startIntent();
     }
 
     public void onClickHard(View view) {
-        game.setDiff("hard");
+        game.setDiff(3);
         startIntent();
     }
 

@@ -28,20 +28,20 @@ public class Question implements Serializable {
     * @param diff the string for the difficulty
      *
     */
-    Question(String diff) {
+    Question(int diff) {
         int number1, number2, bound, answer, option;
         Random rand = new Random();
 
         this.gameType = "add";
 
         switch (diff) {
-            case "easy":
+            case 1:
                 bound = 10;
                 break;
-            case "medium":
+            case 2:
                 bound = 100;
                 break;
-            case "hard":
+            case 3:
                 bound = 1000;
                 break;
             default:
@@ -52,15 +52,15 @@ public class Question implements Serializable {
         switch (this.gameType){
 
             case "add":
-                tempQuestions = createAdditionQuestion(diff, bound);
+                tempQuestions = createAdditionQuestion(bound);
                 break;
             case "sub":
-                tempQuestions = createSubtractionQuestion(diff, bound);
+                tempQuestions = createSubtractionQuestion(bound);
                 break;
             case "mult":
-                tempQuestions = createMultiplicationQuestion(diff, bound);
+                tempQuestions = createMultiplicationQuestion(bound);
              default:
-                 tempQuestions = createMultiplicationQuestion(diff, bound);
+                 tempQuestions = createMultiplicationQuestion(bound);
                  break;
 
         }
@@ -79,7 +79,7 @@ public class Question implements Serializable {
         options[3] = this.answer;
     }
 
-    public String[] createAdditionQuestion(String diff, int bound)
+    public String[] createAdditionQuestion(int bound)
     {
         Random random = new Random();
         int number1 = random.nextInt(bound);
@@ -92,7 +92,7 @@ public class Question implements Serializable {
     return info;
     }
 
-    public String[] createSubtractionQuestion(String diff, int bound)
+    public String[] createSubtractionQuestion(int bound)
     {
         Random random = new Random();
         int number1 = random.nextInt(bound);
@@ -105,7 +105,7 @@ public class Question implements Serializable {
         return info;
     }
 
-    public String[] createMultiplicationQuestion(String diff, int bound)
+    public String[] createMultiplicationQuestion(int bound)
     {
         Random random = new Random();
         int number1 = random.nextInt(bound);
