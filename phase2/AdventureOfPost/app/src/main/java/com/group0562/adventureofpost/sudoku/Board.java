@@ -58,18 +58,22 @@ public class Board {
         StringBuilder result = new StringBuilder();
         for (int row = 0; row < rows; row++) {
             for (int col = 0; col < cols; col++) {
-                result.append(getCell(row, col).getValue() + ' ');
+                result.append(getCell(row, col).getValue());
+                if (getCell(row,col).isLocked()){
+                    result.append(1);
+                } else {
+                    result.append(0);
+                }
             }
-            result.append('\n');
         }
         return result.toString();
     }
 
-    int getMoves() {
+    public int getMoves() {
         return moves;
     }
 
-    int getConflicts() {
+    public int getConflicts() {
         return conflicts;
     }
 

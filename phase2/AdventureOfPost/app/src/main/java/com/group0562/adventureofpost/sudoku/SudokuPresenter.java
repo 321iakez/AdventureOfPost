@@ -12,8 +12,8 @@ public class SudokuPresenter extends Puzzles {
     private Board gameBoard;
     private SudokuView view;
 
-    private int currRow = 0;
-    private int currCol = 0;
+    private int currRow = -1;
+    private int currCol = -1;
 
     public SudokuPresenter(SudokuView view, int gridSize, String difficulty) {
         super(new SudokuStats(100000));
@@ -21,6 +21,7 @@ public class SudokuPresenter extends Puzzles {
 
         int[][] parsedBoard = getRandomPuzzle(view.getPresetBoardFile(difficulty, gridSize), gridSize);
         this.gameBoard = new Board(parsedBoard, gridSize, gridSize);
+        System.out.println(getGameState());
     }
 
     /**
@@ -53,6 +54,15 @@ public class SudokuPresenter extends Puzzles {
         return puzzle;
     }
 
+    /**
+     * This method returns the state of the board / game as a String, so that the state of the game
+     * can be stored in the database.
+     */
+    public String getGameState(){
+        String state = gameBoard.toString() + ',' + gameBoard.getMoves() + ',' +
+                gameBoard.getConflicts();
+        return state;
+    }
     /**
      * Since every user input must follow not have any conflicts with the existing board, the game
      * if complete iff the board is full.

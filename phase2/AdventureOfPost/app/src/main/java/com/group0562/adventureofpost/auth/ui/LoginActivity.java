@@ -15,7 +15,6 @@ import com.group0562.adventureofpost.auth.AuthInteractor;
 import com.group0562.adventureofpost.auth.AuthPresenter;
 import com.group0562.adventureofpost.auth.AuthView;
 
-
 public class LoginActivity extends AppCompatActivity implements AuthView {
 
     private EditText username;

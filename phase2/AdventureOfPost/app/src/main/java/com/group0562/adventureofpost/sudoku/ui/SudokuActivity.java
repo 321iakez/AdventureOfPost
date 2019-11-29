@@ -36,6 +36,7 @@ public class SudokuActivity extends AppCompatActivity implements SudokuView, Sud
         String difficulty = getIntent().getStringExtra("difficulty");
 
         presenter = new SudokuPresenter(this, gridSize, difficulty);
+
         gridView = findViewById(R.id.grid);
         gridView.createTileButtons(presenter, this, presenter.getDim());
         gridView.setNumColumns(presenter.getDim());
@@ -55,6 +56,9 @@ public class SudokuActivity extends AppCompatActivity implements SudokuView, Sud
                     }
                 });
 
+        findViewById(R.id.removeButton).setOnClickListener(this::onClickRemove);
+        findViewById(R.id.resetButton).setOnClickListener(this::onClickReset);
+
         statsFrag = (SudokuStatsFragment) getSupportFragmentManager().findFragmentById(R.id.statsFragment);
 
         // Display initial board values
@@ -73,6 +77,11 @@ public class SudokuActivity extends AppCompatActivity implements SudokuView, Sud
     }
 
     public void onClickNumpad(View view) {
+        if (presenter.getCurrCol() == -1 || presenter.getCurrRow() == -1) {
+            Toast.makeText(getApplicationContext(), "No cell selected!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         Button numClicked = (Button) view;
         int newValue = Integer.parseInt(numClicked.getTag().toString());
 
@@ -92,7 +101,7 @@ public class SudokuActivity extends AppCompatActivity implements SudokuView, Sud
         presenter.update();
     }
 
-    public void onClickRemove(View view) {
+    void onClickRemove(View view) {
         presenter.removeNum();
         gridView.removeValue(presenter.getCurrRow(), presenter.getCurrCol());
 
@@ -100,7 +109,7 @@ public class SudokuActivity extends AppCompatActivity implements SudokuView, Sud
         presenter.update();
     }
 
-    public void onClickReset(View view) {
+    void onClickReset(View view) {
         List<int[]> resetCells = presenter.resetGameBoard();
         for (int[] cellLoc : resetCells) {
             gridView.removeValue(cellLoc[0], cellLoc[1]);

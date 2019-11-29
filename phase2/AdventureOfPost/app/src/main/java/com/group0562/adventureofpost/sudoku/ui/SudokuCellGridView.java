@@ -86,7 +86,9 @@ public class SudokuCellGridView extends GridView {
         if (presenter.getCellLocked(row, col)) {
             Toast.makeText(getContext(), "Can not change start piece", Toast.LENGTH_SHORT).show();
         } else {
-            gridCells[presenter.getCurrRow()][presenter.getCurrCol()].setBackgroundResource(R.drawable.table_border_cell);
+            if (presenter.getCurrCol() != -1 && presenter.getCurrRow() != -1) {
+                gridCells[presenter.getCurrRow()][presenter.getCurrCol()].setBackgroundResource(R.drawable.table_border_cell);
+            }
             view.setBackgroundResource(R.drawable.table_selected_cell);
             presenter.setCurrRow(row);
             presenter.setCurrCol(col);
