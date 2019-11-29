@@ -113,17 +113,6 @@ public class Trivia extends Puzzles implements Serializable {
         this.op = op;
     }
 
-    private void setGame(int diff, int op, int correct, int incorrect){
-
-        this.correct = correct;
-        this.incorrect = incorrect;
-        this.PuzzlesSolved = correct + incorrect;
-        this.score = this.correct * 10 - this.incorrect * 5;
-        this.op = op;
-        this.diff = diff;
-
-    }
-
     /**
      * This method will take in a String saveState and decode it to load all the information
      * @param saveState the save state of the game
@@ -153,7 +142,7 @@ public class Trivia extends Puzzles implements Serializable {
      * To be store in a database such that this data can be used to resume a game
      */
     public String saveGame(){
-        return Integer.toString(this.diff) + " " + Integer.toString(this.op) + " " + Integer.toString(this.correct) + " " + Integer.toString(this.incorrect);
+        return this.diff + " " + this.op + " " + this.correct + " " + this.incorrect;
 
     }
 
