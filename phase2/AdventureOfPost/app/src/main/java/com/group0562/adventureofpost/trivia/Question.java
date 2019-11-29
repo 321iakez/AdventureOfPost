@@ -78,6 +78,7 @@ public class Question implements Serializable {
             }
         }
         options[3] = this.answer;
+        shuffleOptions(this.options);
     }
 
     private String[] createAdditionQuestion(int bound)
@@ -131,7 +132,7 @@ public class Question implements Serializable {
      * @param response the user's answer
      */
     boolean checkCorrect(String response) {
-        return Integer.parseInt(response) == Integer.parseInt(answer);
+        return Integer.parseInt(response) == Integer.parseInt(this.answer);
     }
 
     /**
