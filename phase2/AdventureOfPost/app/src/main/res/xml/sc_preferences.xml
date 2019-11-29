@@ -40,4 +40,10 @@
         android:entryValues="@array/sc_shape_values"
         android:key="@string/sc_shape_key"
         android:title="@string/sc_shape_title" />
+    <ListPreference
+        android:defaultValue="true"
+        android:entries="@array/sc_mode_entries"
+        android:entryValues="@array/sc_mode_values"
+        android:key="@string/sc_mode_key"
+        android:title="@string/sc_mode_title" />
 </PreferenceScreen>
