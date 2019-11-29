@@ -113,8 +113,6 @@ public class Trivia extends Puzzles implements Serializable {
 
     public void setOperation(int op){
         this.op = op;
-
-
     }
 
     private void setGame(int diff, int op, int correct, int incorrect){

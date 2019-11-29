@@ -60,18 +60,14 @@ public class Question implements Serializable {
             default:
                 if (bound == 1000) {
                     tempQuestions = createMultiplicationQuestion(bound / 10);
-                    break;
                 }
                 else if (bound == 100){
                     tempQuestions = createMultiplicationQuestion(bound/5);
-                    break;
                 }
                 else{
                     tempQuestions = createMultiplicationQuestion(bound);
-                    break;
                 }
-
-
+                break;
         }
 
         question = tempQuestions[0];
