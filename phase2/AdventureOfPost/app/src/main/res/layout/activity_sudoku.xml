@@ -89,57 +89,55 @@
             android:tag="6"
             android:text="@string/num6" />
 
-        <!--        <Button-->
-        <!--            android:id="@+id/num7"-->
-        <!--            style="?android:buttonBarStyle"-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="match_parent"-->
-        <!--            android:layout_weight="1"-->
-        <!--            android:onClick="onClickNumpad"-->
-        <!--            android:tag="7"-->
-        <!--            android:text="@string/num7" />-->
+        <Button
+            android:id="@+id/num7"
+            style="?android:buttonBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:onClick="onClickNumpad"
+            android:tag="7"
+            android:text="@string/num7" />
 
-        <!--        <Button-->
-        <!--            android:id="@+id/num8"-->
-        <!--            style="?android:buttonBarStyle"-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="match_parent"-->
-        <!--            android:layout_weight="1"-->
-        <!--            android:onClick="onClickNumpad"-->
-        <!--            android:tag="8"-->
-        <!--            android:text="@string/num8" />-->
+        <Button
+            android:id="@+id/num8"
+            style="?android:buttonBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:onClick="onClickNumpad"
+            android:tag="8"
+            android:text="@string/num8" />
 
-        <!--        <Button-->
-        <!--            android:id="@+id/num9"-->
-        <!--            style="?android:buttonBarStyle"-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="match_parent"-->
-        <!--            android:layout_weight="1"-->
-        <!--            android:onClick="onClickNumpad"-->
-        <!--            android:tag="9"-->
-        <!--            android:text="@string/num9" />-->
+        <Button
+            android:id="@+id/num9"
+            style="?android:buttonBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:onClick="onClickNumpad"
+            android:tag="9"
+            android:text="@string/num9" />
     </LinearLayout>
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/removeButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
-        android:onClick="onClickRemove"
         android:text="@string/remove_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/numPad1" />
 
     <Button
-        android:id="@+id/button9"
+        android:id="@+id/resetButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="26dp"
         android:layout_marginTop="16dp"
-        android:onClick="onClickReset"
         android:text="@string/reset_button"
-        app:layout_constraintStart_toEndOf="@+id/button3"
+        app:layout_constraintStart_toEndOf="@+id/removeButton"
         app:layout_constraintTop_toBottomOf="@+id/numPad1" />
 
     <fragment

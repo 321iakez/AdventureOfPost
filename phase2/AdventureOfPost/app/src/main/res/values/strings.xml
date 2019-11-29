@@ -70,22 +70,12 @@
     <string name="move_stats_header">Moves</string>
     <string name="conflict_stats_header">Conflicts</string>
 
-    <string name="title_activity_sudoku_settings">Sudoku Settings</string>
-
     <!-- Trivia texts -->
     <string name="TriviaDiff1">Easy</string>
     <string name="TriviaDiff2">Medium</string>
     <string name="TriviaDiff3">Hard</string>
     <string name="TriviaSelectDiff">Select Difficulty</string>
     <string name="title_activity_trivia_settings">Settings</string>
-
-    <!-- Preference Titles -->
-    <string name="messages_header">Messages</string>
-    <string name="sync_header">Sync</string>
-
-    <!-- Messages Preferences -->
-    <string name="signature_title">Your signature</string>
-    <string name="reply_title">Default reply action</string>
 
     <!-- Sync Preferences -->
     <string name="sync_title">Sync email periodically</string>
