@@ -135,6 +135,18 @@ public class Trivia extends Puzzles implements Serializable {
      */
     public void loadGame(String saveState){
         //this is temp
+        try{
+            String[] gameInfo = saveState.split(" ");
+            this.diff = Integer.parseInt(gameInfo[0]);
+            this.op = Integer.parseInt(gameInfo[1]);
+            this.correct = Integer.parseInt(gameInfo[2]);
+            this.incorrect = Integer.parseInt(gameInfo[3]);
+
+        }
+        catch(Exception e){
+
+            System.out.println("Not a valid saveState string");
+        }
     }
 
     //TODO this will later include all game info like completion
@@ -143,8 +155,8 @@ public class Trivia extends Puzzles implements Serializable {
      * stats contains difficulty, correct, incorrect
      * To be store in a database such that this data can be used to resume a game
      */
-    public String pauseGame(){
-        return Integer.toString(this.diff) + Integer.toString(this.op) + Integer.toString(this.correct) + Integer.toString(this.incorrect);
+    public String saveGame(){
+        return Integer.toString(this.diff) + " " + Integer.toString(this.op) + " " + Integer.toString(this.correct) + " " + Integer.toString(this.incorrect);
 
     }
 
