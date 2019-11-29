@@ -14,11 +14,11 @@ import com.group0562.adventureofpost.GameActivity;
 import com.group0562.adventureofpost.R;
 import com.group0562.adventureofpost.sudoku.SudokuPresenter;
 import com.group0562.adventureofpost.sudoku.SudokuView;
-
+import com.group0562.adventureofpost.sudoku.PauseDialog;
 import java.io.InputStream;
 import java.util.List;
 
-public class SudokuActivity extends AppCompatActivity implements SudokuView, SudokuStatsFragment.OnFragmentInteractionListener {
+public class SudokuActivity extends AppCompatActivity implements SudokuView, SudokuStatsFragment.OnFragmentInteractionListener, PauseDialog.PauseDialogListener{
 
     private SudokuPresenter presenter;
     private SudokuCellGridView gridView;
@@ -26,6 +26,9 @@ public class SudokuActivity extends AppCompatActivity implements SudokuView, Sud
     private static int columnWidth, columnHeight;
 
     private SudokuStatsFragment statsFrag;
+    private final String RETURN_NO_SAVE = "RETURN_NO_SAVE";
+    private final String RETURN_SAVE = "RETURN_SAVE";
+    private final String RESUME = "RESUME";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +61,13 @@ public class SudokuActivity extends AppCompatActivity implements SudokuView, Sud
 
         findViewById(R.id.removeButton).setOnClickListener(this::onClickRemove);
         findViewById(R.id.resetButton).setOnClickListener(this::onClickReset);
-
+        Button exitButton = (Button) findViewById(R.id.exit_button);
+        exitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openDialog();
+            }
+        });
         statsFrag = (SudokuStatsFragment) getSupportFragmentManager().findFragmentById(R.id.statsFragment);
 
         // Display initial board values
@@ -72,6 +81,21 @@ public class SudokuActivity extends AppCompatActivity implements SudokuView, Sud
         }
     }
 
+    @Override
+    public void saveGame(String mode) {
+        if(mode.equals(RETURN_NO_SAVE)){
+            System.out.println("returned without save");
+        } else if (mode.equals(RETURN_SAVE)){
+            System.out.println("returned with save");
+        } else {
+            System.out.println("Resumed");
+        }
+    }
+
+    public void openDialog(){
+        PauseDialog pauseDialog = new PauseDialog();
+        pauseDialog.show(getSupportFragmentManager(), "pause dialog");
+    }
     public void display() {
         gridView.setAdapter(new GridSizeAdaptor(gridView.getTileButtons(), columnWidth, columnHeight));
     }
