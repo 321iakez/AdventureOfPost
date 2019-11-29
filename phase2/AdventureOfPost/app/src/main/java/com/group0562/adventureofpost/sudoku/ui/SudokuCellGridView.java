@@ -21,7 +21,7 @@ public class SudokuCellGridView extends GridView {
     /**
      * Construct gridView for Sudoku game board
      *
-     * @param context the sudoku game activity
+     * @param context the sudoku6_easy game activity
      */
     public SudokuCellGridView(Context context) {
         super(context);

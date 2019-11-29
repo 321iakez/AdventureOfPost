@@ -15,6 +15,7 @@ import com.group0562.adventureofpost.R;
 import com.group0562.adventureofpost.sudoku.SudokuPresenter;
 import com.group0562.adventureofpost.sudoku.SudokuView;
 
+import java.io.InputStream;
 import java.util.List;
 
 public class SudokuActivity extends AppCompatActivity implements SudokuView, SudokuStatsFragment.OnFragmentInteractionListener {
@@ -31,10 +32,13 @@ public class SudokuActivity extends AppCompatActivity implements SudokuView, Sud
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sudoku);
 
-        presenter = new SudokuPresenter(getResources().openRawResource(R.raw.sudoku), this);
+        int gridSize = getIntent().getStringExtra("gridSize").equals("6x6") ? 6 : 9;
+        String difficulty = getIntent().getStringExtra("difficulty");
+
+        presenter = new SudokuPresenter(this, gridSize, difficulty);
         gridView = findViewById(R.id.grid);
-        gridView.createTileButtons(presenter, this, 6);
-        gridView.setNumColumns(6);
+        gridView.createTileButtons(presenter, this, presenter.getDim());
+        gridView.setNumColumns(presenter.getDim());
         // Observer sets up desired dimensions as well as calls our display function
         gridView.getViewTreeObserver().addOnGlobalLayoutListener(
                 new ViewTreeObserver.OnGlobalLayoutListener() {
@@ -44,8 +48,8 @@ public class SudokuActivity extends AppCompatActivity implements SudokuView, Sud
                         int displayWidth = gridView.getMeasuredWidth();
                         int displayHeight = gridView.getMeasuredHeight();
 
-                        columnWidth = displayWidth / 6;
-                        columnHeight = displayHeight / 6;
+                        columnWidth = displayWidth / presenter.getDim();
+                        columnHeight = displayHeight / presenter.getDim();
 
                         display();
                     }
@@ -54,17 +58,14 @@ public class SudokuActivity extends AppCompatActivity implements SudokuView, Sud
         statsFrag = (SudokuStatsFragment) getSupportFragmentManager().findFragmentById(R.id.statsFragment);
 
         // Display initial board values
-        for (int row = 0; row < 6; row++) {
-            for (int col = 0; col < 6; col++) {
+        for (int row = 0; row < presenter.getDim(); row++) {
+            for (int col = 0; col < presenter.getDim(); col++) {
                 int cellValue = presenter.getCellValue(row, col);
                 if (cellValue != 0) {
-                    System.out.println(cellValue);
                     gridView.loadValues(row, col, cellValue);
                 }
             }
         }
-
-
     }
 
     public void display() {
@@ -146,5 +147,37 @@ public class SudokuActivity extends AppCompatActivity implements SudokuView, Sud
     @Override
     public void onGameComplete() {
         endDialog();
+    }
+
+    @Override
+    public InputStream getPresetBoardFile(String difficulty, int gridSize) {
+
+        InputStream result = null;
+        if (gridSize == 9) {
+            switch (difficulty) {
+                case "Easy":
+                    result = getResources().openRawResource(R.raw.sudoku9_easy);
+                    break;
+                case "Medium":
+                    result = getResources().openRawResource(R.raw.sudoku9_medium);
+                    break;
+                case "Hard":
+                    result = getResources().openRawResource(R.raw.sudoku9_hard);
+                    break;
+            }
+        } else {
+            switch (difficulty) {
+                case "Easy":
+                    result = getResources().openRawResource(R.raw.sudoku6_easy);
+                    break;
+                case "Medium":
+                    result = getResources().openRawResource(R.raw.sudoku6_medium);
+                    break;
+                case "Hard":
+                    result = getResources().openRawResource(R.raw.sudoku6_hard);
+                    break;
+            }
+        }
+        return result;
     }
 }

@@ -241,4 +241,8 @@ public class Board {
         }
         return true;
     }
+
+    int getDim() {
+        return rows;
+    }
 }

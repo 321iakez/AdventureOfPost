@@ -15,10 +15,12 @@ public class SudokuPresenter extends Puzzles {
     private int currRow = 0;
     private int currCol = 0;
 
-    public SudokuPresenter(InputStream file, SudokuView view) {
+    public SudokuPresenter(SudokuView view, int gridSize, String difficulty) {
         super(new SudokuStats(100000));
         this.view = view;
-        this.gameBoard = new Board(getRandomPuzzle(file), 6, 6);
+
+        int[][] parsedBoard = getRandomPuzzle(view.getPresetBoardFile(difficulty, gridSize), gridSize);
+        this.gameBoard = new Board(parsedBoard, gridSize, gridSize);
     }
 
     /**
@@ -26,27 +28,24 @@ public class SudokuPresenter extends Puzzles {
      *
      * @return a 2-D integer array puzzle.
      */
-    private int[][] getRandomPuzzle(InputStream file) {
+    private int[][] getRandomPuzzle(InputStream file, int gridSize) {
         // Read file
         Random rand = new Random();
         Scanner scanner = new Scanner(file);
 
         // Randomly select a line from the puzzles
-        int n = 0;
-        String[] result = new String[36];
-        while (scanner.hasNext()) {
-            n++;
-            String line = scanner.nextLine();
-            if (rand.nextInt(n) == 0)
-                result = line.split(",");
+        String result = scanner.nextLine();
+        int lineNum = rand.nextInt(10);
+        for (int i = 0; i < lineNum; i++) {
+            result = scanner.nextLine();
         }
 
         // Convert string to 2D int array
-        int[][] puzzle = new int[6][6];
-        int index = 0;
-        for (int row = 0; row < 6; row++) {
-            for (int col = 0; col < 6; col++) {
-                puzzle[row][col] = Integer.parseInt(result[index]);
+        int[][] puzzle = new int[gridSize][gridSize];
+        int index = 1;
+        for (int row = 0; row < gridSize; row++) {
+            for (int col = 0; col < gridSize; col++) {
+                puzzle[row][col] = Integer.parseInt(result.split("")[index]);
                 index++;
             }
         }
@@ -129,5 +128,9 @@ public class SudokuPresenter extends Puzzles {
 
     public void addConflicts() {
         gameBoard.addConflicts();
+    }
+
+    public int getDim() {
+        return gameBoard.getDim();
     }
 }
