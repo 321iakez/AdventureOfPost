@@ -25,24 +25,24 @@ public class ShapeBuilder {
         double[] temp_location = {0, 0};
         //this.locations.add(temp_location);
         for(int i = 0; i <= Math.floor(num_of_shapes*4/5);i++){
-            temp_location[0] = random() * (SCDifficultMode.bound[1] - 2 * Shape.radius) + Shape.radius;
-            temp_location[1] = random() * (SCDifficultMode.bound[3] - 2 * Shape.radius) + Shape.radius;
+          //  temp_location[0] = random() * (SCDifficultMode.bound[1] - 2 * Shape.radius) + Shape.radius;
+          //  temp_location[1] = random() * (SCDifficultMode.bound[3] - 2 * Shape.radius) + Shape.radius;
             //if (!this.locations.contains(temp_location)){
                 this.s_objects.add(new Circle(temp_location[0], temp_location[1], paint));
                 this.locations.add(temp_location);
             //}
         }
         for(int i = 0; i <= Math.floor(num_of_shapes*2/5);i++){
-            temp_location[0] = random() * (SCDifficultMode.bound[1] - 2 * Shape.radius) + Shape.radius;
-            temp_location[1] = random() * (SCDifficultMode.bound[3] - 2 * Shape.radius) + Shape.radius;
+          //  temp_location[0] = random() * (SCDifficultMode.bound[1] - 2 * Shape.radius) + Shape.radius;
+          //  temp_location[1] = random() * (SCDifficultMode.bound[3] - 2 * Shape.radius) + Shape.radius;
             //if (!this.locations.contains(temp_location)){
                 this.s_objects.add(new Square(temp_location[0], temp_location[1], paint));
                 this.locations.add(temp_location);
             //}
         }
         for(int i = 0; i <= Math.floor(num_of_shapes*2/5);i++){
-            temp_location[0] = random() * (SCDifficultMode.bound[1] - 2 * Shape.radius) + Shape.radius;
-            temp_location[1] = random() * (SCDifficultMode.bound[3] - 2 * Shape.radius);
+           // temp_location[0] = random() * (SCDifficultMode.bound[1] - 2 * Shape.radius) + Shape.radius;
+          //  temp_location[1] = random() * (SCDifficultMode.bound[3] - 2 * Shape.radius);
             //if (!this.locations.contains(temp_location)){
                 this.s_objects.add(new Triangle(temp_location[0], temp_location[1], paint));
                 this.locations.add(temp_location);

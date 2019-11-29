@@ -1,5 +1,6 @@
 package com.group0562.adventureofpost.shapeClicker.ui;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -11,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.PreferenceFragmentCompat;
 
 import com.group0562.adventureofpost.R;
+import com.group0562.adventureofpost.shapeClicker.SCSetting;
 import com.group0562.adventureofpost.shapeClicker.Shape;
 import com.group0562.adventureofpost.shapeClicker.ShapeClicker;
 import com.group0562.adventureofpost.shapeClicker.ShapeClickerGameView;
@@ -51,10 +53,12 @@ public class SCSettingActivity extends AppCompatActivity {
         String shape_choice = sc_shape_list.getString(getString(R.string.sc_shape_key), "Circle");
         String difficulty_choice = sc_difficulty_list.getString(getString(R.string.sc_difficulty_key), "Easy");
         String mode_choice = sc_mode_list.getString(getString(R.string.sc_mode_key), "Clicker");
-        ShapeClickerGameView.setColor(color_choice);
-        Shape.setRadius(difficulty_choice);
+        SCSetting.setColor(color_choice);
+        SCSetting.setDifficulty(difficulty_choice);
+        //Shape.setRadius(difficulty_choice);
         ShapeClicker.setShape(shape_choice);
-        ShapeClicker.reset();
-        finish();
+//        ShapeClicker.reset();
+        Intent intent = new Intent(this, ShapeClickerActivity.class);
+        startActivity(intent);
     }
 }

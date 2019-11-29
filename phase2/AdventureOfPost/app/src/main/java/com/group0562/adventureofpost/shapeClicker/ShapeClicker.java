@@ -14,7 +14,7 @@ public class ShapeClicker extends Puzzles {
     /**
      * the current shape that is being displayed to player to click
      */
-    private Shape s_object;
+    Shape s_object;
 
     /**
      * the paint used for the shape being clicked
@@ -85,6 +85,13 @@ public class ShapeClicker extends Puzzles {
     /**
      * Change the type of shape of the ShapeClicker
      */
+    void setDifficulty(String difficulty) {
+        s_object.setRadius(difficulty);
+    }
+
+    /**
+     * Change the type of shape of the ShapeClicker
+     */
     public static void setShape(String type_of_shape) {
         ShapeClicker.shape = type_of_shape;
         ShapeClicker.changed = true;
@@ -102,6 +109,7 @@ public class ShapeClicker extends Puzzles {
             } else {
                 s_object = new Triangle(s_object.getCoordinate_x(), s_object.getCoordinate_y(), this.paint);
             }
+            s_object.setRadius(SCSetting.getDifficulty());
         }
         ShapeClicker.changed = false;
     }

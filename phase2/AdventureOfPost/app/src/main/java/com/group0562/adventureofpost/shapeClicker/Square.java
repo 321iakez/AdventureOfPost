@@ -24,8 +24,8 @@ public class Square extends Shape {
      */
     @Override
     public void setLocation() {
-        this.coordinate_x = random() * (ShapeClicker.bound[1] - 2 * Shape.radius) + Shape.radius;
-        this.coordinate_y = random() * (ShapeClicker.bound[3] - 2 * Shape.radius) + Shape.radius;
+        this.coordinate_x = random() * (ShapeClicker.bound[1] - 2 * this.radius) + this.radius;
+        this.coordinate_y = random() * (ShapeClicker.bound[3] - 2 * this.radius) + this.radius;
     }
 
     /**
@@ -35,21 +35,21 @@ public class Square extends Shape {
      */
     @Override
     boolean checkWithin(double cursor_x, double cursor_y) {
-        if (cursor_x < this.coordinate_x - Shape.radius)
+        if (cursor_x < this.coordinate_x - this.radius)
             return false;
-        else if (cursor_x > this.coordinate_x + Shape.radius)
+        else if (cursor_x > this.coordinate_x + this.radius)
             return false;
-        else if (cursor_y < this.coordinate_y - Shape.radius)
+        else if (cursor_y < this.coordinate_y - this.radius)
             return false;
-        else return !(cursor_y > this.coordinate_y + Shape.radius);
+        else return !(cursor_y > this.coordinate_y + this.radius);
     }
 
     /**
      * draw the square using its center and coordinates of four sides.
      */
     public void draw(Canvas canvas) {
-        canvas.drawRect((float) (this.coordinate_x - Shape.radius), (float) (this.coordinate_y - Shape.radius),
-                (float) (this.coordinate_x + Shape.radius), (float) (this.coordinate_y + Shape.radius), this.paint);
+        canvas.drawRect((float) (this.coordinate_x - super.radius), (float) (this.coordinate_y - super.radius),
+                (float) (this.coordinate_x + super.radius), (float) (this.coordinate_y + super.radius), this.paint);
     }
 
 }

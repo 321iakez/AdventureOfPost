@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.group0562.adventureofpost.shapeClicker.ui.SCSettingActivity;
 import com.group0562.adventureofpost.shapeClicker.ui.ShapeClickerActivity;
 import com.group0562.adventureofpost.sudoku.ui.SudokuActivity;
 import com.group0562.adventureofpost.sudoku.ui.SudokuStartActivity;
@@ -31,7 +32,7 @@ public class GameActivity extends AppCompatActivity {
     }
 
     public void onClickShapeClicker(View view) {
-        Intent intent = new Intent(this, ShapeClickerActivity.class);
+        Intent intent = new Intent(this, SCSettingActivity.class);
         TextView textView = findViewById(R.id.CCButton);
         String message = textView.getText().toString();
         intent.putExtra(EXTRA_MESSAGE, message);

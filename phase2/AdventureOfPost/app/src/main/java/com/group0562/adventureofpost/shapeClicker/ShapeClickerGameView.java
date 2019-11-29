@@ -18,7 +18,7 @@ public class ShapeClickerGameView extends View {
     /**
      * paint used for display
      */
-    private static Paint paint;
+    private static Paint paint = new Paint();
 
     /**
      * stroke width of the paint
@@ -28,8 +28,8 @@ public class ShapeClickerGameView extends View {
     /**
      * the ShapeClicker that is used in the view to be displayed
      */
-    private SCDifficultMode clicker;
-    //private ShapeClicker clicker;
+    //private SCDifficultMode clicker;
+    private ShapeClicker clicker;
 
 
     /**
@@ -43,15 +43,15 @@ public class ShapeClickerGameView extends View {
     public ShapeClickerGameView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         ShapeClickerGameView.paint = new Paint();
-        ShapeClickerGameView.paint.setColor(Color.BLACK);
+        setColor(SCSetting.getColor());
         ShapeClickerGameView.paint.setStrokeWidth(ShapeClickerGameView.Stroke_Thickness);
         double[] bounds = {0, 800, 0, 1500};
         ShapeClicker.setBound(bounds);
         SCDifficultMode.setBound(bounds);
-        //clicker = new ShapeClicker(60000, ShapeClickerGameView.paint);
-        clicker = new SCDifficultMode(60000, ShapeClickerGameView.paint);
+        clicker = new ShapeClicker(60000, ShapeClickerGameView.paint);
+        //clicker = new SCDifficultMode(60000, ShapeClickerGameView.paint);
 
-        Shape.setRadius("Easy");
+        clicker.setDifficulty(SCSetting.getDifficulty());
         this.puzzleStats = clicker.puzzleStats;
     }
 
@@ -60,7 +60,7 @@ public class ShapeClickerGameView extends View {
      *
      * @param color the color being changed to
      */
-    public static void setColor(String color) {
+    public void setColor(String color) {
         if (color.equals("Black")) {
             ShapeClickerGameView.paint.setColor(Color.BLACK);
         } else if (color.equals("White")) {
@@ -80,6 +80,8 @@ public class ShapeClickerGameView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         canvas.drawColor(Color.CYAN);
+        System.out.println(SCSetting.getDifficulty());
+        System.out.println(clicker.s_object.getRadius());
         this.clicker.draw(canvas);
         this.puzzleStats.draw(canvas);
         this.puzzleStats.updateTime();

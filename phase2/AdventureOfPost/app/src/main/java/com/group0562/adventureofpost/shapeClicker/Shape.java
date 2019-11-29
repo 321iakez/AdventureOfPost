@@ -18,7 +18,7 @@ public abstract class Shape {
     /**
      * the distance from the center point of shape to one of its sides.
      */
-    static double radius;
+    double radius;
 
     /**
      * the paint used when drawing the shape.
@@ -60,15 +60,15 @@ public abstract class Shape {
         this.paint = paint;
     }
 
-    public static double getRadius() {
-        return Shape.radius;
+    public double getRadius() {
+        return this.radius;
     }
 
-    public static void setRadius(String level) {
+    public void setRadius(String level) {
         if (level.equals("Hard")) {
-            Shape.radius = 15;
+            this.radius = 15;
         } else {
-            Shape.radius = 40;
+            this.radius = 40;
         }
     }
 
