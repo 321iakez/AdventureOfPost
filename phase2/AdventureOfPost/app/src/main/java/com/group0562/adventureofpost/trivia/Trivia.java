@@ -131,7 +131,7 @@ public class Trivia extends Puzzles implements Serializable {
     /**TODO can you implement this method
      * This method will take in a String saveState and decode it to load all the information
      * @param saveState the save state of the game
-     *saveState string in this structure:
+     *saveState string in this structure: (difficulty operation correct incorrect) separated by spaces
      */
     public void loadGame(String saveState){
         //this is temp
