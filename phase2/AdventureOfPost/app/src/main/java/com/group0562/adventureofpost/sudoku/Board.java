@@ -18,11 +18,6 @@ public class Board {
     private int cols;
 
     /**
-     * The number of hints left.
-     */
-    private int hintsLeft = 3;
-
-    /**
      * A 2-D array of Cell instances representing the virtual board.
      */
     private Cell[][] board;
@@ -69,11 +64,11 @@ public class Board {
         return result.toString();
     }
 
-    public int getMoves() {
+    int getMoves() {
         return moves;
     }
 
-    public int getConflicts() {
+    int getConflicts() {
         return conflicts;
     }
 
@@ -148,18 +143,6 @@ public class Board {
             }
         }
         return resetCells;
-    }
-
-    // returns a hint to the user, by giving one square everytime a hint is requested.
-    void hint() {
-        if (hintsLeft > 0) {
-            hintsLeft--;
-        }
-    }
-
-    // finishes the entire board for the user. Ends the game.
-    void finishBoard() {
-
     }
 
     /**
