@@ -50,7 +50,7 @@ public class SCSettingActivity extends AppCompatActivity {
         String color_choice = sc_color_list.getString(getString(R.string.sc_color_key), "Black");
         String shape_choice = sc_shape_list.getString(getString(R.string.sc_shape_key), "Circle");
         String difficulty_choice = sc_difficulty_list.getString(getString(R.string.sc_difficulty_key), "Easy");
-        String mode_choice = sc_mode_list.getString("scModeKey", "Clicker");
+        String mode_choice = sc_mode_list.getString(getString(R.string.sc_mode_key), "Clicker");
         ShapeClickerGameView.setColor(color_choice);
         Shape.setRadius(difficulty_choice);
         ShapeClicker.setShape(shape_choice);
