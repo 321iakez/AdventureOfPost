@@ -41,8 +41,6 @@ public class Trivia extends Puzzles implements Serializable {
      */
     private int diff;
 
-
-
     /**
      * the gamemode in terms of operations, of the game. 1 means addition, 2 means subtraction,
      * 3 means multiplication

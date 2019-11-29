@@ -4,12 +4,12 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 
-import com.group0562.adventureofpost.model.PuzzleStats;
+import com.group0562.adventureofpost.AdventureOfPost;
 
 import java.util.Observable;
 
 
-public class ShapeClickerStats extends PuzzleStats {
+public class ShapeClickerStats extends AdventureOfPost.PuzzleStats {
     private Paint paint;
     private static long TIME_LIMIT;
 
