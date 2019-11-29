@@ -47,7 +47,7 @@ public class SCDifficultMode extends Puzzles {
         TIME_LIMIT = time;
         this.paint = p;
         INITIAL_PAINT = p;
-        ShapeBuilder builder = new ShapeBuilder(25, 15, this.paint);
+        ShapeBuilder builder = new ShapeBuilder(50, 50, this.paint);
         this.s_object = builder.getS_objects();
         for(Shape item: this.s_object){item.setLocation();}
     }
@@ -66,7 +66,6 @@ public class SCDifficultMode extends Puzzles {
      * @param cursor_y y coordinate of the location tapped
      */
     void checkWithinBall(double cursor_x, double cursor_y) {
-        // TODO: this.within = s_object.checkWithin(cursor_x, cursor_y);
         this.within = false;
         for (int i = 0; i<this.s_object.size(); i++){
             if (this.s_object.get(i).checkWithin(cursor_x, cursor_y)){

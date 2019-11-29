@@ -127,11 +127,11 @@ public class ShapeClicker extends Puzzles {
      */
     @Override
     public void checkComplete() {
-        if (this.puzzleStats.getPoints() == 70) {
+        if (this.puzzleStats.getPoints() == 50) {
             SCEndResultView.setBeat_the_game(true);
             this.setPuzzleComplete(true);
         }
-        if (this.puzzleStats.getPoints() >= 70) {
+        if (this.puzzleStats.getPoints() >= 50) {
             this.setPuzzleComplete(true);
         }
         if (this.puzzleStats.getLives() < 1) {
