@@ -3,8 +3,6 @@ package com.group0562.adventureofpost.shapeClicker;
 import android.graphics.Paint;
 import android.graphics.Canvas;
 
-import com.group0562.adventureofpost.model.PuzzleStats;
-
 public abstract class Shape {
 
     /**

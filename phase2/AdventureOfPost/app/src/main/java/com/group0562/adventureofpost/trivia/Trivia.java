@@ -41,8 +41,6 @@ public class Trivia extends Puzzles implements Serializable {
      */
     private int diff;
 
-
-
     /**
      * the gamemode in terms of operations, of the game. 1 means addition, 2 means subtraction,
      * 3 means multiplication
@@ -113,22 +111,9 @@ public class Trivia extends Puzzles implements Serializable {
 
     public void setOperation(int op){
         this.op = op;
-
-
     }
 
-    private void setGame(int diff, int op, int correct, int incorrect){
-
-        this.correct = correct;
-        this.incorrect = incorrect;
-        this.PuzzlesSolved = correct + incorrect;
-        this.score = this.correct * 10 - this.incorrect * 5;
-        this.op = op;
-        this.diff = diff;
-
-    }
-
-    /**TODO can you implement this method
+    /**
      * This method will take in a String saveState and decode it to load all the information
      * @param saveState the save state of the game
      *saveState string in this structure: (difficulty operation correct incorrect) separated by spaces
@@ -141,6 +126,7 @@ public class Trivia extends Puzzles implements Serializable {
             this.op = Integer.parseInt(gameInfo[1]);
             this.correct = Integer.parseInt(gameInfo[2]);
             this.incorrect = Integer.parseInt(gameInfo[3]);
+            this.PuzzlesSolved = this.correct + this.incorrect + 1;
 
         }
         catch(Exception e){
@@ -156,7 +142,7 @@ public class Trivia extends Puzzles implements Serializable {
      * To be store in a database such that this data can be used to resume a game
      */
     public String saveGame(){
-        return Integer.toString(this.diff) + " " + Integer.toString(this.op) + " " + Integer.toString(this.correct) + " " + Integer.toString(this.incorrect);
+        return this.diff + " " + this.op + " " + this.correct + " " + this.incorrect;
 
     }
 
@@ -173,34 +159,6 @@ public class Trivia extends Puzzles implements Serializable {
     public Question getQuestion() {
         return questions.get(PuzzlesSolved++);
     }
-
-    /* TODO later
-    public void update() {
-        String[] options = ;
-        updateTime();
-        updatePoints();
-        checkComplete();
-
-
-        //TODO have code that gets input form frontend (see if user tapped anything)
-
-
-        //checks if the user has completed 3 puzzles, allow them to end game if true
-        if (PuzzlesSolved == 3) {
-            setPuzzleComplete(true);
-        }
-
-        if (puzzleStats.getTime() == 0 | getPuzzleComplete()) {
-            onStop();
-        }
-    }
-
-    @Override
-    public void updatePoints() {
-
-    }
-
-     */
 
     @Override
     public void checkComplete() {

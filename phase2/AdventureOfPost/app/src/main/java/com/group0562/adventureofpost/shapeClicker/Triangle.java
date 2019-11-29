@@ -4,8 +4,6 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
 
-import com.group0562.adventureofpost.model.PuzzleStats;
-
 import static java.lang.Math.*;
 
 public class Triangle extends Shape {

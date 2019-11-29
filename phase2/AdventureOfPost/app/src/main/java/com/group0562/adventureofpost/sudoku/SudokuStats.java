@@ -1,10 +1,10 @@
 package com.group0562.adventureofpost.sudoku;
 
-import com.group0562.adventureofpost.model.PuzzleStats;
+import com.group0562.adventureofpost.AdventureOfPost;
 
 import java.util.Observable;
 
-public class SudokuStats extends PuzzleStats {
+public class SudokuStats extends AdventureOfPost.PuzzleStats {
     SudokuStats(long time) {
         super(time);
     }

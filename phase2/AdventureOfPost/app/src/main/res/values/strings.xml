@@ -44,6 +44,12 @@
     <string name="sc_shape_summary">Circle</string>
     <string name="sc_shape_key">scShapeKey</string>
 
+    <!-- SC mode Preferences -->
+    <string name="sc_mode_title">Mode</string>
+    <string name="sc_mode_default_value">None</string>
+    <string name="sc_mode_summary">None</string>
+    <string name="sc_mode_key">scModeKey</string>
+
 
     <!-- Sudoku texts -->
     <string name="num1">1</string>
