@@ -126,7 +126,7 @@ public class Trivia extends Puzzles implements Serializable {
 
     }
 
-    /**TODO can you implement this method
+    /**
      * This method will take in a String saveState and decode it to load all the information
      * @param saveState the save state of the game
      *saveState string in this structure:
@@ -172,34 +172,6 @@ public class Trivia extends Puzzles implements Serializable {
     public Question getQuestion() {
         return questions.get(PuzzlesSolved++);
     }
-
-    /* TODO later
-    public void update() {
-        String[] options = ;
-        updateTime();
-        updatePoints();
-        checkComplete();
-
-
-        //TODO have code that gets input form frontend (see if user tapped anything)
-
-
-        //checks if the user has completed 3 puzzles, allow them to end game if true
-        if (PuzzlesSolved == 3) {
-            setPuzzleComplete(true);
-        }
-
-        if (puzzleStats.getTime() == 0 | getPuzzleComplete()) {
-            onStop();
-        }
-    }
-
-    @Override
-    public void updatePoints() {
-
-    }
-
-     */
 
     @Override
     public void checkComplete() {

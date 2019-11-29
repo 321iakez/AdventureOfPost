@@ -53,10 +53,6 @@ public class Question implements Serializable {
             case 2:
                 tempQuestions = createSubtractionQuestion(bound);
                 break;
-            //TODO could change mult to default, 3 is for multi fyi
-            //case "mult":
-            //tempQuestions = createMultiplicationQuestion(bound);
-            //break;
             default:
                 if (bound == 1000) {
                     tempQuestions = createMultiplicationQuestion(bound / 10);
