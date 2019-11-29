@@ -50,8 +50,6 @@ public class ShapeClickerGameView extends View {
         SCDifficultMode.setBound(bounds);
         clicker = new ShapeClicker(60000, ShapeClickerGameView.paint);
         //clicker = new SCDifficultMode(60000, ShapeClickerGameView.paint);
-
-        clicker.setDifficulty(SCSetting.getDifficulty());
         this.puzzleStats = clicker.puzzleStats;
     }
 

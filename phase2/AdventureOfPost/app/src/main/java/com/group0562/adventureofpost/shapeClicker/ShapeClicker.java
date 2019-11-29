@@ -26,7 +26,7 @@ public class ShapeClicker extends Puzzles {
     /**
      * string recording the type of shape being tapped
      */
-    private static String shape;
+    private String shape;
 
     /**
      * boolean tracking whether the tapped location is within the shape
@@ -36,7 +36,7 @@ public class ShapeClicker extends Puzzles {
     /**
      * boolean to track if the type of shape is changed
      */
-    private static boolean changed;
+    private boolean changed;
 
     private static long TIME_LIMIT;
 
@@ -52,7 +52,9 @@ public class ShapeClicker extends Puzzles {
         this.paint = p;
         INITIAL_PAINT = p;
         s_object = new Circle(50, 50, this.paint);
-        s_object.setLocation();
+        setShape(SCSetting.getShape());
+        checkObject();
+        setDifficulty(SCSetting.getDifficulty());
     }
 
     /**
@@ -78,7 +80,7 @@ public class ShapeClicker extends Puzzles {
      * Draw the shape for this ShapeClicker
      */
     void draw(Canvas canvas) {
-        checkChangedObject();
+        //checkChangedObject();
         s_object.draw(canvas);
     }
 
@@ -92,26 +94,26 @@ public class ShapeClicker extends Puzzles {
     /**
      * Change the type of shape of the ShapeClicker
      */
-    public static void setShape(String type_of_shape) {
-        ShapeClicker.shape = type_of_shape;
-        ShapeClicker.changed = true;
+    public void setShape(String shape) {
+        this.shape = shape;
+        this.changed = true;
     }
 
     /**
      * construct the new shape after changing the type of shape. Set this.changed to false for further changes.
      */
-    private void checkChangedObject() {
-        if (ShapeClicker.changed) {
-            if (ShapeClicker.shape.equals("Circle")) {
+    private void checkObject() {
+        if (this.changed) {
+            if (this.shape.equals("Circle")) {
                 s_object = new Circle(s_object.getCoordinate_x(), s_object.getCoordinate_y(), this.paint);
-            } else if (ShapeClicker.shape.equals("Square")) {
+            } else if (this.shape.equals("Square")) {
                 s_object = new Square(s_object.getCoordinate_x(), s_object.getCoordinate_y(), this.paint);
             } else {
                 s_object = new Triangle(s_object.getCoordinate_x(), s_object.getCoordinate_y(), this.paint);
             }
             s_object.setRadius(SCSetting.getDifficulty());
         }
-        ShapeClicker.changed = false;
+        this.changed = false;
     }
 
     /**
