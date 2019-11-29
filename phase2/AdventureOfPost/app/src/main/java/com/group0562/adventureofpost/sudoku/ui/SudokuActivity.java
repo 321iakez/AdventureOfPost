@@ -5,30 +5,32 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.Button;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.group0562.adventureofpost.GameActivity;
 import com.group0562.adventureofpost.R;
+import com.group0562.adventureofpost.sudoku.PauseDialog;
 import com.group0562.adventureofpost.sudoku.SudokuPresenter;
 import com.group0562.adventureofpost.sudoku.SudokuView;
-import com.group0562.adventureofpost.sudoku.PauseDialog;
+
 import java.io.InputStream;
 import java.util.List;
 
-public class SudokuActivity extends AppCompatActivity implements SudokuView, SudokuStatsFragment.OnFragmentInteractionListener, PauseDialog.PauseDialogListener{
+public class SudokuActivity extends AppCompatActivity implements SudokuView, PauseDialog.PauseDialogListener {
 
     private SudokuPresenter presenter;
     private SudokuCellGridView gridView;
+    private SudokuNumPadGridView numPadView;
 
-    private static int columnWidth, columnHeight;
-
-    private SudokuStatsFragment statsFrag;
     private final String RETURN_NO_SAVE = "RETURN_NO_SAVE";
     private final String RETURN_SAVE = "RETURN_SAVE";
     private final String RESUME = "RESUME";
+
+    private TextView moveStats;
+    private TextView conflictStats;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +45,8 @@ public class SudokuActivity extends AppCompatActivity implements SudokuView, Sud
         gridView = findViewById(R.id.grid);
         gridView.createTileButtons(presenter, this, presenter.getDim());
         gridView.setNumColumns(presenter.getDim());
-        // Observer sets up desired dimensions as well as calls our display function
+
+        // Observer sets up desired dimensions as well as calls our displayGrid function
         gridView.getViewTreeObserver().addOnGlobalLayoutListener(
                 new ViewTreeObserver.OnGlobalLayoutListener() {
                     @Override
@@ -52,15 +55,35 @@ public class SudokuActivity extends AppCompatActivity implements SudokuView, Sud
                         int displayWidth = gridView.getMeasuredWidth();
                         int displayHeight = gridView.getMeasuredHeight();
 
-                        columnWidth = displayWidth / presenter.getDim();
-                        columnHeight = displayHeight / presenter.getDim();
+                        int columnWidth = displayWidth / presenter.getDim();
+                        int columnHeight = displayHeight / presenter.getDim();
 
-                        display();
+                        gridView.setAdapter(new GridSizeAdaptor(gridView.getTileButtons(), columnWidth, columnHeight));
+                    }
+                });
+
+        numPadView = findViewById(R.id.numPad);
+        numPadView.createTileButtons(presenter, this, gridView, presenter.getDim());
+        numPadView.setNumColumns(presenter.getDim());
+
+        // Observer sets up desired dimensions as well as calls our displayGrid function
+        numPadView.getViewTreeObserver().addOnGlobalLayoutListener(
+                new ViewTreeObserver.OnGlobalLayoutListener() {
+                    @Override
+                    public void onGlobalLayout() {
+                        numPadView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                        int displayWidth = numPadView.getMeasuredWidth();
+                        int displayHeight = numPadView.getMeasuredHeight();
+
+                        int columnWidth = displayWidth / presenter.getDim();
+
+                        numPadView.setAdapter(new GridSizeAdaptor(numPadView.getTileButtons(), columnWidth, displayHeight));
                     }
                 });
 
         findViewById(R.id.removeButton).setOnClickListener(this::onClickRemove);
         findViewById(R.id.resetButton).setOnClickListener(this::onClickReset);
+
         Button exitButton = (Button) findViewById(R.id.exit_button);
         exitButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,7 +91,12 @@ public class SudokuActivity extends AppCompatActivity implements SudokuView, Sud
                 openDialog();
             }
         });
-        statsFrag = (SudokuStatsFragment) getSupportFragmentManager().findFragmentById(R.id.statsFragment);
+
+        moveStats = findViewById(R.id.statsMoveNum);
+        moveStats.setText("0");
+
+        conflictStats = findViewById(R.id.statsConflictNum);
+        conflictStats.setText("0");
 
         // Display initial board values
         for (int row = 0; row < presenter.getDim(); row++) {
@@ -83,46 +111,18 @@ public class SudokuActivity extends AppCompatActivity implements SudokuView, Sud
 
     @Override
     public void saveGame(String mode) {
-        if(mode.equals(RETURN_NO_SAVE)){
+        if (mode.equals(RETURN_NO_SAVE)) {
             System.out.println("returned without save");
-        } else if (mode.equals(RETURN_SAVE)){
+        } else if (mode.equals(RETURN_SAVE)) {
             System.out.println("returned with save");
         } else {
             System.out.println("Resumed");
         }
     }
 
-    public void openDialog(){
+    public void openDialog() {
         PauseDialog pauseDialog = new PauseDialog();
         pauseDialog.show(getSupportFragmentManager(), "pause dialog");
-    }
-    public void display() {
-        gridView.setAdapter(new GridSizeAdaptor(gridView.getTileButtons(), columnWidth, columnHeight));
-    }
-
-    public void onClickNumpad(View view) {
-        if (presenter.getCurrCol() == -1 || presenter.getCurrRow() == -1) {
-            Toast.makeText(getApplicationContext(), "No cell selected!", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        Button numClicked = (Button) view;
-        int newValue = Integer.parseInt(numClicked.getTag().toString());
-
-        // Update backend board
-        boolean updateSuccess = presenter.addNum(newValue);
-
-        // Load value on board
-        if (updateSuccess) {
-            gridView.loadValues(presenter.getCurrRow(), presenter.getCurrCol(), newValue);
-            updateStats(true, false);
-        } else {
-            Toast.makeText(getApplicationContext(), "Conflict detected!", Toast.LENGTH_SHORT).show();
-            updateStats(false, true);
-        }
-
-        // Update
-        presenter.update();
     }
 
     void onClickRemove(View view) {
@@ -144,7 +144,7 @@ public class SudokuActivity extends AppCompatActivity implements SudokuView, Sud
         presenter.update();
     }
 
-    public void updateStats(boolean newMove, boolean newConflict) {
+    void updateStats(boolean newMove, boolean newConflict) {
         if (newMove) {
             presenter.addMoves();
         }
@@ -153,9 +153,8 @@ public class SudokuActivity extends AppCompatActivity implements SudokuView, Sud
             presenter.addConflicts();
         }
 
-        int moves = presenter.getMoves();
-        int conflicts = presenter.getConflicts();
-        statsFrag.updateStats(moves, conflicts);
+        moveStats.setText(String.valueOf(presenter.getMoves()));
+        conflictStats.setText(String.valueOf(presenter.getConflicts()));
     }
 
     private void endDialog() {
@@ -170,11 +169,6 @@ public class SudokuActivity extends AppCompatActivity implements SudokuView, Sud
 
         AlertDialog dialog = dialogBuilder.create();
         dialog.show();
-    }
-
-    @Override
-    public void onFragmentInteraction(View view) {
-
     }
 
     @Override

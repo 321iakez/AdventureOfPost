@@ -2,6 +2,7 @@ package com.group0562.adventureofpost.sudoku.ui;
 
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 
@@ -17,12 +18,12 @@ public class GridSizeAdaptor extends BaseAdapter {
     /**
      * the width and the height of a column
      */
-    private int mColumnWidth, mColumnHeight;
+    private int columnWidth, columnHeight;
 
     GridSizeAdaptor(ArrayList<Button> buttons, int columnWidth, int columnHeight) {
         this.buttons = buttons;
-        mColumnWidth = columnWidth;
-        mColumnHeight = columnHeight;
+        this.columnWidth = columnWidth;
+        this.columnHeight = columnHeight;
     }
 
     @Override
@@ -50,8 +51,7 @@ public class GridSizeAdaptor extends BaseAdapter {
             button = (Button) convertView;
         }
 
-        android.widget.AbsListView.LayoutParams params =
-                new android.widget.AbsListView.LayoutParams(mColumnWidth, mColumnHeight);
+        AbsListView.LayoutParams params = new AbsListView.LayoutParams(columnWidth, columnHeight);
         button.setLayoutParams(params);
 
         return button;

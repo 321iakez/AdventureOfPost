@@ -18,9 +18,9 @@
 
     </com.group0562.adventureofpost.sudoku.ui.SudokuCellGridView>
 
-    <LinearLayout
-        android:id="@+id/numPad1"
-        android:layout_width="389dp"
+    <com.group0562.adventureofpost.sudoku.ui.SudokuNumPadGridView
+        android:id="@+id/numPad"
+        android:layout_width="350dp"
         android:layout_height="63dp"
         android:layout_weight="1"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -29,96 +29,7 @@
         app:layout_constraintTop_toBottomOf="@+id/grid"
         app:layout_constraintVertical_bias="0.050000012">
 
-        <Button
-            android:id="@+id/num1"
-            style="?android:buttonBarStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:onClick="onClickNumpad"
-            android:tag="1"
-            android:text="@string/num1" />
-
-        <Button
-            android:id="@+id/num2"
-            style="?android:buttonBarStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:onClick="onClickNumpad"
-            android:tag="2"
-            android:text="@string/num2" />
-
-        <Button
-            android:id="@+id/num3"
-            style="?android:buttonBarStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:onClick="onClickNumpad"
-            android:tag="3"
-            android:text="@string/num3" />
-
-        <Button
-            android:id="@+id/num4"
-            style="?android:buttonBarStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:onClick="onClickNumpad"
-            android:tag="4"
-            android:text="@string/num4" />
-
-        <Button
-            android:id="@+id/num5"
-            style="?android:buttonBarStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:onClick="onClickNumpad"
-            android:tag="5"
-            android:text="@string/num5" />
-
-        <Button
-            android:id="@+id/num6"
-            style="?android:buttonBarStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:onClick="onClickNumpad"
-            android:tag="6"
-            android:text="@string/num6" />
-
-        <Button
-            android:id="@+id/num7"
-            style="?android:buttonBarStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:onClick="onClickNumpad"
-            android:tag="7"
-            android:text="@string/num7" />
-
-        <Button
-            android:id="@+id/num8"
-            style="?android:buttonBarStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:onClick="onClickNumpad"
-            android:tag="8"
-            android:text="@string/num8" />
-
-        <Button
-            android:id="@+id/num9"
-            style="?android:buttonBarStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:onClick="onClickNumpad"
-            android:tag="9"
-            android:text="@string/num9" />
-    </LinearLayout>
+    </com.group0562.adventureofpost.sudoku.ui.SudokuNumPadGridView>
 
     <Button
         android:id="@+id/removeButton"
@@ -128,7 +39,7 @@
         android:layout_marginTop="16dp"
         android:text="@string/remove_button"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/numPad1" />
+        app:layout_constraintTop_toBottomOf="@+id/numPad" />
 
     <Button
         android:id="@+id/resetButton"
@@ -138,18 +49,76 @@
         android:layout_marginTop="16dp"
         android:text="@string/reset_button"
         app:layout_constraintStart_toEndOf="@+id/removeButton"
-        app:layout_constraintTop_toBottomOf="@+id/numPad1" />
+        app:layout_constraintTop_toBottomOf="@+id/numPad" />
 
-    <fragment
-        android:id="@+id/statsFragment"
-        android:name="com.group0562.adventureofpost.sudoku.ui.SudokuStatsFragment"
+    <TableLayout
+        android:id="@+id/statsTable"
         android:layout_width="378dp"
         android:layout_height="35dp"
         android:layout_marginBottom="32dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.484"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="627dp">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textAlignment="center">
+
+            <TextView
+                android:id="@+id/statsMoveHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:minWidth="30dp"
+                android:text="@string/move_stats_header"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/statsConflictHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:minWidth="30dp"
+                android:text="@string/conflict_stats_header"
+                android:textAlignment="center" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textAlignment="center">
+
+            <TextView
+                android:id="@+id/statsMoveNum"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:minWidth="30dp"
+                android:text=""
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/statsConflictNum"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:minWidth="30dp"
+                android:text=""
+                android:textAlignment="center" />
+
+        </TableRow>
+    </TableLayout>
+
 
     <Button
         android:id="@+id/exit_button"
