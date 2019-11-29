@@ -12,8 +12,8 @@ public class SudokuPresenter extends Puzzles {
     private Board gameBoard;
     private SudokuView view;
 
-    private int currRow = 0;
-    private int currCol = 0;
+    private int currRow = -1;
+    private int currCol = -1;
 
     public SudokuPresenter(SudokuView view, int gridSize, String difficulty) {
         super(new SudokuStats(100000));

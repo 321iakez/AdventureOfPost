@@ -77,6 +77,11 @@ public class SudokuActivity extends AppCompatActivity implements SudokuView, Sud
     }
 
     public void onClickNumpad(View view) {
+        if (presenter.getCurrCol() == -1 || presenter.getCurrRow() == -1) {
+            Toast.makeText(getApplicationContext(), "No cell selected!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         Button numClicked = (Button) view;
         int newValue = Integer.parseInt(numClicked.getTag().toString());
 
