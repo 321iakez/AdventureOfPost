@@ -13,9 +13,6 @@ import androidx.preference.PreferenceFragmentCompat;
 
 import com.group0562.adventureofpost.R;
 import com.group0562.adventureofpost.shapeClicker.SCSetting;
-import com.group0562.adventureofpost.shapeClicker.Shape;
-import com.group0562.adventureofpost.shapeClicker.ShapeClicker;
-import com.group0562.adventureofpost.shapeClicker.ShapeClickerGameView;
 
 public class SCSettingActivity extends AppCompatActivity {
     private Button sc_back_to_game;
@@ -56,7 +53,7 @@ public class SCSettingActivity extends AppCompatActivity {
         SCSetting.setColor(color_choice);
         SCSetting.setDifficulty(difficulty_choice);
         SCSetting.setShape(shape_choice);
-//        ShapeClicker.reset();
+//        SCNormalMode.reset();
         Intent intent = new Intent(this, ShapeClickerActivity.class);
         startActivity(intent);
     }

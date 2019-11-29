@@ -30,8 +30,8 @@ public class Circle extends Shape {
      */
     @Override
     public void setLocation() {
-        this.coordinate_x = random() * (ShapeClicker.bound[1] - 2 * this.radius) + this.radius;
-        this.coordinate_y = random() * (ShapeClicker.bound[3] - 2 * this.radius) + this.radius;
+        this.coordinate_x = random() * (SCNormalMode.bound[1] - 2 * this.radius) + this.radius;
+        this.coordinate_y = random() * (SCNormalMode.bound[3] - 2 * this.radius) + this.radius;
     }
 
     /**

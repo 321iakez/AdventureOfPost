@@ -16,7 +16,7 @@ public class ShapeClickerStats extends AdventureOfPost.PuzzleStats {
     /**
      * constructor of ShapeClickerStats, inherited from PuzzleStats
      *
-     * @param time the time limit for ShapeClicker
+     * @param time the time limit for SCNormalMode
      */
     public ShapeClickerStats(long time) {
         super(time);
@@ -28,7 +28,7 @@ public class ShapeClickerStats extends AdventureOfPost.PuzzleStats {
     }
 
     /**
-     * update the time and points for the ShapeClicker
+     * update the time and points for the SCNormalMode
      */
     @Override
     public void update(Observable o, Object arg) {

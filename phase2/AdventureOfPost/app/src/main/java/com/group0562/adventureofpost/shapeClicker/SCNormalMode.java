@@ -7,7 +7,7 @@ import com.group0562.adventureofpost.Puzzles;
 import com.group0562.adventureofpost.shapeClicker.ui.SCEndResultView;
 
 
-public class ShapeClicker extends Puzzles {
+public class SCNormalMode extends Puzzles {
     /* bound indexes follow from left, right, up and down */
     static double[] bound;
 
@@ -41,12 +41,12 @@ public class ShapeClicker extends Puzzles {
     private static long TIME_LIMIT;
 
     /**
-     * constructor for this ShapeClicker
+     * constructor for this SCNormalMode
      *
-     * @param time the time limit for this ShapeClicker
+     * @param time the time limit for this SCNormalMode
      * @param p    the paint for the shapes
      */
-    ShapeClicker(long time, Paint p) {
+    SCNormalMode(long time, Paint p) {
         super(new ShapeClickerStats(time));
         TIME_LIMIT = time;
         this.paint = p;
@@ -58,10 +58,10 @@ public class ShapeClicker extends Puzzles {
     }
 
     /**
-     * set the boundary for this ShapeClicker
+     * set the boundary for this SCNormalMode
      */
     static void setBound(double[] bound) {
-        ShapeClicker.bound = bound;
+        SCNormalMode.bound = bound;
     }
 
     /**
@@ -77,7 +77,7 @@ public class ShapeClicker extends Puzzles {
     }
 
     /**
-     * Draw the shape for this ShapeClicker
+     * Draw the shape for this SCNormalMode
      */
     void draw(Canvas canvas) {
         //checkChangedObject();
@@ -85,14 +85,14 @@ public class ShapeClicker extends Puzzles {
     }
 
     /**
-     * Change the type of shape of the ShapeClicker
+     * Change the type of shape of the SCNormalMode
      */
     void setDifficulty(String difficulty) {
         s_object.setRadius(difficulty);
     }
 
     /**
-     * Change the type of shape of the ShapeClicker
+     * Change the type of shape of the SCNormalMode
      */
     public void setShape(String shape) {
         this.shape = shape;
@@ -117,7 +117,7 @@ public class ShapeClicker extends Puzzles {
     }
 
     /**
-     * update the ShapeClicker during the player plays the puzzle
+     * update the SCNormalMode during the player plays the puzzle
      */
     @Override
     public void update() {
@@ -150,7 +150,7 @@ public class ShapeClicker extends Puzzles {
         }
     }
     public static void reset(){
-        ShapeClicker sc = new ShapeClicker(TIME_LIMIT, INITIAL_PAINT);
+        SCNormalMode sc = new SCNormalMode(TIME_LIMIT, INITIAL_PAINT);
         sc.resetGame();
     }
     public void resetGame(){

@@ -6,7 +6,6 @@ import android.graphics.Paint;
 import com.group0562.adventureofpost.Puzzles;
 import com.group0562.adventureofpost.shapeClicker.ui.SCEndResultView;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class SCDifficultMode extends Puzzles {
@@ -37,9 +36,9 @@ public class SCDifficultMode extends Puzzles {
     private static long TIME_LIMIT;
 
     /**
-     * constructor for this ShapeClicker
+     * constructor for this SCNormalMode
      *
-     * @param time the time limit for this ShapeClicker
+     * @param time the time limit for this SCNormalMode
      * @param p    the paint for the shapes
      */
     SCDifficultMode(long time, Paint p) {
@@ -53,7 +52,7 @@ public class SCDifficultMode extends Puzzles {
     }
 
     /**
-     * set the boundary for this ShapeClicker
+     * set the boundary for this SCNormalMode
      */
     static void setBound(double[] bound) {
         SCDifficultMode.bound = bound;
@@ -78,7 +77,7 @@ public class SCDifficultMode extends Puzzles {
     }
 
     /**
-     * Draw the shape for this ShapeClicker
+     * Draw the shape for this SCNormalMode
      */
     void draw(Canvas canvas) {
         //checkChangedObject();
@@ -88,7 +87,7 @@ public class SCDifficultMode extends Puzzles {
     }
 
     /**
-     * update the ShapeClicker during the player plays the puzzle
+     * update the SCNormalMode during the player plays the puzzle
      */
     @Override
     public void update() {
@@ -121,7 +120,7 @@ public class SCDifficultMode extends Puzzles {
         }
     }
     public static void reset(){
-        ShapeClicker sc = new ShapeClicker(TIME_LIMIT, INITIAL_PAINT);
+        SCNormalMode sc = new SCNormalMode(TIME_LIMIT, INITIAL_PAINT);
         sc.resetGame();
     }
     public void resetGame(){
