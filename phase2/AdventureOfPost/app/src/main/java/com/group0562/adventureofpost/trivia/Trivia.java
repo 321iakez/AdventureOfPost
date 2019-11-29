@@ -139,6 +139,7 @@ public class Trivia extends Puzzles implements Serializable {
             this.op = Integer.parseInt(gameInfo[1]);
             this.correct = Integer.parseInt(gameInfo[2]);
             this.incorrect = Integer.parseInt(gameInfo[3]);
+            this.PuzzlesSolved = this.correct + this.incorrect + 1;
 
         }
         catch(Exception e){
