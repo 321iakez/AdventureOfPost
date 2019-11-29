@@ -1,0 +1,5 @@
+Known Bugs:
+
+Bug: Pausing the game/opening settings in game would cause the same question to be asked twice
+Status: active
+Fix: N/A
