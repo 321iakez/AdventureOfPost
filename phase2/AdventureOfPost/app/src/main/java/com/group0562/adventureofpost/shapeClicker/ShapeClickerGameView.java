@@ -28,7 +28,7 @@ public class ShapeClickerGameView extends View {
     /**
      * the SCNormalMode that is used in the view to be displayed
      */
-    //private SCDifficultMode clicker;
+    //private SCFancyMode clicker;
     private SCNormalMode clicker;
 
 
@@ -47,9 +47,9 @@ public class ShapeClickerGameView extends View {
         ShapeClickerGameView.paint.setStrokeWidth(ShapeClickerGameView.Stroke_Thickness);
         double[] bounds = {0, 800, 0, 1500};
         SCNormalMode.setBound(bounds);
-        SCDifficultMode.setBound(bounds);
+        SCFancyMode.setBound(bounds);
         clicker = new SCNormalMode(60000, ShapeClickerGameView.paint);
-        //clicker = new SCDifficultMode(60000, ShapeClickerGameView.paint);
+        //clicker = new SCFancyMode(60000, ShapeClickerGameView.paint);
         this.puzzleStats = clicker.puzzleStats;
     }
 

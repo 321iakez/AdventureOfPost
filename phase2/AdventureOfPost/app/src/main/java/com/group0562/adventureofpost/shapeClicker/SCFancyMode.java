@@ -8,7 +8,7 @@ import com.group0562.adventureofpost.shapeClicker.ui.SCEndResultView;
 
 import java.util.ArrayList;
 
-public class SCDifficultMode extends Puzzles {
+public class SCFancyMode extends Puzzles {
     /* bound indexes follow from left, right, up and down */
     static double[] bound;
 
@@ -16,6 +16,11 @@ public class SCDifficultMode extends Puzzles {
      * the current shape that is being displayed to player to click
      */
     private ArrayList<Shape> s_object;
+
+    /**
+     * the current combo number, not available in normal mode
+     */
+    private long combo;
 
     private int to_erase_object;
 
@@ -41,7 +46,7 @@ public class SCDifficultMode extends Puzzles {
      * @param time the time limit for this SCNormalMode
      * @param p    the paint for the shapes
      */
-    SCDifficultMode(long time, Paint p) {
+    SCFancyMode(long time, Paint p) {
         super(new ShapeClickerStats(time));
         TIME_LIMIT = time;
         this.paint = p;
@@ -55,7 +60,7 @@ public class SCDifficultMode extends Puzzles {
      * set the boundary for this SCNormalMode
      */
     static void setBound(double[] bound) {
-        SCDifficultMode.bound = bound;
+        SCFancyMode.bound = bound;
     }
 
     /**
@@ -70,7 +75,9 @@ public class SCDifficultMode extends Puzzles {
             if (this.s_object.get(i).checkWithin(cursor_x, cursor_y)){
                 this.within = true;
                 this.to_erase_object = i;
+                this.combo += 1;
             }
+            else this.combo = 0;
         }
         update();
         checkComplete();

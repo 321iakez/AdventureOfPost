@@ -39,12 +39,12 @@
     </string-array>
 
     <string-array name="sc_mode_entries">
-        <item>None</item>
+        <item>Normal</item>
         <item>Fancy</item>
     </string-array>
 
     <string-array name="sc_mode_values">
-        <item>None</item>
+        <item>Normal</item>
         <item>Fancy</item>
     </string-array>
 </resources>
