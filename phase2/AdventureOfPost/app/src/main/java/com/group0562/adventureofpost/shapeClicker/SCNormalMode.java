@@ -158,4 +158,8 @@ public class SCNormalMode extends Puzzles {
         this.puzzleStats.setLives(10);
         this.puzzleStats.setPoints(0);
     }
+
+    public void pause(){
+
+    }
 }

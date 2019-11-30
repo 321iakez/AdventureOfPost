@@ -13,6 +13,7 @@ public class ShapeClickerActivity extends AppCompatActivity {
     public final static String EXTRA_MESSAGE = "com.group0562.AdventureOfPost.MESSAGE";
     Button sc_setting;
     Button sc_done;
+    Button sc_pause_continue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +32,12 @@ public class ShapeClickerActivity extends AppCompatActivity {
     public void onClickSCDone(View view) {
         Intent intent = new Intent(this, ShapeClickerEndActivity.class);
         sc_done = findViewById(R.id.sc_finish_button);
+        startActivity(intent);
+    }
+
+    public void onClickSCPause(View view){
+        Intent intent = new Intent(this, ShapeClickerPauseContinueActivity.class);
+        sc_pause_continue = findViewById(R.id.sc_pc_button);
         startActivity(intent);
     }
 }
