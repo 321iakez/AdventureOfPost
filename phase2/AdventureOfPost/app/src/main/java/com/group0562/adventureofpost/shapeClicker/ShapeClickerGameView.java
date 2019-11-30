@@ -12,6 +12,7 @@ import android.view.View;
 import androidx.annotation.Nullable;
 
 import com.group0562.adventureofpost.AdventureOfPost;
+import com.group0562.adventureofpost.Puzzles;
 
 public class ShapeClickerGameView extends View {
 
@@ -43,12 +44,17 @@ public class ShapeClickerGameView extends View {
     public ShapeClickerGameView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         ShapeClickerGameView.paint = new Paint();
-        setColor(SCSetting.getColor());
+        this.setColor(SCSetting.getColor());
         ShapeClickerGameView.paint.setStrokeWidth(ShapeClickerGameView.Stroke_Thickness);
         double[] bounds = {0, 800, 0, 1500};
         SCNormalMode.setBound(bounds);
         SCFancyMode.setBound(bounds);
-        clicker = new SCNormalMode(60000, ShapeClickerGameView.paint);
+        //if(SCSetting.getMode().equals("None")) {
+            clicker = new SCNormalMode(60000, ShapeClickerGameView.paint);
+        //}
+        //else{
+            //clicker = new SCFancyMode(60000, ShapeClickerGameView.paint);
+        //}
         //clicker = new SCFancyMode(60000, ShapeClickerGameView.paint);
         this.puzzleStats = clicker.puzzleStats;
     }
@@ -78,8 +84,8 @@ public class ShapeClickerGameView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         canvas.drawColor(Color.CYAN);
-        System.out.println(SCSetting.getDifficulty());
-        System.out.println(clicker.s_object.getRadius());
+        //System.out.println(SCSetting.getDifficulty());
+        //System.out.println(clicker.s_object.getRadius());
         this.clicker.draw(canvas);
         this.puzzleStats.draw(canvas);
         this.puzzleStats.updateTime();
