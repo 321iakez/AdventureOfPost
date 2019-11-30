@@ -26,33 +26,41 @@ public class TriviaActivity extends AppCompatActivity implements TriviaView {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trivia);
-        int diff;
-        int op;
-        switch(getIntent().getStringExtra("diff")) {
-            case "Easy":
-                diff = 1;
-                break;
-            case "Medium":
-                diff = 2;
-                break;
-            default:
-                diff = 3;
-                break;
+        int diff = 1;
+        int op = 2;
+        if (getIntent().hasExtra("diff")){
+            switch(getIntent().getStringExtra("diff")) {
+                case "Easy":
+                    diff = 1;
+                    break;
+                case "Medium":
+                    diff = 2;
+                    break;
+                default:
+                    diff = 3;
+                    break;
+            }
+        }
+        if (getIntent().hasExtra("op")) {
+            switch (getIntent().getStringExtra("op")) {
+                case "Addition":
+                    op = 1;
+                    break;
+                case "Subtraction":
+                    op = 2;
+                    break;
+                default:
+                    op = 3;
+                    break;
+            }
         }
 
-        switch(getIntent().getStringExtra("op")) {
-            case "Addition":
-                op = 1;
-                break;
-            case "Subtraction":
-                op = 2;
-                break;
-            default:
-                op = 3;
-                break;
-        }
+        if (getIntent().hasExtra("saveState")){
+            presenter = new TriviaPresenter(this, getIntent().getStringExtra("saveState"));
+        } else {
+            presenter = new TriviaPresenter(this, op, diff);
 
-        presenter = new TriviaPresenter(this, op, diff);
+        }
 
     }
 

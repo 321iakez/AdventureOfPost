@@ -1,8 +1,5 @@
 package com.group0562.adventureofpost.trivia;
 
-import android.view.View;
-
-import com.group0562.adventureofpost.AdventureOfPost;
 import com.group0562.adventureofpost.Puzzles;
 
 public class TriviaPresenter extends Puzzles {
@@ -16,6 +13,13 @@ public class TriviaPresenter extends Puzzles {
         this.view = view;
         game = new Trivia(op, diff);
         gameStats = new TriviaStats(op, diff);
+
+    }
+
+    public TriviaPresenter(TriviaView view, String saveState) {
+        super();
+        this.view = view;
+        loadGame(saveState);
 
     }
 
@@ -54,7 +58,7 @@ public class TriviaPresenter extends Puzzles {
         return gameStats.saveGame();
     }
 
-    public void loadGame(String saveState) {
+    private void loadGame(String saveState) {
         //decode string
         int op = 1;
         int diff = 1;
