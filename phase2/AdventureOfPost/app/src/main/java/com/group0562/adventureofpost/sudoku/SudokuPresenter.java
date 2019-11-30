@@ -3,11 +3,11 @@ package com.group0562.adventureofpost.sudoku;
 import com.group0562.adventureofpost.Puzzles;
 
 import java.io.InputStream;
-import java.util.List;
+import java.util.Observable;
 import java.util.Random;
 import java.util.Scanner;
 
-public class SudokuPresenter extends Puzzles {
+public class SudokuPresenter extends Observable {
 
     private Board gameBoard;
     private SudokuView view;
@@ -17,7 +17,6 @@ public class SudokuPresenter extends Puzzles {
     private int currCol = -1;
 
     public SudokuPresenter(SudokuView view, SudokuStats gameStats, int gridSize, String difficulty) {
-        super(gameStats);
         this.gameStats = gameStats;
         this.view = view;
 
@@ -68,25 +67,18 @@ public class SudokuPresenter extends Puzzles {
      * Since every user input must follow not have any conflicts with the existing board, the game
      * if complete iff the board is full.
      */
-    @Override
-    public void checkComplete() {
-        if (gameBoard.checkFull()) {
-            setPuzzleComplete(true);
-        }
-    }
 
-    @Override
     public void update() {
-        view.updateStats();
-
         // Check complete
-        checkComplete();
-        if (getPuzzleComplete()) {
+        if (gameBoard.checkFull()) {
             onStop();
         }
+
+        setChanged();
+        notifyObservers();
     }
 
-    @Override
+
     public void onStop() {
         view.onGameComplete();
     }
@@ -125,9 +117,9 @@ public class SudokuPresenter extends Puzzles {
         return gameBoard.getCell(row, col).isLocked();
     }
 
-    public List<int[]> resetGameBoard() {
+    public void resetGameBoard() {
         gameStats.reset();
-        return gameBoard.resetBoard();
+        gameBoard.resetBoard();
     }
 
     public int getMoves() {

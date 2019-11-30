@@ -15,7 +15,6 @@ import com.group0562.adventureofpost.sudoku.SudokuStats;
 import com.group0562.adventureofpost.sudoku.SudokuView;
 
 import java.io.InputStream;
-import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -39,8 +38,12 @@ public class SudokuActivity extends AppCompatActivity implements SudokuView, Obs
 
         int gridSize = getIntent().getStringExtra("gridSize").equals("6x6") ? 6 : 9;
         String difficulty = getIntent().getStringExtra("difficulty");
+        int level = getIntent().getIntExtra("level", 1);
 
-        presenter = new SudokuPresenter(this, new SudokuStats(1000), gridSize, difficulty);
+        presenter = new SudokuPresenter(this, new SudokuStats(), gridSize, difficulty);
+
+        presenter.addObserver(this);
+
 
         // Call helper methods to initialize components
         initSudokuGrid();
@@ -52,14 +55,7 @@ public class SudokuActivity extends AppCompatActivity implements SudokuView, Obs
         addListenerExitButton();
 
         // Display initial board values
-        for (int row = 0; row < presenter.getDim(); row++) {
-            for (int col = 0; col < presenter.getDim(); col++) {
-                int cellValue = presenter.getCellValue(row, col);
-                if (cellValue != 0) {
-                    gridView.loadValues(row, col, cellValue);
-                }
-            }
-        }
+        presenter.update();
     }
 
     /**
@@ -68,7 +64,7 @@ public class SudokuActivity extends AppCompatActivity implements SudokuView, Obs
     private void initSudokuGrid() {
         gridView = findViewById(R.id.grid);
         gridView.setPresenter(presenter);
-        gridView.createTileButtons( this);
+        gridView.createTileButtons(this);
         gridView.setNumColumns(presenter.getDim());
 
         // Observer sets up desired dimensions as well as calls our displayGrid function
@@ -77,11 +73,10 @@ public class SudokuActivity extends AppCompatActivity implements SudokuView, Obs
                     @Override
                     public void onGlobalLayout() {
                         gridView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-                        int displayWidth = gridView.getMeasuredWidth();
-                        int displayHeight = gridView.getMeasuredHeight();
-
-                        int colWidth = displayWidth / presenter.getDim();
-                        int colHeight = displayHeight / presenter.getDim();
+                        int width = gridView.getMeasuredWidth();
+                        int height = gridView.getMeasuredHeight();
+                        int colWidth = width / presenter.getDim();
+                        int colHeight = height / presenter.getDim();
 
                         gridView.setAdapter(new GridSizeAdaptor(gridView.getTileButtons(), colWidth, colHeight));
                     }
@@ -103,12 +98,12 @@ public class SudokuActivity extends AppCompatActivity implements SudokuView, Obs
                     @Override
                     public void onGlobalLayout() {
                         numPadView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-                        int displayWidth = numPadView.getMeasuredWidth();
-                        int displayHeight = numPadView.getMeasuredHeight();
+                        int width = numPadView.getMeasuredWidth();
+                        int height = numPadView.getMeasuredHeight();
+                        int colWidth = width / presenter.getDim();
 
-                        int colWidth = displayWidth / presenter.getDim();
-
-                        numPadView.setAdapter(new GridSizeAdaptor(numPadView.getTileButtons(), colWidth, displayHeight));
+                        GridSizeAdaptor adaptor = new GridSizeAdaptor(numPadView.getTileButtons(), colWidth, height);
+                        numPadView.setAdapter(adaptor);
                     }
                 });
     }
@@ -124,7 +119,6 @@ public class SudokuActivity extends AppCompatActivity implements SudokuView, Obs
     private void addListenerRemoveButton() {
         findViewById(R.id.removeButton).setOnClickListener(v -> {
             presenter.removeNum();
-            gridView.removeValue(presenter.getCurrRow(), presenter.getCurrCol());
 
             // Update
             presenter.update();
@@ -133,10 +127,7 @@ public class SudokuActivity extends AppCompatActivity implements SudokuView, Obs
 
     private void addListenerResetButton() {
         findViewById(R.id.resetButton).setOnClickListener(v -> {
-            List<int[]> resetCells = presenter.resetGameBoard();
-            for (int[] cellLoc : resetCells) {
-                gridView.removeValue(cellLoc[0], cellLoc[1]);
-            }
+            presenter.resetGameBoard();
 
             // Update
             presenter.update();
@@ -154,17 +145,14 @@ public class SudokuActivity extends AppCompatActivity implements SudokuView, Obs
     public void saveGame(String mode) {
         if (mode.equals(RETURN_NO_SAVE)) {
             System.out.println("returned without save");
+            Intent intent = new Intent(this, SudokuStartActivity.class);
+            startActivity(intent);
+
         } else if (mode.equals(RETURN_SAVE)) {
             System.out.println("returned with save");
         } else {
             System.out.println("Resumed");
         }
-    }
-
-    @Override
-    public void updateStats() {
-        moveStats.setText(String.valueOf(presenter.getMoves()));
-        conflictStats.setText(String.valueOf(presenter.getConflicts()));
     }
 
     @Override
@@ -188,33 +176,20 @@ public class SudokuActivity extends AppCompatActivity implements SudokuView, Obs
     @Override
     public InputStream getPresetBoardFile(String difficulty, int gridSize) {
 
-        InputStream result = null;
-        if (gridSize == 9) {
-            switch (difficulty) {
-                case "Easy":
-                    result = getResources().openRawResource(R.raw.sudoku9_easy);
-                    break;
-                case "Medium":
-                    result = getResources().openRawResource(R.raw.sudoku9_medium);
-                    break;
-                case "Hard":
-                    result = getResources().openRawResource(R.raw.sudoku9_hard);
-                    break;
-            }
-        } else {
-            switch (difficulty) {
-                case "Easy":
-                    result = getResources().openRawResource(R.raw.sudoku6_easy);
-                    break;
-                case "Medium":
-                    result = getResources().openRawResource(R.raw.sudoku6_medium);
-                    break;
-                case "Hard":
-                    result = getResources().openRawResource(R.raw.sudoku6_hard);
-                    break;
-            }
+        int file;
+        switch (difficulty) {
+            case "Easy":
+            default:
+                file = (gridSize == 9) ? R.raw.sudoku9_easy : R.raw.sudoku6_easy;
+                break;
+            case "Medium":
+                file = (gridSize == 9) ? R.raw.sudoku9_medium : R.raw.sudoku6_medium;
+                break;
+            case "Hard":
+                file = (gridSize == 9) ? R.raw.sudoku9_hard : R.raw.sudoku6_hard;
+                break;
         }
-        return result;
+        return getResources().openRawResource(file);
     }
 
     /**
@@ -228,6 +203,18 @@ public class SudokuActivity extends AppCompatActivity implements SudokuView, Obs
      */
     @Override
     public void update(Observable o, Object arg) {
-        
+        moveStats.setText(String.valueOf(presenter.getMoves()));
+        conflictStats.setText(String.valueOf(presenter.getConflicts()));
+
+        for (int row = 0; row < presenter.getDim(); row++) {
+            for (int col = 0; col < presenter.getDim(); col++) {
+                String loadValue = "";
+                if (presenter.getCellValue(row, col) != 0) {
+                    loadValue = String.valueOf(presenter.getCellValue(row, col));
+                }
+
+                gridView.loadValues(row, col, loadValue);
+            }
+        }
     }
 }
