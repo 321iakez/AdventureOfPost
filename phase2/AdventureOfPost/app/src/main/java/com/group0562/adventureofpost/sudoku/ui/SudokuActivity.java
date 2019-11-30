@@ -38,6 +38,7 @@ public class SudokuActivity extends AppCompatActivity implements SudokuView, Obs
 
         int gridSize = getIntent().getStringExtra("gridSize").equals("6x6") ? 6 : 9;
         String difficulty = getIntent().getStringExtra("difficulty");
+        int level = getIntent().getIntExtra("level", 1);
 
         presenter = new SudokuPresenter(this, new SudokuStats(1000), gridSize, difficulty);
         presenter.addObserver(this);
@@ -142,6 +143,9 @@ public class SudokuActivity extends AppCompatActivity implements SudokuView, Obs
     public void saveGame(String mode) {
         if (mode.equals(RETURN_NO_SAVE)) {
             System.out.println("returned without save");
+            Intent intent = new Intent(this, SudokuStartActivity.class);
+            startActivity(intent);
+
         } else if (mode.equals(RETURN_SAVE)) {
             System.out.println("returned with save");
         } else {
