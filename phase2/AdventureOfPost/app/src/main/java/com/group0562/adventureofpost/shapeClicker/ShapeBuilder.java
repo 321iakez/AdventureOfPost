@@ -4,6 +4,7 @@ import android.graphics.Paint;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Random;
 
 import static java.lang.Math.random;
 
@@ -20,24 +21,37 @@ public class ShapeBuilder {
 
     private void randomShapeGenerator(int goal, int num_of_shapes, Paint paint){
         //algorithm that makes the most to least number of circle, square and then triangle, and then create them
-        double[] temp_location = {0, 0};
-        double x_interval = SCFancyMode.bound[1]/num_of_shapes;
-        double y_interval = SCFancyMode.bound[3]/num_of_shapes;
-        for(int i = 0; i <= Math.floor(num_of_shapes*4/10);i++){
-          temp_location[0] = temp_location[0] + x_interval;
-          temp_location[1] = temp_location[1] + y_interval;
-          this.s_objects.add(new Circle(temp_location[0], temp_location[1], paint));
+
+        double[] temp_location = {50, 75};
+        double x_interval = 100;
+        double y_interval = 150;
+        for(int i = 50; i <= SCFancyMode.bound[1];i+= x_interval){
+            for(int j = 75; j <= SCFancyMode.bound[3];j+= y_interval){
+                if(new Random().nextDouble() <= 0.1){
+                    this.s_objects.add(new Triangle(temp_location[0], temp_location[1], paint));
+                }
+                else if(new Random().nextDouble() <= 0.1){
+                    continue;
+                }
+                else if(new Random().nextDouble() <= 0.3){
+                    this.s_objects.add(new Square(temp_location[0], temp_location[1], paint));
+                }
+                else this.s_objects.add(new Circle(temp_location[0], temp_location[1], paint));
+            }
+        //  temp_location[0] = temp_location[0] + x_interval;
+        //  temp_location[1] = temp_location[1] + y_interval;
+        //  this.s_objects.add(new Circle(temp_location[0], temp_location[1], paint));
         }
-        for(int i = 0; i <= Math.floor(num_of_shapes*3/10);i++){
-            temp_location[0] = temp_location[0] + x_interval;
-            temp_location[1] = temp_location[1] + y_interval;
-            this.s_objects.add(new Square(temp_location[0], temp_location[1], paint));
-        }
-        for(int i = 0; i <= Math.floor(num_of_shapes*3/10);i++){
-            temp_location[0] = temp_location[0] + x_interval;
-            temp_location[1] = temp_location[1] + y_interval;
-            this.s_objects.add(new Triangle(temp_location[0], temp_location[1], paint));
-        }
+        //for(int i = 0; i <= Math.floor(num_of_shapes*2/5);i++){
+          //  temp_location[0] = temp_location[0] + x_interval;
+            //temp_location[1] = temp_location[1] + y_interval;
+         //   this.s_objects.add(new Square(temp_location[0], temp_location[1], paint));
+        //}
+        //for(int i = 0; i <= Math.floor(num_of_shapes/5);i++){
+          //  temp_location[0] = temp_location[0] + x_interval;
+            //temp_location[1] = temp_location[1] + y_interval;
+            //this.s_objects.add(new Triangle(temp_location[0], temp_location[1], paint));
+        //}
     }
 
     ArrayList<Shape> getS_objects(){return this.s_objects;}
