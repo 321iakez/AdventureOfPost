@@ -4,6 +4,8 @@ import android.content.Context;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.group0562.adventureofpost.database.DatabaseHelper;
+
 public class AuthInteractor {
 
     interface AuthListener {
@@ -55,7 +57,7 @@ public class AuthInteractor {
         // Check whether both password inputs match
         if (password.equals(confirmPassword)) {
             if (db.checkUsernameDup(username)) {
-                long newRowId = db.insert(username, password);
+                long newRowId = db.insertAuth(username, password);
                 Log.i("RegisterActivity", "Register new user at row" + newRowId);
 
                 listener.onSuccess();
