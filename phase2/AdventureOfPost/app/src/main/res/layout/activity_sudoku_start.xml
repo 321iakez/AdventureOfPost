@@ -7,17 +7,6 @@
     tools:context=".sudoku.ui.SudokuStartActivity">
 
     <Spinner
-        android:id="@+id/levelSelect"
-        android:layout_width="130dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="140dp"
-        android:layout_marginTop="32dp"
-        android:background="@android:drawable/btn_dropdown"
-        android:spinnerMode="dropdown"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/difficultySelect" />
-
-    <Spinner
         android:id="@+id/gridSizeSelect"
         android:layout_width="130dp"
         android:layout_height="60dp"
