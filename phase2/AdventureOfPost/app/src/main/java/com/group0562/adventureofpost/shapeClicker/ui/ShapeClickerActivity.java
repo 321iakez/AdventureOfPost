@@ -35,9 +35,9 @@ public class ShapeClickerActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void onClickSCPause(View view){
+    /**public void onClickSCPause(View view){
         Intent intent = new Intent(this, ShapeClickerPauseContinueActivity.class);
         sc_pause_continue = findViewById(R.id.sc_pc_button);
         startActivity(intent);
-    }
+    }*/
 }
