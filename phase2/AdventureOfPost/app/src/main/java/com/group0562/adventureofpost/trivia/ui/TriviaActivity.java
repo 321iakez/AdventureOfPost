@@ -26,6 +26,23 @@ public class TriviaActivity extends AppCompatActivity implements TriviaView {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trivia);
+        if (getIntent().hasExtra("color")){
+            System.out.println(getIntent().getStringExtra("color"));
+            switch (getIntent().getStringExtra("color")) {
+                case "White":
+                    setActivityBackgroundColor(0xFFFFFFFF);
+                    break;
+                case "Blue":
+                    setActivityBackgroundColor(0xFFB8D5D6);
+                    break;
+                case "Green":
+                    setActivityBackgroundColor(0xFF00FF00);
+                    break;
+                case "Yellow":
+                    setActivityBackgroundColor(0xFFFFFF00);
+                    break;
+            }
+        }
         int diff = 1;
         int op = 2;
         if (getIntent().hasExtra("diff")){
@@ -62,6 +79,11 @@ public class TriviaActivity extends AppCompatActivity implements TriviaView {
 
         }
 
+    }
+
+    public void setActivityBackgroundColor(int color) {
+        View view = this.getWindow().getDecorView();
+        view.setBackgroundColor(color);
     }
 
     /**
