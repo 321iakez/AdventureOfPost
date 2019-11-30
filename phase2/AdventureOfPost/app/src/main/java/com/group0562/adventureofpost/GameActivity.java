@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.group0562.adventureofpost.shapeClicker.ui.SCSettingActivity;
 import com.group0562.adventureofpost.sudoku.ui.SudokuStartActivity;
 import com.group0562.adventureofpost.trivia.Trivia;
+import com.group0562.adventureofpost.trivia.ui.TriviaStartActivity;
 
 public class GameActivity extends AppCompatActivity {
     public final static String EXTRA_MESSAGE = "com.group0562.AdventureOfPost.MESSAGE";
@@ -20,11 +21,6 @@ public class GameActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
-        if (getIntent().hasExtra("trivia")) {
-            trivia = (Trivia) getIntent().getSerializableExtra("trivia");
-        } else {
-            trivia = new Trivia();
-        }
     }
 
     public void onClickShapeClicker(View view) {
@@ -44,18 +40,11 @@ public class GameActivity extends AppCompatActivity {
     }
 
     public void onClickTrivia(View view) {
-        if (getIntent().hasExtra("game"))
-            trivia = (Trivia) getIntent().getSerializableExtra("game");
-        if (!trivia.getPuzzleComplete()) {
-            Intent intent = new Intent(this, TriviaOperationSelectActivity.class);
-            TextView textView = findViewById(R.id.TriviaButton);
-            String message = textView.getText().toString();
-            intent.putExtra(EXTRA_MESSAGE, message);
-            intent.putExtra("game", trivia);
-            startActivity(intent);
-        } else {
-            Toast.makeText(getApplicationContext(), "You already completed this game", Toast.LENGTH_SHORT).show();
-        }
+        Intent intent = new Intent(this, TriviaStartActivity.class);
+        TextView textView = findViewById(R.id.TriviaButton);
+        String message = textView.getText().toString();
+        intent.putExtra(EXTRA_MESSAGE, message);
+        startActivity(intent);
 
     }
 }
