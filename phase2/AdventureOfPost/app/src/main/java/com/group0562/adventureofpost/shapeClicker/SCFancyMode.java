@@ -94,6 +94,9 @@ public class SCFancyMode extends ShapeClicker {
         for (Shape item: s_object) {
             item.draw(canvas);
         }
+        String combo_text = Long.toString(combo);
+         combo_text = combo_text + this.getCombos();
+         canvas.drawText(combo_text, 950, 1400,paint);
     }
 
     /**
@@ -157,5 +160,8 @@ public class SCFancyMode extends ShapeClicker {
         this.puzzleStats.setTime(TIME_LIMIT);
         this.puzzleStats.setLives(10);
         this.puzzleStats.setPoints(0);
+    }
+    public long getCombos(){
+        return this.combo;
     }
 }
