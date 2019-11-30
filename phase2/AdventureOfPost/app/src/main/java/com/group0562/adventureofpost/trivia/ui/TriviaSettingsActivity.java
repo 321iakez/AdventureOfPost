@@ -30,8 +30,6 @@ public class TriviaSettingsActivity extends AppCompatActivity {
     public void onClickSave(View view){
         Intent intent = new Intent(this, TriviaActivity.class);
         String saveState = getIntent().getStringExtra("save");
-        Trivia trivia = (Trivia)getIntent().getSerializableExtra("game");
-        intent.putExtra("game", trivia);
         intent.putExtra("save", saveState);
         startActivity(intent);
     }

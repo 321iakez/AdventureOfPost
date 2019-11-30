@@ -23,7 +23,7 @@ public class Trivia {
 
     public Trivia(int op, int diff){
         this.questions = genQuestions(op, diff);
-        puzzlesSolved = 0;
+        puzzlesSolved = 1;
 
 
     }

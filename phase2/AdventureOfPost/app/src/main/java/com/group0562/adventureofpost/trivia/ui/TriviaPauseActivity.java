@@ -12,15 +12,13 @@ import com.group0562.adventureofpost.R;
 import com.group0562.adventureofpost.trivia.Trivia;
 
 public class TriviaPauseActivity extends AppCompatActivity {
-    Trivia game;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trivia_pause);
 
-        game = (Trivia)getIntent().getSerializableExtra("game");
-        int[] values = game.getStats();
+        int[] values = getIntent().getIntArrayExtra("stats");
 
         //the player stats
         String correct, incorrect, score;
@@ -40,15 +38,13 @@ public class TriviaPauseActivity extends AppCompatActivity {
 
     public void onClickSave(View view){
         Intent intent = new Intent(this, GameActivity.class);
-        intent.putExtra("trivia", game);
-        intent.putExtra("triviaSave", game.saveGame());
+        intent.putExtra("triviaSave", getIntent().getStringExtra("save"));
         startActivity(intent);
     }
 
     public void onClickResume(View view){
         Intent intent = new Intent(this, TriviaActivity.class);
-        intent.putExtra("game", game);
-        intent.putExtra("save", game.saveGame());
+        intent.putExtra("triviaSave", getIntent().getStringExtra("save"));
         startActivity(intent);
     }
 }

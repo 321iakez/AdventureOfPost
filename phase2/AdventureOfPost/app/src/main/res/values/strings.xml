@@ -78,6 +78,7 @@
     <string name="TriviaDiff3">Hard</string>
     <string name="TriviaSelectDiff">Select Difficulty</string>
     <string name="title_activity_trivia_settings">Settings</string>
+    <string name="Trivia_op">Operation</string>
 
     <!-- Sync Preferences -->
     <string name="sync_title">Sync email periodically</string>

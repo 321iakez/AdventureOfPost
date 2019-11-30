@@ -12,8 +12,9 @@ import com.group0562.adventureofpost.trivia.Question;
 import com.group0562.adventureofpost.trivia.Trivia;
 import com.group0562.adventureofpost.trivia.TriviaPresenter;
 import com.group0562.adventureofpost.trivia.TriviaStats;
+import com.group0562.adventureofpost.trivia.TriviaView;
 
-public class TriviaActivity extends AppCompatActivity{
+public class TriviaActivity extends AppCompatActivity implements TriviaView {
 
     /**
     * an instance of Trivia
@@ -25,9 +26,33 @@ public class TriviaActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trivia);
-        int diff = Integer.parseInt(getIntent().getStringExtra("diff"));
-        int op = Integer.parseInt(getIntent().getStringExtra("op"));
-        presenter = new TriviaPresenter(this, new TriviaStats(100), op, diff);
+        int diff;
+        int op;
+        switch(getIntent().getStringExtra("diff")) {
+            case "Easy":
+                diff = 1;
+                break;
+            case "Medium":
+                diff = 2;
+                break;
+            default:
+                diff = 3;
+                break;
+        }
+
+        switch(getIntent().getStringExtra("op")) {
+            case "Addition":
+                op = 1;
+                break;
+            case "Subtraction":
+                op = 2;
+                break;
+            default:
+                op = 3;
+                break;
+        }
+
+        presenter = new TriviaPresenter(this, op, diff);
 
     }
 
@@ -86,6 +111,7 @@ public class TriviaActivity extends AppCompatActivity{
             mTextView4.setText(s[3]);
         } else {
             Intent intent = new Intent(this, TriviaEndActivity.class);
+            intent.putExtra("stats", presenter.getStats());
             startActivity(intent);
         }
     }
@@ -103,7 +129,19 @@ public class TriviaActivity extends AppCompatActivity{
      */
     public void onClickPause(View view){
         Intent intent = new Intent(this, TriviaPauseActivity.class);
+        intent.putExtra("save", presenter.saveGame());
+        intent.putExtra("stats", presenter.getStats());
         startActivity(intent);
+    }
+
+    @Override
+    public void onGameComplete() {
+
+    }
+
+    @Override
+    public void updateStats() {
+
     }
 
 

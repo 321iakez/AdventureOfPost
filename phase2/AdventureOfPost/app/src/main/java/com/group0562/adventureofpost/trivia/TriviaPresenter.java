@@ -11,9 +11,8 @@ public class TriviaPresenter extends Puzzles {
     private TriviaView view;
     private TriviaStats gameStats;
 
-    public TriviaPresenter(TriviaView view, TriviaStats gameStats, int op, int diff) {
+    public TriviaPresenter(TriviaView view, int op, int diff) {
         super();
-        this.gameStats = gameStats;
         this.view = view;
         game = new Trivia(op, diff);
         gameStats = new TriviaStats(op, diff);
@@ -52,7 +51,7 @@ public class TriviaPresenter extends Puzzles {
     }
 
     public String saveGame() {
-        return null;
+        return gameStats.saveGame();
     }
 
     public void loadGame(String saveState) {
@@ -64,6 +63,11 @@ public class TriviaPresenter extends Puzzles {
         this.gameStats = new TriviaStats(op, diff, correct, incorrect);
         this.game = new Trivia(op, diff, correct + incorrect);
     }
+
+    public int[] getStats() {
+        return gameStats.getStats();
+    }
+
     @Override
     public void onStop() {
         view.onGameComplete();
