@@ -1,11 +1,9 @@
 package com.group0562.adventureofpost.sudoku;
 
-import androidx.annotation.NonNull;
-
 import java.util.ArrayList;
 import java.util.List;
 
-public class Board {
+class Board {
 
     /**
      * The number of rows the board has.
@@ -47,23 +45,6 @@ public class Board {
         loadBoard(board);
     }
 
-    @NonNull
-    @Override
-    public String toString() {
-        StringBuilder result = new StringBuilder();
-        for (int row = 0; row < rows; row++) {
-            for (int col = 0; col < cols; col++) {
-                result.append(getCell(row, col).getValue());
-                if (getCell(row,col).isLocked()){
-                    result.append(1);
-                } else {
-                    result.append(0);
-                }
-            }
-        }
-        return result.toString();
-    }
-
     int getMoves() {
         return moves;
     }
@@ -78,6 +59,10 @@ public class Board {
 
     void addMoves() {
         moves++;
+    }
+
+    int getDim() {
+        return rows;
     }
 
     /**
@@ -136,8 +121,8 @@ public class Board {
         List<int[]> resetCells = new ArrayList<>();
         for (int row = 0; row < rows; row++) {
             for (int col = 0; col < cols; col++) {
-                if (!getCell(row, col).isLocked() && getCell(row, col).getValue() != 0) {
-                    getCell(row, col).setValue(0);
+                if (!board[row][col].isLocked() && board[row][col].getValue() != 0) {
+                    board[row][col].setValue(0);
                     resetCells.add(new int[]{row, col});
                 }
             }
@@ -167,8 +152,8 @@ public class Board {
      * @return a bool indicating whether there is horizontal conflict or not.
      */
     private boolean checkHorizConflict(int input, int row, int col) {
-        for (int currCol = 0; currCol < cols; currCol++) {
-            if (board[row][currCol].getValue() == input && currCol != col) {
+        for (int y = 0; y < cols; y++) {
+            if (board[row][y].getValue() == input && y != col) {
                 return true;
             }
         }
@@ -184,8 +169,8 @@ public class Board {
      * @return a bool indicating whether there is vertical conflict or not.
      */
     private boolean checkVertConflict(int input, int row, int col) {
-        for (int currRow = 0; currRow < rows; currRow++) {
-            if (board[currRow][col].getValue() == input && currRow != row) {
+        for (int x = 0; x < rows; x++) {
+            if (board[x][col].getValue() == input && x != row) {
                 return true;
             }
         }
@@ -201,11 +186,14 @@ public class Board {
      * @return a bool indicating whether there is region conflict or not.
      */
     private boolean checkRegionConflict(int input, int row, int col) {
-        int horReg = (col) / 3;
-        int verReg = (row) / 2;
-        for (int currRow = verReg * 2; currRow < verReg * 2 + 2; currRow++) {
-            for (int currCol = horReg * 3; currCol < horReg * 3 + 3; currCol++) {
-                if (board[currRow][currCol].getValue() == input && (currRow != row && currCol != col)) {
+        int horReg = col / 3;
+
+        int verFactor = (rows == 6) ? 2 : 3;
+        int verReg = row / verFactor;
+
+        for (int x = verReg * verFactor; x < verReg * verFactor + verFactor; x++) {
+            for (int y = horReg * 3; y < horReg * 3 + 3; y++) {
+                if (board[x][y].getValue() == input && (x != row && y != col)) {
                     return true;
                 }
             }
@@ -227,9 +215,5 @@ public class Board {
             }
         }
         return true;
-    }
-
-    int getDim() {
-        return rows;
     }
 }

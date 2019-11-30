@@ -3,8 +3,6 @@ package com.group0562.adventureofpost.sudoku;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,16 +12,16 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDialogFragment;
 
 import com.group0562.adventureofpost.R;
-import com.group0562.adventureofpost.auth.ui.LoginActivity;
 
 public class PauseDialog extends AppCompatDialogFragment {
-    @NonNull
 
-
-    private PauseDialogListener listener;
     private final String RETURN_NO_SAVE = "RETURN_NO_SAVE";
     private final String RETURN_SAVE = "RETURN_SAVE";
     private final String RESUME = "RESUME";
+
+    private PauseDialogListener listener;
+
+    @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -48,7 +46,7 @@ public class PauseDialog extends AppCompatDialogFragment {
         }
     }
 
-    public interface PauseDialogListener{
+    public interface PauseDialogListener {
         void saveGame(String mode);
     }
 }
