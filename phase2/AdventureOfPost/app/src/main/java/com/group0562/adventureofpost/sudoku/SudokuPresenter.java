@@ -11,12 +11,14 @@ public class SudokuPresenter extends Puzzles {
 
     private Board gameBoard;
     private SudokuView view;
+    private SudokuStats gameStats;
 
     private int currRow = -1;
     private int currCol = -1;
 
-    public SudokuPresenter(SudokuView view, int gridSize, String difficulty) {
-        super(new SudokuStats(100000));
+    public SudokuPresenter(SudokuView view, SudokuStats gameStats, int gridSize, String difficulty) {
+        super(gameStats);
+        this.gameStats = gameStats;
         this.view = view;
 
         int[][] parsedBoard = getRandomPuzzle(view.getPresetBoardFile(difficulty, gridSize), gridSize);
@@ -55,14 +57,13 @@ public class SudokuPresenter extends Puzzles {
     }
 
     /**
-     * This method returns the state of the board / game as a String, so that the state of the game
+     * This method returns the state of the board/game as a String, so that the state of the game
      * can be stored in the database.
      */
-    public String getGameState(){
-        String state = gameBoard.toString() + ',' + gameBoard.getMoves() + ',' +
-                gameBoard.getConflicts();
-        return state;
+    private String getGameState() {
+        return gameBoard.getBoardData() + ',' + gameStats.getMoves() + ',' + gameStats.getConflicts();
     }
+
     /**
      * Since every user input must follow not have any conflicts with the existing board, the game
      * if complete iff the board is full.
@@ -76,6 +77,8 @@ public class SudokuPresenter extends Puzzles {
 
     @Override
     public void update() {
+        view.updateStats();
+
         // Check complete
         checkComplete();
         if (getPuzzleComplete()) {
@@ -88,6 +91,7 @@ public class SudokuPresenter extends Puzzles {
         view.onGameComplete();
     }
 
+    /* Getter and setters for presenter class. */
     public int getCurrCol() {
         return currCol;
     }
@@ -104,6 +108,7 @@ public class SudokuPresenter extends Puzzles {
         this.currRow = currRow;
     }
 
+    /* Methods for UI to access the board class without jumping architectural layers. */
     public void removeNum() {
         gameBoard.insertNum(currRow, currCol, 0);
     }
@@ -121,23 +126,24 @@ public class SudokuPresenter extends Puzzles {
     }
 
     public List<int[]> resetGameBoard() {
+        gameStats.reset();
         return gameBoard.resetBoard();
     }
 
     public int getMoves() {
-        return gameBoard.getMoves();
+        return gameStats.getMoves();
     }
 
     public int getConflicts() {
-        return gameBoard.getConflicts();
+        return gameStats.getConflicts();
     }
 
     public void addMoves() {
-        gameBoard.addMoves();
+        gameStats.addMoves();
     }
 
     public void addConflicts() {
-        gameBoard.addConflicts();
+        gameStats.addConflicts();
     }
 
     public int getDim() {

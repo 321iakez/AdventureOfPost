@@ -2,9 +2,9 @@ package com.group0562.adventureofpost.sudoku.ui;
 
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.GridView;
 
 import java.util.ArrayList;
 
@@ -45,14 +45,13 @@ public class GridSizeAdaptor extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         Button button;
 
-        if (convertView == null) {
+        if (convertView == null || position == 0) {
             button = buttons.get(position);
         } else {
             button = (Button) convertView;
         }
 
-        AbsListView.LayoutParams params = new AbsListView.LayoutParams(columnWidth, columnHeight);
-        button.setLayoutParams(params);
+        button.setLayoutParams(new GridView.LayoutParams(columnWidth, columnHeight));
 
         return button;
     }

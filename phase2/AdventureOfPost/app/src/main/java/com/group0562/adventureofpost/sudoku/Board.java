@@ -1,11 +1,9 @@
 package com.group0562.adventureofpost.sudoku;
 
-import androidx.annotation.NonNull;
-
 import java.util.ArrayList;
 import java.util.List;
 
-public class Board {
+class Board {
 
     /**
      * The number of rows the board has.
@@ -23,16 +21,6 @@ public class Board {
     private Cell[][] board;
 
     /**
-     * Number of moves user made.
-     */
-    private int moves;
-
-    /**
-     * Number of conflict user caused.
-     */
-    private int conflicts;
-
-    /**
      * Constructor with preloaded board.
      *
      * @param board  the 2-D array representing the preloaded board.
@@ -47,37 +35,8 @@ public class Board {
         loadBoard(board);
     }
 
-    @NonNull
-    @Override
-    public String toString() {
-        StringBuilder result = new StringBuilder();
-        for (int row = 0; row < rows; row++) {
-            for (int col = 0; col < cols; col++) {
-                result.append(getCell(row, col).getValue());
-                if (getCell(row,col).isLocked()){
-                    result.append(1);
-                } else {
-                    result.append(0);
-                }
-            }
-        }
-        return result.toString();
-    }
-
-    int getMoves() {
-        return moves;
-    }
-
-    int getConflicts() {
-        return conflicts;
-    }
-
-    void addConflicts() {
-        conflicts++;
-    }
-
-    void addMoves() {
-        moves++;
+    int getDim() {
+        return rows;
     }
 
     /**
@@ -92,6 +51,21 @@ public class Board {
                 this.board[row][col] = cell;
             }
         }
+    }
+
+    /**
+     * Generates a string containing all numbers on the board.
+     *
+     * @return the string representation of board data.
+     */
+    String getBoardData() {
+        StringBuilder strBoard = new StringBuilder();
+        for (int row = 0; row < rows; row++) {
+            for (int col = 0; col < cols; col++) {
+                strBoard.append(board[row][col].getValue());
+            }
+        }
+        return strBoard.toString();
     }
 
     /**
@@ -128,16 +102,12 @@ public class Board {
      * @return a list of (rows, cols) that need to be updated.
      */
     List<int[]> resetBoard() {
-        // Reset stats
-        moves = 0;
-        conflicts = 0;
-
         // Reset board
         List<int[]> resetCells = new ArrayList<>();
         for (int row = 0; row < rows; row++) {
             for (int col = 0; col < cols; col++) {
-                if (!getCell(row, col).isLocked() && getCell(row, col).getValue() != 0) {
-                    getCell(row, col).setValue(0);
+                if (!board[row][col].isLocked() && board[row][col].getValue() != 0) {
+                    board[row][col].setValue(0);
                     resetCells.add(new int[]{row, col});
                 }
             }
@@ -167,8 +137,8 @@ public class Board {
      * @return a bool indicating whether there is horizontal conflict or not.
      */
     private boolean checkHorizConflict(int input, int row, int col) {
-        for (int currCol = 0; currCol < cols; currCol++) {
-            if (board[row][currCol].getValue() == input && currCol != col) {
+        for (int y = 0; y < cols; y++) {
+            if (board[row][y].getValue() == input && y != col) {
                 return true;
             }
         }
@@ -184,8 +154,8 @@ public class Board {
      * @return a bool indicating whether there is vertical conflict or not.
      */
     private boolean checkVertConflict(int input, int row, int col) {
-        for (int currRow = 0; currRow < rows; currRow++) {
-            if (board[currRow][col].getValue() == input && currRow != row) {
+        for (int x = 0; x < rows; x++) {
+            if (board[x][col].getValue() == input && x != row) {
                 return true;
             }
         }
@@ -201,11 +171,14 @@ public class Board {
      * @return a bool indicating whether there is region conflict or not.
      */
     private boolean checkRegionConflict(int input, int row, int col) {
-        int horReg = (col) / 3;
-        int verReg = (row) / 2;
-        for (int currRow = verReg * 2; currRow < verReg * 2 + 2; currRow++) {
-            for (int currCol = horReg * 3; currCol < horReg * 3 + 3; currCol++) {
-                if (board[currRow][currCol].getValue() == input && (currRow != row && currCol != col)) {
+        int horReg = col / 3;
+
+        int verFactor = (rows == 6) ? 2 : 3;
+        int verReg = row / verFactor;
+
+        for (int x = verReg * verFactor; x < verReg * verFactor + verFactor; x++) {
+            for (int y = horReg * 3; y < horReg * 3 + 3; y++) {
+                if (board[x][y].getValue() == input && (x != row && y != col)) {
                     return true;
                 }
             }
@@ -229,7 +202,42 @@ public class Board {
         return true;
     }
 
-    int getDim() {
-        return rows;
+    /**
+     * Sudoku Board Cell Class
+     */
+    class Cell {
+
+        /**
+         * The value stored in the cell (0 means empty)
+         */
+        private int value;
+
+        /**
+         * A flag to determine whether the cell can be changed or not
+         */
+        private boolean locked;
+
+        /**
+         * Value constructor.
+         *
+         * @param value  the value of the cell.
+         * @param locked whether the cell is locked or not.
+         */
+        Cell(int value, boolean locked) {
+            this.value = value;
+            this.locked = locked;
+        }
+
+        boolean isLocked() {
+            return locked;
+        }
+
+        int getValue() {
+            return value;
+        }
+
+        void setValue(int value) {
+            this.value = value;
+        }
     }
 }
