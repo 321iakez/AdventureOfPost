@@ -37,6 +37,8 @@ public class ShapeBuilder {
                     this.s_objects.add(new Square(temp_location[0], temp_location[1], paint));
                 }
                 else this.s_objects.add(new Circle(temp_location[0], temp_location[1], paint));
+                temp_location[0] = i;
+                temp_location[1] = j;
             }
         //  temp_location[0] = temp_location[0] + x_interval;
         //  temp_location[1] = temp_location[1] + y_interval;
