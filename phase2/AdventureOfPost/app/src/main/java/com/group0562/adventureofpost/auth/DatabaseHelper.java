@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import java.util.ArrayList;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
@@ -16,6 +17,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE users (username text primary key, password text)");
+        db.execSQL("CREATE TABLE gameScores (username text primary key, level integer, " +
+                "time integer, conflicts integer, moves integer, composite integer)");
     }
 
     @Override
@@ -23,6 +26,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS users");
         onCreate(db);
     }
+
+    long insertScore(String username, int level, long time, int conflicts, int moves, int composite){
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("username", username);
+        contentValues.put("time", (int)time);
+        contentValues.put("conflicts", conflicts);
+        contentValues.put("moves", moves);
+        contentValues.put("composite", composite);
+        return db.insert("gameScores", null, contentValues);
+    }
+
+
 
     long insert(String username, String password) {
         SQLiteDatabase db = getWritableDatabase();

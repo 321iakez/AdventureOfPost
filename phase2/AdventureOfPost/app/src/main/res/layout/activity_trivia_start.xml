@@ -6,49 +6,43 @@
     android:layout_height="match_parent"
     tools:context=".trivia.ui.TriviaStartActivity">
 
-    <TextView
-        android:id="@+id/TriviaSelectDiff"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/TriviaSelectDiff"
-        android:textAlignment="center"
-        android:textSize="36sp"
+    <Spinner
+        android:id="@+id/op"
+        android:layout_width="130dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginEnd="64dp"
+        android:layout_marginBottom="204dp"
+        android:background="@android:drawable/btn_dropdown"
+        android:spinnerMode="dropdown"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/difficultySelect"
+        app:layout_constraintHorizontal_bias="0.022"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/startButton"
+        app:layout_constraintVertical_bias="0.496" />
+
+    <Spinner
+        android:id="@+id/difficultySelect"
+        android:layout_width="130dp"
+        android:layout_height="60dp"
+        android:layout_marginEnd="48dp"
+        android:layout_marginBottom="204dp"
+        android:background="@android:drawable/btn_dropdown"
+        android:spinnerMode="dropdown"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/startButton" />
+
+    <Button
+        android:id="@+id/startButton"
+        android:layout_width="160dp"
+        android:layout_height="75dp"
+        android:text="@string/start_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <Button
-        android:id="@+id/TriviaDiffButton1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/TriviaDiff1"
-        android:onClick="onClickEasy"
-        app:layout_constraintBottom_toTopOf="@+id/TriviaDiffButton2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TriviaSelectDiff" />
-
-    <Button
-        android:id="@+id/TriviaDiffButton2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/TriviaDiff2"
-        android:onClick="onClickMedium"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TriviaSelectDiff" />
-
-    <Button
-        android:id="@+id/TriviaDiffButton3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/TriviaDiff3"
-        android:onClick="onClickHard"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TriviaDiffButton2" />
+        app:layout_constraintVertical_bias="0.388" />
 </androidx.constraintlayout.widget.ConstraintLayout>

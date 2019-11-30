@@ -13,7 +13,6 @@ import com.group0562.adventureofpost.trivia.Trivia;
 
 public class TriviaEndActivity extends AppCompatActivity {
 
-    Trivia game;
     /**
      * Handles when user completes all 3 questions
      * @param savedInstanceState the saved instance state
@@ -22,9 +21,7 @@ public class TriviaEndActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trivia_end);
-        game = (Trivia)getIntent().getSerializableExtra("game");
-        int[] values = game.getStats();
-        game.setPuzzleComplete(true);
+        int[] values = getIntent().getIntArrayExtra("stats");
 
         //the player stats
         String correct, incorrect, score;
@@ -49,7 +46,6 @@ public class TriviaEndActivity extends AppCompatActivity {
      */
     public void onClickNext(View view) {
         Intent intent = new Intent(this, GameActivity.class);
-        intent.putExtra("game", game);
         startActivity(intent);
     }
 }

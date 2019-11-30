@@ -12,6 +12,10 @@ public abstract class Puzzles extends Observable implements Serializable {
         puzzleStats = statsInst;
     }
 
+    //TODO make more generalized once PuzzleStats is deleted
+    public Puzzles(){}
+
+
     // TODO: add pause and resume
 
     public abstract void checkComplete();

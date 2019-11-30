@@ -4,7 +4,7 @@ import com.group0562.adventureofpost.AdventureOfPost;
 
 import java.util.Observable;
 
-public class SudokuStats extends AdventureOfPost.PuzzleStats {
+public class SudokuStats {
 
     /**
      * Number of moves user made.
@@ -15,23 +15,29 @@ public class SudokuStats extends AdventureOfPost.PuzzleStats {
      * Number of conflict user caused.
      */
     private int conflicts;
+    private long gameTime;
+    private long startTime;
 
-    public SudokuStats(long time) {
-        super(time);
+
+    public SudokuStats() {
+        moves = 0;
+        conflicts = 0;
+        startTime = System.currentTimeMillis();
+        gameTime = 0;
     }
 
-    @Override
+
     public void updatePoints() {
 
     }
 
-    @Override
+
     public void updateTime(){
         long currTime = System.currentTimeMillis();
-        this.setTime(currTime - getStartTime());
+        this.setGameTime(currTime - startTime);
     }
 
-    @Override
+
     public void update(Observable o, Object arg) {
         updateTime();
         updatePoints();
@@ -50,6 +56,13 @@ public class SudokuStats extends AdventureOfPost.PuzzleStats {
         return conflicts;
     }
 
+    long getGameTime(){
+        return gameTime;
+    }
+
+    void setGameTime(long gameTime){
+        this.gameTime = gameTime;
+    }
     void addConflicts() {
         conflicts++;
     }
