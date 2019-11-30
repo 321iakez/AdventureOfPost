@@ -5,7 +5,18 @@ import com.group0562.adventureofpost.AdventureOfPost;
 import java.util.Observable;
 
 public class SudokuStats extends AdventureOfPost.PuzzleStats {
-    SudokuStats(long time) {
+
+    /**
+     * Number of moves user made.
+     */
+    private int moves;
+
+    /**
+     * Number of conflict user caused.
+     */
+    private int conflicts;
+
+    public SudokuStats(long time) {
         super(time);
     }
 
@@ -24,5 +35,26 @@ public class SudokuStats extends AdventureOfPost.PuzzleStats {
     public void update(Observable o, Object arg) {
         updateTime();
         updatePoints();
+    }
+
+    void reset() {
+        moves = 0;
+        conflicts = 0;
+    }
+
+    int getMoves() {
+        return moves;
+    }
+
+    int getConflicts() {
+        return conflicts;
+    }
+
+    void addConflicts() {
+        conflicts++;
+    }
+
+    void addMoves() {
+        moves++;
     }
 }

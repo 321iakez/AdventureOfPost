@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.group0562.adventureofpost.GameActivity;
 import com.group0562.adventureofpost.R;
 import com.group0562.adventureofpost.sudoku.SudokuPresenter;
+import com.group0562.adventureofpost.sudoku.SudokuStats;
 import com.group0562.adventureofpost.sudoku.SudokuView;
 
 import java.io.InputStream;
@@ -37,7 +38,7 @@ public class SudokuActivity extends AppCompatActivity implements SudokuView, Pau
         int gridSize = getIntent().getStringExtra("gridSize").equals("6x6") ? 6 : 9;
         String difficulty = getIntent().getStringExtra("difficulty");
 
-        presenter = new SudokuPresenter(this, gridSize, difficulty);
+        presenter = new SudokuPresenter(this, new SudokuStats(1000), gridSize, difficulty);
 
         // Call helper methods to initialize components
         initSudokuGrid();

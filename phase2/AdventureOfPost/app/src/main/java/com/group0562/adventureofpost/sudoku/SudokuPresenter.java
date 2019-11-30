@@ -11,12 +11,14 @@ public class SudokuPresenter extends Puzzles {
 
     private Board gameBoard;
     private SudokuView view;
+    private SudokuStats gameStats;
 
     private int currRow = -1;
     private int currCol = -1;
 
-    public SudokuPresenter(SudokuView view, int gridSize, String difficulty) {
-        super(new SudokuStats(100000));
+    public SudokuPresenter(SudokuView view, SudokuStats gameStats, int gridSize, String difficulty) {
+        super(gameStats);
+        this.gameStats = gameStats;
         this.view = view;
 
         int[][] parsedBoard = getRandomPuzzle(view.getPresetBoardFile(difficulty, gridSize), gridSize);
@@ -59,7 +61,7 @@ public class SudokuPresenter extends Puzzles {
      * can be stored in the database.
      */
     private String getGameState() {
-        return gameBoard.getBoardData() + ',' + gameBoard.getMoves() + ',' + gameBoard.getConflicts();
+        return gameBoard.getBoardData() + ',' + gameStats.getMoves() + ',' + gameStats.getConflicts();
     }
 
     /**
@@ -124,23 +126,24 @@ public class SudokuPresenter extends Puzzles {
     }
 
     public List<int[]> resetGameBoard() {
+        gameStats.reset();
         return gameBoard.resetBoard();
     }
 
     public int getMoves() {
-        return gameBoard.getMoves();
+        return gameStats.getMoves();
     }
 
     public int getConflicts() {
-        return gameBoard.getConflicts();
+        return gameStats.getConflicts();
     }
 
     public void addMoves() {
-        gameBoard.addMoves();
+        gameStats.addMoves();
     }
 
     public void addConflicts() {
-        gameBoard.addConflicts();
+        gameStats.addConflicts();
     }
 
     public int getDim() {

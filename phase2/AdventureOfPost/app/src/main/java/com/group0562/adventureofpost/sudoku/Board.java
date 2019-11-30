@@ -21,16 +21,6 @@ class Board {
     private Cell[][] board;
 
     /**
-     * Number of moves user made.
-     */
-    private int moves;
-
-    /**
-     * Number of conflict user caused.
-     */
-    private int conflicts;
-
-    /**
      * Constructor with preloaded board.
      *
      * @param board  the 2-D array representing the preloaded board.
@@ -43,22 +33,6 @@ class Board {
         this.board = new Cell[rowDim][colDim];
 
         loadBoard(board);
-    }
-
-    int getMoves() {
-        return moves;
-    }
-
-    int getConflicts() {
-        return conflicts;
-    }
-
-    void addConflicts() {
-        conflicts++;
-    }
-
-    void addMoves() {
-        moves++;
     }
 
     int getDim() {
@@ -128,10 +102,6 @@ class Board {
      * @return a list of (rows, cols) that need to be updated.
      */
     List<int[]> resetBoard() {
-        // Reset stats
-        moves = 0;
-        conflicts = 0;
-
         // Reset board
         List<int[]> resetCells = new ArrayList<>();
         for (int row = 0; row < rows; row++) {
