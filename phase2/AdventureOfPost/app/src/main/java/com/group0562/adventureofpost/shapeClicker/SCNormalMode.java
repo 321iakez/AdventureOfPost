@@ -40,6 +40,12 @@ public class SCNormalMode extends Puzzles {
 
     private static long TIME_LIMIT;
 
+    private long pausing_time;
+
+    private long pausing_life;
+
+    private long pausing_points;
+
     /**
      * constructor for this SCNormalMode
      *
@@ -160,6 +166,9 @@ public class SCNormalMode extends Puzzles {
     }
 
     public void pause(){
+        pausing_life = puzzleStats.getLives();
+        pausing_points = puzzleStats.getPoints();
+        pausing_time = (long)puzzleStats.getTime();
 
     }
 }
