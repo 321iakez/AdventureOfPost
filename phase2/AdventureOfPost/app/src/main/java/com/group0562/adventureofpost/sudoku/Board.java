@@ -80,6 +80,21 @@ class Board {
     }
 
     /**
+     * Generates a string containing all numbers on the board.
+     *
+     * @return the string representation of board data.
+     */
+    String getBoardData() {
+        StringBuilder strBoard = new StringBuilder();
+        for (int row = 0; row < rows; row++) {
+            for (int col = 0; col < cols; col++) {
+                strBoard.append(board[row][col].getValue());
+            }
+        }
+        return strBoard.toString();
+    }
+
+    /**
      * Access cell at (row, col) on the game board.
      *
      * @param row the row number.
@@ -215,5 +230,44 @@ class Board {
             }
         }
         return true;
+    }
+
+    /**
+     * Sudoku Board Cell Class
+     */
+    class Cell {
+
+        /**
+         * The value stored in the cell (0 means empty)
+         */
+        private int value;
+
+        /**
+         * A flag to determine whether the cell can be changed or not
+         */
+        private boolean locked;
+
+        /**
+         * Value constructor.
+         *
+         * @param value  the value of the cell.
+         * @param locked whether the cell is locked or not.
+         */
+        Cell(int value, boolean locked) {
+            this.value = value;
+            this.locked = locked;
+        }
+
+        boolean isLocked() {
+            return locked;
+        }
+
+        int getValue() {
+            return value;
+        }
+
+        void setValue(int value) {
+            this.value = value;
+        }
     }
 }

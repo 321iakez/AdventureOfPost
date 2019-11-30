@@ -1,4 +1,4 @@
-package com.group0562.adventureofpost.sudoku;
+package com.group0562.adventureofpost.sudoku.ui;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -46,7 +46,7 @@ public class PauseDialog extends AppCompatDialogFragment {
         }
     }
 
-    public interface PauseDialogListener {
+    interface PauseDialogListener {
         void saveGame(String mode);
     }
 }

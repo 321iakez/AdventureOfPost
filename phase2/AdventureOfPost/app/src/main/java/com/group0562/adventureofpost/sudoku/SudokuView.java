@@ -7,4 +7,6 @@ public interface SudokuView {
     void onGameComplete();
 
     InputStream getPresetBoardFile(String difficulty, int gridSize);
+
+    void updateStats();
 }

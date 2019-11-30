@@ -15,7 +15,6 @@ import java.util.ArrayList;
 public class SudokuCellGridView extends GridView {
 
     private Button[][] gridCells;
-    private int sideLength;
     private SudokuPresenter presenter;
 
     /**
@@ -42,9 +41,8 @@ public class SudokuCellGridView extends GridView {
      *
      * @param context the context
      */
-    public void createTileButtons(SudokuPresenter presenter, Context context, int sideLength) {
-        this.presenter = presenter;
-        this.sideLength = sideLength;
+    void createTileButtons(Context context) {
+        int sideLength = presenter.getDim();
 
         gridCells = new Button[sideLength][sideLength];
         for (int row = 0; row != sideLength; row++) {
@@ -67,6 +65,10 @@ public class SudokuCellGridView extends GridView {
      */
     void loadValues(int row, int col, int value) {
         gridCells[row][col].setText(String.valueOf(value));
+    }
+
+    void setPresenter(SudokuPresenter presenter) {
+        this.presenter = presenter;
     }
 
     /**
@@ -95,10 +97,10 @@ public class SudokuCellGridView extends GridView {
         }
     }
 
-    public ArrayList<Button> getTileButtons() {
+    ArrayList<Button> getTileButtons() {
         ArrayList<Button> result = new ArrayList<>();
-        for (int row = 0; row != sideLength; row++) {
-            for (int col = 0; col != sideLength; col++) {
+        for (int row = 0; row != presenter.getDim(); row++) {
+            for (int col = 0; col != presenter.getDim(); col++) {
                 result.add(gridCells[row][col]);
             }
         }

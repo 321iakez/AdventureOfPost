@@ -55,14 +55,13 @@ public class SudokuPresenter extends Puzzles {
     }
 
     /**
-     * This method returns the state of the board / game as a String, so that the state of the game
+     * This method returns the state of the board/game as a String, so that the state of the game
      * can be stored in the database.
      */
-    public String getGameState(){
-        String state = gameBoard.toString() + ',' + gameBoard.getMoves() + ',' +
-                gameBoard.getConflicts();
-        return state;
+    private String getGameState() {
+        return gameBoard.getBoardData() + ',' + gameBoard.getMoves() + ',' + gameBoard.getConflicts();
     }
+
     /**
      * Since every user input must follow not have any conflicts with the existing board, the game
      * if complete iff the board is full.
@@ -76,6 +75,8 @@ public class SudokuPresenter extends Puzzles {
 
     @Override
     public void update() {
+        view.updateStats();
+
         // Check complete
         checkComplete();
         if (getPuzzleComplete()) {
@@ -88,6 +89,7 @@ public class SudokuPresenter extends Puzzles {
         view.onGameComplete();
     }
 
+    /* Getter and setters for presenter class. */
     public int getCurrCol() {
         return currCol;
     }
@@ -104,6 +106,7 @@ public class SudokuPresenter extends Puzzles {
         this.currRow = currRow;
     }
 
+    /* Methods for UI to access the board class without jumping architectural layers. */
     public void removeNum() {
         gameBoard.insertNum(currRow, currCol, 0);
     }

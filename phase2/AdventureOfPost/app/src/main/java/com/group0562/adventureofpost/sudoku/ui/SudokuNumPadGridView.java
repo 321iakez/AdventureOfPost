@@ -16,7 +16,6 @@ public class SudokuNumPadGridView extends GridView {
 
     private SudokuPresenter presenter;
     private SudokuCellGridView gridView;
-    private SudokuActivity activity;
 
     private Button[] numPad;
 
@@ -33,19 +32,21 @@ public class SudokuNumPadGridView extends GridView {
      *
      * @param gridView the context
      */
-    public void createTileButtons(SudokuPresenter presenter, Context context, SudokuCellGridView gridView, int numButtons) {
-        this.presenter = presenter;
+    public void createTileButtons(Context context, SudokuCellGridView gridView) {
         this.gridView = gridView;
-        this.activity = (SudokuActivity) context;
 
-        numPad = new Button[numButtons];
-        for (int num = 0; num != numButtons; num++) {
+        numPad = new Button[presenter.getDim()];
+        for (int num = 0; num != presenter.getDim(); num++) {
             Button cell = new Button(context);
             cell.setTag(String.valueOf(num + 1));
             cell.setText(String.valueOf(num + 1));
             cell.setOnClickListener(this::onClickNumpad);
             numPad[num] = cell;
         }
+    }
+
+    void setPresenter(SudokuPresenter presenter) {
+        this.presenter = presenter;
     }
 
     void onClickNumpad(View view) {
@@ -63,10 +64,10 @@ public class SudokuNumPadGridView extends GridView {
         // Load value on board
         if (updateSuccess) {
             gridView.loadValues(presenter.getCurrRow(), presenter.getCurrCol(), newValue);
-            activity.updateStats(true, false);
+            presenter.addMoves();
         } else {
             Toast.makeText(getContext(), "Conflict detected!", Toast.LENGTH_SHORT).show();
-            activity.updateStats(false, true);
+            presenter.addConflicts();
         }
 
         // Update
