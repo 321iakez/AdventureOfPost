@@ -27,7 +27,7 @@ public class TriviaActivity extends AppCompatActivity{
         setContentView(R.layout.activity_trivia);
         int diff = Integer.parseInt(getIntent().getStringExtra("diff"));
         int op = Integer.parseInt(getIntent().getStringExtra("op"));
-        presenter = new TriviaPresenter(this,new TriviaStats(100), op, diff);
+        presenter = new TriviaPresenter(this, new TriviaStats(100), op, diff);
 
     }
 

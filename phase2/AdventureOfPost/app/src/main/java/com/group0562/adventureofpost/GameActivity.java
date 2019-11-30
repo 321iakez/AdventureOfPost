@@ -9,12 +9,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.group0562.adventureofpost.shapeClicker.ui.SCSettingActivity;
-import com.group0562.adventureofpost.shapeClicker.ui.ShapeClickerActivity;
-import com.group0562.adventureofpost.sudoku.ui.SudokuActivity;
 import com.group0562.adventureofpost.sudoku.ui.SudokuStartActivity;
 import com.group0562.adventureofpost.trivia.Trivia;
-import com.group0562.adventureofpost.trivia.ui.TriviaOperationSelectActivity;
-import com.group0562.adventureofpost.trivia.ui.TriviaStartActivity;
 
 public class GameActivity extends AppCompatActivity {
     public final static String EXTRA_MESSAGE = "com.group0562.AdventureOfPost.MESSAGE";

@@ -2,6 +2,7 @@ package com.group0562.adventureofpost.trivia;
 
 import android.view.View;
 
+import com.group0562.adventureofpost.AdventureOfPost;
 import com.group0562.adventureofpost.Puzzles;
 
 public class TriviaPresenter extends Puzzles {
@@ -11,10 +12,11 @@ public class TriviaPresenter extends Puzzles {
     private TriviaStats gameStats;
 
     public TriviaPresenter(TriviaView view, TriviaStats gameStats, int op, int diff) {
-        super(gameStats);
+        super();
         this.gameStats = gameStats;
         this.view = view;
         game = new Trivia(op, diff);
+        gameStats = new TriviaStats(op, diff);
 
     }
 
@@ -27,6 +29,7 @@ public class TriviaPresenter extends Puzzles {
 
     public void onClick(int n){
         boolean correct = game.checkCorrect(n);
+        gameStats.updatePoints(correct);
     }
 
     public Question getQuestion(){
@@ -52,8 +55,14 @@ public class TriviaPresenter extends Puzzles {
         return null;
     }
 
-    public void loadGame() {
-
+    public void loadGame(String saveState) {
+        //decode string
+        int op = 1;
+        int diff = 1;
+        int correct = 1;
+        int incorrect = 1;
+        this.gameStats = new TriviaStats(op, diff, correct, incorrect);
+        this.game = new Trivia(op, diff, correct + incorrect);
     }
     @Override
     public void onStop() {
