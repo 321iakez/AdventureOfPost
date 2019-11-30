@@ -27,12 +27,6 @@ public class Triangle extends Shape {
         this.v1 = new Vertex();
         this.v2 = new Vertex();
         this.v3 = new Vertex();
-        v1.x = this.coordinate_x - this.radius;
-        v1.y = this.coordinate_y;
-        v2.x = this.coordinate_x;
-        v2.y = this.coordinate_y + sqrt(3) * this.radius;
-        v3.x = this.coordinate_x + this.radius;
-        v3.y = this.coordinate_y;
     }
 
     /**
@@ -40,6 +34,12 @@ public class Triangle extends Shape {
      */
     @Override
     public void draw(Canvas canvas) {
+        v1.x = this.coordinate_x - this.radius;
+        v1.y = this.coordinate_y;
+        v2.x = this.coordinate_x;
+        v2.y = this.coordinate_y + sqrt(3) * this.radius;
+        v3.x = this.coordinate_x + this.radius;
+        v3.y = this.coordinate_y;
         Path path = new Path();
         path.setFillType(Path.FillType.EVEN_ODD);
         path.moveTo((float) v1.x, (float) v1.y);

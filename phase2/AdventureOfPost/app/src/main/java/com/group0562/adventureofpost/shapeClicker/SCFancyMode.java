@@ -38,6 +38,8 @@ public class SCFancyMode extends ShapeClicker {
 
     private boolean within;
 
+    private int clicked_score;
+
     private static long TIME_LIMIT;
 
     /**
@@ -53,7 +55,8 @@ public class SCFancyMode extends ShapeClicker {
         INITIAL_PAINT = p;
         ShapeBuilder builder = new ShapeBuilder(50, 50, this.paint);
         this.s_object = builder.getS_objects();
-        for(Shape item: this.s_object){item.setLocation();}
+        //for(Shape item: this.s_object){item.setLocation();}
+        setDifficulty(SCSetting.getDifficulty());
     }
 
     /**
@@ -74,6 +77,7 @@ public class SCFancyMode extends ShapeClicker {
         for (int i = 0; i<this.s_object.size(); i++){
             if (this.s_object.get(i).checkWithin(cursor_x, cursor_y)){
                 this.within = true;
+                this.clicked_score = checkShape(this.s_object.get(i));
                 this.to_erase_object = i;
                 this.combo += 1;
             }
@@ -87,9 +91,29 @@ public class SCFancyMode extends ShapeClicker {
      * Draw the shape for this SCNormalMode
      */
     void draw(Canvas canvas) {
-        //checkChangedObject();
         for (Shape item: s_object) {
             item.draw(canvas);
+        }
+    }
+
+    /**
+     * Change the type of shape of the SCNormalMode
+     */
+    void setDifficulty(String difficulty) {
+        for(Shape item: s_object) {
+            item.setRadius(difficulty);
+        }
+    }
+
+    int checkShape(Shape shape){
+        if (shape instanceof Circle){
+            return 1;
+        }
+        else if (shape instanceof Square){
+            return 2;
+        }
+        else {
+            return 3;
         }
     }
 
@@ -100,7 +124,7 @@ public class SCFancyMode extends ShapeClicker {
     public void update() {
         super.update();
         if (this.within) {
-            this.puzzleStats.setPoints(1);
+            this.puzzleStats.setPoints(clicked_score);
             notifyObservers();
             s_object.remove(this.to_erase_object);
         }

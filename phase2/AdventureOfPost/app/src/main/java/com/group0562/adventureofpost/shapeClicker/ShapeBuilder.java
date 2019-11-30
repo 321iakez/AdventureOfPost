@@ -23,17 +23,17 @@ public class ShapeBuilder {
         double[] temp_location = {0, 0};
         double x_interval = SCFancyMode.bound[1]/num_of_shapes;
         double y_interval = SCFancyMode.bound[3]/num_of_shapes;
-        for(int i = 0; i <= Math.floor(num_of_shapes*3/5);i++){
+        for(int i = 0; i <= Math.floor(num_of_shapes*4/10);i++){
           temp_location[0] = temp_location[0] + x_interval;
           temp_location[1] = temp_location[1] + y_interval;
           this.s_objects.add(new Circle(temp_location[0], temp_location[1], paint));
         }
-        for(int i = 0; i <= Math.floor(num_of_shapes*2/5);i++){
+        for(int i = 0; i <= Math.floor(num_of_shapes*3/10);i++){
             temp_location[0] = temp_location[0] + x_interval;
             temp_location[1] = temp_location[1] + y_interval;
             this.s_objects.add(new Square(temp_location[0], temp_location[1], paint));
         }
-        for(int i = 0; i <= Math.floor(num_of_shapes/5);i++){
+        for(int i = 0; i <= Math.floor(num_of_shapes*3/10);i++){
             temp_location[0] = temp_location[0] + x_interval;
             temp_location[1] = temp_location[1] + y_interval;
             this.s_objects.add(new Triangle(temp_location[0], temp_location[1], paint));
