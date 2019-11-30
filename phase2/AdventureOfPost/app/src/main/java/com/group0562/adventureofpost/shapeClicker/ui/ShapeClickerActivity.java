@@ -9,7 +9,7 @@ import android.widget.Button;
 
 import com.group0562.adventureofpost.R;
 
-public class ShapeClickerActivity extends AppCompatActivity {
+public class ShapeClickerActivity extends AppCompatActivity{
     public final static String EXTRA_MESSAGE = "com.group0562.AdventureOfPost.MESSAGE";
     Button sc_setting;
     Button sc_done;
@@ -22,9 +22,9 @@ public class ShapeClickerActivity extends AppCompatActivity {
     }
 
     /*to start the setting screen once clicked*/
-    public void onClickSCSetting(View view) {
+    public void onClickSCExit(View view) {
         Intent intent = new Intent(this, SCSettingActivity.class);
-        sc_setting = findViewById(R.id.SCSettingButton);
+        sc_setting = findViewById(R.id.SCExitButton);
         startActivity(intent);
     }
 

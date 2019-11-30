@@ -90,7 +90,7 @@ public class SCFancyMode extends ShapeClicker {
     /**
      * Draw the shape for this SCNormalMode
      */
-    void draw(Canvas canvas) {
+    public void draw(Canvas canvas) {
         for (Shape item: s_object) {
             item.draw(canvas);
         }
@@ -120,7 +120,7 @@ public class SCFancyMode extends ShapeClicker {
     /**
      * update the SCNormalMode during the player plays the puzzle
      */
-    @Override
+
     public void update() {
         super.update();
         if (this.within) {
@@ -136,7 +136,6 @@ public class SCFancyMode extends ShapeClicker {
     /**
      * check if the puzzle is completed, or the player used up the lives
      */
-    @Override
     public void checkComplete() {
         if (this.puzzleStats.getPoints() == 70) {
             SCEndResultView.setBeat_the_game(true);
