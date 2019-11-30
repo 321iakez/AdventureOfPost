@@ -1,8 +1,5 @@
 package com.group0562.adventureofpost.sudoku;
 
-import java.util.ArrayList;
-import java.util.List;
-
 class Board {
 
     /**
@@ -98,21 +95,16 @@ class Board {
 
     /**
      * Resets the entire board to original state.
-     *
-     * @return a list of (rows, cols) that need to be updated.
      */
-    List<int[]> resetBoard() {
+    void resetBoard() {
         // Reset board
-        List<int[]> resetCells = new ArrayList<>();
         for (int row = 0; row < rows; row++) {
             for (int col = 0; col < cols; col++) {
                 if (!board[row][col].isLocked() && board[row][col].getValue() != 0) {
                     board[row][col].setValue(0);
-                    resetCells.add(new int[]{row, col});
                 }
             }
         }
-        return resetCells;
     }
 
     /**

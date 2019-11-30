@@ -63,7 +63,7 @@ public class SudokuNumPadGridView extends GridView {
 
         // Load value on board
         if (updateSuccess) {
-            gridView.loadValues(presenter.getCurrRow(), presenter.getCurrCol(), newValue);
+//            gridView.loadValues(presenter.getCurrRow(), presenter.getCurrCol(), newValue);
             presenter.addMoves();
         } else {
             Toast.makeText(getContext(), "Conflict detected!", Toast.LENGTH_SHORT).show();

@@ -63,22 +63,12 @@ public class SudokuCellGridView extends GridView {
      * @param col   the column number.
      * @param value the value to be displayed.
      */
-    void loadValues(int row, int col, int value) {
-        gridCells[row][col].setText(String.valueOf(value));
+    void loadValues(int row, int col, String value) {
+        gridCells[row][col].setText(value);
     }
 
     void setPresenter(SudokuPresenter presenter) {
         this.presenter = presenter;
-    }
-
-    /**
-     * Remove value for UI cell at (row, col).
-     *
-     * @param row the row number.
-     * @param col the column number.
-     */
-    void removeValue(int row, int col) {
-        gridCells[row][col].setText("");
     }
 
     void onClickGridCell(View view) {
