@@ -7,7 +7,7 @@ import com.group0562.adventureofpost.Puzzles;
 import com.group0562.adventureofpost.shapeClicker.ui.SCEndResultView;
 
 
-public class SCNormalMode extends Puzzles {
+public class SCNormalMode extends ShapeClicker {
     /* bound indexes follow from left, right, up and down */
     static double[] bound;
 

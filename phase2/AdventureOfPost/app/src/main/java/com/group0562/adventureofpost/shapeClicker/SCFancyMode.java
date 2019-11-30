@@ -8,7 +8,7 @@ import com.group0562.adventureofpost.shapeClicker.ui.SCEndResultView;
 
 import java.util.ArrayList;
 
-public class SCFancyMode extends Puzzles {
+public class SCFancyMode extends ShapeClicker {
     /* bound indexes follow from left, right, up and down */
     static double[] bound;
 
