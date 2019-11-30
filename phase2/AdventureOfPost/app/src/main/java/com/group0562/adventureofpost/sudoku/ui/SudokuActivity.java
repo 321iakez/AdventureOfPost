@@ -16,8 +16,10 @@ import com.group0562.adventureofpost.sudoku.SudokuView;
 
 import java.io.InputStream;
 import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 
-public class SudokuActivity extends AppCompatActivity implements SudokuView, PauseDialog.PauseDialogListener {
+public class SudokuActivity extends AppCompatActivity implements SudokuView, Observer, PauseDialog.PauseDialogListener {
 
     private SudokuPresenter presenter;
     private SudokuCellGridView gridView;
@@ -213,5 +215,19 @@ public class SudokuActivity extends AppCompatActivity implements SudokuView, Pau
             }
         }
         return result;
+    }
+
+    /**
+     * This method is called whenever the observed object is changed. An
+     * application calls an <tt>Observable</tt> object's
+     * <code>notifyObservers</code> method to have all the object's
+     * observers notified of the change.
+     *
+     * @param o   the observable object.
+     * @param arg an argument passed to the <code>notifyObservers</code>
+     */
+    @Override
+    public void update(Observable o, Object arg) {
+        
     }
 }
