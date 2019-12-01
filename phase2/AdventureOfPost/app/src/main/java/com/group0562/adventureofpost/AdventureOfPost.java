@@ -19,6 +19,7 @@ public class AdventureOfPost extends Application {
         private int points;
         private int lives;
 
+
         public PuzzleStats(){}
 
         public PuzzleStats(long time) {

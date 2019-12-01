@@ -1,69 +1,163 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/score_board_canvas"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_weight="7"
+    android:orientation="vertical"
     android:paddingLeft="16dp"
+    android:paddingTop="16dp"
     android:paddingRight="16dp"
     android:paddingBottom="16dp"
-    android:paddingTop="16dp"
-    android:layout_weight="7"
     tools:context=".sudoku.ui.SudokuScoreboardActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        >
+        android:layout_marginTop="20dp">
 
         <TextView
-            android:id="@+id/score_board_band"
+            android:id="@+id/time_board_band"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:text="@string/player_score"
-            android:textStyle="bold"
-            android:textSize="22sp"
+            android:layout_weight="1"
             android:gravity="center"
-            android:layout_weight="1" />
-
+            android:text="@string/player_score"
+            android:textSize="22sp"
+            android:textStyle="bold" />
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:layout_height="wrap_content">
+        android:id="@+id/time_layout">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:textSize="22sp"
-            android:gravity="center"
-            android:textStyle="bold"
             android:layout_weight="1.5"
-            android:text="@string/rank"/>
+            android:gravity="center"
+            android:text="@string/rank"
+            android:textSize="22sp"
+            android:textStyle="bold" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_weight="0.6"
+            android:gravity="center"
             android:text="@string/player"
-            android:textStyle="bold"
             android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/stat1Header"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
             android:gravity="center"
-            android:layout_weight="0.6" />
+            android:text="@string/time"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/stat1_layout"
+        android:orientation="vertical">
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:textSize="22sp"
+            android:layout_weight="1.5"
             android:gravity="center"
-            android:textStyle="bold"
-            android:layout_weight="1"
-            android:text="@string/score" />
+            android:text="@string/rank"
+            android:textSize="22sp"
+            android:textStyle="bold" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="0.6"
+            android:gravity="center"
+            android:text="@string/player"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/stat2Header"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/moves"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/stat2_layout"
+        android:orientation="vertical">
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1.5"
+            android:gravity="center"
+            android:text="@string/rank"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="0.6"
+            android:gravity="center"
+            android:text="@string/player"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/stat3Header"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/conflicts"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/stat3_layout"
+        android:orientation="vertical">
 
     </LinearLayout>
 

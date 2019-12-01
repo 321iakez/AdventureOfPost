@@ -1,18 +1,18 @@
 package com.group0562.adventureofpost.shapeClicker.ui;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
 import com.group0562.adventureofpost.GameActivity;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.group0562.adventureofpost.R;
 import com.group0562.adventureofpost.shapeClicker.SCSetting;
 import com.group0562.adventureofpost.shapeClicker.ShapeClickerGameView;
 
-public class ShapeClickerActivity extends AppCompatActivity implements SCPauseDialog.SCPauseDialogListener{
+public class ShapeClickerActivity extends AppCompatActivity implements SCPauseDialog.SCPauseDialogListener {
     public final static String EXTRA_MESSAGE = "com.group0562.AdventureOfPost.MESSAGE";
     Button sc_setting;
     Button sc_done;
@@ -45,7 +45,7 @@ public class ShapeClickerActivity extends AppCompatActivity implements SCPauseDi
         startActivity(intent);
     }
 
-    public void onClickSCPause(View view){
+    public void onClickSCPause(View view) {
         Intent intent = new Intent(this, SCPauseActivity.class);
         sc_pause_continue = findViewById(R.id.sc_pause_button);
         startActivity(intent);

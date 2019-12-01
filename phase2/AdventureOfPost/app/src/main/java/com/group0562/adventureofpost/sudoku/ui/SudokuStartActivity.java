@@ -2,7 +2,6 @@ package com.group0562.adventureofpost.sudoku.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
@@ -50,15 +49,8 @@ public class SudokuStartActivity extends AppCompatActivity {
     void addListenerScore() {
         findViewById(R.id.playerScoreButton).setOnClickListener(v -> {
             Intent intent = new Intent(this, SudokuScoreboardActivity.class);
-            intent.putExtra("perPlayer", true);
             intent.putExtra("username", getIntent().getStringExtra("username"));
-            startActivity(intent);
-        });
-
-        findViewById(R.id.globalScoreButton).setOnClickListener(v -> {
-            Intent intent = new Intent(this, SudokuScoreboardActivity.class);
-            intent.putExtra("perPlayer", false);
-            intent.putExtra("username", getIntent().getStringExtra("username"));
+            intent.putExtra("currGame", "sudoku");
             startActivity(intent);
         });
     }
