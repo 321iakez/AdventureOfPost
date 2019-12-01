@@ -14,7 +14,6 @@ import com.group0562.adventureofpost.shapeClicker.ShapeClickerGameView;
 
 public class ShapeClickerActivity extends AppCompatActivity implements SCPauseDialog.SCPauseDialogListener {
     public final static String EXTRA_MESSAGE = "com.group0562.AdventureOfPost.MESSAGE";
-    Button sc_setting;
     Button sc_done;
     Button sc_pause_continue;
     ShapeClickerGameView sc_view;
