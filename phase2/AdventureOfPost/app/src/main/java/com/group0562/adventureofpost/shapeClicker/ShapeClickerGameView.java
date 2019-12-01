@@ -44,8 +44,7 @@ public class ShapeClickerGameView extends View {
         this.setColor(SCSetting.getColor());
         ShapeClickerGameView.paint.setStrokeWidth(ShapeClickerGameView.Stroke_Thickness);
         double[] bounds = {0, 1000, 0, 1500};
-        SCNormalMode.setBound(bounds);
-        SCFancyMode.setBound(bounds);
+        ShapeClicker.setBound(bounds);
         if(SCSetting.getMode().equals("Normal")) {
             clicker = new SCNormalMode(60000, ShapeClickerGameView.paint);
         }

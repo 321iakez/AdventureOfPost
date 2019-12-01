@@ -9,8 +9,6 @@ import com.group0562.adventureofpost.shapeClicker.ui.SCEndResultView;
 import java.util.ArrayList;
 
 public class SCFancyMode extends ShapeClicker {
-    /* bound indexes follow from left, right, up and down */
-    static double[] bound;
 
     /**
      * the current shape that is being displayed to player to click
@@ -31,18 +29,9 @@ public class SCFancyMode extends ShapeClicker {
 
     private static Paint TEXT_PAINT;
 
-    private static Paint INITIAL_PAINT;
-
-    /**
-     * string recording the type of shape being tapped
-     */
-    private static String shape;
-
     private boolean within;
 
     private int clicked_score;
-
-    private static long TIME_LIMIT;
 
     /**
      * constructor for this SCNormalMode
@@ -52,24 +41,23 @@ public class SCFancyMode extends ShapeClicker {
      */
     SCFancyMode(long time, Paint p) {
         super(new ShapeClickerStats(time, SCSetting.getUsername()));
-        TIME_LIMIT = time;
         this.paint = p;
         TEXT_PAINT = new Paint();
         TEXT_PAINT.setColor(Color.BLACK);
         TEXT_PAINT.setStrokeWidth(3);
         TEXT_PAINT.setTextSize(50);
-        INITIAL_PAINT = p;
         ShapeBuilder builder = new ShapeBuilder(50, 50, this.paint);
         this.s_object = builder.getS_objects();
-        //for(Shape item: this.s_object){item.setLocation();}
         setDifficulty(SCSetting.getDifficulty());
     }
 
     /**
-     * set the boundary for this SCNormalMode
+     * Change the type of shape of the SCNormalMode
      */
-    static void setBound(double[] bound) {
-        SCFancyMode.bound = bound;
+    void setDifficulty(String difficulty) {
+        for(Shape item: s_object) {
+            item.setRadius(difficulty);
+        }
     }
 
     /**
@@ -106,16 +94,7 @@ public class SCFancyMode extends ShapeClicker {
         canvas.drawText(combo_text, 800, 1400, TEXT_PAINT);
     }
 
-    /**
-     * Change the type of shape of the SCNormalMode
-     */
-    void setDifficulty(String difficulty) {
-        for(Shape item: s_object) {
-            item.setRadius(difficulty);
-        }
-    }
-
-    int checkShape(Shape shape){
+    private int checkShape(Shape shape){
         if (shape instanceof Circle){
             return 1;
         }
@@ -159,7 +138,7 @@ public class SCFancyMode extends ShapeClicker {
         }
     }
 
-    public long getCombos(){
+    private long getCombos(){
         return this.combo;
     }
 }

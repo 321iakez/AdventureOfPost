@@ -25,35 +25,19 @@ public class ShapeBuilder {
         double[] temp_location = {50, 75};
         double x_interval = 100;
         double y_interval = 150;
-        for(int i = 50; i <= SCFancyMode.bound[1];i+= x_interval){
-            for(int j = 75; j <= SCFancyMode.bound[3];j+= y_interval){
-                if(new Random().nextDouble() <= 0.1){
+        for(int i = 50; i <= ShapeClicker.bound[1];i+= x_interval) {
+            for (int j = 75; j <= ShapeClicker.bound[3]; j += y_interval) {
+                if (new Random().nextDouble() <= 0.1) {
                     this.s_objects.add(new Triangle(temp_location[0], temp_location[1], paint));
-                }
-                else if(new Random().nextDouble() <= 0.1){
+                } else if (new Random().nextDouble() <= 0.1) {
                     continue;
-                }
-                else if(new Random().nextDouble() <= 0.3){
+                } else if (new Random().nextDouble() <= 0.3) {
                     this.s_objects.add(new Square(temp_location[0], temp_location[1], paint));
-                }
-                else this.s_objects.add(new Circle(temp_location[0], temp_location[1], paint));
+                } else this.s_objects.add(new Circle(temp_location[0], temp_location[1], paint));
                 temp_location[0] = i;
                 temp_location[1] = j;
             }
-        //  temp_location[0] = temp_location[0] + x_interval;
-        //  temp_location[1] = temp_location[1] + y_interval;
-        //  this.s_objects.add(new Circle(temp_location[0], temp_location[1], paint));
         }
-        //for(int i = 0; i <= Math.floor(num_of_shapes*2/5);i++){
-          //  temp_location[0] = temp_location[0] + x_interval;
-            //temp_location[1] = temp_location[1] + y_interval;
-         //   this.s_objects.add(new Square(temp_location[0], temp_location[1], paint));
-        //}
-        //for(int i = 0; i <= Math.floor(num_of_shapes/5);i++){
-          //  temp_location[0] = temp_location[0] + x_interval;
-            //temp_location[1] = temp_location[1] + y_interval;
-            //this.s_objects.add(new Triangle(temp_location[0], temp_location[1], paint));
-        //}
     }
 
     ArrayList<Shape> getS_objects(){return this.s_objects;}

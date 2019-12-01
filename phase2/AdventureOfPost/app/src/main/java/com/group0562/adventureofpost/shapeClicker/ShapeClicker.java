@@ -8,6 +8,8 @@ import com.group0562.adventureofpost.AdventureOfPost;
 public abstract class ShapeClicker{
     public ShapeClickerStats puzzleStats;
     private boolean puzzleComplete = false;
+    static double[] bound;
+
 
     ShapeClicker(ShapeClickerStats statsInst) {
             puzzleStats = statsInst;
@@ -28,6 +30,10 @@ public abstract class ShapeClicker{
         if (!puzzleComplete) {
             puzzleStats.setLives(0);
         }
+    }
+
+    static void setBound(double[] bound) {
+        ShapeClicker.bound = bound;
     }
 
     public void setPuzzleComplete(boolean b) {
