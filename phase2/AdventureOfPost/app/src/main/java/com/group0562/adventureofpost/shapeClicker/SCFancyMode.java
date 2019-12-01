@@ -128,7 +128,6 @@ public class SCFancyMode extends ShapeClicker {
         super.update();
         if (this.within) {
             this.puzzleStats.setPoints(clicked_score);
-            notifyObservers();
             s_object.remove(this.to_erase_object);
         }
         else {

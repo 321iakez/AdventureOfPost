@@ -8,7 +8,7 @@ import com.group0562.adventureofpost.Puzzles;
 
 import java.util.Observable;
 
-public abstract class ShapeClicker extends Observable {
+public abstract class ShapeClicker{
     public AdventureOfPost.PuzzleStats puzzleStats;
     private boolean puzzleComplete = false;
 
@@ -21,7 +21,6 @@ public abstract class ShapeClicker extends Observable {
 
     public void update() {
         checkComplete();
-        notifyObservers();
 
         if (puzzleStats.getTime() == 0 | puzzleComplete) {
             onStop();
