@@ -43,6 +43,4 @@ public class Circle extends Shape {
     boolean checkWithin(double cursor_x, double cursor_y) {
         return (sqrt(pow(this.coordinate_x - cursor_x, 2) + pow(this.coordinate_y - cursor_y, 2)) <= this.radius);
     }
-
-
 }
