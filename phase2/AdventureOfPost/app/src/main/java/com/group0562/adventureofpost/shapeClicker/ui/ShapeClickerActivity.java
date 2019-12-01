@@ -45,11 +45,11 @@ public class ShapeClickerActivity extends AppCompatActivity implements SCPauseDi
         startActivity(intent);
     }
 
-    public void onClickSCPause(View view){
-        Intent intent = new Intent(this, SCPauseActivity.class);
-        sc_pause_continue = findViewById(R.id.sc_pause_button);
-        startActivity(intent);
-    }
+   // public void onClickSCPause(View view){
+      //  Intent intent = new Intent(this, SCPauseActivity.class);
+       // sc_pause_continue = findViewById(R.id.sc_pause_button);
+       // startActivity(intent);
+    //}
 
     @Override
     public void saveGame(String mode) {

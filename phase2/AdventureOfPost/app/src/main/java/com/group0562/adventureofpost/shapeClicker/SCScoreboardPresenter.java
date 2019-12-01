@@ -13,7 +13,6 @@ import java.util.ArrayList;
 public class SCScoreboardPresenter {
     //private DatabaseMetaData database;
 
-    private long board;
     private SQLiteDatabase db;
 
 
