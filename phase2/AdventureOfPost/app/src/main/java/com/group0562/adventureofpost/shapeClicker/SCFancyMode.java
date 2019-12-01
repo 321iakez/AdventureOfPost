@@ -1,9 +1,9 @@
 package com.group0562.adventureofpost.shapeClicker;
 
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 
-import com.group0562.adventureofpost.Puzzles;
 import com.group0562.adventureofpost.shapeClicker.ui.SCEndResultView;
 
 import java.util.ArrayList;
@@ -29,6 +29,8 @@ public class SCFancyMode extends ShapeClicker {
      */
     private Paint paint;
 
+    private static Paint TEXT_PAINT;
+
     private static Paint INITIAL_PAINT;
 
     /**
@@ -52,6 +54,10 @@ public class SCFancyMode extends ShapeClicker {
         super(new ShapeClickerStats(time, SCSetting.getUsername()));
         TIME_LIMIT = time;
         this.paint = p;
+        TEXT_PAINT = new Paint();
+        TEXT_PAINT.setColor(Color.BLACK);
+        TEXT_PAINT.setStrokeWidth(3);
+        TEXT_PAINT.setTextSize(50);
         INITIAL_PAINT = p;
         ShapeBuilder builder = new ShapeBuilder(50, 50, this.paint);
         this.s_object = builder.getS_objects();
@@ -97,7 +103,7 @@ public class SCFancyMode extends ShapeClicker {
         }
         String combo_text = Long.toString(this.getCombos());
         combo_text = combo_text + " Combos";
-        canvas.drawText(combo_text, 900, 1400, paint);
+        canvas.drawText(combo_text, 800, 1400, TEXT_PAINT);
     }
 
     /**
@@ -152,15 +158,7 @@ public class SCFancyMode extends ShapeClicker {
             SCEndResultView.setBeat_the_game(false);
         }
     }
-    public static void reset(){
-        SCNormalMode sc = new SCNormalMode(TIME_LIMIT, INITIAL_PAINT);
-        sc.resetGame();
-    }
-    public void resetGame(){
-        this.puzzleStats.setTime(TIME_LIMIT);
-        this.puzzleStats.setLives(10);
-        this.puzzleStats.setPoints(0);
-    }
+
     public long getCombos(){
         return this.combo;
     }

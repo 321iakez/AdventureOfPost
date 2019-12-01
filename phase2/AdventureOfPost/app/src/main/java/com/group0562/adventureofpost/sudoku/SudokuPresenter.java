@@ -8,12 +8,31 @@ import java.util.Random;
 import java.util.Scanner;
 import com.group0562.adventureofpost.database.DatabaseHelper;
 
+/**
+ * Sudoku presenter class that bridges the UI and game logic.
+ */
 public class SudokuPresenter {
 
+    /**
+     * Virtual board instance.
+     */
     private Board gameBoard;
+
+    /**
+     * Sudoku UI view instance.
+     */
     private SudokuView view;
+
+    /**
+     * Sudoku stats tracker instance.
+     */
     private SudokuStats gameStats;
 
+    private SudokuStats.CountUpTimer timer;
+
+    /**
+     * Position of currently selected cell.
+     */
     private int currRow = -1;
     private int currCol = -1;
 
@@ -36,6 +55,14 @@ public class SudokuPresenter {
             this.gameBoard = new Board(savedBoard, lockedBoard, gridSize, gridSize);
         }
 
+
+        timer = new SudokuStats.CountUpTimer(3600000) {
+            @Override
+            void onTick(int second) {
+                gameStats.updateTime(second);
+            }
+        };
+        timer.start();
     }
 
     /**
@@ -133,6 +160,7 @@ public class SudokuPresenter {
     public boolean addNum(int input) {
         boolean insertSuccess = gameBoard.insertNum(currRow, currCol, input);
         if (insertSuccess && gameBoard.checkFull()) {
+            timer.cancel();
             view.onGameComplete();
         }
         return insertSuccess;
@@ -149,6 +177,9 @@ public class SudokuPresenter {
     public void resetGameBoard() {
         gameStats.reset();
         gameBoard.resetBoard();
+
+        timer.cancel();
+        timer.start();
     }
 
     public int getDim() {

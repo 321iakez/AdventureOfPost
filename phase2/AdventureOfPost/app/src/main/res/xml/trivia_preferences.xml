@@ -23,10 +23,30 @@
         -->
 
     <ListPreference
-        android:id="@+id/TriviaFontMenu"
+        android:id="@+id/TriviaColorMenu"
         android:defaultValue="true"
-        android:entries="@array/trivia_color_entries"
-        android:entryValues="@array/trivia_color_values"
-        android:key="@string/sc_color_key"
-        android:title="@string/sc_color_title" />
+        android:entries="@array/trivia_background_color_entries"
+        android:entryValues="@array/trivia_background_color_values"
+        android:key="@string/Trivia_BackgroundColor_key"
+        android:title="@string/Trivia_BackgroundColor_title" />
+
+    <ListPreference
+        android:id="@+id/TriviaButtonColorMenu"
+        android:defaultValue="true"
+        android:entries="@array/trivia_button_color_entries"
+        android:entryValues="@array/trivia_button_color_values"
+        android:key="@string/Trivia_ButtonColor_key"
+        android:title="@string/Trivia_ButtonColor_title" />
+
+    <ListPreference
+        android:id="@+id/TriviaTextColorMenu"
+        android:defaultValue="true"
+        android:entries="@array/trivia_text_color_entries"
+        android:entryValues="@array/trivia_text_color_values"
+        android:key="@string/Trivia_TextColor_key"
+        android:title="@string/Trivia_TextColor_title" />
+
+
 </PreferenceScreen>
+
+

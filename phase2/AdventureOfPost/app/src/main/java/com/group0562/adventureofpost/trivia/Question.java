@@ -22,11 +22,12 @@ public class Question implements Serializable {
 
     /**
      * Question constructor initializes variables by processing input string content
-    TODO Constructor and formatting of questions.txt need to change to implement shuffle
+     * the question is randomly generated based on difficulty and operation
     * @param diff the string for the difficulty
+     * @param op the arithmetic operation
      *
     */
-    Question(int diff, int gameType) {
+    Question(int diff, int op) {
         int bound, option;
         Random rand = new Random();
 
@@ -45,7 +46,7 @@ public class Question implements Serializable {
                 break;
         }
         String[] tempQuestions;
-        switch (gameType) {
+        switch (op) {
 
             case 1:
                 tempQuestions = createAdditionQuestion(bound);
@@ -81,6 +82,11 @@ public class Question implements Serializable {
         shuffleOptions(this.options);
     }
 
+
+    /**
+     * Helper function to create an addition question
+     * @param bound the upper bound for randomly-generated numbers
+     */
     private String[] createAdditionQuestion(int bound)
     {
         Random random = new Random();
@@ -94,6 +100,11 @@ public class Question implements Serializable {
     return info;
     }
 
+
+    /**
+     * Helper to create a subtraction question
+     * @param bound the upper bound for randomly-generated numbers
+     */
     private String[] createSubtractionQuestion(int bound)
     {
         Random random = new Random();
@@ -107,6 +118,10 @@ public class Question implements Serializable {
         return info;
     }
 
+    /**
+     * The helper function to create a multiplication question
+     * @param bound the maximum randomly-generated number
+     */
     private String[] createMultiplicationQuestion(int bound)
     {
         Random random = new Random();
@@ -122,6 +137,11 @@ public class Question implements Serializable {
 
     /**
      * Getter for question
+     */
+
+
+    /**
+     * Getter for the question
      */
     public String getQuestion() {
         return this.question;

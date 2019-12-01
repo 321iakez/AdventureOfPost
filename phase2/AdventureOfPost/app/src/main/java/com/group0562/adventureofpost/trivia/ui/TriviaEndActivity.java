@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.group0562.adventureofpost.GameActivity;
 import com.group0562.adventureofpost.R;
 import com.group0562.adventureofpost.trivia.Trivia;
+import com.group0562.adventureofpost.trivia.TriviaPresenter;
 
 public class TriviaEndActivity extends AppCompatActivity {
 
@@ -21,8 +22,9 @@ public class TriviaEndActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trivia_end);
-        int[] values = getIntent().getIntArrayExtra("stats");
-
+        TriviaPresenter presenter = new TriviaPresenter(getIntent().getStringExtra("username"), getIntent().getStringExtra("saveState"));
+        presenter.saveToDatabase(this);
+        int[] values = presenter.getStats();
         //the player stats
         String correct, incorrect, score;
         correct = "correct: " + values[0];

@@ -2,20 +2,23 @@ package com.group0562.adventureofpost.trivia.ui;
 
 //import statements
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.group0562.adventureofpost.R;
 import com.group0562.adventureofpost.trivia.Question;
 import com.group0562.adventureofpost.trivia.TriviaPresenter;
 
-public class TriviaActivity extends AppCompatActivity{
+public class TriviaActivity extends AppCompatActivity {
 
     /**
-    * an instance of Trivia
-    */
+     * an instance of Trivia
+     */
     TriviaPresenter presenter;
 
     //TODO implement later a database check to see if theres a previous saveState
@@ -23,27 +26,11 @@ public class TriviaActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trivia);
-        if (getIntent().hasExtra("color")){
-            System.out.println(getIntent().getStringExtra("color"));
-            switch (getIntent().getStringExtra("color")) {
-                case "White":
-                    setActivityBackgroundColor(0xFFFFFFFF);
-                    break;
-                case "Blue":
-                    setActivityBackgroundColor(0xFFB8D5D6);
-                    break;
-                case "Green":
-                    setActivityBackgroundColor(0xFF00FF00);
-                    break;
-                case "Yellow":
-                    setActivityBackgroundColor(0xFFFFFF00);
-                    break;
-            }
-        }
+
         int diff = 1;
         int op = 2;
-        if (getIntent().hasExtra("diff")){
-            switch(getIntent().getStringExtra("diff")) {
+        if (getIntent().hasExtra("diff")) {
+            switch (getIntent().getStringExtra("diff")) {
                 case "Easy":
                     diff = 1;
                     break;
@@ -68,24 +55,33 @@ public class TriviaActivity extends AppCompatActivity{
                     break;
             }
         }
-
-        if (getIntent().hasExtra("saveState")){
-            presenter = new TriviaPresenter(getIntent().getStringExtra("saveState"));
+        if (getIntent().hasExtra("saveState")) {
+            presenter = new TriviaPresenter(getIntent().getStringExtra("username"), getIntent().getStringExtra("saveState"));
         } else {
-            presenter = new TriviaPresenter(op, diff);
-
+            presenter = new TriviaPresenter(getIntent().getStringExtra("username"), op, diff);
         }
+        if (getIntent().hasExtra("backgroundColor")) {
+            presenter.setBackgroundColor(getIntent().getStringExtra("backgroundColor"));
+        }
+        if (getIntent().hasExtra("buttonColor")) {
+            presenter.setButtonColor(getIntent().getStringExtra("buttonColor"));
+        }
+        if (getIntent().hasExtra("textColor")) {
+            presenter.setTextColor(getIntent().getStringExtra("textColor"));
+        }
+        setActivityBackgroundColor();
         onClickOptionHelper();
 
     }
 
-    public void setActivityBackgroundColor(int color) {
+    public void setActivityBackgroundColor() {
         View view = this.getWindow().getDecorView();
-        view.setBackgroundColor(color);
+        view.setBackgroundColor(getColorValue(presenter.getBackgroundColor()));
     }
 
     /**
      * Handles case where user clicks first button
+     *
      * @param v the view
      */
     public void onClickA(View v) {
@@ -95,6 +91,7 @@ public class TriviaActivity extends AppCompatActivity{
 
     /**
      * Handles case where user clicks second button
+     *
      * @param v the view
      */
     public void onClickB(View v) {
@@ -104,6 +101,7 @@ public class TriviaActivity extends AppCompatActivity{
 
     /**
      * Handles case where user clicks third button
+     *
      * @param v the view
      */
     public void onClickC(View v) {
@@ -113,6 +111,7 @@ public class TriviaActivity extends AppCompatActivity{
 
     /**
      * Handles case where user clicks fourth button
+     *
      * @param v the view
      */
     public void onClickD(View v) {
@@ -120,34 +119,74 @@ public class TriviaActivity extends AppCompatActivity{
         onClickOptionHelper();
     }
 
+    int getColorValue(String color) {
+        int colorValue = 0xFFFFFFFF;
+        switch(color) {
+            case "Black":
+                colorValue = 0XFF000000;
+                break;
+            case "White":
+                colorValue = 0xFFFFFFFF;
+                break;
+            case "Blue":
+                colorValue = 0xFFB8D5D6;
+                break;
+            case "Green":
+                colorValue =  0xFF00FF00;
+                break;
+            case "Yellow":
+                colorValue = 0xFFFFFF00;
+                break;
+        }
+        return colorValue;
+    }
     /**
      * Semi-universal button helper function that updates the button, scores and question
      */
-    public void onClickOptionHelper(){
-        if (presenter.hasNext()){
+    public void onClickOptionHelper() {
+        if (presenter.hasNext()) {
             Question q = presenter.getQuestion();
             String[] s = q.getOptions();
-            TextView mTextView = findViewById(R.id.textView3);
-            mTextView.setText(q.getQuestion());
-            TextView mTextView1 = findViewById(R.id.button4);
-            mTextView1.setText(s[0]);
-            TextView mTextView2 = findViewById(R.id.button5);
-            mTextView2.setText(s[1]);
-            TextView mTextView3 = findViewById(R.id.button6);
-            mTextView3.setText(s[2]);
-            TextView mTextView4 = findViewById(R.id.button7);
-            mTextView4.setText(s[3]);
+
+            TextView question = findViewById(R.id.textView3);
+            question.setText(q.getQuestion());
+            question.setTextColor(getColorValue(presenter.getTextColor()));
+
+            Button buttonA = findViewById(R.id.button4);
+            buttonA.setText(s[0]);
+            buttonA.setTextColor(getColorValue(presenter.getTextColor()));
+            buttonA.setBackgroundColor(getColorValue(presenter.getButtonColor()));
+
+
+            Button buttonB = findViewById(R.id.button5);
+            buttonB.setText(s[1]);
+            buttonB.setTextColor(getColorValue(presenter.getTextColor()));
+            buttonB.setBackgroundColor(getColorValue(presenter.getButtonColor()));
+
+            Button buttonC = findViewById(R.id.button6);
+            buttonC.setText(s[2]);
+            buttonC.setTextColor(getColorValue(presenter.getTextColor()));
+            buttonC.setBackgroundColor(getColorValue(presenter.getButtonColor()));
+
+            Button buttonD = findViewById(R.id.button7);
+            buttonD.setText(s[3]);
+            buttonD.setTextColor(getColorValue(presenter.getTextColor()));
+            buttonD.setBackgroundColor(getColorValue(presenter.getButtonColor()));
+
+
         } else {
             Intent intent = new Intent(this, TriviaEndActivity.class);
-            intent.putExtra("stats", presenter.getStats());
+            intent.putExtra("saveState", presenter.saveGame());
+            intent.putExtra("username", getIntent().getStringExtra("username"));
             startActivity(intent);
         }
     }
 
-    public void onClickSettings(View view){
+    public void onClickSettings(View view) {
         Intent intent = new Intent(this, TriviaSettingsActivity.class);
         String saveState = presenter.saveGame();
-        intent.putExtra("save", saveState);
+        intent.putExtra("saveState", saveState);
+        intent.putExtra("username", getIntent().getStringExtra("username"));
         startActivity(intent);
     }
 
@@ -155,10 +194,11 @@ public class TriviaActivity extends AppCompatActivity{
      * Store the current game's info into user-specific data
      * TODO complete this function after database is figured out
      */
-    public void onClickPause(View view){
+    public void onClickPause(View view) {
         Intent intent = new Intent(this, TriviaPauseActivity.class);
-        intent.putExtra("save", presenter.saveGame());
+        intent.putExtra("saveState", presenter.saveGame());
         intent.putExtra("stats", presenter.getStats());
+        intent.putExtra("username", getIntent().getStringExtra("username"));
         startActivity(intent);
     }
 

@@ -13,6 +13,9 @@ import androidx.appcompat.app.AppCompatDialogFragment;
 
 import com.group0562.adventureofpost.R;
 
+/**
+ * Dialog that pops up when user presses pause button in game.
+ */
 public class SudokuPauseDialog extends AppCompatDialogFragment {
 
     private PauseDialogListener listener;
@@ -47,6 +50,6 @@ public class SudokuPauseDialog extends AppCompatDialogFragment {
     }
 
     enum Modes {
-        EXIT_NO_SAVE, EXIT_SAVE, RESUME
+        EXIT_NO_SAVE, RESUME, EXIT_SAVE
     }
 }

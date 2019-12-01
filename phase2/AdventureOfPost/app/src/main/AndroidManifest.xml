@@ -10,7 +10,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".sudoku.ui.SudokuScoreboardActivity" />
+        <activity android:name=".ScoreboardActivity" />
         <activity android:name=".sudoku.ui.SudokuStartActivity" />
         <activity android:name=".trivia.ui.TriviaPauseActivity" />
         <activity
@@ -26,7 +26,6 @@
         <activity android:name=".GameActivity" />
         <activity android:name=".trivia.ui.TriviaActivity" />
         <activity android:name=".shapeClicker.ui.ShapeClickerActivity" />
-        <activity android:name=".shapeClicker.ui.SCScoreBoardActivity" />
         <activity android:name=".sudoku.ui.SudokuActivity" />
         <activity android:name=".auth.ui.LoginActivity">
             <intent-filter>

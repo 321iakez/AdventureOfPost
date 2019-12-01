@@ -2,6 +2,10 @@ package com.group0562.adventureofpost.sudoku;
 
 import java.util.Observable;
 
+
+/**
+ * A virtual game board for Sudoku game.
+ */
 class Board extends Observable {
 
     /**

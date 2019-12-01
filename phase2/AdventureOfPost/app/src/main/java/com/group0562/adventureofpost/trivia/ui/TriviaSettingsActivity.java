@@ -31,11 +31,20 @@ public class TriviaSettingsActivity extends AppCompatActivity {
 
     public void onClickSave(View view){
         Intent intent = new Intent(this, TriviaActivity.class);
-        SharedPreferences trivia_color_list = PreferenceManager.getDefaultSharedPreferences(this);
-        String color = trivia_color_list.getString(getString(R.string.sc_color_key), "Black");
-        String saveState = getIntent().getStringExtra("save");
-        intent.putExtra("color", color);
-        intent.putExtra("save", saveState);
+        SharedPreferences trivia_BackgroundColor_list = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences trivia_ButtonColor_list = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences trivia_TextColor_list = PreferenceManager.getDefaultSharedPreferences(this);
+
+        String backgroundColor = trivia_BackgroundColor_list.getString(getString(R.string.Trivia_BackgroundColor_key), "Black");
+        String buttonColor = trivia_ButtonColor_list.getString(getString(R.string.Trivia_ButtonColor_key), "Black");
+        String textColor = trivia_TextColor_list.getString(getString(R.string.Trivia_TextColor_key), "Black");
+
+        intent.putExtra("saveState", getIntent().getStringExtra("saveState"));
+        intent.putExtra("backgroundColor", backgroundColor);
+        intent.putExtra("buttonColor", buttonColor);
+        intent.putExtra("textColor", textColor);
+        intent.putExtra("username", getIntent().getStringExtra("username"));
+
         startActivity(intent);
     }
 

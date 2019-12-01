@@ -8,17 +8,24 @@ import android.widget.Button;
 
 import java.util.ArrayList;
 
+
+/**
+ * A GridView adaptor that changes the buttons on the GridView based on the grid size user selects.
+ */
 public class GridSizeAdaptor extends BaseAdapter {
 
     /**
-     * the list of buttons in order
+     * The list of buttons in order.
      */
     private ArrayList<Button> buttons;
 
+    /**
+     * A flag determine whether the GridView is a numpad or not.
+     */
     private boolean isNumpad;
 
     /**
-     * the width and the height of a column
+     * The width and the height of a column.
      */
     private int columnWidth, columnHeight;
 

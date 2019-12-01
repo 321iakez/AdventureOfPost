@@ -11,9 +11,6 @@ import android.view.View;
 
 import androidx.annotation.Nullable;
 
-import com.group0562.adventureofpost.AdventureOfPost;
-import com.group0562.adventureofpost.Puzzles;
-
 public class ShapeClickerGameView extends View {
 
     /**
@@ -36,7 +33,7 @@ public class ShapeClickerGameView extends View {
     /**
      * the three stats of the puzzle
      */
-    AdventureOfPost.PuzzleStats puzzleStats;
+    ShapeClickerStats puzzleStats;
 
     /**
      * constructor for ShapeClickerGameView for player to react with the puzzle, inherit the View class

@@ -12,15 +12,17 @@ import com.group0562.adventureofpost.database.DatabaseHelper;
 import java.util.Observable;
 
 
-public class ShapeClickerStats extends AdventureOfPost.PuzzleStats {
-
-    public final static String SC_STAT1 = "time";
-    public final static String SC_STAT2 = "score";
-    public final static String SC_STAT3 = "lives";
-
+public class ShapeClickerStats{
     private Paint paint;
     private static long TIME_LIMIT;
     private String username;
+    private long time;
+    private long startTime;
+    private int points;
+    private int lives;
+    public final static String SC_STAT1 = "time";
+    public final static String SC_STAT2 = "score";
+    public final static String SC_STAT3 = "lives";
 
     /**
      * constructor of ShapeClickerStats, inherited from PuzzleStats
@@ -28,9 +30,12 @@ public class ShapeClickerStats extends AdventureOfPost.PuzzleStats {
      * @param time the time limit for SCNormalMode
      */
     public ShapeClickerStats(long time, String username) {
-        super(time);
+        this.time = time;
+        this.points = 0;
+        this.startTime = System.currentTimeMillis();
+        this.lives = 10;
         TIME_LIMIT = time;
-        this.username = username;
+        this.username = SCSetting.getUsername();
         this.paint = new Paint();
         this.paint.setColor(Color.BLACK);
         this.paint.setStrokeWidth(3);
@@ -40,13 +45,11 @@ public class ShapeClickerStats extends AdventureOfPost.PuzzleStats {
     /**
      * update the time and points for the SCNormalMode
      */
-    @Override
     public void update(Observable o, Object arg) {
         updateTime();
         updatePoints();
     }
 
-    @Override
     public void updatePoints() {
         setPoints(1);
     }
@@ -70,6 +73,36 @@ public class ShapeClickerStats extends AdventureOfPost.PuzzleStats {
         String points_text = "Points: " + this.getPoints();
         String combined = time_text + " " + points_text + " " + lives_text;
         canvas.drawText(combined, 25, 40, paint);
+    }
+
+    public void setLives(int lives) {
+        this.lives -= lives;
+    }
+
+    public void setPoints(int pt) {
+        this.points += pt;
+    }
+
+    public void setTime(long time){this.time = time;}
+
+    public int getPoints() {
+        return points;
+    }
+
+    public int getLives() {
+        return lives;
+    }
+
+    public double getTime() {
+        return time;
+    }
+
+    public long getStartTime(){return startTime;}
+
+    public void updateTime() {
+        long currTime = System.currentTimeMillis();
+        time -= (currTime - startTime);
+        startTime = currTime;
     }
 
     void saveStats(Context context) {
