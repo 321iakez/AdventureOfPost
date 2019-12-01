@@ -37,6 +37,9 @@ public class TriviaStartActivity extends AppCompatActivity {
         addListenerScore();
     }
 
+    /**
+     * method to start passes operation and difficulty user selects
+     */
     void addListenerStart() {
         findViewById(R.id.startButton).setOnClickListener(v -> {
             Intent intent = new Intent(this, TriviaActivity.class);
@@ -47,6 +50,9 @@ public class TriviaStartActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Method for user to view scoreboard
+     */
     void addListenerScore() {
         findViewById(R.id.playerScoreButton).setOnClickListener(v -> {
             Intent intent = new Intent(this, ScoreboardActivity.class);

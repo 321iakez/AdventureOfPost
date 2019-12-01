@@ -15,7 +15,7 @@ import com.group0562.adventureofpost.trivia.TriviaPresenter;
 public class TriviaEndActivity extends AppCompatActivity {
 
     /**
-     * Handles when user completes all 3 questions
+     * Displays stats of user after they have completed all 10 questions
      * @param savedInstanceState the saved instance state
      */
     @Override
