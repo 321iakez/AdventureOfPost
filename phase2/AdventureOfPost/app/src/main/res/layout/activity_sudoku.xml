@@ -88,6 +88,16 @@
                 android:text="@string/conflict_stats_header"
                 android:textAlignment="center" />
 
+            <TextView
+                android:id="@+id/statsTimeHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:minWidth="30dp"
+                android:text="@string/time_stats_header"
+                android:textAlignment="center" />
+
         </TableRow>
 
         <TableRow
@@ -108,6 +118,16 @@
 
             <TextView
                 android:id="@+id/statsConflictNum"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:minWidth="30dp"
+                android:text=""
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/statsTime"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"

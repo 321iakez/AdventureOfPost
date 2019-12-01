@@ -32,10 +32,31 @@
         android:id="@+id/startButton"
         android:layout_width="160dp"
         android:layout_height="75dp"
-        android:layout_marginTop="260dp"
+        android:layout_marginTop="120dp"
         android:text="@string/start_button"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/playerScoreButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="68dp"
+        android:text="@string/player_scoreboard_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/difficultySelect" />
+
+    <Button
+        android:id="@+id/globalScoreButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="68dp"
+        android:layout_marginEnd="60dp"
+        android:text="@string/global_scoreboard_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/difficultySelect" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

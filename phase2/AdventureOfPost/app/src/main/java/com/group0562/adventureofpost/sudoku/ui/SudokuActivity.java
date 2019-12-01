@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.ViewTreeObserver;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.group0562.adventureofpost.GameActivity;
@@ -18,18 +17,16 @@ import java.io.InputStream;
 import java.util.Observable;
 import java.util.Observer;
 
-public class SudokuActivity extends AppCompatActivity implements SudokuView, Observer, PauseDialog.PauseDialogListener {
+public class SudokuActivity extends AppCompatActivity implements SudokuView, Observer,
+        SudokuPauseDialog.PauseDialogListener, SudokuEndDialog.EndDialogListener {
 
     private SudokuPresenter presenter;
     private SudokuCellGridView gridView;
     private SudokuNumPadGridView numPadView;
 
-    private final String RETURN_NO_SAVE = "RETURN_NO_SAVE";
-    private final String RETURN_SAVE = "RETURN_SAVE";
-    private final String RESUME = "RESUME";
-
     private TextView moveStats;
     private TextView conflictStats;
+    private TextView timeStats;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,11 +35,11 @@ public class SudokuActivity extends AppCompatActivity implements SudokuView, Obs
 
         int gridSize = getIntent().getStringExtra("gridSize").equals("6x6") ? 6 : 9;
         String difficulty = getIntent().getStringExtra("difficulty");
+        String username = getIntent().getStringExtra("username");
 
-        presenter = new SudokuPresenter(this, new SudokuStats(), gridSize, difficulty);
-
+        // Create presenter
+        presenter = new SudokuPresenter(this, new SudokuStats(username), gridSize, difficulty);
         presenter.addObserver(this);
-
 
         // Call helper methods to initialize components
         initSudokuGrid();
@@ -53,8 +50,8 @@ public class SudokuActivity extends AppCompatActivity implements SudokuView, Obs
         addListenerResetButton();
         addListenerExitButton();
 
-        // Display initial board values
-        presenter.update();
+        // Update the board to insert board data into newly generated grid
+        updateBoard();
     }
 
     /**
@@ -88,7 +85,7 @@ public class SudokuActivity extends AppCompatActivity implements SudokuView, Obs
     private void initSudokuNumpad() {
         numPadView = findViewById(R.id.numPad);
         numPadView.setPresenter(presenter);
-        numPadView.createTileButtons(this, gridView);
+        numPadView.createTileButtons(this);
         numPadView.setNumColumns(presenter.getDim());
 
         // Observer sets up desired dimensions as well as calls our displayGrid function
@@ -113,63 +110,72 @@ public class SudokuActivity extends AppCompatActivity implements SudokuView, Obs
 
         conflictStats = findViewById(R.id.statsConflictNum);
         conflictStats.setText("0");
+
+        timeStats = findViewById(R.id.statsTime);
+        timeStats.setText("0");
     }
 
     private void addListenerRemoveButton() {
-        findViewById(R.id.removeButton).setOnClickListener(v -> {
-            presenter.removeNum();
-
-            // Update
-            presenter.update();
-        });
+        findViewById(R.id.removeButton).setOnClickListener(v -> presenter.removeNum());
     }
 
     private void addListenerResetButton() {
-        findViewById(R.id.resetButton).setOnClickListener(v -> {
-            presenter.resetGameBoard();
-
-            // Update
-            presenter.update();
-        });
+        findViewById(R.id.resetButton).setOnClickListener(v -> presenter.resetGameBoard());
     }
 
     private void addListenerExitButton() {
         findViewById(R.id.exit_button).setOnClickListener(v -> {
-            PauseDialog pauseDialog = new PauseDialog();
+            SudokuPauseDialog pauseDialog = new SudokuPauseDialog();
             pauseDialog.show(getSupportFragmentManager(), "pause dialog");
         });
     }
 
-    @Override
-    public void saveGame(String mode) {
-        if (mode.equals(RETURN_NO_SAVE)) {
-            System.out.println("returned without save");
-            Intent intent = new Intent(this, SudokuStartActivity.class);
-            startActivity(intent);
+    private void updateBoard() {
+        for (int row = 0; row < presenter.getDim(); row++) {
+            for (int col = 0; col < presenter.getDim(); col++) {
+                String loadValue = "";
+                if (presenter.getCellValue(row, col) != 0) {
+                    loadValue = String.valueOf(presenter.getCellValue(row, col));
+                }
 
-        } else if (mode.equals(RETURN_SAVE)) {
-            System.out.println("returned with save");
-        } else {
-            System.out.println("Resumed");
+                gridView.loadValues(row, col, loadValue);
+            }
         }
     }
 
     @Override
-    public void onGameComplete() {
-        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getApplicationContext());
-        dialogBuilder.setTitle("Puzzle Completed!")
-                .setMessage("Congratulation! You have completed the puzzle.")
-                .setPositiveButton("Restart", (dialog, which) -> {
-                    Intent intent = new Intent(this, SudokuStartActivity.class);
-                    this.startActivity(intent);
-                })
-                .setNeutralButton("Home", (dialog, which) -> {
-                    Intent intent = new Intent(this, GameActivity.class);
-                    this.startActivity(intent);
-                });
+    public void saveGame(SudokuPauseDialog.Modes mode) {
+        if (mode.equals(SudokuPauseDialog.Modes.EXIT_NO_SAVE)) {
+            System.out.println("returned without save");
+            Intent intent = new Intent(this, GameActivity.class);
+            intent.putExtra("username", getIntent().getStringExtra("username"));
+            startActivity(intent);
 
-        AlertDialog dialog = dialogBuilder.create();
-        dialog.show();
+        } else if (mode.equals(SudokuPauseDialog.Modes.EXIT_SAVE)) {
+            System.out.println("returned with save");
+            presenter.saveStats(this);
+
+            Intent intent = new Intent(this, GameActivity.class);
+            intent.putExtra("username", getIntent().getStringExtra("username"));
+            startActivity(intent);
+        }
+    }
+
+    @Override
+    public void endGame(SudokuEndDialog.Modes mode) {
+        if (mode.equals(SudokuEndDialog.Modes.EXIT_STAT)) {
+            presenter.saveStats(this);
+        }
+
+        Intent intent = new Intent(this, GameActivity.class);
+        intent.putExtra("username", getIntent().getStringExtra("username"));
+        startActivity(intent);
+    }
+
+    @Override
+    public void onGameComplete() {
+        SudokuEndDialog dialog = new SudokuEndDialog();
+        dialog.show(getSupportFragmentManager(), "end dialog");
     }
 
     @Override
@@ -202,18 +208,12 @@ public class SudokuActivity extends AppCompatActivity implements SudokuView, Obs
      */
     @Override
     public void update(Observable o, Object arg) {
+        // Update stats display
         moveStats.setText(String.valueOf(presenter.getMoves()));
         conflictStats.setText(String.valueOf(presenter.getConflicts()));
+        timeStats.setText(String.valueOf(presenter.getTime()));
 
-        for (int row = 0; row < presenter.getDim(); row++) {
-            for (int col = 0; col < presenter.getDim(); col++) {
-                String loadValue = "";
-                if (presenter.getCellValue(row, col) != 0) {
-                    loadValue = String.valueOf(presenter.getCellValue(row, col));
-                }
-
-                gridView.loadValues(row, col, loadValue);
-            }
-        }
+        // Update board display
+        updateBoard();
     }
 }

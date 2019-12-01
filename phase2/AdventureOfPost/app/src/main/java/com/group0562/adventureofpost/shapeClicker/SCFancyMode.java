@@ -90,10 +90,13 @@ public class SCFancyMode extends ShapeClicker {
     /**
      * Draw the shape for this SCNormalMode
      */
-    void draw(Canvas canvas) {
+    public void draw(Canvas canvas) {
         for (Shape item: s_object) {
             item.draw(canvas);
         }
+        String combo_text = Long.toString(combo);
+         combo_text = combo_text + this.getCombos();
+         canvas.drawText(combo_text, 950, 1400,paint);
     }
 
     /**
@@ -120,12 +123,11 @@ public class SCFancyMode extends ShapeClicker {
     /**
      * update the SCNormalMode during the player plays the puzzle
      */
-    @Override
+
     public void update() {
         super.update();
         if (this.within) {
             this.puzzleStats.setPoints(clicked_score);
-            notifyObservers();
             s_object.remove(this.to_erase_object);
         }
         else {
@@ -136,7 +138,6 @@ public class SCFancyMode extends ShapeClicker {
     /**
      * check if the puzzle is completed, or the player used up the lives
      */
-    @Override
     public void checkComplete() {
         if (this.puzzleStats.getPoints() == 70) {
             SCEndResultView.setBeat_the_game(true);
@@ -158,5 +159,8 @@ public class SCFancyMode extends ShapeClicker {
         this.puzzleStats.setTime(TIME_LIMIT);
         this.puzzleStats.setLives(10);
         this.puzzleStats.setPoints(0);
+    }
+    public long getCombos(){
+        return this.combo;
     }
 }

@@ -130,7 +130,6 @@ public class SCNormalMode extends ShapeClicker {
         super.update();
         if (this.within) {
             this.puzzleStats.setPoints(1);
-            notifyObservers();
             s_object.setLocation();
         } else {
             this.puzzleStats.setLives(1);

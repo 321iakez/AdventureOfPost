@@ -1,6 +1,8 @@
 package com.group0562.adventureofpost.sudoku;
 
-class Board {
+import java.util.Observable;
+
+class Board extends Observable {
 
     /**
      * The number of rows the board has.
@@ -48,6 +50,9 @@ class Board {
                 this.board[row][col] = cell;
             }
         }
+
+        setChanged();
+        notifyObservers();
     }
 
     /**
@@ -90,6 +95,9 @@ class Board {
             return true;
         }
 
+        setChanged();
+        notifyObservers();
+
         return false;
     }
 
@@ -105,6 +113,9 @@ class Board {
                 }
             }
         }
+
+        setChanged();
+        notifyObservers();
     }
 
     /**

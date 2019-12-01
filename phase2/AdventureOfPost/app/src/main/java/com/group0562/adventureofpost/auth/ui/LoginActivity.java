@@ -57,6 +57,7 @@ public class LoginActivity extends AppCompatActivity implements AuthView {
     public void onSuccess() {
         Toast.makeText(getApplicationContext(), "successfully login", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(this, GameActivity.class);
+        intent.putExtra("username", username.getText().toString());
         startActivity(intent);
     }
 

@@ -1,13 +1,13 @@
 package com.group0562.adventureofpost.sudoku;
 
-import com.group0562.adventureofpost.Puzzles;
+import android.content.Context;
 
 import java.io.InputStream;
-import java.util.Observable;
+import java.util.Observer;
 import java.util.Random;
 import java.util.Scanner;
 
-public class SudokuPresenter extends Observable {
+public class SudokuPresenter {
 
     private Board gameBoard;
     private SudokuView view;
@@ -55,32 +55,17 @@ public class SudokuPresenter extends Observable {
         return puzzle;
     }
 
+    public void addObserver(Observer observer) {
+        gameStats.addObserver(observer);
+        gameBoard.addObserver(observer);
+    }
+
     /**
      * This method returns the state of the board/game as a String, so that the state of the game
      * can be stored in the database.
      */
     private String getGameState() {
         return gameBoard.getBoardData() + ',' + gameStats.getMoves() + ',' + gameStats.getConflicts();
-    }
-
-    /**
-     * Since every user input must follow not have any conflicts with the existing board, the game
-     * if complete iff the board is full.
-     */
-
-    public void update() {
-        // Check complete
-        if (gameBoard.checkFull()) {
-            onStop();
-        }
-
-        setChanged();
-        notifyObservers();
-    }
-
-
-    public void onStop() {
-        view.onGameComplete();
     }
 
     /* Getter and setters for presenter class. */
@@ -100,13 +85,17 @@ public class SudokuPresenter extends Observable {
         this.currRow = currRow;
     }
 
-    /* Methods for UI to access the board class without jumping architectural layers. */
+    /* Methods for UI to access the Board class without jumping architectural layers. */
     public void removeNum() {
         gameBoard.insertNum(currRow, currCol, 0);
     }
 
     public boolean addNum(int input) {
-        return gameBoard.insertNum(currRow, currCol, input);
+        boolean insertSuccess = gameBoard.insertNum(currRow, currCol, input);
+        if (insertSuccess && gameBoard.checkFull()) {
+            view.onGameComplete();
+        }
+        return insertSuccess;
     }
 
     public int getCellValue(int row, int col) {
@@ -122,12 +111,21 @@ public class SudokuPresenter extends Observable {
         gameBoard.resetBoard();
     }
 
+    public int getDim() {
+        return gameBoard.getDim();
+    }
+
+    /* Methods for UI to access the SudokuStats class without jumping architectural layers. */
     public int getMoves() {
         return gameStats.getMoves();
     }
 
     public int getConflicts() {
         return gameStats.getConflicts();
+    }
+
+    public long getTime() {
+        return gameStats.getGameTime();
     }
 
     public void addMoves() {
@@ -138,7 +136,7 @@ public class SudokuPresenter extends Observable {
         gameStats.addConflicts();
     }
 
-    public int getDim() {
-        return gameBoard.getDim();
+    public void saveStats(Context context) {
+        gameStats.saveStats(context);
     }
 }
