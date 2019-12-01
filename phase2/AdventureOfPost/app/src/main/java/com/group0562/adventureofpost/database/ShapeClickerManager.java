@@ -5,6 +5,8 @@ import android.database.sqlite.SQLiteDatabase;
 
 class ShapeClickerManager {
 
+    ShapeClickerManager() {}
+
     long insertStats(SQLiteDatabase db, String username, long time, int points, int lives) {
         ContentValues contentValues = new ContentValues();
         contentValues.put("username", username);

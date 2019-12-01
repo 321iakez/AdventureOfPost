@@ -5,6 +5,8 @@ import android.database.sqlite.SQLiteDatabase;
 
 class SudokuManager {
 
+    SudokuManager() {}
+
     long insertStats(SQLiteDatabase db, String username, long time, int conflicts, int moves) {
         ContentValues contentValues = new ContentValues();
         contentValues.put("username", username);

@@ -5,6 +5,9 @@ import android.database.sqlite.SQLiteDatabase;
 
 class TriviaManager {
 
+    TriviaManager() {
+    }
+
     long insertStats(SQLiteDatabase db, String username, int correct, int incorrect, int score) {
         ContentValues contentValues = new ContentValues();
         contentValues.put("username", username);

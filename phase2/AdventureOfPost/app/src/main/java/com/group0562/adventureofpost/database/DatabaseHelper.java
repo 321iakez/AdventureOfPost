@@ -1,14 +1,8 @@
 package com.group0562.adventureofpost.database;
 
-import android.content.ContentValues;
 import android.content.Context;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-
-import com.group0562.adventureofpost.shapeClicker.Shape;
-
-import java.util.ArrayList;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
@@ -19,15 +13,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public DatabaseHelper(Context context) {
         super(context, "adventureOfPost.db", null, 1);
-    }
-
-    @Override
-    public void onCreate(SQLiteDatabase db) {
 
         authManager = new AuthManager();
         sudokuManager = new SudokuManager();
         shapeClickerManager = new ShapeClickerManager();
         triviaManager = new TriviaManager();
+    }
+
+    @Override
+    public void onCreate(SQLiteDatabase db) {
 
         db.execSQL("CREATE TABLE users (username TEXT primary key, password TEXT)");
         db.execSQL("CREATE TABLE sudokuStats (time INTEGER, conflicts INTEGER, moves INTEGER," +
