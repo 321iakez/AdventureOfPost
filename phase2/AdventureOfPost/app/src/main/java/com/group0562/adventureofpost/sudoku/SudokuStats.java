@@ -101,7 +101,10 @@ public class SudokuStats extends Observable {
         Log.i("SudokuPresenter", "Stats inserted at row" + newRowId);
     }
 
-    public abstract static class CountUpTimer extends CountDownTimer {
+    /**
+     * Counter up timer class for Sudoku.
+     */
+    abstract static class CountUpTimer extends CountDownTimer {
         private static final long INTERVAL_MS = 1000;
         private final long duration;
 
