@@ -13,6 +13,11 @@ import java.util.Observable;
 
 
 public class ShapeClickerStats extends AdventureOfPost.PuzzleStats {
+
+    public final static String SC_STAT1 = "time";
+    public final static String SC_STAT2 = "score";
+    public final static String SC_STAT3 = "lives";
+
     private Paint paint;
     private static long TIME_LIMIT;
     private String username;
@@ -66,7 +71,6 @@ public class ShapeClickerStats extends AdventureOfPost.PuzzleStats {
         String combined = time_text + " " + points_text + " " + lives_text;
         canvas.drawText(combined, 25, 40, paint);
     }
-
 
     void saveStats(Context context) {
         DatabaseHelper db = new DatabaseHelper(context);

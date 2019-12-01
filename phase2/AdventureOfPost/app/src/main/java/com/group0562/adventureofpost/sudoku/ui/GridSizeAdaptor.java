@@ -15,13 +15,16 @@ public class GridSizeAdaptor extends BaseAdapter {
      */
     private ArrayList<Button> buttons;
 
+    private boolean isNumpad;
+
     /**
      * the width and the height of a column
      */
     private int columnWidth, columnHeight;
 
-    GridSizeAdaptor(ArrayList<Button> buttons, int columnWidth, int columnHeight) {
+    GridSizeAdaptor(ArrayList<Button> buttons, int columnWidth, int columnHeight, boolean isNumpad) {
         this.buttons = buttons;
+        this.isNumpad = isNumpad;
         this.columnWidth = columnWidth;
         this.columnHeight = columnHeight;
     }
@@ -51,7 +54,9 @@ public class GridSizeAdaptor extends BaseAdapter {
             button = (Button) convertView;
         }
 
-        button.setLayoutParams(new AbsListView.LayoutParams(columnWidth, columnHeight));
+        if (!isNumpad) {
+            button.setLayoutParams(new AbsListView.LayoutParams(columnWidth, columnHeight));
+        }
 
         return button;
     }
