@@ -6,10 +6,15 @@ public class TriviaPresenter{
     private Trivia game;
     private TriviaStats gameStats;
     private String backgroundColor;
+    private String textColor;
+    private String buttonColor;
+
 
 
     public TriviaPresenter(String username, int op, int diff) {
         backgroundColor  = "White";
+        textColor = "Black";
+        buttonColor = "Yellow";
         game = new Trivia(op, diff);
         gameStats = new TriviaStats(username, op, diff);
     }
@@ -54,6 +59,14 @@ public class TriviaPresenter{
     public void setBackgroundColor(String color){this.backgroundColor = color;}
 
     public String getBackgroundColor(){return this.backgroundColor;}
+
+    public void setButtonColor(String color){this.buttonColor = color;}
+
+    public String getButtonColor(){return this.buttonColor;}
+
+    public void setTextColor(String color){this.textColor = color;}
+
+    public String getTextColor(){return this.textColor;}
 
     public int[] getStats() {
         return gameStats.getStats();
