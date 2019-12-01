@@ -6,7 +6,7 @@ import com.group0562.adventureofpost.AdventureOfPost;
 
 
 public abstract class ShapeClicker{
-    public ShapeClickerStats puzzleStats;
+    ShapeClickerStats puzzleStats;
     private boolean puzzleComplete = false;
     static double[] bound;
 
@@ -26,7 +26,7 @@ public abstract class ShapeClicker{
         }
     }
 
-    public void onStop() {
+    private void onStop() {
         if (!puzzleComplete) {
             puzzleStats.setLives(0);
         }
@@ -36,7 +36,7 @@ public abstract class ShapeClicker{
         ShapeClicker.bound = bound;
     }
 
-    public void setPuzzleComplete(boolean b) {
+    void setPuzzleComplete(boolean b) {
         this.puzzleComplete = b;
     }
 

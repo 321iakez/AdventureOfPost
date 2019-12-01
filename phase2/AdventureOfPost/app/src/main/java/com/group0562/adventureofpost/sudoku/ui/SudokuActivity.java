@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.group0562.adventureofpost.GameActivity;
 import com.group0562.adventureofpost.R;
+import com.group0562.adventureofpost.database.DatabaseHelper;
 import com.group0562.adventureofpost.sudoku.SudokuPresenter;
 import com.group0562.adventureofpost.sudoku.SudokuStats;
 import com.group0562.adventureofpost.sudoku.SudokuView;
@@ -36,9 +37,22 @@ public class SudokuActivity extends AppCompatActivity implements SudokuView, Obs
         int gridSize = getIntent().getStringExtra("gridSize").equals("6x6") ? 6 : 9;
         String difficulty = getIntent().getStringExtra("difficulty");
         String username = getIntent().getStringExtra("username");
+        Boolean resume = getIntent().getExtras().getBoolean("resume");
 
         // Create presenter
-        presenter = new SudokuPresenter(this, new SudokuStats(username), gridSize, difficulty);
+        if (! resume){
+            presenter = new SudokuPresenter(this, new SudokuStats(username), gridSize, difficulty,  "");
+        } else {
+            DatabaseHelper db = new DatabaseHelper(this);
+            String gameState = db.retrieveSudokuState();
+            System.out.println(gameState);
+            if(gameState != ""){
+                presenter = new SudokuPresenter(this, new SudokuStats(username), gridSize, difficulty, gameState);
+            } else {
+                presenter = new SudokuPresenter(this, new SudokuStats(username), gridSize, difficulty, "");
+            }
+        }
+
         presenter.addObserver(this);
 
         // Call helper methods to initialize components
@@ -147,6 +161,14 @@ public class SudokuActivity extends AppCompatActivity implements SudokuView, Obs
     @Override
     public void saveGame(SudokuPauseDialog.Modes mode) {
         if (mode.equals(SudokuPauseDialog.Modes.EXIT_NO_SAVE)) {
+            Intent intent = new Intent(this, GameActivity.class);
+            intent.putExtra("username", getIntent().getStringExtra("username"));
+            startActivity(intent);
+        } else if (mode.equals(SudokuPauseDialog.Modes.EXIT_SAVE)) {
+            System.out.println("returned with save");
+            presenter.saveStats(this);
+            presenter.saveBoard(this);
+
             Intent intent = new Intent(this, GameActivity.class);
             intent.putExtra("username", getIntent().getStringExtra("username"));
             startActivity(intent);

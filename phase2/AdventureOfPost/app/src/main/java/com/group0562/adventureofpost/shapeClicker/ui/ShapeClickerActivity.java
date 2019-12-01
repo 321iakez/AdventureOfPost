@@ -9,7 +9,6 @@ import com.group0562.adventureofpost.GameActivity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.group0562.adventureofpost.R;
-import com.group0562.adventureofpost.shapeClicker.SCSetting;
 import com.group0562.adventureofpost.shapeClicker.ShapeClickerGameView;
 
 public class ShapeClickerActivity extends AppCompatActivity implements SCPauseDialog.SCPauseDialogListener {
@@ -40,6 +39,7 @@ public class ShapeClickerActivity extends AppCompatActivity implements SCPauseDi
     public void onClickSCDone(View view) {
         Intent intent = new Intent(this, ShapeClickerEndActivity.class);
         sc_done = findViewById(R.id.sc_finish_button);
+        intent.putExtra("username", getIntent().getStringExtra("username"));
         startActivity(intent);
     }
 
@@ -48,6 +48,7 @@ public class ShapeClickerActivity extends AppCompatActivity implements SCPauseDi
         if (mode.equals(RETURN_NO_SAVE)) {
             System.out.println("returned without save");
             Intent intent = new Intent(this, GameActivity.class);
+            intent.putExtra("username", getIntent().getStringExtra("username"));
             startActivity(intent);
 
         } else if (mode.equals(RETURN_SAVE)) {
