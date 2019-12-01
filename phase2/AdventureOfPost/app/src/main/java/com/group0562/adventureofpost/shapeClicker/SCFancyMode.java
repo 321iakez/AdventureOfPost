@@ -94,9 +94,9 @@ public class SCFancyMode extends ShapeClicker {
         for (Shape item: s_object) {
             item.draw(canvas);
         }
-        String combo_text = Long.toString(combo);
-         combo_text = combo_text + this.getCombos();
-         canvas.drawText(combo_text, 950, 1400,paint);
+        String combo_text = Long.toString(this.getCombos());
+        combo_text = combo_text + " Combos";
+        canvas.drawText(combo_text, 900, 1400, paint);
     }
 
     /**
