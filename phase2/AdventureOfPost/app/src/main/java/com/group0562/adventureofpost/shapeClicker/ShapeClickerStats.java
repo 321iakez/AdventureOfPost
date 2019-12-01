@@ -20,6 +20,9 @@ public class ShapeClickerStats{
     private long startTime;
     private int points;
     private int lives;
+    public final static String SC_STAT1 = "time";
+    public final static String SC_STAT2 = "score";
+    public final static String SC_STAT3 = "lives";
 
     /**
      * constructor of ShapeClickerStats, inherited from PuzzleStats
