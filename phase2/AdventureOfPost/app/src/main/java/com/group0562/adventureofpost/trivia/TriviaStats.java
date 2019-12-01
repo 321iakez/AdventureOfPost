@@ -6,6 +6,10 @@ import android.util.Log;
 
 import com.group0562.adventureofpost.database.DatabaseHelper;
 
+/**
+ * This is the TriviaStats class, it keeps Tracks of the 3 Stats of the user
+ * and the Username of the user, it also has a Save function
+ */
 public class TriviaStats {
 
     public final static String TRIVIA_STAT1 = "correct";
@@ -45,9 +49,10 @@ public class TriviaStats {
 
     /**
      * Constructor for a new game
+     *
      * @param username the user's username
-     * @param op the arithmetic operation
-     * @param diff the game difficulty
+     * @param op       the arithmetic operation
+     * @param diff     the game difficulty
      */
     TriviaStats(String username, int op, int diff) {
         this.correct = 0;
@@ -61,10 +66,11 @@ public class TriviaStats {
 
     /**
      * Constructor for a new game
-     * @param username the user's username
-     * @param op the arithmetic operation
-     * @param diff the game difficulty
-     * @param correct the number of correct answers
+     *
+     * @param username  the user's username
+     * @param op        the arithmetic operation
+     * @param diff      the game difficulty
+     * @param correct   the number of correct answers
      * @param incorrect the number of incorrect answers
      */
     TriviaStats(String username, int op, int diff, int correct, int incorrect) {
@@ -88,7 +94,7 @@ public class TriviaStats {
     /**
      * Saves the data to the database
      */
-    void saveToDatabase(Context context, String saveString){
+    void saveToDatabase(Context context, String saveString) {
         DatabaseHelper db = new DatabaseHelper(context);
         long newRowId = db.insertSudokuStats(username, correct, incorrect, score);
         Log.i("TriviaPresenter", "Stats inserted at row" + newRowId);
