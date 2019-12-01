@@ -80,6 +80,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 SUDOKU_STAT1, SUDOKU_STAT2, SUDOKU_STAT3, SUDOKU_TABLE);
     }
 
+
     public long insertGameState(String gameId, String gameState){
         SQLiteDatabase db = getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -88,6 +89,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("delete from game_saves where gameId = ?", new String[]{gameId});
         return db.insert("game_saves", null, contentValues);
     }
+
 
     public String retrieveGameState(String gameId){
         SQLiteDatabase db = getWritableDatabase();
@@ -103,8 +105,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     cursor.moveToNext();
                 }
             }
+            return gameState;
         }
-        return gameState;
     }
 
     public Map<String, List<Integer>> playerStats(String username, String game) {

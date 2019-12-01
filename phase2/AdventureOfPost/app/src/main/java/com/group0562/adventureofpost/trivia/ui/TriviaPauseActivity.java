@@ -11,6 +11,12 @@ import com.group0562.adventureofpost.GameActivity;
 import com.group0562.adventureofpost.R;
 import com.group0562.adventureofpost.trivia.TriviaPresenter;
 
+/**
+ * This is the Pause screen for the trivia game
+ * It will let the user select if they would like to save
+ * the current game and exit to main menu or if they would
+ * like to resume the game
+ */
 public class TriviaPauseActivity extends AppCompatActivity {
 
     @Override
@@ -38,9 +44,10 @@ public class TriviaPauseActivity extends AppCompatActivity {
 
     /**
      * Method to save game information
+     *
      * @param view view from previous activity
      */
-    public void onClickSave(View view){
+    public void onClickSave(View view) {
         Intent intent = new Intent(this, GameActivity.class);
         TriviaPresenter presenter = new TriviaPresenter(getIntent().getStringExtra("username"), getIntent().getStringExtra("saveState"));
         presenter.saveToDatabase(this);
@@ -51,9 +58,10 @@ public class TriviaPauseActivity extends AppCompatActivity {
 
     /**
      * Method to resume current game
+     *
      * @param view view from previous activity
      */
-    public void onClickResume(View view){
+    public void onClickResume(View view) {
         Intent intent = new Intent(this, TriviaActivity.class);
         intent.putExtra("saveState", getIntent().getStringExtra("saveState"));
         intent.putExtra("username", getIntent().getStringExtra("username"));

@@ -2,11 +2,12 @@ package com.group0562.adventureofpost.sudoku;
 
 import android.content.Context;
 
+import com.group0562.adventureofpost.database.DatabaseHelper;
+
 import java.io.InputStream;
 import java.util.Observer;
 import java.util.Random;
 import java.util.Scanner;
-import com.group0562.adventureofpost.database.DatabaseHelper;
 
 /**
  * Sudoku presenter class that bridges the UI and game logic.
@@ -28,6 +29,9 @@ public class SudokuPresenter {
      */
     private SudokuStats gameStats;
 
+    /**
+     * Sudoku game timer instance.
+     */
     private SudokuStats.CountUpTimer timer;
 
     /**
@@ -40,7 +44,8 @@ public class SudokuPresenter {
         this.gameStats = gameStats;
         this.view = view;
 
-        if(savedGameState.equals("")){
+        // Create board instance based resume or start.
+        if (savedGameState.equals("")) {
             int[][] parsedBoard = getRandomPuzzle(view.getPresetBoardFile(difficulty, gridSize), gridSize);
             this.gameBoard = new Board(parsedBoard, gridSize, gridSize);
 
@@ -55,7 +60,7 @@ public class SudokuPresenter {
             this.gameBoard = new Board(savedBoard, lockedBoard, gridSize, gridSize);
         }
 
-
+        // Create and start game timer
         timer = new SudokuStats.CountUpTimer(3600000) {
             @Override
             void onTick(int second) {
@@ -65,38 +70,52 @@ public class SudokuPresenter {
         timer.start();
     }
 
-    /**
-     * Randomly selects a puzzle from the puzzles
-     *
-     * @return a 2-D integer array puzzle.
-     */
-
-    public void saveBoard(Context context){
+    public void saveBoard(Context context) {
         DatabaseHelper db = new DatabaseHelper(context);
         db.insertGameState("sudoku", gameBoard.getBoardData());
     }
 
-    private int[][] getLockedFromString(String gameState, int gridSize){
+    /**
+     * Converts game state string into a board showing which cells are locked.
+     *
+     * @param gameState the game state string.
+     * @param gridSize  the size of the board.
+     * @return an 2-D array representing the virtual board.
+     */
+    private int[][] getLockedFromString(String gameState, int gridSize) {
         int[][] locked = new int[gridSize][gridSize];
-        String lockedString = gameState.substring(gridSize*gridSize);
+        String lockedString = gameState.substring(gridSize * gridSize);
         for (int row = 0; row < gridSize; row++) {
             for (int col = 0; col < gridSize; col++) {
-                locked[row][col] = Character.getNumericValue(lockedString.charAt(row*gridSize + col));
+                locked[row][col] = Character.getNumericValue(lockedString.charAt(row * gridSize + col));
             }
         }
         return locked;
     }
 
-    private int[][] getPuzzleFromString(String gameState, int gridSize){
+    /**
+     * Converts game state string into a board showing data in each cells.
+     *
+     * @param gameState the game state string.
+     * @param gridSize  the size of the board.
+     * @return an 2-D array representing the virtual board.
+     */
+    private int[][] getPuzzleFromString(String gameState, int gridSize) {
         int[][] puzzle = new int[gridSize][gridSize];
-        String puzzleString = gameState.substring(0, gridSize*gridSize);
+        String puzzleString = gameState.substring(0, gridSize * gridSize);
         for (int row = 0; row < gridSize; row++) {
             for (int col = 0; col < gridSize; col++) {
-                puzzle[row][col] = Character.getNumericValue(puzzleString.charAt(row*gridSize + col));
+                puzzle[row][col] = Character.getNumericValue(puzzleString.charAt(row * gridSize + col));
             }
         }
         return puzzle;
     }
+
+    /**
+     * Randomly selects a puzzle from the puzzles
+     *
+     * @return a 2-D integer array puzzle.
+     */
     private int[][] getRandomPuzzle(InputStream file, int gridSize) {
         // Read file
         Random rand = new Random();
@@ -125,14 +144,6 @@ public class SudokuPresenter {
     public void addObserver(Observer observer) {
         gameStats.addObserver(observer);
         gameBoard.addObserver(observer);
-    }
-
-    /**
-     * This method returns the state of the board/game as a String, so that the state of the game
-     * can be stored in the database.
-     */
-    private String getBoardString() {
-        return gameBoard.getBoardData();
     }
 
     /* Getter and setters for presenter class. */

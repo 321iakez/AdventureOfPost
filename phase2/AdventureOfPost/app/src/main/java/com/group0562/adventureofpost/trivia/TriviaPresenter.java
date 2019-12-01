@@ -1,9 +1,12 @@
 package com.group0562.adventureofpost.trivia;
 
-
 import android.content.Context;
 
-public class TriviaPresenter{
+/**
+ * This is the presenter class for Trivia, it handles all the
+ * interactions with the Trivia object and TriviaStats class
+ */
+public class TriviaPresenter {
 
     /**
      * An instance of the trivia game
@@ -33,12 +36,13 @@ public class TriviaPresenter{
 
     /**
      * The constructor for a new game
-     * @param  username the username of the player
-     * @param op the arithmetic operation
-     * @param diff the difficulty
+     *
+     * @param username the username of the player
+     * @param op       the arithmetic operation
+     * @param diff     the difficulty
      */
     public TriviaPresenter(String username, int op, int diff) {
-        backgroundColor  = "White";
+        backgroundColor = "White";
         textColor = "Black";
         buttonColor = "Yellow";
         game = new Trivia(op, diff);
@@ -47,7 +51,8 @@ public class TriviaPresenter{
 
     /**
      * The constructor for a new game
-     * @param  username the username of the player
+     *
+     * @param username  the username of the player
      * @param saveState a String of saved info containing user's game progress and customization
      */
     public TriviaPresenter(String username, String saveState) {
@@ -58,15 +63,16 @@ public class TriviaPresenter{
     /**
      * Calls saveToDatabase method in triviaStats
      */
-    public void saveToDatabase(Context context){
+    public void saveToDatabase(Context context) {
         gameStats.saveToDatabase(context, saveGame());
     }
 
     /**
      * Handles when the user clicks a button and checks if correct
+     *
      * @param n the option that the user clicked
      */
-    public void onClick(int n){
+    public void onClick(int n) {
         boolean correct = game.checkCorrect(n);
         gameStats.updatePoints(correct);
     }
@@ -74,7 +80,7 @@ public class TriviaPresenter{
     /**
      * Calls trivia getQuestion to retrieve the next question
      */
-    public Question getQuestion(){
+    public Question getQuestion() {
         return game.getQuestion();
     }
 
@@ -89,14 +95,15 @@ public class TriviaPresenter{
      * Calls triviaStats saveGame to get game info, combines with customization info and returns
      */
     public String saveGame() {
-        String colorData = this.backgroundColor + " " + this.textColor+ " " + this.buttonColor;
+        String colorData = this.backgroundColor + " " + this.textColor + " " + this.buttonColor;
         return gameStats.saveGame() + " " + colorData;// ADD THIS WHEN FRONTEND IMPLEMENTED
     }
 
 
     /**
      * Sets the trivia and trivia stats to a user's current saved game
-     * @param username the user's username
+     *
+     * @param username  the user's username
      * @param saveState A string of game information and customization information
      */
     private void loadGame(String username, String saveState) {
@@ -116,36 +123,51 @@ public class TriviaPresenter{
 
     /**
      * Sets the background color
+     *
      * @param color the color
      */
-    public void setBackgroundColor(String color){this.backgroundColor = color;}
+    public void setBackgroundColor(String color) {
+        this.backgroundColor = color;
+    }
 
     /**
      * Gets the background color
      */
-    public String getBackgroundColor(){return this.backgroundColor;}
+    public String getBackgroundColor() {
+        return this.backgroundColor;
+    }
 
     /**
      * Sets the button color
+     *
      * @param color the color
      */
-    public void setButtonColor(String color){this.buttonColor = color;}
+    public void setButtonColor(String color) {
+        this.buttonColor = color;
+    }
 
     /**
      * Gets the button color
      */
-    public String getButtonColor(){return this.buttonColor;}
+    public String getButtonColor() {
+        return this.buttonColor;
+    }
 
     /**
      * Sets the text color
+     *
      * @param color the color
      */
-    public void setTextColor(String color){this.textColor = color;}
+    public void setTextColor(String color) {
+        this.textColor = color;
+    }
 
     /**
      * Gets the text color
      */
-    public String getTextColor(){return this.textColor;}
+    public String getTextColor() {
+        return this.textColor;
+    }
 
     /**
      * Gets the current game statistics from gameStats
@@ -153,7 +175,6 @@ public class TriviaPresenter{
     public int[] getStats() {
         return gameStats.getStats();
     }
-
 
 
 }

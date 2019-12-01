@@ -22,8 +22,8 @@
     <view
         android:id="@+id/view3"
         class="com.group0562.adventureofpost.shapeClicker.ui.SCEndResultView"
-        android:layout_width="385dp"
-        android:layout_height="563dp"
+        android:layout_width="371dp"
+        android:layout_height="301dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
