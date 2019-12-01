@@ -15,13 +15,24 @@ public class Trivia {
      private ArrayList<Question> questions;
 
 
+    /**
+     * Constructor for a non-loaded (new) trivia instance
+     * @param op the arithmetic operation
+     * @param diff the difficulty
+     */
     public Trivia(int op, int diff){
         this.questions = genQuestions(op, diff);
-        puzzlesSolved = 1;
+        puzzlesSolved = 0;
 
 
     }
 
+    /**
+     * Constructor for a game that has been saved and being reloaded
+     * @param  op the arithmetic operation
+     * @param diff the difficulty
+     * @param puzzlesSolved the number of puzzles that the user has already solved
+     */
     public Trivia(int op, int diff, int puzzlesSolved){
         this.questions = genQuestions(op, diff);
         this.puzzlesSolved = puzzlesSolved;
