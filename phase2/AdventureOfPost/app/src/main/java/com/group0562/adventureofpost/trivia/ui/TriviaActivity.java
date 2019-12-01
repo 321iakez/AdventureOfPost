@@ -21,15 +21,18 @@ public class TriviaActivity extends AppCompatActivity {
      */
     TriviaPresenter presenter;
 
-    //TODO implement later a database check to see if theres a previous saveState
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trivia);
 
+        //default operation and difficulty in case where no operator and difficulty is passed
         int diff = 1;
-        int op = 2;
-        if (getIntent().hasExtra("diff")) {
+        int op = 1;
+
+        //checks if intent has difficulty and operation to set values for game
+        if (getIntent().hasExtra("diff") && getIntent().hasExtra("op")) {
             switch (getIntent().getStringExtra("diff")) {
                 case "Easy":
                     diff = 1;
@@ -41,8 +44,6 @@ public class TriviaActivity extends AppCompatActivity {
                     diff = 3;
                     break;
             }
-        }
-        if (getIntent().hasExtra("op")) {
             switch (getIntent().getStringExtra("op")) {
                 case "Addition":
                     op = 1;
@@ -55,11 +56,15 @@ public class TriviaActivity extends AppCompatActivity {
                     break;
             }
         }
+
+        //checks if a save was passed from some other activity, if so will load the save
         if (getIntent().hasExtra("saveState")) {
             presenter = new TriviaPresenter(getIntent().getStringExtra("username"), getIntent().getStringExtra("saveState"));
         } else {
             presenter = new TriviaPresenter(getIntent().getStringExtra("username"), op, diff);
         }
+
+        //checks for if settings activity has passed any settings that need to be changed
         if (getIntent().hasExtra("backgroundColor")) {
             presenter.setBackgroundColor(getIntent().getStringExtra("backgroundColor"));
         }
@@ -69,11 +74,19 @@ public class TriviaActivity extends AppCompatActivity {
         if (getIntent().hasExtra("textColor")) {
             presenter.setTextColor(getIntent().getStringExtra("textColor"));
         }
+
+        //changes view background color
         setActivityBackgroundColor();
+
+        //calls helper to display questions
         onClickOptionHelper();
 
     }
 
+    /**
+     * Changes Background color of the game
+     *
+     */
     public void setActivityBackgroundColor() {
         View view = this.getWindow().getDecorView();
         view.setBackgroundColor(getColorValue(presenter.getBackgroundColor()));
@@ -119,6 +132,12 @@ public class TriviaActivity extends AppCompatActivity {
         onClickOptionHelper();
     }
 
+    /**
+     * Will take in color as a string and return Hex code for the color,
+     * will return Hex code for white if color is invalid
+     * @param color the color as a string
+     * @return color as an int
+     */
     int getColorValue(String color) {
         int colorValue = 0xFFFFFFFF;
         switch(color) {
@@ -140,14 +159,18 @@ public class TriviaActivity extends AppCompatActivity {
         }
         return colorValue;
     }
+
     /**
      * Semi-universal button helper function that updates the button, scores and question
      */
     public void onClickOptionHelper() {
+        //checks if user has completed 10 questions
         if (presenter.hasNext()) {
+            //gets questions form presenter
             Question q = presenter.getQuestion();
             String[] s = q.getOptions();
 
+            //gets text color and texts on display
             TextView question = findViewById(R.id.textView3);
             question.setText(q.getQuestion());
             question.setTextColor(getColorValue(presenter.getTextColor()));
@@ -156,7 +179,6 @@ public class TriviaActivity extends AppCompatActivity {
             buttonA.setText(s[0]);
             buttonA.setTextColor(getColorValue(presenter.getTextColor()));
             buttonA.setBackgroundColor(getColorValue(presenter.getButtonColor()));
-
 
             Button buttonB = findViewById(R.id.button5);
             buttonB.setText(s[1]);
@@ -175,6 +197,7 @@ public class TriviaActivity extends AppCompatActivity {
 
 
         } else {
+            //if user has completed 10 questions will then move to end activity
             Intent intent = new Intent(this, TriviaEndActivity.class);
             intent.putExtra("saveState", presenter.saveGame());
             intent.putExtra("username", getIntent().getStringExtra("username"));
@@ -182,6 +205,10 @@ public class TriviaActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * will start the settings activity for user to customize settings for game
+     * @param view View from previous activity
+     */
     public void onClickSettings(View view) {
         Intent intent = new Intent(this, TriviaSettingsActivity.class);
         String saveState = presenter.saveGame();
@@ -192,7 +219,6 @@ public class TriviaActivity extends AppCompatActivity {
 
     /**
      * Store the current game's info into user-specific data
-     * TODO complete this function after database is figured out
      */
     public void onClickPause(View view) {
         Intent intent = new Intent(this, TriviaPauseActivity.class);

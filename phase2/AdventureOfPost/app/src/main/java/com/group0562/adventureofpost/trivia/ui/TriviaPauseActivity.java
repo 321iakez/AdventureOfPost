@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.group0562.adventureofpost.GameActivity;
 import com.group0562.adventureofpost.R;
+import com.group0562.adventureofpost.trivia.TriviaPresenter;
 
 public class TriviaPauseActivity extends AppCompatActivity {
 
@@ -19,7 +20,7 @@ public class TriviaPauseActivity extends AppCompatActivity {
 
         int[] values = getIntent().getIntArrayExtra("stats");
 
-        //the player stats
+        //the player stats to be displayed
         String correct, incorrect, score;
         correct = "correct: " + values[0];
         incorrect = "Incorrect: " + values[1];
@@ -35,13 +36,23 @@ public class TriviaPauseActivity extends AppCompatActivity {
         scoreTextView.setText(score);
     }
 
+    /**
+     * Method to save game information
+     * @param view view from previous activity
+     */
     public void onClickSave(View view){
         Intent intent = new Intent(this, GameActivity.class);
+        TriviaPresenter presenter = new TriviaPresenter(getIntent().getStringExtra("username"), getIntent().getStringExtra("saveState"));
+        presenter.saveToDatabase(this);
         intent.putExtra("saveState", getIntent().getStringExtra("saveState"));
         intent.putExtra("username", getIntent().getStringExtra("username"));
         startActivity(intent);
     }
 
+    /**
+     * Method to resume current game
+     * @param view view from previous activity
+     */
     public void onClickResume(View view){
         Intent intent = new Intent(this, TriviaActivity.class);
         intent.putExtra("saveState", getIntent().getStringExtra("saveState"));

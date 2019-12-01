@@ -11,7 +11,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.PreferenceFragmentCompat;
 
 import com.group0562.adventureofpost.R;
-import com.group0562.adventureofpost.trivia.Trivia;
 
 public class TriviaSettingsActivity extends AppCompatActivity {
 
@@ -29,6 +28,10 @@ public class TriviaSettingsActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Determines what options the user has picked and passes them to the main activity to change
+     * @param view view from previous activity
+     */
     public void onClickSave(View view){
         Intent intent = new Intent(this, TriviaActivity.class);
         SharedPreferences trivia_BackgroundColor_list = PreferenceManager.getDefaultSharedPreferences(this);
