@@ -34,6 +34,32 @@ class Board extends Observable {
         loadBoard(board);
     }
 
+    Board(int[][] puzzleBoard, int[][] lockedBoard, int rowDim, int colDim){
+        rows = rowDim;
+        cols = colDim;
+        this.board = new Cell[rowDim][colDim];
+
+        savedLoadBoard(puzzleBoard, lockedBoard);
+    }
+
+    private void savedLoadBoard(int[][] puzzleBoard, int[][] lockedBoard){
+        for (int row = 0; row < rows; row++) {
+            for (int col = 0; col < cols; col++) {
+                Boolean isLocked;
+                if(lockedBoard[row][col] == 1){
+                    isLocked = false;
+                } else {
+                    isLocked = true;
+                }
+                Cell cell = new Cell(puzzleBoard[row][col], isLocked);
+                this.board[row][col] = cell;
+            }
+        }
+
+        setChanged();
+        notifyObservers();
+    }
+
     int getDim() {
         return rows;
     }
@@ -56,7 +82,7 @@ class Board extends Observable {
     }
 
     /**
-     * Generates a string containing all numbers on the board.
+     * Generates a string containing all numbers on the board, and also whether the cell is locked.
      *
      * @return the string representation of board data.
      */
@@ -65,6 +91,16 @@ class Board extends Observable {
         for (int row = 0; row < rows; row++) {
             for (int col = 0; col < cols; col++) {
                 strBoard.append(board[row][col].getValue());
+            }
+        }
+
+        for (int row = 0; row < rows; row++) {
+            for (int col = 0; col < cols; col++) {
+                if (board[row][col].isLocked()){
+                    strBoard.append(0);
+                } else {
+                    strBoard.append(1);
+                }
             }
         }
         return strBoard.toString();

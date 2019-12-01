@@ -9,6 +9,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.group0562.adventureofpost.R;
 
+import java.security.KeyStore;
+
 public class SudokuStartActivity extends AppCompatActivity {
 
     private final String[] GRID_OPTIONS = new String[]{"6x6", "9x9"};
@@ -34,6 +36,7 @@ public class SudokuStartActivity extends AppCompatActivity {
 
         addListenerStart();
         addListenerScore();
+        addListenerResume();
     }
 
     void addListenerStart() {
@@ -42,6 +45,18 @@ public class SudokuStartActivity extends AppCompatActivity {
             intent.putExtra("gridSize", gridSize.getSelectedItem().toString());
             intent.putExtra("difficulty", difficulty.getSelectedItem().toString());
             intent.putExtra("username", getIntent().getStringExtra("username"));
+            intent.putExtra("resume", false);
+            startActivity(intent);
+        });
+    }
+
+    void addListenerResume() {
+        findViewById(R.id.resume_button).setOnClickListener(v -> {
+            Intent intent = new Intent(this, SudokuActivity.class);
+            intent.putExtra("gridSize", gridSize.getSelectedItem().toString());
+            intent.putExtra("difficulty", difficulty.getSelectedItem().toString());
+            intent.putExtra("username", getIntent().getStringExtra("username"));
+            intent.putExtra("resume", true);
             startActivity(intent);
         });
     }

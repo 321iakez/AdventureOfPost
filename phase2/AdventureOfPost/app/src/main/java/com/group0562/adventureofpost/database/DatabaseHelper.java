@@ -1,6 +1,8 @@
 package com.group0562.adventureofpost.database;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -58,7 +60,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 SC_STAT2 + " INTEGER, " +
                 SC_STAT3 + " INTEGER," +
                 "username TEXT, FOREIGN KEY (username) REFERENCES users (username))"); // time, score, lives
+
+        db.execSQL("CREATE TABLE sudoku_saves (id text primary key, gameState text)");
     }
+
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -73,6 +78,33 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = getWritableDatabase();
         return gameManager.insertStats(db, username, (int) time, moves, conflicts,
                 SUDOKU_STAT1, SUDOKU_STAT2, SUDOKU_STAT3, SUDOKU_TABLE);
+    }
+
+    public long insertSudokuState(String gameState){
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("id", "game");
+        contentValues.put("gameState", gameState);
+        db.execSQL("delete from sudoku_saves where id = ?", new String[]{"game"});
+        return db.insert("sudoku_saves", null, contentValues);
+    }
+
+    public String retrieveSudokuState(){
+        SQLiteDatabase db = getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM sudoku_saves WHERE id = ?", new String[]{"game"});
+        String gameState = "";
+        if (cursor.getCount() < 1) {
+            return gameState;
+        } else {
+            if (cursor.moveToFirst()) {
+                while (!cursor.isAfterLast()) {
+                    String name = cursor.getString(cursor.getColumnIndex("gameState"));
+                    gameState = name;
+                    cursor.moveToNext();
+                }
+            }
+        }
+        return gameState;
     }
 
     public Map<String, List<Integer>> playerStats(String username, String game) {
