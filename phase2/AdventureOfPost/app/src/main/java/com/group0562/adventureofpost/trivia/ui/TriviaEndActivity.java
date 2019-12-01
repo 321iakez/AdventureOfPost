@@ -46,6 +46,7 @@ public class TriviaEndActivity extends AppCompatActivity {
      */
     public void onClickNext(View view) {
         Intent intent = new Intent(this, GameActivity.class);
+        intent.putExtra("username", getIntent().getStringExtra("username"));
         startActivity(intent);
     }
 }

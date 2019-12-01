@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.Button;
 
 import com.group0562.adventureofpost.R;
-import com.group0562.adventureofpost.sudoku.ui.PauseDialog;
 
 public class ShapeClickerActivity extends AppCompatActivity implements SCPauseDialog.SCPauseDialogListener{
     public final static String EXTRA_MESSAGE = "com.group0562.AdventureOfPost.MESSAGE";

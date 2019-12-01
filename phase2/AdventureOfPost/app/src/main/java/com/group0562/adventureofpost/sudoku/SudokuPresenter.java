@@ -60,7 +60,7 @@ public class SudokuPresenter extends Observable {
         return puzzle;
     }
 
-    void saveStats(Context context) {
+    public void saveStats(Context context) {
         DatabaseHelper db = new DatabaseHelper(context);
         long newRowId = db.insertSudokuStats(username, gameStats.getGameTime(), gameStats.getConflicts(), gameStats.getMoves());
         Log.i("SudokuPresenter", "Stats inserted at row" + newRowId);

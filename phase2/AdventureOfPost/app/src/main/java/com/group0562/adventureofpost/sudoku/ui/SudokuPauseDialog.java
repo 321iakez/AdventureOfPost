@@ -13,11 +13,7 @@ import androidx.appcompat.app.AppCompatDialogFragment;
 
 import com.group0562.adventureofpost.R;
 
-public class PauseDialog extends AppCompatDialogFragment {
-
-    private final String RETURN_NO_SAVE = "RETURN_NO_SAVE";
-    private final String RETURN_SAVE = "RETURN_SAVE";
-    private final String RESUME = "RESUME";
+public class SudokuPauseDialog extends AppCompatDialogFragment {
 
     private PauseDialogListener listener;
 
@@ -30,9 +26,9 @@ public class PauseDialog extends AppCompatDialogFragment {
 
         builder.setView(view)
                 .setTitle("")
-                .setNegativeButton("Exit without Save", (dialog, which) -> listener.saveGame(RETURN_NO_SAVE))
-                .setNeutralButton("Exit with Save", (dialog, which) -> listener.saveGame(RETURN_SAVE))
-                .setPositiveButton("Resume game", (dialog, which) -> listener.saveGame(RESUME));
+                .setNegativeButton("Exit without Save", (dialog, which) -> listener.saveGame(Modes.EXIT_NO_SAVE))
+                .setNeutralButton("Exit with Save", (dialog, which) -> listener.saveGame(Modes.EXIT_SAVE))
+                .setPositiveButton("Resume game", (dialog, which) -> listener.saveGame(Modes.RESUME));
         return builder.create();
     }
 
@@ -47,6 +43,10 @@ public class PauseDialog extends AppCompatDialogFragment {
     }
 
     interface PauseDialogListener {
-        void saveGame(String mode);
+        void saveGame(Modes mode);
+    }
+
+    enum Modes {
+        EXIT_NO_SAVE, EXIT_SAVE, RESUME
     }
 }

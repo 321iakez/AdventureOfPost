@@ -25,11 +25,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         db.execSQL("CREATE TABLE users (username TEXT primary key, password TEXT)");
         db.execSQL("CREATE TABLE sudokuStats (time INTEGER, conflicts INTEGER, moves INTEGER," +
-                "FOREIGN KEY (username) REFERENCES users (username))"); // time, conflicts, moves
+                "username TEXT, FOREIGN KEY (username) REFERENCES users (username))"); // time, conflicts, moves
         db.execSQL("CREATE TABLE triviaStats (correct INTEGER, incorrect INTEGER, score INTEGER, " +
-                "FOREIGN KEY (username) REFERENCES users (username))"); // correct, incorrect, score
+                "username TEXT, FOREIGN KEY (username) REFERENCES users (username))"); // correct, incorrect, score
         db.execSQL("CREATE TABLE shapeClickerStats (time INTEGER, points INTEGER, lives INTEGER," +
-                "FOREIGN KEY (username) REFERENCES users (username))"); // time, points, lives
+                "username TEXT, FOREIGN KEY (username) REFERENCES users (username))"); // time, points, lives
     }
 
     @Override

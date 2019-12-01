@@ -23,6 +23,7 @@ public class ShapeClickerEndActivity extends AppCompatActivity {
     /*to go back to the page where you can select games*/
     public void onClickReturnHome(View view) {
         Intent intent = new Intent(this, GameActivity.class);
+        intent.putExtra("username", getIntent().getStringExtra("username"));
         return_menu = findViewById(R.id.return_home);
         startActivity(intent);
     }
