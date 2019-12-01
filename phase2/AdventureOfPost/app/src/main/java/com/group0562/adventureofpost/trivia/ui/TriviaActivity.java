@@ -1,6 +1,7 @@
 package com.group0562.adventureofpost.trivia.ui;
 
 //import statements
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -90,7 +91,6 @@ public class TriviaActivity extends AppCompatActivity {
 
     /**
      * Changes Background color of the game
-     *
      */
     public void setActivityBackgroundColor() {
         View view = this.getWindow().getDecorView();
@@ -140,12 +140,13 @@ public class TriviaActivity extends AppCompatActivity {
     /**
      * Will take in color as a string and return Hex code for the color,
      * will return Hex code for white if color is invalid
+     *
      * @param color the color as a string
      * @return color as an int
      */
     int getColorValue(String color) {
         int colorValue = 0xFFFFFFFF;
-        switch(color) {
+        switch (color) {
             case "Black":
                 colorValue = 0XFF000000;
                 break;
@@ -156,7 +157,7 @@ public class TriviaActivity extends AppCompatActivity {
                 colorValue = 0xFFB8D5D6;
                 break;
             case "Green":
-                colorValue =  0xFF00FF00;
+                colorValue = 0xFF00FF00;
                 break;
             case "Yellow":
                 colorValue = 0xFFFFFF00;
@@ -212,6 +213,7 @@ public class TriviaActivity extends AppCompatActivity {
 
     /**
      * will start the settings activity for user to customize settings for game
+     *
      * @param view View from previous activity
      */
     public void onClickSettings(View view) {

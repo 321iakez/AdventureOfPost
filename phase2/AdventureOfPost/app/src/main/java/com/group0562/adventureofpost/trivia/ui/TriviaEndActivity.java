@@ -20,6 +20,7 @@ public class TriviaEndActivity extends AppCompatActivity {
 
     /**
      * Displays stats of user after they have completed all 10 questions
+     *
      * @param savedInstanceState the saved instance state
      */
     @Override
@@ -48,6 +49,7 @@ public class TriviaEndActivity extends AppCompatActivity {
 
     /**
      * Returns user to puzzles screen
+     *
      * @param view the view
      */
     public void onClickNext(View view) {

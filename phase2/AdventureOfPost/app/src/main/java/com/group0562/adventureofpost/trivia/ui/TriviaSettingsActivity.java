@@ -35,9 +35,10 @@ public class TriviaSettingsActivity extends AppCompatActivity {
 
     /**
      * Determines what options the user has picked and passes them to the main activity to change
+     *
      * @param view view from previous activity
      */
-    public void onClickSave(View view){
+    public void onClickSave(View view) {
         Intent intent = new Intent(this, TriviaActivity.class);
         SharedPreferences trivia_BackgroundColor_list = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences trivia_ButtonColor_list = PreferenceManager.getDefaultSharedPreferences(this);
