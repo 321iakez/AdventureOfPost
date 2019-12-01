@@ -38,6 +38,20 @@
         <item>Yellow</item>
     </string-array>
 
+    <string-array name="trivia_color_entries">
+        <item>White</item>
+        <item>Blue</item>
+        <item>Green</item>
+        <item>Yellow</item>
+    </string-array>
+
+    <string-array name="trivia_color_values">
+        <item>White</item>
+        <item>Blue</item>
+        <item>Green</item>
+        <item>Yellow</item>
+    </string-array>
+
     <string-array name="sc_mode_entries">
         <item>Normal</item>
         <item>Fancy</item>

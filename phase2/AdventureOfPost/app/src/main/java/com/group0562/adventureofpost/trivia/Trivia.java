@@ -1,11 +1,5 @@
 package com.group0562.adventureofpost.trivia;
 
-import com.group0562.adventureofpost.Puzzles;
-
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Trivia {
@@ -69,9 +63,5 @@ public class Trivia {
      */
     Question getQuestion() {
         return questions.get(puzzlesSolved++);
-    }
-
-    boolean checkComplete() {
-        return puzzlesSolved == questions.size();
     }
 }

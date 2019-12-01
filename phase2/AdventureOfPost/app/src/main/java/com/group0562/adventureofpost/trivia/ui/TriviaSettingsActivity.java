@@ -1,7 +1,9 @@
 package com.group0562.adventureofpost.trivia.ui;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 
 import androidx.appcompat.app.ActionBar;
@@ -29,7 +31,10 @@ public class TriviaSettingsActivity extends AppCompatActivity {
 
     public void onClickSave(View view){
         Intent intent = new Intent(this, TriviaActivity.class);
+        SharedPreferences trivia_color_list = PreferenceManager.getDefaultSharedPreferences(this);
+        String color = trivia_color_list.getString(getString(R.string.sc_color_key), "Black");
         String saveState = getIntent().getStringExtra("save");
+        intent.putExtra("color", color);
         intent.putExtra("save", saveState);
         startActivity(intent);
     }

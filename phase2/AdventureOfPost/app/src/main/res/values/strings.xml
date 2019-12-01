@@ -12,8 +12,6 @@
     <string name="sudoku">Sudoku</string>
     <string name="shape_clicker_exit">exit</string>
     <string name="title_activity_scsettings">Settings</string>
-    <string name="answer">Answer</string>
-    <string name="security_question">Security Question</string>
     <string name="register_account">Register Account</string>
     <string name="register_message">Don\'t have account?</string>
     <string name="return_to_main_menu">Return to main menu</string>
@@ -97,5 +95,6 @@
     <string name="player">Player</string>
     <string name="score">Score</string>
     <string name="global_score_band">Global Score:</string>
+    <string name="settings">Settings</string>
 
 </resources>
