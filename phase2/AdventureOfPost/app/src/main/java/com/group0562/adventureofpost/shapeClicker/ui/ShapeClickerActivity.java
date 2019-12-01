@@ -15,7 +15,6 @@ import com.group0562.adventureofpost.shapeClicker.ShapeClickerGameView;
 public class ShapeClickerActivity extends AppCompatActivity implements SCPauseDialog.SCPauseDialogListener {
     public final static String EXTRA_MESSAGE = "com.group0562.AdventureOfPost.MESSAGE";
     Button sc_done;
-    Button sc_pause_continue;
     ShapeClickerGameView sc_view;
 
     private final String RETURN_NO_SAVE = "RETURN_NO_SAVE";
@@ -25,7 +24,7 @@ public class ShapeClickerActivity extends AppCompatActivity implements SCPauseDi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_circle_clicker);
+        setContentView(R.layout.activity_shape_clicker);
         String username = getIntent().getStringExtra("username");
         SCSetting.setUsername(username);
         sc_view = findViewById(R.id.scview);
@@ -41,12 +40,6 @@ public class ShapeClickerActivity extends AppCompatActivity implements SCPauseDi
     public void onClickSCDone(View view) {
         Intent intent = new Intent(this, ShapeClickerEndActivity.class);
         sc_done = findViewById(R.id.sc_finish_button);
-        startActivity(intent);
-    }
-
-    public void onClickSCPause(View view) {
-        Intent intent = new Intent(this, SCPauseActivity.class);
-        sc_pause_continue = findViewById(R.id.sc_pause_button);
         startActivity(intent);
     }
 
