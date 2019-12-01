@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.ViewTreeObserver;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.group0562.adventureofpost.GameActivity;
@@ -18,15 +17,12 @@ import java.io.InputStream;
 import java.util.Observable;
 import java.util.Observer;
 
-public class SudokuActivity extends AppCompatActivity implements SudokuView, Observer, PauseDialog.PauseDialogListener {
+public class SudokuActivity extends AppCompatActivity implements SudokuView, Observer,
+        SudokuPauseDialog.PauseDialogListener, SudokuEndDialog.EndDialogListener {
 
     private SudokuPresenter presenter;
     private SudokuCellGridView gridView;
     private SudokuNumPadGridView numPadView;
-
-    private final String RETURN_NO_SAVE = "RETURN_NO_SAVE";
-    private final String RETURN_SAVE = "RETURN_SAVE";
-    private final String RESUME = "RESUME";
 
     private TextView moveStats;
     private TextView conflictStats;
@@ -121,6 +117,9 @@ public class SudokuActivity extends AppCompatActivity implements SudokuView, Obs
             // Update
             presenter.update();
         });
+
+        SudokuEndDialog dialog = new SudokuEndDialog();
+        dialog.show(getSupportFragmentManager(), "end dialog");
     }
 
     private void addListenerResetButton() {
@@ -134,41 +133,41 @@ public class SudokuActivity extends AppCompatActivity implements SudokuView, Obs
 
     private void addListenerExitButton() {
         findViewById(R.id.exit_button).setOnClickListener(v -> {
-            PauseDialog pauseDialog = new PauseDialog();
+            SudokuPauseDialog pauseDialog = new SudokuPauseDialog();
             pauseDialog.show(getSupportFragmentManager(), "pause dialog");
         });
     }
 
     @Override
-    public void saveGame(String mode) {
-        if (mode.equals(RETURN_NO_SAVE)) {
+    public void saveGame(SudokuPauseDialog.Modes mode) {
+        if (mode.equals(SudokuPauseDialog.Modes.EXIT_NO_SAVE)) {
             System.out.println("returned without save");
-            Intent intent = new Intent(this, SudokuStartActivity.class);
+            Intent intent = new Intent(this, GameActivity.class);
             startActivity(intent);
 
-        } else if (mode.equals(RETURN_SAVE)) {
+        } else if (mode.equals(SudokuPauseDialog.Modes.EXIT_SAVE)) {
             System.out.println("returned with save");
-        } else {
-            System.out.println("Resumed");
+            presenter.saveStats(this);
+
+            Intent intent = new Intent(this, GameActivity.class);
+            startActivity(intent);
         }
     }
 
     @Override
-    public void onGameComplete() {
-        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getApplicationContext());
-        dialogBuilder.setTitle("Puzzle Completed!")
-                .setMessage("Congratulation! You have completed the puzzle.")
-                .setPositiveButton("Restart", (dialog, which) -> {
-                    Intent intent = new Intent(this, SudokuStartActivity.class);
-                    this.startActivity(intent);
-                })
-                .setNeutralButton("Home", (dialog, which) -> {
-                    Intent intent = new Intent(this, GameActivity.class);
-                    this.startActivity(intent);
-                });
+    public void endGame(SudokuEndDialog.Modes mode) {
+        if (mode.equals(SudokuEndDialog.Modes.EXIT_STAT)) {
+            presenter.saveStats(this);
+        }
 
-        AlertDialog dialog = dialogBuilder.create();
-        dialog.show();
+        Intent intent = new Intent(this, GameActivity.class);
+        startActivity(intent);
+    }
+
+    @Override
+    public void onGameComplete() {
+        SudokuEndDialog dialog = new SudokuEndDialog();
+        dialog.show(getSupportFragmentManager(), "end dialog");
     }
 
     @Override
