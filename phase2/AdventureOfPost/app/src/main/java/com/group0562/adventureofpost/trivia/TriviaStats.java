@@ -38,7 +38,7 @@ public class TriviaStats {
         return this.op + " " + this.diff + " " + this.correct + " " + this.incorrect;
     }
 
-    void saveToDatabase(Context context){
+    void saveToDatabase(Context context) {
 
     }
 

@@ -5,7 +5,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
-import android.widget.Button;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,9 +12,10 @@ import androidx.preference.PreferenceFragmentCompat;
 
 import com.group0562.adventureofpost.R;
 import com.group0562.adventureofpost.shapeClicker.SCSetting;
+import com.group0562.adventureofpost.ScoreboardActivity;
+
 
 public class SCSettingActivity extends AppCompatActivity {
-    private Button sc_back_to_game;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +29,8 @@ public class SCSettingActivity extends AppCompatActivity {
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
+
+        addListenerScoreboard();
     }
 
 
@@ -41,7 +43,6 @@ public class SCSettingActivity extends AppCompatActivity {
 
     /*to switch the settings and go back to the game page*/
     public void onClickStartSC(View view) {
-        sc_back_to_game = findViewById(R.id.sc_start_game);
         SharedPreferences sc_color_list = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences sc_shape_list = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences sc_difficulty_list = PreferenceManager.getDefaultSharedPreferences(this);
@@ -57,5 +58,14 @@ public class SCSettingActivity extends AppCompatActivity {
         Intent intent = new Intent(this, ShapeClickerActivity.class);
         intent.putExtra("username", getIntent().getStringExtra("username"));
         startActivity(intent);
+    }
+
+    private void addListenerScoreboard() {
+        findViewById(R.id.playerScoreButton).setOnClickListener(v -> {
+            Intent intent = new Intent(this, ScoreboardActivity.class);
+            intent.putExtra("username", getIntent().getStringExtra("username"));
+            intent.putExtra("currGame", "shapeClicker");
+            startActivity(intent);
+        });
     }
 }

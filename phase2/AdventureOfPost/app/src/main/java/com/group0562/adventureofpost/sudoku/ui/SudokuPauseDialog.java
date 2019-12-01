@@ -13,6 +13,9 @@ import androidx.appcompat.app.AppCompatDialogFragment;
 
 import com.group0562.adventureofpost.R;
 
+/**
+ * Dialog that pops up when user presses pause button in game.
+ */
 public class SudokuPauseDialog extends AppCompatDialogFragment {
 
     private PauseDialogListener listener;
@@ -27,7 +30,6 @@ public class SudokuPauseDialog extends AppCompatDialogFragment {
         builder.setView(view)
                 .setTitle("")
                 .setNegativeButton("Exit without Save", (dialog, which) -> listener.saveGame(Modes.EXIT_NO_SAVE))
-                .setNeutralButton("Exit with Save", (dialog, which) -> listener.saveGame(Modes.EXIT_SAVE))
                 .setPositiveButton("Resume game", (dialog, which) -> listener.saveGame(Modes.RESUME));
         return builder.create();
     }
@@ -47,6 +49,6 @@ public class SudokuPauseDialog extends AppCompatDialogFragment {
     }
 
     enum Modes {
-        EXIT_NO_SAVE, EXIT_SAVE, RESUME
+        EXIT_NO_SAVE, RESUME
     }
 }

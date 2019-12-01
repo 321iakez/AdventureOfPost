@@ -13,6 +13,10 @@ import androidx.appcompat.app.AppCompatDialogFragment;
 
 import com.group0562.adventureofpost.R;
 
+
+/**
+ * Dialog that pops up when user finish the Sudoku puzzle.
+ */
 public class SudokuEndDialog extends AppCompatDialogFragment {
 
     private SudokuEndDialog.EndDialogListener listener;
