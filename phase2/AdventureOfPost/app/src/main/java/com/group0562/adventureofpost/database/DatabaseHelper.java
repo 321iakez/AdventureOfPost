@@ -80,7 +80,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 SUDOKU_STAT1, SUDOKU_STAT2, SUDOKU_STAT3, SUDOKU_TABLE);
     }
 
-    public long insertSudokuState(String gameState){
+    public long insertSudokuState(String gameState) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("id", "game");
@@ -89,22 +89,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return db.insert("sudoku_saves", null, contentValues);
     }
 
-    public String retrieveSudokuState(){
+    public String retrieveSudokuState() {
         SQLiteDatabase db = getWritableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM sudoku_saves WHERE id = ?", new String[]{"game"});
-        String gameState = "";
-        if (cursor.getCount() < 1) {
-            return gameState;
-        } else {
-            if (cursor.moveToFirst()) {
-                while (!cursor.isAfterLast()) {
-                    String name = cursor.getString(cursor.getColumnIndex("gameState"));
-                    gameState = name;
-                    cursor.moveToNext();
+        try (Cursor cursor = db.rawQuery("SELECT * FROM sudoku_saves WHERE id = ?", new String[]{"game"})) {
+            String gameState = "";
+            if (cursor.getCount() < 1) {
+                return gameState;
+            } else {
+                if (cursor.moveToFirst()) {
+                    while (!cursor.isAfterLast()) {
+                        gameState = cursor.getString(cursor.getColumnIndex("gameState"));
+                        cursor.moveToNext();
+                    }
                 }
             }
+            return gameState;
         }
-        return gameState;
     }
 
     public Map<String, List<Integer>> playerStats(String username, String game) {
