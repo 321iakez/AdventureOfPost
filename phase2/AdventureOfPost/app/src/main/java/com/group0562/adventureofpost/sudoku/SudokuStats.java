@@ -1,52 +1,55 @@
 package com.group0562.adventureofpost.sudoku;
 
 
+import android.content.Context;
+import android.util.Log;
+
+import com.group0562.adventureofpost.database.DatabaseHelper;
+
 import java.util.Observable;
 
-public class SudokuStats {
+public class SudokuStats extends Observable {
 
     /**
      * Number of moves user made.
      */
-    private int moves;
+    private int moves = 0;
 
     /**
      * Number of conflict user caused.
      */
-    private int conflicts;
-    private long gameTime;
-    private long startTime;
+    private int conflicts = 0;
+
+    /**
+     * The current time the game is operating to.
+     */
+    private long gameTime = 0;
+
+    /**
+     * The time when the game starts.
+     */
+    private final long startTime = System.currentTimeMillis();
+
+    /**
+     * The username of the user currently playing the game.
+     */
+    private String username;
 
 
-    public SudokuStats() {
-        moves = 0;
-        conflicts = 0;
-        startTime = System.currentTimeMillis();
-        gameTime = 0;
+    public SudokuStats(String username) {
+        this.username = username;
     }
 
-
-    public void updatePoints() {
-
+    /**
+     * Access DatabaseHelper and stores the stats.
+     */
+    void saveStats(Context context) {
+        DatabaseHelper db = new DatabaseHelper(context);
+        long newRowId = db.insertSudokuStats(username, gameTime, conflicts, moves);
+        Log.i("SudokuPresenter", "Stats inserted at row" + newRowId);
     }
 
-
-    public void updateTime() {
-        long currTime = System.currentTimeMillis();
-        this.setGameTime(currTime - startTime);
-    }
-
-
-    public void update(Observable o, Object arg) {
-        updateTime();
-        updatePoints();
-    }
-
-    void reset() {
-        moves = 0;
-        conflicts = 0;
-    }
-
+    /* ========== Getters ========== */
     int getMoves() {
         return moves;
     }
@@ -59,15 +62,34 @@ public class SudokuStats {
         return gameTime;
     }
 
-    void setGameTime(long gameTime) {
-        this.gameTime = gameTime;
+    /* ========== Update Methods ========== */
+    private void updateTime() {
+        long currTime = System.currentTimeMillis();
+        gameTime = currTime - startTime;
+
+        setChanged();
+        notifyObservers();
+    }
+
+    void reset() {
+        moves = 0;
+        conflicts = 0;
+
+        setChanged();
+        notifyObservers();
     }
 
     void addConflicts() {
         conflicts++;
+
+        setChanged();
+        notifyObservers();
     }
 
     void addMoves() {
         moves++;
+
+        setChanged();
+        notifyObservers();
     }
 }
