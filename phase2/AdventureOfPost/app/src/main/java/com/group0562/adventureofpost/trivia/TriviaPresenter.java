@@ -90,7 +90,7 @@ public class TriviaPresenter{
      */
     public String saveGame() {
         String colorData = this.backgroundColor + " " + this.textColor+ " " + this.buttonColor;
-        return gameStats.saveGame(); // + " " + colorData; ADD THIS WHEN FRONTEND IMPLEMENTED
+        return gameStats.saveGame() + " " + colorData;// ADD THIS WHEN FRONTEND IMPLEMENTED
     }
 
 
@@ -107,9 +107,9 @@ public class TriviaPresenter{
         int diff = Integer.parseInt(userGameInfo[1]);
         int correct = Integer.parseInt(userGameInfo[2]);
         int incorrect = Integer.parseInt(userGameInfo[3]);
-        //this.backgroundColor = userGameInfo[4];
-        //this.textColor = userGameInfo[5];
-        //this.buttonColor = userGameInfo[6];
+        this.backgroundColor = userGameInfo[4];
+        this.textColor = userGameInfo[5];
+        this.buttonColor = userGameInfo[6];
         this.gameStats = new TriviaStats(username, op, diff, correct, incorrect);
         this.game = new Trivia(op, diff, correct + incorrect);
     }

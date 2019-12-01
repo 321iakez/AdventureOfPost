@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.group0562.adventureofpost.shapeClicker.ui.SCSettingActivity;
 import com.group0562.adventureofpost.sudoku.ui.SudokuStartActivity;
+import com.group0562.adventureofpost.trivia.ui.TriviaActivity;
 import com.group0562.adventureofpost.trivia.ui.TriviaStartActivity;
 
 public class GameActivity extends AppCompatActivity {
@@ -37,7 +38,13 @@ public class GameActivity extends AppCompatActivity {
     }
 
     public void onClickTrivia(View view) {
-        Intent intent = new Intent(this, TriviaStartActivity.class);
+        Intent intent;
+        if (getIntent().hasExtra("saveState")){
+            intent = new Intent(this, TriviaActivity.class);
+            intent.putExtra("saveState", getIntent().getStringExtra("saveState"));
+        } else {
+            intent = new Intent(this, TriviaStartActivity.class);
+        }
         intent.putExtra("username", getIntent().getStringExtra("username"));
         startActivity(intent);
     }

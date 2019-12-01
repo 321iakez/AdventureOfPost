@@ -184,7 +184,8 @@ public class TriviaActivity extends AppCompatActivity {
     public void onClickSettings(View view) {
         Intent intent = new Intent(this, TriviaSettingsActivity.class);
         String saveState = presenter.saveGame();
-        intent.putExtra("save", saveState);
+        intent.putExtra("saveState", saveState);
+        intent.putExtra("username", getIntent().getStringExtra("username"));
         startActivity(intent);
     }
 
@@ -194,8 +195,9 @@ public class TriviaActivity extends AppCompatActivity {
      */
     public void onClickPause(View view) {
         Intent intent = new Intent(this, TriviaPauseActivity.class);
-        intent.putExtra("save", presenter.saveGame());
+        intent.putExtra("saveState", presenter.saveGame());
         intent.putExtra("stats", presenter.getStats());
+        intent.putExtra("username", getIntent().getStringExtra("username"));
         startActivity(intent);
     }
 

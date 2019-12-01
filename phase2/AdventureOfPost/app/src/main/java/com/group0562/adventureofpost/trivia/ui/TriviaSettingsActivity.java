@@ -39,7 +39,7 @@ public class TriviaSettingsActivity extends AppCompatActivity {
         String buttonColor = trivia_ButtonColor_list.getString(getString(R.string.Trivia_ButtonColor_key), "Black");
         String textColor = trivia_TextColor_list.getString(getString(R.string.Trivia_TextColor_key), "Black");
 
-        intent.putExtra("save", getIntent().getStringExtra("save"));
+        intent.putExtra("saveState", getIntent().getStringExtra("saveState"));
         intent.putExtra("backgroundColor", backgroundColor);
         intent.putExtra("buttonColor", buttonColor);
         intent.putExtra("textColor", textColor);
