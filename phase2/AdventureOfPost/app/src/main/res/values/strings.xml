@@ -66,6 +66,9 @@
     <string name="conflict_stats_header">Conflicts</string>
     <string name="time_stats_header">Time(s)</string>
 
+    <string name="player_scoreboard_button">Player Scores</string>
+    <string name="global_scoreboard_button">Global Scores</string>
+
     <!-- Trivia texts -->
     <string name="TriviaDiff1">Easy</string>
     <string name="TriviaDiff2">Medium</string>
