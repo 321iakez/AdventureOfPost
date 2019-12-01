@@ -82,7 +82,8 @@ public class SCFancyMode extends ShapeClicker {
                 this.combo += 1;
             }
         }
-        this.combo = 0;
+        if (!this.within)
+            this.combo = 0;
         update();
         checkComplete();
     }
