@@ -42,6 +42,7 @@ public class TriviaStartActivity extends AppCompatActivity {
             Intent intent = new Intent(this, TriviaActivity.class);
             intent.putExtra("op", operations.getSelectedItem().toString());
             intent.putExtra("diff", difficulty.getSelectedItem().toString());
+            intent.putExtra("username", getIntent().getStringExtra("username"));
             startActivity(intent);
         });
     }

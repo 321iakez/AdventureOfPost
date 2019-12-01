@@ -176,7 +176,8 @@ public class TriviaActivity extends AppCompatActivity {
 
         } else {
             Intent intent = new Intent(this, TriviaEndActivity.class);
-            intent.putExtra("stats", presenter.getStats());
+            intent.putExtra("saveState", presenter.saveGame());
+            intent.putExtra("username", getIntent().getStringExtra("username"));
             startActivity(intent);
         }
     }

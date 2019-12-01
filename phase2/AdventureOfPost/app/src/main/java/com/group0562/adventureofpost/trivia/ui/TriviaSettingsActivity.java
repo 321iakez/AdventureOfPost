@@ -43,6 +43,7 @@ public class TriviaSettingsActivity extends AppCompatActivity {
         intent.putExtra("backgroundColor", backgroundColor);
         intent.putExtra("buttonColor", buttonColor);
         intent.putExtra("textColor", textColor);
+        intent.putExtra("username", getIntent().getStringExtra("username"));
 
         startActivity(intent);
     }
