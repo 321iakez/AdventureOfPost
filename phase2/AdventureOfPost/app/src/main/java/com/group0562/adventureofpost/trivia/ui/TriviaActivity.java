@@ -9,12 +9,9 @@ import android.widget.TextView;
 
 import com.group0562.adventureofpost.R;
 import com.group0562.adventureofpost.trivia.Question;
-import com.group0562.adventureofpost.trivia.Trivia;
 import com.group0562.adventureofpost.trivia.TriviaPresenter;
-import com.group0562.adventureofpost.trivia.TriviaStats;
-import com.group0562.adventureofpost.trivia.TriviaView;
 
-public class TriviaActivity extends AppCompatActivity implements TriviaView {
+public class TriviaActivity extends AppCompatActivity{
 
     /**
     * an instance of Trivia
@@ -73,9 +70,9 @@ public class TriviaActivity extends AppCompatActivity implements TriviaView {
         }
 
         if (getIntent().hasExtra("saveState")){
-            presenter = new TriviaPresenter(this, getIntent().getStringExtra("saveState"));
+            presenter = new TriviaPresenter(getIntent().getStringExtra("saveState"));
         } else {
-            presenter = new TriviaPresenter(this, op, diff);
+            presenter = new TriviaPresenter(op, diff);
 
         }
 
@@ -163,18 +160,5 @@ public class TriviaActivity extends AppCompatActivity implements TriviaView {
         intent.putExtra("stats", presenter.getStats());
         startActivity(intent);
     }
-
-    @Override
-    public void onGameComplete() {
-
-    }
-
-    @Override
-    public void updateStats() {
-
-    }
-
-
-
 
 }

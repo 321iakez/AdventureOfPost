@@ -1,34 +1,21 @@
 package com.group0562.adventureofpost.trivia;
 
-import com.group0562.adventureofpost.Puzzles;
 
-public class TriviaPresenter extends Puzzles {
+public class TriviaPresenter{
 
     private Trivia game;
-    private TriviaView view;
     private TriviaStats gameStats;
 
-    public TriviaPresenter(TriviaView view, int op, int diff) {
-        super();
-        this.view = view;
+    public TriviaPresenter(int op, int diff) {
         game = new Trivia(op, diff);
         gameStats = new TriviaStats(op, diff);
-
     }
 
-    public TriviaPresenter(TriviaView view, String saveState) {
+    public TriviaPresenter(String saveState) {
         super();
-        this.view = view;
         loadGame(saveState);
-
     }
 
-
-    @Override
-    public void checkComplete() {
-        if(game.checkComplete())
-            setPuzzleComplete(true);
-    }
 
     public void onClick(int n){
         boolean correct = game.checkCorrect(n);
@@ -43,16 +30,6 @@ public class TriviaPresenter extends Puzzles {
         return game.hasNext();
     }
 
-    @Override
-    public void update() {
-        view.updateStats();
-
-        // Check complete
-        checkComplete();
-        if (getPuzzleComplete()) {
-            onStop();
-        }
-    }
 
     public String saveGame() {
         return gameStats.saveGame();
@@ -72,10 +49,6 @@ public class TriviaPresenter extends Puzzles {
         return gameStats.getStats();
     }
 
-    @Override
-    public void onStop() {
-        view.onGameComplete();
-    }
 
 
 }
