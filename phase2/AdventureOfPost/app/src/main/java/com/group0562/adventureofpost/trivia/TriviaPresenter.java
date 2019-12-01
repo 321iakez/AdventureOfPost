@@ -5,10 +5,10 @@ public class TriviaPresenter{
 
     private Trivia game;
     private TriviaStats gameStats;
-    private String color;
+    private String backgroundColor;
 
     public TriviaPresenter(String username, int op, int diff) {
-        color  = "White";
+        backgroundColor  = "White";
         game = new Trivia(op, diff);
         gameStats = new TriviaStats(username, op, diff);
     }
@@ -50,9 +50,9 @@ public class TriviaPresenter{
         this.game = new Trivia(op, diff, correct + incorrect);
     }
 
-    public void setColor(String color){this.color = color;}
+    public void setBackgroundColor(String color){this.backgroundColor = color;}
 
-    public String getColor(){return this.color;}
+    public String getBackgroundColor(){return this.backgroundColor;}
 
     public int[] getStats() {
         return gameStats.getStats();

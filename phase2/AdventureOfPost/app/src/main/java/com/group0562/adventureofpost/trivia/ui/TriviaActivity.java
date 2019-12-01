@@ -1,7 +1,6 @@
 package com.group0562.adventureofpost.trivia.ui;
 
 //import statements
-
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -63,9 +62,9 @@ public class TriviaActivity extends AppCompatActivity {
             presenter = new TriviaPresenter(getIntent().getStringExtra("username"), op, diff);
         }
         if (getIntent().hasExtra("color")) {
-            presenter.setColor(getIntent().getStringExtra("color"));
+            presenter.setBackgroundColor(getIntent().getStringExtra("color"));
         }
-        switch (presenter.getColor()) {
+        switch (presenter.getBackgroundColor()) {
             case "White":
                 setActivityBackgroundColor(0xFFFFFFFF);
                 break;
@@ -135,15 +134,20 @@ public class TriviaActivity extends AppCompatActivity {
         if (presenter.hasNext()) {
             Question q = presenter.getQuestion();
             String[] s = q.getOptions();
+
             TextView mTextView = findViewById(R.id.textView3);
             mTextView.setText(q.getQuestion());
+
             Button mTextView1 = findViewById(R.id.button4);
             mTextView1.setText(s[0]);
-            TextView mTextView2 = findViewById(R.id.button5);
+
+            Button mTextView2 = findViewById(R.id.button5);
             mTextView2.setText(s[1]);
-            TextView mTextView3 = findViewById(R.id.button6);
+
+            Button mTextView3 = findViewById(R.id.button6);
             mTextView3.setText(s[2]);
-            TextView mTextView4 = findViewById(R.id.button7);
+
+            Button mTextView4 = findViewById(R.id.button7);
             mTextView4.setText(s[3]);
         } else {
             Intent intent = new Intent(this, TriviaEndActivity.class);
