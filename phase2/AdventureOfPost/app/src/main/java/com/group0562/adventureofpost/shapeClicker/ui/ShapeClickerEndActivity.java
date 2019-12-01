@@ -12,6 +12,7 @@ import com.group0562.adventureofpost.R;
 
 public class ShapeClickerEndActivity extends AppCompatActivity {
     Button return_menu;
+    Button scoreboard;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +24,12 @@ public class ShapeClickerEndActivity extends AppCompatActivity {
     public void onClickReturnHome(View view) {
         Intent intent = new Intent(this, GameActivity.class);
         return_menu = findViewById(R.id.return_home);
+        startActivity(intent);
+    }
+
+    public void onClickScoreboard(View view){
+        Intent intent = new Intent(this, SCScoreBoardActivity.class);
+        scoreboard = findViewById(R.id.sc_scoreboard);
         startActivity(intent);
     }
 }
