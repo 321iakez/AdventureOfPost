@@ -5,15 +5,17 @@ public class TriviaPresenter{
 
     private Trivia game;
     private TriviaStats gameStats;
+    private String backgroundColor;
 
-    public TriviaPresenter(int op, int diff) {
+    public TriviaPresenter(String username, int op, int diff) {
+        backgroundColor  = "White";
         game = new Trivia(op, diff);
-        gameStats = new TriviaStats(op, diff);
+        gameStats = new TriviaStats(username, op, diff);
     }
 
-    public TriviaPresenter(String saveState) {
+    public TriviaPresenter(String username, String saveState) {
         super();
-        loadGame(saveState);
+        loadGame(username, saveState);
     }
 
 
@@ -35,15 +37,22 @@ public class TriviaPresenter{
         return gameStats.saveGame();
     }
 
-    private void loadGame(String saveState) {
+    private void loadGame(String username, String saveState) {
         //decode string
-        int op = 1;
-        int diff = 1;
-        int correct = 1;
-        int incorrect = 1;
-        this.gameStats = new TriviaStats(op, diff, correct, incorrect);
+        String[] userGameInfo = saveState.split(" ");
+
+        int op = Integer.parseInt(userGameInfo[0]);
+        int diff = Integer.parseInt(userGameInfo[1]);
+        int correct = Integer.parseInt(userGameInfo[2]);
+        int incorrect = Integer.parseInt(userGameInfo[3]);
+
+        this.gameStats = new TriviaStats(username, op, diff, correct, incorrect);
         this.game = new Trivia(op, diff, correct + incorrect);
     }
+
+    public void setBackgroundColor(String color){this.backgroundColor = color;}
+
+    public String getBackgroundColor(){return this.backgroundColor;}
 
     public int[] getStats() {
         return gameStats.getStats();

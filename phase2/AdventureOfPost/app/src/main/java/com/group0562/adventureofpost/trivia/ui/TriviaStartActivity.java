@@ -1,16 +1,14 @@
 package com.group0562.adventureofpost.trivia.ui;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
-import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.group0562.adventureofpost.R;
-import com.group0562.adventureofpost.trivia.Trivia;
+import com.group0562.adventureofpost.sudoku.ui.SudokuScoreboardActivity;
 
 public class TriviaStartActivity extends AppCompatActivity {
 
@@ -35,16 +33,25 @@ public class TriviaStartActivity extends AppCompatActivity {
                 R.layout.support_simple_spinner_dropdown_item, DIFFICULTY_OPTIONS);
         difficulty.setAdapter(difficultyOptionAdaptor);
 
-        findViewById(R.id.startButton).setOnClickListener(this::onClickStart);
-
+        addListenerStart();
+        addListenerScore();
     }
 
-    void onClickStart(View view) {
-        Intent intent = new Intent(this, TriviaActivity.class);
-        intent.putExtra("op", operations.getSelectedItem().toString());
-        intent.putExtra("diff", difficulty.getSelectedItem().toString());
-        startActivity(intent);
+    void addListenerStart() {
+        findViewById(R.id.startButton).setOnClickListener(v -> {
+            Intent intent = new Intent(this, TriviaActivity.class);
+            intent.putExtra("op", operations.getSelectedItem().toString());
+            intent.putExtra("diff", difficulty.getSelectedItem().toString());
+            startActivity(intent);
+        });
     }
 
-
+    void addListenerScore() {
+        findViewById(R.id.playerScoreButton).setOnClickListener(v -> {
+            Intent intent = new Intent(this, SudokuScoreboardActivity.class);
+            intent.putExtra("username", getIntent().getStringExtra("username"));
+            intent.putExtra("currGame", "trivia");
+            startActivity(intent);
+        });
+    }
 }

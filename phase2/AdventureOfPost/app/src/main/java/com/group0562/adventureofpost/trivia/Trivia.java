@@ -44,7 +44,6 @@ public class Trivia {
         ArrayList<Question> list = new ArrayList<>();
 
         for (int i = 1; i <= 10 ; i++){
-            //TODO gameType is hardcoded right now will change for more options later
             list.add(new Question(diff, op));
         }
         return list;

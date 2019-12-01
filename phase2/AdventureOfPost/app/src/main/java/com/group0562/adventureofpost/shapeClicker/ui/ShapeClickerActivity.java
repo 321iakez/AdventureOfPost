@@ -1,22 +1,20 @@
 package com.group0562.adventureofpost.shapeClicker.ui;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
 import com.group0562.adventureofpost.GameActivity;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.group0562.adventureofpost.R;
 import com.group0562.adventureofpost.shapeClicker.SCSetting;
 import com.group0562.adventureofpost.shapeClicker.ShapeClickerGameView;
 
-public class ShapeClickerActivity extends AppCompatActivity implements SCPauseDialog.SCPauseDialogListener{
+public class ShapeClickerActivity extends AppCompatActivity implements SCPauseDialog.SCPauseDialogListener {
     public final static String EXTRA_MESSAGE = "com.group0562.AdventureOfPost.MESSAGE";
-    Button sc_setting;
     Button sc_done;
-    Button sc_pause_continue;
     ShapeClickerGameView sc_view;
 
     private final String RETURN_NO_SAVE = "RETURN_NO_SAVE";
@@ -26,7 +24,7 @@ public class ShapeClickerActivity extends AppCompatActivity implements SCPauseDi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_circle_clicker);
+        setContentView(R.layout.activity_shape_clicker);
         String username = getIntent().getStringExtra("username");
         SCSetting.setUsername(username);
         sc_view = findViewById(R.id.scview);
@@ -44,12 +42,6 @@ public class ShapeClickerActivity extends AppCompatActivity implements SCPauseDi
         sc_done = findViewById(R.id.sc_finish_button);
         startActivity(intent);
     }
-
-   // public void onClickSCPause(View view){
-      //  Intent intent = new Intent(this, SCPauseActivity.class);
-       // sc_pause_continue = findViewById(R.id.sc_pause_button);
-       // startActivity(intent);
-    //}
 
     @Override
     public void saveGame(String mode) {
