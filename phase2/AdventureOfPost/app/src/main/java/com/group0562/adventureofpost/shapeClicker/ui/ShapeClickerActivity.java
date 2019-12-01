@@ -25,8 +25,8 @@ public class ShapeClickerActivity extends AppCompatActivity implements SCPauseDi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shape_clicker);
-        String username = getIntent().getStringExtra("username");
-        SCSetting.setUsername(username);
+        //String username = getIntent().getStringExtra("username");
+        //SCSetting.setUsername(username);
         sc_view = findViewById(R.id.scview);
     }
 
@@ -47,7 +47,7 @@ public class ShapeClickerActivity extends AppCompatActivity implements SCPauseDi
     public void saveGame(String mode) {
         if (mode.equals(RETURN_NO_SAVE)) {
             System.out.println("returned without save");
-            Intent intent = new Intent(this, SCSettingActivity.class);
+            Intent intent = new Intent(this, GameActivity.class);
             startActivity(intent);
 
         } else if (mode.equals(RETURN_SAVE)) {

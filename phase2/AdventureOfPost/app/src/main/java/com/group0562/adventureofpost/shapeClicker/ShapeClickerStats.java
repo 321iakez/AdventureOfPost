@@ -35,7 +35,7 @@ public class ShapeClickerStats{
         this.startTime = System.currentTimeMillis();
         this.lives = 10;
         TIME_LIMIT = time;
-        this.username = username;
+        this.username = SCSetting.getUsername();
         this.paint = new Paint();
         this.paint.setColor(Color.BLACK);
         this.paint.setStrokeWidth(3);
