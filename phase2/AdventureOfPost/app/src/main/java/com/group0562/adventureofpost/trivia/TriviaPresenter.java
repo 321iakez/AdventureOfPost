@@ -1,6 +1,8 @@
 package com.group0562.adventureofpost.trivia;
 
 
+import android.content.Context;
+
 public class TriviaPresenter{
 
     private Trivia game;
@@ -24,6 +26,9 @@ public class TriviaPresenter{
         loadGame(username, saveState);
     }
 
+    public void saveToDatabase(Context context){
+        gameStats.saveToDatabase(context, saveGame());
+    }
 
     public void onClick(int n){
         boolean correct = game.checkCorrect(n);

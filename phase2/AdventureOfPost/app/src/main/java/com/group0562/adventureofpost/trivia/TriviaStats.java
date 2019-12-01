@@ -2,6 +2,9 @@ package com.group0562.adventureofpost.trivia;
 
 
 import android.content.Context;
+import android.util.Log;
+
+import com.group0562.adventureofpost.database.DatabaseHelper;
 
 public class TriviaStats {
 
@@ -38,8 +41,10 @@ public class TriviaStats {
         return this.op + " " + this.diff + " " + this.correct + " " + this.incorrect;
     }
 
-    void saveToDatabase(Context context){
-
+    void saveToDatabase(Context context, String saveString){
+        DatabaseHelper db = new DatabaseHelper(context);
+        long newRowId = db.insertSudokuStats(username, correct, incorrect, score);
+        Log.i("TriviaPresenter", "Stats inserted at row" + newRowId);
     }
 
 
