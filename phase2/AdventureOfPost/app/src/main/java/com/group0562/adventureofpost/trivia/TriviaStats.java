@@ -96,7 +96,7 @@ public class TriviaStats {
      */
     void saveToDatabase(Context context, String saveString) {
         DatabaseHelper db = new DatabaseHelper(context);
-        long newRowId = db.insertSudokuStats(username, correct, incorrect, score);
+        long newRowId = db.insertTriviaStats(username, correct, incorrect, score);
         Log.i("TriviaPresenter", "Stats inserted at row" + newRowId);
     }
 
