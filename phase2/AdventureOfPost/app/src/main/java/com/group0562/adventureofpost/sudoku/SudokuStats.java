@@ -10,6 +10,10 @@ import java.util.Observable;
 
 public class SudokuStats extends Observable {
 
+    public final static String SUDOKU_STAT1 = "time";
+    public final static String SUDOKU_STAT2 = "moves";
+    public final static String SUDOKU_STAT3 = "conflicts";
+
     /**
      * Number of moves user made.
      */
@@ -38,15 +42,6 @@ public class SudokuStats extends Observable {
 
     public SudokuStats(String username) {
         this.username = username;
-    }
-
-    /**
-     * Access DatabaseHelper and stores the stats.
-     */
-    void saveStats(Context context) {
-        DatabaseHelper db = new DatabaseHelper(context);
-        long newRowId = db.insertSudokuStats(username, gameTime, conflicts, moves);
-        Log.i("SudokuPresenter", "Stats inserted at row" + newRowId);
     }
 
     /* ========== Getters ========== */
@@ -91,5 +86,14 @@ public class SudokuStats extends Observable {
 
         setChanged();
         notifyObservers();
+    }
+
+    /**
+     * Access DatabaseHelper and stores the stats.
+     */
+    void saveStats(Context context) {
+        DatabaseHelper db = new DatabaseHelper(context);
+        long newRowId = db.insertSudokuStats(username, gameTime, conflicts, moves);
+        Log.i("SudokuPresenter", "Stats inserted at row" + newRowId);
     }
 }

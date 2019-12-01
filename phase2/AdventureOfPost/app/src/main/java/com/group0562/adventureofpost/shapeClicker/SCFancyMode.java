@@ -74,15 +74,16 @@ public class SCFancyMode extends ShapeClicker {
      */
     void checkWithinBall(double cursor_x, double cursor_y) {
         this.within = false;
-        for (int i = 0; i<this.s_object.size(); i++){
-            if (this.s_object.get(i).checkWithin(cursor_x, cursor_y)){
+        for (int i = 0; i<this.s_object.size(); i++) {
+            if (this.s_object.get(i).checkWithin(cursor_x, cursor_y)) {
                 this.within = true;
                 this.clicked_score = checkShape(this.s_object.get(i));
                 this.to_erase_object = i;
                 this.combo += 1;
             }
-            else this.combo = 0;
         }
+        if (!this.within)
+            this.combo = 0;
         update();
         checkComplete();
     }
@@ -94,9 +95,9 @@ public class SCFancyMode extends ShapeClicker {
         for (Shape item: s_object) {
             item.draw(canvas);
         }
-        String combo_text = Long.toString(combo);
-         combo_text = combo_text + this.getCombos();
-         canvas.drawText(combo_text, 950, 1400,paint);
+        String combo_text = Long.toString(this.getCombos());
+        combo_text = combo_text + " Combos";
+        canvas.drawText(combo_text, 900, 1400, paint);
     }
 
     /**

@@ -9,12 +9,9 @@ import android.widget.TextView;
 
 import com.group0562.adventureofpost.R;
 import com.group0562.adventureofpost.trivia.Question;
-import com.group0562.adventureofpost.trivia.Trivia;
 import com.group0562.adventureofpost.trivia.TriviaPresenter;
-import com.group0562.adventureofpost.trivia.TriviaStats;
-import com.group0562.adventureofpost.trivia.TriviaView;
 
-public class TriviaActivity extends AppCompatActivity implements TriviaView {
+public class TriviaActivity extends AppCompatActivity{
 
     /**
     * an instance of Trivia
@@ -26,34 +23,65 @@ public class TriviaActivity extends AppCompatActivity implements TriviaView {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trivia);
-        int diff;
-        int op;
-        switch(getIntent().getStringExtra("diff")) {
-            case "Easy":
-                diff = 1;
-                break;
-            case "Medium":
-                diff = 2;
-                break;
-            default:
-                diff = 3;
-                break;
+        if (getIntent().hasExtra("color")){
+            System.out.println(getIntent().getStringExtra("color"));
+            switch (getIntent().getStringExtra("color")) {
+                case "White":
+                    setActivityBackgroundColor(0xFFFFFFFF);
+                    break;
+                case "Blue":
+                    setActivityBackgroundColor(0xFFB8D5D6);
+                    break;
+                case "Green":
+                    setActivityBackgroundColor(0xFF00FF00);
+                    break;
+                case "Yellow":
+                    setActivityBackgroundColor(0xFFFFFF00);
+                    break;
+            }
+        }
+        int diff = 1;
+        int op = 2;
+        if (getIntent().hasExtra("diff")){
+            switch(getIntent().getStringExtra("diff")) {
+                case "Easy":
+                    diff = 1;
+                    break;
+                case "Medium":
+                    diff = 2;
+                    break;
+                default:
+                    diff = 3;
+                    break;
+            }
+        }
+        if (getIntent().hasExtra("op")) {
+            switch (getIntent().getStringExtra("op")) {
+                case "Addition":
+                    op = 1;
+                    break;
+                case "Subtraction":
+                    op = 2;
+                    break;
+                default:
+                    op = 3;
+                    break;
+            }
         }
 
-        switch(getIntent().getStringExtra("op")) {
-            case "Addition":
-                op = 1;
-                break;
-            case "Subtraction":
-                op = 2;
-                break;
-            default:
-                op = 3;
-                break;
+        if (getIntent().hasExtra("saveState")){
+            presenter = new TriviaPresenter(getIntent().getStringExtra("saveState"));
+        } else {
+            presenter = new TriviaPresenter(op, diff);
+
         }
+        onClickOptionHelper();
 
-        presenter = new TriviaPresenter(this, op, diff);
+    }
 
+    public void setActivityBackgroundColor(int color) {
+        View view = this.getWindow().getDecorView();
+        view.setBackgroundColor(color);
     }
 
     /**
@@ -133,18 +161,5 @@ public class TriviaActivity extends AppCompatActivity implements TriviaView {
         intent.putExtra("stats", presenter.getStats());
         startActivity(intent);
     }
-
-    @Override
-    public void onGameComplete() {
-
-    }
-
-    @Override
-    public void updateStats() {
-
-    }
-
-
-
 
 }

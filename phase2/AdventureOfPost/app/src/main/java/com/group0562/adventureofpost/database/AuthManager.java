@@ -14,16 +14,16 @@ class AuthManager {
     }
 
     boolean checkUsernameDup(SQLiteDatabase db, String username) {
-        Cursor cursor = db.rawQuery("SELECT * FROM users WHERE username=?", new String[]{username});
-        boolean result = cursor.getCount() <= 0;
-        cursor.close();
-        return result;
+        String sql = "SELECT * FROM users WHERE username=?";
+        try (Cursor cursor = db.rawQuery(sql, new String[]{username})) {
+            return cursor.getCount() <= 0;
+        }
     }
 
     boolean verify(SQLiteDatabase db, String username, String password) {
-        Cursor cursor = db.rawQuery("SELECT * FROM users WHERE username=? AND password=?", new String[]{username, password});
-        boolean result = cursor.getCount() > 0;
-        cursor.close();
-        return result;
+        String sql = "SELECT * FROM users WHERE username=? AND password=?";
+        try (Cursor cursor = db.rawQuery(sql, new String[]{username, password})) {
+            return cursor.getCount() > 0;
+        }
     }
 }

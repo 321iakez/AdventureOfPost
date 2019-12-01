@@ -25,8 +25,8 @@
     <ListPreference
         android:id="@+id/TriviaFontMenu"
         android:defaultValue="true"
-        android:entries="@array/sc_color_entries"
-        android:entryValues="@array/sc_color_values"
+        android:entries="@array/trivia_color_entries"
+        android:entryValues="@array/trivia_color_values"
         android:key="@string/sc_color_key"
         android:title="@string/sc_color_title" />
 </PreferenceScreen>

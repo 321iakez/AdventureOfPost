@@ -3,6 +3,10 @@ package com.group0562.adventureofpost.trivia;
 
 public class TriviaStats {
 
+    public final static String TRIVIA_STAT1 = "correct";
+    public final static String TRIVIA_STAT2 = "incorrect";
+    public final static String TRIVIA_STAT3 = "score";
+
     private int correct;
     private int incorrect;
     private int score;

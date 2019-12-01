@@ -12,6 +12,7 @@ import com.group0562.adventureofpost.GameActivity;
 import com.group0562.adventureofpost.R;
 
 public class SCScoreBoardActivity extends AppCompatActivity {
+    @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sc_scoreboard);

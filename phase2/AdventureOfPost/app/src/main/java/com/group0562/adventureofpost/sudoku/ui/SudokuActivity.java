@@ -74,7 +74,8 @@ public class SudokuActivity extends AppCompatActivity implements SudokuView, Obs
                         int colWidth = width / presenter.getDim();
                         int colHeight = height / presenter.getDim();
 
-                        gridView.setAdapter(new GridSizeAdaptor(gridView.getTileButtons(), colWidth, colHeight));
+                        GridSizeAdaptor adaptor = new GridSizeAdaptor(gridView.getTileButtons(), colWidth, colHeight, false);
+                        gridView.setAdapter(adaptor);
                     }
                 });
     }
@@ -98,7 +99,7 @@ public class SudokuActivity extends AppCompatActivity implements SudokuView, Obs
                         int height = numPadView.getMeasuredHeight();
                         int colWidth = width / presenter.getDim();
 
-                        GridSizeAdaptor adaptor = new GridSizeAdaptor(numPadView.getTileButtons(), colWidth, height);
+                        GridSizeAdaptor adaptor = new GridSizeAdaptor(numPadView.getTileButtons(), colWidth, height, true);
                         numPadView.setAdapter(adaptor);
                     }
                 });
