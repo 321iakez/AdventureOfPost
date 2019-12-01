@@ -39,6 +39,7 @@ public class ShapeClickerActivity extends AppCompatActivity implements SCPauseDi
     public void onClickSCDone(View view) {
         Intent intent = new Intent(this, ShapeClickerEndActivity.class);
         sc_done = findViewById(R.id.sc_finish_button);
+        sc_view.getClicker().saveStats(this);
         intent.putExtra("username", getIntent().getStringExtra("username"));
         startActivity(intent);
     }
@@ -53,7 +54,7 @@ public class ShapeClickerActivity extends AppCompatActivity implements SCPauseDi
 
         } else if (mode.equals(RETURN_SAVE)) {
             System.out.println("returned with save");
-            sc_view.getClicker().saveStats(this);
+            //sc_view.getClicker().saveStats(this);
             Intent intent = new Intent(this, GameActivity.class);
             intent.putExtra("username", getIntent().getStringExtra("username"));
             startActivity(intent);
