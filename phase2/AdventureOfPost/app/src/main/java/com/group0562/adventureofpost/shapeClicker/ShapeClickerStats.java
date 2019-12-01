@@ -107,7 +107,7 @@ public class ShapeClickerStats{
 
     void saveStats(Context context) {
         DatabaseHelper db = new DatabaseHelper(context);
-        long newRowId = db.insertSudokuStats(this.username, (long)getTime(), getPoints(), getLives());
+        long newRowId = db.insertShapeClickerStats(this.username, (long)getTime(), getPoints(), getLives());
         Log.i("ShapeClicker", "Stats inserted at row" + newRowId);
     }
 }

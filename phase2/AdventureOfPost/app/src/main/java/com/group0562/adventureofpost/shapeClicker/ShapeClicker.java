@@ -2,7 +2,6 @@ package com.group0562.adventureofpost.shapeClicker;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import com.group0562.adventureofpost.AdventureOfPost;
 
 
 public abstract class ShapeClicker{
