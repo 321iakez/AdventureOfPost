@@ -22,11 +22,11 @@ public class ShapeBuilder {
     private void randomShapeGenerator(int goal, int num_of_shapes, Paint paint){
         //algorithm that makes the most to least number of circle, square and then triangle, and then create them
 
-        double[] temp_location = {50, 75};
+        double[] temp_location = {50, 125};
         double x_interval = 100;
         double y_interval = 150;
         for(int i = 50; i <= ShapeClicker.bound[1];i+= x_interval) {
-            for (int j = 75; j <= ShapeClicker.bound[3]; j += y_interval) {
+            for (int j = 125; j <= ShapeClicker.bound[3]; j += y_interval) {
                 if (new Random().nextDouble() <= 0.1) {
                     this.s_objects.add(new Triangle(temp_location[0], temp_location[1], paint));
                 } else if (new Random().nextDouble() <= 0.1) {
