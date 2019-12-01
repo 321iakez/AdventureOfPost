@@ -21,7 +21,6 @@ public class SCScoreboardPresenter {
         Cursor cursor = db.rawQuery("SELECT * FROM gameScores", null);
         ArrayList<String>Result = new ArrayList<String>();
         if (cursor.moveToFirst()){
-            ArrayList<Long> numberlist = new ArrayList<Long>();
             int pointsIndex = cursor.getColumnIndex("points");
             int userIndex = cursor.getColumnIndex("username");
             long max = cursor.getLong(pointsIndex);
