@@ -26,6 +26,7 @@
         <activity android:name=".GameActivity" />
         <activity android:name=".trivia.ui.TriviaActivity" />
         <activity android:name=".shapeClicker.ui.ShapeClickerActivity" />
+        <activity android:name=".shapeClicker.ui.SCScoreBoardActivity" />
         <activity android:name=".sudoku.ui.SudokuActivity" />
         <activity android:name=".auth.ui.LoginActivity">
             <intent-filter>

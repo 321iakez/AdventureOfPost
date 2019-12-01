@@ -75,6 +75,7 @@ public class TriviaActivity extends AppCompatActivity{
             presenter = new TriviaPresenter(op, diff);
 
         }
+        onClickOptionHelper();
 
     }
 
