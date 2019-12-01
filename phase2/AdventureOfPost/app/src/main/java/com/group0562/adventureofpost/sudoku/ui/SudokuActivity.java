@@ -143,6 +143,7 @@ public class SudokuActivity extends AppCompatActivity implements SudokuView, Obs
         if (mode.equals(SudokuPauseDialog.Modes.EXIT_NO_SAVE)) {
             System.out.println("returned without save");
             Intent intent = new Intent(this, GameActivity.class);
+            intent.putExtra("username", getIntent().getStringExtra("username"));
             startActivity(intent);
 
         } else if (mode.equals(SudokuPauseDialog.Modes.EXIT_SAVE)) {
@@ -150,6 +151,7 @@ public class SudokuActivity extends AppCompatActivity implements SudokuView, Obs
             presenter.saveStats(this);
 
             Intent intent = new Intent(this, GameActivity.class);
+            intent.putExtra("username", getIntent().getStringExtra("username"));
             startActivity(intent);
         }
     }
@@ -161,6 +163,7 @@ public class SudokuActivity extends AppCompatActivity implements SudokuView, Obs
         }
 
         Intent intent = new Intent(this, GameActivity.class);
+        intent.putExtra("username", getIntent().getStringExtra("username"));
         startActivity(intent);
     }
 

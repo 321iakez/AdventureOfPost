@@ -21,7 +21,7 @@ class AuthManager {
     }
 
     boolean verify(SQLiteDatabase db, String username, String password) {
-        Cursor cursor = db.rawQuery("SELECT * FROM users WHERE username =? AND password=?", new String[]{username, password});
+        Cursor cursor = db.rawQuery("SELECT * FROM users WHERE username=? AND password=?", new String[]{username, password});
         boolean result = cursor.getCount() > 0;
         cursor.close();
         return result;
