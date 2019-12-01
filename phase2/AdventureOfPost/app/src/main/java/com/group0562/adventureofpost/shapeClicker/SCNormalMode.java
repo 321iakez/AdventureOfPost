@@ -8,19 +8,17 @@ import com.group0562.adventureofpost.shapeClicker.ui.SCEndResultView;
 
 public class SCNormalMode extends ShapeClicker {
     /* bound indexes follow from left, right, up and down */
-    static double[] bound;
+//    static double[] bound;
 
     /**
      * the current shape that is being displayed to player to click
      */
-    Shape s_object;
+    private Shape s_object;
 
     /**
      * the paint used for the shape being clicked
      */
     private Paint paint;
-
-    private static Paint INITIAL_PAINT;
 
     /**
      * string recording the type of shape being tapped
@@ -37,14 +35,6 @@ public class SCNormalMode extends ShapeClicker {
      */
     private boolean changed;
 
-    private static long TIME_LIMIT;
-
-    private long pausing_time;
-
-    private long pausing_life;
-
-    private long pausing_points;
-
     /**
      * constructor for this SCNormalMode
      *
@@ -53,9 +43,7 @@ public class SCNormalMode extends ShapeClicker {
      */
     SCNormalMode(long time, Paint p) {
         super(new ShapeClickerStats(time, SCSetting.getUsername()));
-        TIME_LIMIT = time;
         this.paint = p;
-        INITIAL_PAINT = p;
         s_object = new Circle(50, 50, this.paint);
         setShape(SCSetting.getShape());
         checkObject();
@@ -63,10 +51,18 @@ public class SCNormalMode extends ShapeClicker {
     }
 
     /**
-     * set the boundary for this SCNormalMode
+     * Change the type of shape of the SCNormalMode
      */
-    static void setBound(double[] bound) {
-        SCNormalMode.bound = bound;
+    private void setDifficulty(String difficulty) {
+        s_object.setRadius(difficulty);
+    }
+
+    /**
+     * Change the type of shape of the SCNormalMode
+     */
+    private void setShape(String shape) {
+        this.shape = shape;
+        this.changed = true;
     }
 
     /**
@@ -86,21 +82,6 @@ public class SCNormalMode extends ShapeClicker {
      */
     void draw(Canvas canvas) {
         s_object.draw(canvas);
-    }
-
-    /**
-     * Change the type of shape of the SCNormalMode
-     */
-    void setDifficulty(String difficulty) {
-        s_object.setRadius(difficulty);
-    }
-
-    /**
-     * Change the type of shape of the SCNormalMode
-     */
-    public void setShape(String shape) {
-        this.shape = shape;
-        this.changed = true;
     }
 
     /**
@@ -151,21 +132,5 @@ public class SCNormalMode extends ShapeClicker {
             this.setPuzzleComplete(false);
             SCEndResultView.setBeat_the_game(false);
         }
-    }
-    public static void reset(){
-        SCNormalMode sc = new SCNormalMode(TIME_LIMIT, INITIAL_PAINT);
-        sc.resetGame();
-    }
-    public void resetGame(){
-        this.puzzleStats.setTime(TIME_LIMIT);
-        this.puzzleStats.setLives(10);
-        this.puzzleStats.setPoints(0);
-    }
-
-    public void pause(){
-        pausing_life = puzzleStats.getLives();
-        pausing_points = puzzleStats.getPoints();
-        pausing_time = (long)puzzleStats.getTime();
-
     }
 }
