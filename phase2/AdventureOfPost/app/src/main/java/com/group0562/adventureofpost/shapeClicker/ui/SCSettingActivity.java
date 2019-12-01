@@ -57,6 +57,7 @@ public class SCSettingActivity extends AppCompatActivity {
         SCSetting.setMode(mode_choice);
         Intent intent = new Intent(this, ShapeClickerActivity.class);
         intent.putExtra("username", getIntent().getStringExtra("username"));
+        SCSetting.setUsername(getIntent().getStringExtra("username"));
         startActivity(intent);
     }
 
