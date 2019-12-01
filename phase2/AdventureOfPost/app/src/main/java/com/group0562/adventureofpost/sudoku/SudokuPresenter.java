@@ -7,12 +7,29 @@ import java.util.Observer;
 import java.util.Random;
 import java.util.Scanner;
 
+/**
+ * Sudoku presenter class that bridges the UI and game logic.
+ */
 public class SudokuPresenter {
 
+    /**
+     * Virtual board instance.
+     */
     private Board gameBoard;
+
+    /**
+     * Sudoku UI view instance.
+     */
     private SudokuView view;
+
+    /**
+     * Sudoku stats tracker instance.
+     */
     private SudokuStats gameStats;
 
+    /**
+     * Position of currently selected cell.
+     */
     private int currRow = -1;
     private int currCol = -1;
 

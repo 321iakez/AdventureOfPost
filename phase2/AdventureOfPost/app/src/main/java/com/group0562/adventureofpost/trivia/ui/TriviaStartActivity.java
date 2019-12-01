@@ -8,7 +8,7 @@ import android.widget.Spinner;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.group0562.adventureofpost.R;
-import com.group0562.adventureofpost.sudoku.ui.SudokuScoreboardActivity;
+import com.group0562.adventureofpost.ScoreboardActivity;
 
 public class TriviaStartActivity extends AppCompatActivity {
 
@@ -48,7 +48,7 @@ public class TriviaStartActivity extends AppCompatActivity {
 
     void addListenerScore() {
         findViewById(R.id.playerScoreButton).setOnClickListener(v -> {
-            Intent intent = new Intent(this, SudokuScoreboardActivity.class);
+            Intent intent = new Intent(this, ScoreboardActivity.class);
             intent.putExtra("username", getIntent().getStringExtra("username"));
             intent.putExtra("currGame", "trivia");
             startActivity(intent);

@@ -11,9 +11,6 @@ import android.view.View;
 
 import androidx.annotation.Nullable;
 
-import com.group0562.adventureofpost.AdventureOfPost;
-import com.group0562.adventureofpost.Puzzles;
-
 public class ShapeClickerGameView extends View {
 
     /**

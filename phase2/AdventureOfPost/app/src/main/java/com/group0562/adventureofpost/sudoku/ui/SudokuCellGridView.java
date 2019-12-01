@@ -12,6 +12,10 @@ import com.group0562.adventureofpost.sudoku.SudokuPresenter;
 
 import java.util.ArrayList;
 
+
+/**
+ * GridView for displaying Sudoku game board.
+ */
 public class SudokuCellGridView extends GridView {
 
     private Button[][] gridCells;
@@ -36,6 +40,10 @@ public class SudokuCellGridView extends GridView {
         super(context, attrs);
     }
 
+    void setPresenter(SudokuPresenter presenter) {
+        this.presenter = presenter;
+    }
+
     /**
      * Create the buttons for displaying the tiles.
      *
@@ -56,22 +64,7 @@ public class SudokuCellGridView extends GridView {
         }
     }
 
-    /**
-     * Load given value into UI cell at (row, col).
-     *
-     * @param row   the row number.
-     * @param col   the column number.
-     * @param value the value to be displayed.
-     */
-    void loadValues(int row, int col, String value) {
-        gridCells[row][col].setText(value);
-    }
-
-    void setPresenter(SudokuPresenter presenter) {
-        this.presenter = presenter;
-    }
-
-    void onClickGridCell(View view) {
+    private void onClickGridCell(View view) {
         int row = Character.getNumericValue(view.getTag().toString().charAt(0));
         int col = Character.getNumericValue(view.getTag().toString().charAt(1));
 
@@ -87,6 +80,20 @@ public class SudokuCellGridView extends GridView {
         }
     }
 
+    /**
+     * Load given value into UI cell at (row, col).
+     *
+     * @param row   the row number.
+     * @param col   the column number.
+     * @param value the value to be displayed.
+     */
+    void loadValues(int row, int col, String value) {
+        gridCells[row][col].setText(value);
+    }
+
+    /**
+     * Return a list of buttons on GridView for Adaptor to change layout.
+     */
     ArrayList<Button> getTileButtons() {
         ArrayList<Button> result = new ArrayList<>();
         for (int row = 0; row != presenter.getDim(); row++) {

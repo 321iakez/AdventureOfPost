@@ -1,4 +1,4 @@
-package com.group0562.adventureofpost.sudoku.ui;
+package com.group0562.adventureofpost;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -8,7 +8,6 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.group0562.adventureofpost.R;
 import com.group0562.adventureofpost.database.DatabaseHelper;
 
 import java.util.HashMap;
@@ -25,7 +24,11 @@ import static com.group0562.adventureofpost.trivia.TriviaStats.TRIVIA_STAT1;
 import static com.group0562.adventureofpost.trivia.TriviaStats.TRIVIA_STAT2;
 import static com.group0562.adventureofpost.trivia.TriviaStats.TRIVIA_STAT3;
 
-public class SudokuScoreboardActivity extends AppCompatActivity {
+
+/**
+ * Generic activity for displaying scoreboard for all three games.
+ */
+public class ScoreboardActivity extends AppCompatActivity {
 
     private LinearLayout stat1Layout;
     private LinearLayout stat2Layout;
@@ -53,10 +56,20 @@ public class SudokuScoreboardActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Uses database helper to retrieve stats and clean it.
+     *
+     * @param context the context of activity.
+     * @param stat1   the first stats category to be displayed.
+     * @param stat2   the second stats category to be displayed.
+     * @param stat3   the third stats category to be displayed.
+     * @return a map where the key is the stats category and value are top 3 items.
+     */
     Map<String, int[]> getTopPlayerStats(Context context, String stat1, String stat2, String stat3) {
         DatabaseHelper db = new DatabaseHelper(context);
         Map<String, List<Integer>> data = db.playerStats(getIntent().getStringExtra("username"), getIntent().getStringExtra("currGame"));
 
+        // Take top 3 from each stat category
         int[] stat1Top = new int[3];
         int[] stat2Top = new int[3];
         int[] stat3Top = new int[3];
@@ -98,12 +111,21 @@ public class SudokuScoreboardActivity extends AppCompatActivity {
         return result;
     }
 
+    /**
+     * Helper method that displays the given data onto the screen.
+     *
+     * @param stat1       the first stats category to be displayed.
+     * @param stat2       the second stats category to be displayed.
+     * @param stat3       the third stats category to be displayed.
+     * @param stat1Header the header of the first stats category.
+     * @param stat2Header the header of the second stats category.
+     * @param stat3Header the header of the third stats category.
+     */
     private void displayPlayerScore(String stat1, String stat2, String stat3, String stat1Header,
                                     String stat2Header, String stat3Header) {
         Map<String, int[]> data = getTopPlayerStats(this, stat1, stat2, stat3);
 
         ((TextView) findViewById(R.id.stat1Header)).setText(stat1Header);
-        System.out.println(data.toString());
         int[] stat1Top = data.get(stat1);
         for (int x = 0; x < stat1Top.length; x++) {
             scoreColumnView(String.valueOf(x + 1),
@@ -138,6 +160,7 @@ public class SudokuScoreboardActivity extends AppCompatActivity {
      * @param user      the username
      * @param topScores the scores
      */
+
     private void scoreColumnView(String rankNum, String user, String topScores, LinearLayout parent) {
         LinearLayout layout = new LinearLayout(this);
         layout.setOrientation(LinearLayout.HORIZONTAL);

@@ -8,6 +8,10 @@ import com.group0562.adventureofpost.database.DatabaseHelper;
 
 import java.util.Observable;
 
+
+/**
+ * Sudoku stats tracking class.
+ */
 public class SudokuStats extends Observable {
 
     public final static String SUDOKU_STAT1 = "time";

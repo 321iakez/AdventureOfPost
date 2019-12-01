@@ -5,7 +5,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
-import android.widget.Button;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,7 +12,8 @@ import androidx.preference.PreferenceFragmentCompat;
 
 import com.group0562.adventureofpost.R;
 import com.group0562.adventureofpost.shapeClicker.SCSetting;
-import com.group0562.adventureofpost.sudoku.ui.SudokuScoreboardActivity;
+import com.group0562.adventureofpost.ScoreboardActivity;
+
 
 public class SCSettingActivity extends AppCompatActivity {
 
@@ -42,27 +42,27 @@ public class SCSettingActivity extends AppCompatActivity {
     }
 
     /*to switch the settings and go back to the game page*/
-    public void onClickBackToGame(View view) {
-        SharedPreferences manager = PreferenceManager.getDefaultSharedPreferences(this);
-
-        String color_choice = manager.getString(getString(R.string.sc_color_key), "Black");
-        String shape_choice = manager.getString(getString(R.string.sc_shape_key), "Circle");
-        String difficulty_choice = manager.getString(getString(R.string.sc_difficulty_key), "Easy");
-        String mode_choice = manager.getString(getString(R.string.sc_mode_key), "Normal");
-
+    public void onClickStartSC(View view) {
+        SharedPreferences sc_color_list = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences sc_shape_list = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences sc_difficulty_list = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences sc_mode_list = PreferenceManager.getDefaultSharedPreferences(this);
+        String color_choice = sc_color_list.getString(getString(R.string.sc_color_key), "Black");
+        String shape_choice = sc_shape_list.getString(getString(R.string.sc_shape_key), "Circle");
+        String difficulty_choice = sc_difficulty_list.getString(getString(R.string.sc_difficulty_key), "Easy");
+        String mode_choice = sc_mode_list.getString(getString(R.string.sc_mode_key), "Normal");
         SCSetting.setColor(color_choice);
         SCSetting.setDifficulty(difficulty_choice);
         SCSetting.setShape(shape_choice);
         SCSetting.setMode(mode_choice);
-
         Intent intent = new Intent(this, ShapeClickerActivity.class);
-        intent.putExtra("username", intent.getStringExtra("username"));
+        intent.putExtra("username", getIntent().getStringExtra("username"));
         startActivity(intent);
     }
 
     private void addListenerScoreboard() {
         findViewById(R.id.playerScoreButton).setOnClickListener(v -> {
-            Intent intent = new Intent(this, SudokuScoreboardActivity.class);
+            Intent intent = new Intent(this, ScoreboardActivity.class);
             intent.putExtra("username", getIntent().getStringExtra("username"));
             intent.putExtra("currGame", "shapeClicker");
             startActivity(intent);
