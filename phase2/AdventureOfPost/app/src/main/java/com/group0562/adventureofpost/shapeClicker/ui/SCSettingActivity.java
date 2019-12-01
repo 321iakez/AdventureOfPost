@@ -29,6 +29,7 @@ public class SCSettingActivity extends AppCompatActivity {
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
+        //addListenerStart();
     }
 
 
@@ -40,8 +41,8 @@ public class SCSettingActivity extends AppCompatActivity {
     }
 
     /*to switch the settings and go back to the game page*/
-    public void onClickBackToGame(View view) {
-        sc_back_to_game = findViewById(R.id.sc_back_to_game);
+    public void onClickStartSC(View view) {
+        sc_back_to_game = findViewById(R.id.sc_start_game);
         SharedPreferences sc_color_list = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences sc_shape_list = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences sc_difficulty_list = PreferenceManager.getDefaultSharedPreferences(this);
@@ -54,8 +55,8 @@ public class SCSettingActivity extends AppCompatActivity {
         SCSetting.setDifficulty(difficulty_choice);
         SCSetting.setShape(shape_choice);
         SCSetting.setMode(mode_choice);
-//        SCNormalMode.reset();
         Intent intent = new Intent(this, ShapeClickerActivity.class);
+        intent.putExtra("username", getIntent().getStringExtra("username"));
         startActivity(intent);
     }
 }
