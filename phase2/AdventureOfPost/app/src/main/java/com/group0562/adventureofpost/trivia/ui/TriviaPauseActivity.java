@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import com.group0562.adventureofpost.GameActivity;
 import com.group0562.adventureofpost.R;
-import com.group0562.adventureofpost.trivia.TriviaPresenter;
 
 public class TriviaPauseActivity extends AppCompatActivity {
 
@@ -38,9 +37,8 @@ public class TriviaPauseActivity extends AppCompatActivity {
 
     public void onClickSave(View view){
         Intent intent = new Intent(this, GameActivity.class);
+        intent.putExtra("triviaSave", getIntent().getStringExtra("save"));
         intent.putExtra("username", getIntent().getStringExtra("username"));
-        TriviaPresenter presenter = new TriviaPresenter(getIntent().getStringExtra("username"), getIntent().getStringExtra("save"));
-        presenter.saveToDatabase(this);
         startActivity(intent);
     }
 

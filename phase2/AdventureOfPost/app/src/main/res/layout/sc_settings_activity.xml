@@ -10,25 +10,18 @@
         android:layout_height="match_parent">
 
         <Button
-            android:id="@+id/sc_back_to_game"
+            android:id="@+id/sc_start_game"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="564dp"
-            android:onClick="onClickBackToGame"
-            android:text="@string/sc_back_to_game"
+            android:layout_marginStart="92dp"
+            android:layout_marginTop="560dp"
+            android:onClick="onClickStartSC"
+            android:text="Start/Resume"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.26"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
-            android:id="@+id/playerScoreButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="40dp"
-            android:text="@string/player_scoreboard_button"
-            app:layout_constraintBottom_toTopOf="@+id/sc_back_to_game"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.317" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>

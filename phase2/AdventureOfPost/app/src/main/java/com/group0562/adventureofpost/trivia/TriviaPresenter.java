@@ -1,22 +1,14 @@
 package com.group0562.adventureofpost.trivia;
 
 
-import android.content.Context;
-
 public class TriviaPresenter{
 
     private Trivia game;
     private TriviaStats gameStats;
     private String backgroundColor;
-    private String textColor;
-    private String buttonColor;
-
-
 
     public TriviaPresenter(String username, int op, int diff) {
         backgroundColor  = "White";
-        textColor = "Black";
-        buttonColor = "Yellow";
         game = new Trivia(op, diff);
         gameStats = new TriviaStats(username, op, diff);
     }
@@ -26,9 +18,6 @@ public class TriviaPresenter{
         loadGame(username, saveState);
     }
 
-    public void saveToDatabase(Context context){
-        gameStats.saveToDatabase(context, saveGame());
-    }
 
     public void onClick(int n){
         boolean correct = game.checkCorrect(n);
@@ -45,8 +34,7 @@ public class TriviaPresenter{
 
 
     public String saveGame() {
-        String colorData = this.backgroundColor + " " + this.textColor+ " " + this.buttonColor;
-        return gameStats.saveGame(); // + " " + colorData; ADD THIS WHEN FRONTEND IMPLEMENTED
+        return gameStats.saveGame();
     }
 
     private void loadGame(String username, String saveState) {
@@ -57,9 +45,7 @@ public class TriviaPresenter{
         int diff = Integer.parseInt(userGameInfo[1]);
         int correct = Integer.parseInt(userGameInfo[2]);
         int incorrect = Integer.parseInt(userGameInfo[3]);
-        //this.backgroundColor = userGameInfo[4];
-        //this.textColor = userGameInfo[5];
-        //this.buttonColor = userGameInfo[6];
+
         this.gameStats = new TriviaStats(username, op, diff, correct, incorrect);
         this.game = new Trivia(op, diff, correct + incorrect);
     }
@@ -67,14 +53,6 @@ public class TriviaPresenter{
     public void setBackgroundColor(String color){this.backgroundColor = color;}
 
     public String getBackgroundColor(){return this.backgroundColor;}
-
-    public void setButtonColor(String color){this.buttonColor = color;}
-
-    public String getButtonColor(){return this.buttonColor;}
-
-    public void setTextColor(String color){this.textColor = color;}
-
-    public String getTextColor(){return this.textColor;}
 
     public int[] getStats() {
         return gameStats.getStats();
