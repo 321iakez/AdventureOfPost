@@ -32,9 +32,6 @@ public class ShapeClickerGameView extends View {
     //private SCFancyMode clicker;
     private ShapeClicker clicker;
 
-    public final static String SC_STAT1 = "time";
-    public final static String SC_STAT2 = "score";
-    public final static String SC_STAT3 = "lives";
 
     /**
      * the three stats of the puzzle
