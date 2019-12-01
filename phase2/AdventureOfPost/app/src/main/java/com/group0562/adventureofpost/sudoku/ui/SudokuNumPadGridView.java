@@ -12,18 +12,36 @@ import com.group0562.adventureofpost.sudoku.SudokuPresenter;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+
+/**
+ * GridView for displaying number pad for Sudoku.
+ */
 public class SudokuNumPadGridView extends GridView {
 
     private SudokuPresenter presenter;
-
     private Button[] numPad;
 
+    /**
+     * Construct gridView for Sudoku game board
+     *
+     * @param context the sudoku6_easy game activity
+     */
     public SudokuNumPadGridView(Context context) {
         super(context);
     }
 
+    /**
+     * Construct gridView with attributes
+     *
+     * @param context game activity
+     * @param attrs   attribute
+     */
     public SudokuNumPadGridView(Context context, AttributeSet attrs) {
         super(context, attrs);
+    }
+
+    void setPresenter(SudokuPresenter presenter) {
+        this.presenter = presenter;
     }
 
     /**
@@ -38,10 +56,6 @@ public class SudokuNumPadGridView extends GridView {
             cell.setOnClickListener(this::onClickNumpad);
             numPad[num] = cell;
         }
-    }
-
-    void setPresenter(SudokuPresenter presenter) {
-        this.presenter = presenter;
     }
 
     void onClickNumpad(View view) {
@@ -65,6 +79,9 @@ public class SudokuNumPadGridView extends GridView {
         }
     }
 
+    /**
+     * Return a list of buttons on GridView for Adaptor to change layout.
+     */
     ArrayList<Button> getTileButtons() {
         return new ArrayList<>(Arrays.asList(numPad));
     }

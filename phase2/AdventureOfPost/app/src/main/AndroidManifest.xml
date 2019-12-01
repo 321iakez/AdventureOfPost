@@ -10,7 +10,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".sudoku.ui.SudokuScoreboardActivity" />
+        <activity android:name=".ScoreboardActivity" />
         <activity android:name=".sudoku.ui.SudokuStartActivity" />
         <activity android:name=".trivia.ui.TriviaPauseActivity" />
         <activity
