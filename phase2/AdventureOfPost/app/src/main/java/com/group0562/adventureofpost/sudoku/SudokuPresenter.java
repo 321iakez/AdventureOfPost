@@ -27,6 +27,8 @@ public class SudokuPresenter {
      */
     private SudokuStats gameStats;
 
+    private SudokuStats.CountUpTimer timer;
+
     /**
      * Position of currently selected cell.
      */
@@ -40,6 +42,14 @@ public class SudokuPresenter {
         int[][] parsedBoard = getRandomPuzzle(view.getPresetBoardFile(difficulty, gridSize), gridSize);
         this.gameBoard = new Board(parsedBoard, gridSize, gridSize);
         System.out.println(getGameState());
+
+        timer = new SudokuStats.CountUpTimer(3600000) {
+            @Override
+            void onTick(int second) {
+                gameStats.updateTime(second);
+            }
+        };
+        timer.start();
     }
 
     /**
@@ -110,6 +120,7 @@ public class SudokuPresenter {
     public boolean addNum(int input) {
         boolean insertSuccess = gameBoard.insertNum(currRow, currCol, input);
         if (insertSuccess && gameBoard.checkFull()) {
+            timer.cancel();
             view.onGameComplete();
         }
         return insertSuccess;
@@ -126,6 +137,9 @@ public class SudokuPresenter {
     public void resetGameBoard() {
         gameStats.reset();
         gameBoard.resetBoard();
+
+        timer.cancel();
+        timer.start();
     }
 
     public int getDim() {

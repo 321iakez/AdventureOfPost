@@ -2,6 +2,7 @@ package com.group0562.adventureofpost.sudoku;
 
 
 import android.content.Context;
+import android.os.CountDownTimer;
 import android.util.Log;
 
 import com.group0562.adventureofpost.database.DatabaseHelper;
@@ -62,9 +63,8 @@ public class SudokuStats extends Observable {
     }
 
     /* ========== Update Methods ========== */
-    private void updateTime() {
-        long currTime = System.currentTimeMillis();
-        gameTime = currTime - startTime;
+    void updateTime(int time) {
+        gameTime = time;
 
         setChanged();
         notifyObservers();
@@ -99,5 +99,28 @@ public class SudokuStats extends Observable {
         DatabaseHelper db = new DatabaseHelper(context);
         long newRowId = db.insertSudokuStats(username, gameTime, conflicts, moves);
         Log.i("SudokuPresenter", "Stats inserted at row" + newRowId);
+    }
+
+    public abstract static class CountUpTimer extends CountDownTimer {
+        private static final long INTERVAL_MS = 1000;
+        private final long duration;
+
+        CountUpTimer(long durationMs) {
+            super(durationMs, INTERVAL_MS);
+            this.duration = durationMs;
+        }
+
+        abstract void onTick(int second);
+
+        @Override
+        public void onTick(long msUntilFinished) {
+            int second = (int) ((duration - msUntilFinished) / 1000);
+            onTick(second);
+        }
+
+        @Override
+        public void onFinish() {
+            onTick(duration / 1000);
+        }
     }
 }
