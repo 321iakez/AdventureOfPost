@@ -1,6 +1,9 @@
 package com.group0562.adventureofpost.sudoku;
 
-import com.group0562.adventureofpost.Puzzles;
+import android.content.Context;
+import android.util.Log;
+
+import com.group0562.adventureofpost.database.DatabaseHelper;
 
 import java.io.InputStream;
 import java.util.Observable;
@@ -13,12 +16,14 @@ public class SudokuPresenter extends Observable {
     private SudokuView view;
     private SudokuStats gameStats;
 
+    private String username;
     private int currRow = -1;
     private int currCol = -1;
 
-    public SudokuPresenter(SudokuView view, SudokuStats gameStats, int gridSize, String difficulty) {
+    public SudokuPresenter(SudokuView view, SudokuStats gameStats, int gridSize, String difficulty, String username) {
         this.gameStats = gameStats;
         this.view = view;
+        this.username = username;
 
         int[][] parsedBoard = getRandomPuzzle(view.getPresetBoardFile(difficulty, gridSize), gridSize);
         this.gameBoard = new Board(parsedBoard, gridSize, gridSize);
@@ -55,6 +60,12 @@ public class SudokuPresenter extends Observable {
         return puzzle;
     }
 
+    void saveStats(Context context) {
+        DatabaseHelper db = new DatabaseHelper(context);
+        long newRowId = db.insertSudokuStats(username, gameStats.getGameTime(), gameStats.getConflicts(), gameStats.getMoves());
+        Log.i("SudokuPresenter", "Stats inserted at row" + newRowId);
+    }
+
     /**
      * This method returns the state of the board/game as a String, so that the state of the game
      * can be stored in the database.
@@ -63,24 +74,14 @@ public class SudokuPresenter extends Observable {
         return gameBoard.getBoardData() + ',' + gameStats.getMoves() + ',' + gameStats.getConflicts();
     }
 
-    /**
-     * Since every user input must follow not have any conflicts with the existing board, the game
-     * if complete iff the board is full.
-     */
-
     public void update() {
         // Check complete
         if (gameBoard.checkFull()) {
-            onStop();
+            view.onGameComplete();
         }
 
         setChanged();
         notifyObservers();
-    }
-
-
-    public void onStop() {
-        view.onGameComplete();
     }
 
     /* Getter and setters for presenter class. */

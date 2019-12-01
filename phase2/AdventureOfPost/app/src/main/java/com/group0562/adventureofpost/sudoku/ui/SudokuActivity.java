@@ -38,11 +38,10 @@ public class SudokuActivity extends AppCompatActivity implements SudokuView, Obs
 
         int gridSize = getIntent().getStringExtra("gridSize").equals("6x6") ? 6 : 9;
         String difficulty = getIntent().getStringExtra("difficulty");
+        String username = getIntent().getStringExtra("username");
 
-        presenter = new SudokuPresenter(this, new SudokuStats(), gridSize, difficulty);
-
+        presenter = new SudokuPresenter(this, new SudokuStats(), gridSize, difficulty, username);
         presenter.addObserver(this);
-
 
         // Call helper methods to initialize components
         initSudokuGrid();

@@ -40,6 +40,7 @@ public class SudokuStartActivity extends AppCompatActivity {
         Intent intent = new Intent(this, SudokuActivity.class);
         intent.putExtra("gridSize", gridSize.getSelectedItem().toString());
         intent.putExtra("difficulty", difficulty.getSelectedItem().toString());
+        intent.putExtra("username", getIntent().getStringExtra("username"));
         startActivity(intent);
     }
 }

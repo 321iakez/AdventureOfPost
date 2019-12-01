@@ -1,6 +1,5 @@
 package com.group0562.adventureofpost.sudoku;
 
-import com.group0562.adventureofpost.AdventureOfPost;
 
 import java.util.Observable;
 
@@ -32,7 +31,7 @@ public class SudokuStats {
     }
 
 
-    public void updateTime(){
+    public void updateTime() {
         long currTime = System.currentTimeMillis();
         this.setGameTime(currTime - startTime);
     }
@@ -56,13 +55,14 @@ public class SudokuStats {
         return conflicts;
     }
 
-    long getGameTime(){
+    long getGameTime() {
         return gameTime;
     }
 
-    void setGameTime(long gameTime){
+    void setGameTime(long gameTime) {
         this.gameTime = gameTime;
     }
+
     void addConflicts() {
         conflicts++;
     }

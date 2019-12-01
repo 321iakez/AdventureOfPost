@@ -8,12 +8,17 @@ import android.view.View;
 import android.widget.Button;
 
 import com.group0562.adventureofpost.R;
+import com.group0562.adventureofpost.sudoku.ui.PauseDialog;
 
-public class ShapeClickerActivity extends AppCompatActivity{
+public class ShapeClickerActivity extends AppCompatActivity implements SCPauseDialog.SCPauseDialogListener{
     public final static String EXTRA_MESSAGE = "com.group0562.AdventureOfPost.MESSAGE";
     Button sc_setting;
     Button sc_done;
     Button sc_pause_continue;
+
+    private final String RETURN_NO_SAVE = "RETURN_NO_SAVE";
+    private final String RETURN_SAVE = "RETURN_SAVE";
+    private final String RESUME = "RESUME";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,9 +28,8 @@ public class ShapeClickerActivity extends AppCompatActivity{
 
     /*to start the setting screen once clicked*/
     public void onClickSCExit(View view) {
-        Intent intent = new Intent(this, SCSettingActivity.class);
-        sc_setting = findViewById(R.id.SCExitButton);
-        startActivity(intent);
+        SCPauseDialog pauseDialog = new SCPauseDialog();
+        pauseDialog.show(getSupportFragmentManager(), "pause dialog");
     }
 
     /*to start the finish screen once clicked*/
@@ -39,5 +43,19 @@ public class ShapeClickerActivity extends AppCompatActivity{
         Intent intent = new Intent(this, SCPauseActivity.class);
         sc_pause_continue = findViewById(R.id.sc_pause_button);
         startActivity(intent);
+    }
+
+    @Override
+    public void saveGame(String mode) {
+        if (mode.equals(RETURN_NO_SAVE)) {
+            System.out.println("returned without save");
+            Intent intent = new Intent(this, SCSettingActivity.class);
+            startActivity(intent);
+
+        } else if (mode.equals(RETURN_SAVE)) {
+            System.out.println("returned with save");
+        } else {
+            System.out.println("Resumed");
+        }
     }
 }

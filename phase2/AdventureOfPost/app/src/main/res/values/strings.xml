@@ -21,6 +21,9 @@
     <string name="password_error">Password cannot be empty</string>
     <string name="reg_password_error">Password empty or don\'t match</string>
 
+    <!-- GameActivity Strings -->
+    <string name="welcome_message">Welcome! %1$s.</string>
+
     <!-- SC Preference title -->
     <string name="sc_color_of_shaped_object">Color of Shaped Object</string>
     <string name="sc_difficulty_level">Difficulty Level</string>
