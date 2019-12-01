@@ -7,6 +7,7 @@ public class TriviaPresenter{
     private TriviaStats gameStats;
     private String color;
 
+
     public TriviaPresenter(String username, int op, int diff) {
         color  = "White";
         game = new Trivia(op, diff);
