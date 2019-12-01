@@ -138,7 +138,6 @@ public class SudokuScoreboardActivity extends AppCompatActivity {
      * @param user      the username
      * @param topScores the scores
      */
-
     private void scoreColumnView(String rankNum, String user, String topScores, LinearLayout parent) {
         LinearLayout layout = new LinearLayout(this);
         layout.setOrientation(LinearLayout.HORIZONTAL);

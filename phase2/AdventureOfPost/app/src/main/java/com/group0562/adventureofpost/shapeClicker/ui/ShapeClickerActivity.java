@@ -41,12 +41,14 @@ public class ShapeClickerActivity extends AppCompatActivity implements SCPauseDi
     /*to start the finish screen once clicked*/
     public void onClickSCDone(View view) {
         Intent intent = new Intent(this, ShapeClickerEndActivity.class);
+        intent.putExtra("username", intent.getStringExtra("username"));
         sc_done = findViewById(R.id.sc_finish_button);
         startActivity(intent);
     }
 
     public void onClickSCPause(View view) {
         Intent intent = new Intent(this, SCPauseActivity.class);
+        intent.putExtra("username", intent.getStringExtra("username"));
         sc_pause_continue = findViewById(R.id.sc_pause_button);
         startActivity(intent);
     }
@@ -56,6 +58,7 @@ public class ShapeClickerActivity extends AppCompatActivity implements SCPauseDi
         if (mode.equals(RETURN_NO_SAVE)) {
             System.out.println("returned without save");
             Intent intent = new Intent(this, SCSettingActivity.class);
+            intent.putExtra("username", intent.getStringExtra("username"));
             startActivity(intent);
 
         } else if (mode.equals(RETURN_SAVE)) {
