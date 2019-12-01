@@ -1,18 +1,15 @@
 package com.group0562.adventureofpost.shapeClicker;
 
+import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Paint;
-
 import com.group0562.adventureofpost.AdventureOfPost;
-import com.group0562.adventureofpost.Puzzles;
 
-import java.util.Observable;
 
 public abstract class ShapeClicker{
-    public AdventureOfPost.PuzzleStats puzzleStats;
+    public ShapeClickerStats puzzleStats;
     private boolean puzzleComplete = false;
 
-    ShapeClicker(AdventureOfPost.PuzzleStats statsInst) {
+    ShapeClicker(ShapeClickerStats statsInst) {
             puzzleStats = statsInst;
     }
     abstract void draw(Canvas canvas);
@@ -31,8 +28,6 @@ public abstract class ShapeClicker{
         if (!puzzleComplete) {
             puzzleStats.setLives(0);
         }
-
-        // TODO: display live points in phase 2
     }
 
     public void setPuzzleComplete(boolean b) {
@@ -41,6 +36,10 @@ public abstract class ShapeClicker{
 
     public boolean getPuzzleComplete() {
         return this.puzzleComplete;
+    }
+
+    public void saveStats(Context context) {
+        puzzleStats.saveStats(context);
     }
 
 }

@@ -1,10 +1,13 @@
 package com.group0562.adventureofpost.shapeClicker;
 
+import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.util.Log;
 
 import com.group0562.adventureofpost.AdventureOfPost;
+import com.group0562.adventureofpost.database.DatabaseHelper;
 
 import java.util.Observable;
 
@@ -12,15 +15,17 @@ import java.util.Observable;
 public class ShapeClickerStats extends AdventureOfPost.PuzzleStats {
     private Paint paint;
     private static long TIME_LIMIT;
+    private String username;
 
     /**
      * constructor of ShapeClickerStats, inherited from PuzzleStats
      *
      * @param time the time limit for SCNormalMode
      */
-    public ShapeClickerStats(long time) {
+    public ShapeClickerStats(long time, String username) {
         super(time);
         TIME_LIMIT = time;
+        this.username = username;
         this.paint = new Paint();
         this.paint.setColor(Color.BLACK);
         this.paint.setStrokeWidth(3);
@@ -63,4 +68,9 @@ public class ShapeClickerStats extends AdventureOfPost.PuzzleStats {
     }
 
 
+    void saveStats(Context context) {
+        DatabaseHelper db = new DatabaseHelper(context);
+        long newRowId = db.insertSudokuStats(this.username, (long)getTime(), getPoints(), getLives());
+        Log.i("ShapeClicker", "Stats inserted at row" + newRowId);
+    }
 }

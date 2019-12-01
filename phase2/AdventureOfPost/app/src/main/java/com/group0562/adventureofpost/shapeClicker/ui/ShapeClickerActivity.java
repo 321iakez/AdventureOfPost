@@ -7,13 +7,17 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.group0562.adventureofpost.GameActivity;
 import com.group0562.adventureofpost.R;
+import com.group0562.adventureofpost.shapeClicker.SCSetting;
+import com.group0562.adventureofpost.shapeClicker.ShapeClickerGameView;
 
 public class ShapeClickerActivity extends AppCompatActivity implements SCPauseDialog.SCPauseDialogListener{
     public final static String EXTRA_MESSAGE = "com.group0562.AdventureOfPost.MESSAGE";
     Button sc_setting;
     Button sc_done;
     Button sc_pause_continue;
+    ShapeClickerGameView sc_view;
 
     private final String RETURN_NO_SAVE = "RETURN_NO_SAVE";
     private final String RETURN_SAVE = "RETURN_SAVE";
@@ -23,6 +27,9 @@ public class ShapeClickerActivity extends AppCompatActivity implements SCPauseDi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_circle_clicker);
+        String username = getIntent().getStringExtra("username");
+        SCSetting.setUsername(username);
+        sc_view = findViewById(R.id.scview);
     }
 
     /*to start the setting screen once clicked*/
@@ -53,6 +60,10 @@ public class ShapeClickerActivity extends AppCompatActivity implements SCPauseDi
 
         } else if (mode.equals(RETURN_SAVE)) {
             System.out.println("returned with save");
+            sc_view.getClicker().saveStats(this);
+            Intent intent = new Intent(this, GameActivity.class);
+            intent.putExtra("username", getIntent().getStringExtra("username"));
+            startActivity(intent);
         } else {
             System.out.println("Resumed");
         }
