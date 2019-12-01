@@ -22,25 +22,20 @@ public class SCScoreboardPresenter {
         ArrayList<String>Result = new ArrayList<String>();
         if (cursor.moveToFirst()){
             ArrayList<Long> numberlist = new ArrayList<Long>();
-            ArrayList<Integer> indexlist = new ArrayList<Integer>();
+            int pointsIndex = cursor.getColumnIndex("points");
+            int userIndex = cursor.getColumnIndex("username");
+            long max = cursor.getLong(pointsIndex);
+            String topPlayer = cursor.getString(userIndex);
             while(!cursor.isAfterLast()) {
-                int index = cursor.getColumnIndex("points");
-                indexlist.add(index);
-                long n =  cursor.getLong(index);
-                numberlist.add(n);
+                long n =  cursor.getLong(pointsIndex);
+                if(cursor.getLong(pointsIndex)>max) {
+                    max = cursor.getLong(pointsIndex);
+                    topPlayer = cursor.getString(userIndex);
+                }
                 cursor.moveToNext();
             }
-            int maxindex = 0;
-            long max = numberlist.get(0);
-            for ( int x =0; x<indexlist.size(); x++) {
-                if (numberlist.get(x) > max)
-                    maxindex = x;
-                    max = numberlist.get(x);
-            }
-
             cursor.moveToFirst();
-            String player = cursor.getString(maxindex);
-            Result.add(player);
+            Result.add(topPlayer);
             Result.add(Long.toString(max));
         }
         cursor.close();
