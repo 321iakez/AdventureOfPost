@@ -103,4 +103,8 @@ public class ShapeClickerGameView extends View {
         invalidate();
         return super.onTouchEvent(event);
     }
+
+    public ShapeClicker getClicker() {
+        return clicker;
+    }
 }

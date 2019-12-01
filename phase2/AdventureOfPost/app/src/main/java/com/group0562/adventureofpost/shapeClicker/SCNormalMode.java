@@ -53,7 +53,7 @@ public class SCNormalMode extends ShapeClicker {
      * @param p    the paint for the shapes
      */
     SCNormalMode(long time, Paint p) {
-        super(new ShapeClickerStats(time));
+        super(new ShapeClickerStats(time, SCSetting.getUsername()));
         TIME_LIMIT = time;
         this.paint = p;
         INITIAL_PAINT = p;
@@ -86,7 +86,6 @@ public class SCNormalMode extends ShapeClicker {
      * Draw the shape for this SCNormalMode
      */
     void draw(Canvas canvas) {
-        //checkChangedObject();
         s_object.draw(canvas);
     }
 

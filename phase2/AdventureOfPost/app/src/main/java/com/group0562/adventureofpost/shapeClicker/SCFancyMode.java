@@ -49,7 +49,7 @@ public class SCFancyMode extends ShapeClicker {
      * @param p    the paint for the shapes
      */
     SCFancyMode(long time, Paint p) {
-        super(new ShapeClickerStats(time));
+        super(new ShapeClickerStats(time, SCSetting.getUsername()));
         TIME_LIMIT = time;
         this.paint = p;
         INITIAL_PAINT = p;
