@@ -28,9 +28,5 @@ public class ShapeClickerEndActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void onClickScoreboard(View view){
-        Intent intent = new Intent(this, SCScoreBoardActivity.class);
-        scoreboard = findViewById(R.id.sc_scoreboard);
-        startActivity(intent);
-    }
+
 }
