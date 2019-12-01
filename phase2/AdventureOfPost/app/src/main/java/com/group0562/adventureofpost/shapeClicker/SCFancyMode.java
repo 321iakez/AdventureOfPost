@@ -57,6 +57,8 @@ public class SCFancyMode extends ShapeClicker {
         this.paint = p;
         TEXT_PAINT = new Paint();
         TEXT_PAINT.setColor(Color.BLACK);
+        TEXT_PAINT.setStrokeWidth(3);
+        TEXT_PAINT.setTextSize(50);
         INITIAL_PAINT = p;
         ShapeBuilder builder = new ShapeBuilder(50, 50, this.paint);
         this.s_object = builder.getS_objects();
