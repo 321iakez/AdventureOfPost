@@ -26,7 +26,8 @@ public class SCScoreboardView extends View {
     }
 
     protected void onDraw(Canvas canvas){
-        String points_text = Long.toString(presenter.getPoints());
-        canvas.drawText("Highest point: "+ presenter.getFirst()+ ", "+points_text+" points", 25,40, this.paint);
+        String player = (String) presenter.getTopPlayer().get(0);
+        String points = (String) presenter.getTopPlayer().get(1);
+        canvas.drawText("Top player: "+ player + " with "+ points+ ", "+" points", 25,40, this.paint);
     }
 }
