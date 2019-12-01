@@ -61,7 +61,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 SC_STAT3 + " INTEGER," +
                 "username TEXT, FOREIGN KEY (username) REFERENCES users (username))"); // time, score, lives
 
-        db.execSQL("CREATE TABLE sudoku_saves (id text primary key, gameState text)");
+        db.execSQL("CREATE TABLE game_saves (gameId text primary key, gameState text)");
     }
 
 
@@ -80,26 +80,26 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 SUDOKU_STAT1, SUDOKU_STAT2, SUDOKU_STAT3, SUDOKU_TABLE);
     }
 
-    public long insertSudokuState(String gameState){
+    public long insertGameState(String gameId, String gameState){
         SQLiteDatabase db = getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put("id", "game");
+        contentValues.put("gameId", gameId);
         contentValues.put("gameState", gameState);
-        db.execSQL("delete from sudoku_saves where id = ?", new String[]{"game"});
-        return db.insert("sudoku_saves", null, contentValues);
+        db.execSQL("delete from game_saves where gameId = ?", new String[]{gameId});
+        return db.insert("game_saves", null, contentValues);
     }
 
-    public String retrieveSudokuState(){
+    public String retrieveGameState(String gameId){
         SQLiteDatabase db = getWritableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM sudoku_saves WHERE id = ?", new String[]{"game"});
+        Cursor cursor = db.rawQuery("SELECT * FROM game_saves WHERE gameId = ?", new String[]{gameId});
         String gameState = "";
         if (cursor.getCount() < 1) {
             return gameState;
         } else {
             if (cursor.moveToFirst()) {
                 while (!cursor.isAfterLast()) {
-                    String name = cursor.getString(cursor.getColumnIndex("gameState"));
-                    gameState = name;
+                    String state = cursor.getString(cursor.getColumnIndex("gameState"));
+                    gameState = state;
                     cursor.moveToNext();
                 }
             }

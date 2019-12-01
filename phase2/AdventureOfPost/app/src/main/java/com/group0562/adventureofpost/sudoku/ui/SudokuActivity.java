@@ -44,7 +44,7 @@ public class SudokuActivity extends AppCompatActivity implements SudokuView, Obs
             presenter = new SudokuPresenter(this, new SudokuStats(username), gridSize, difficulty,  "");
         } else {
             DatabaseHelper db = new DatabaseHelper(this);
-            String gameState = db.retrieveSudokuState();
+            String gameState = db.retrieveGameState("sudoku");
             System.out.println(gameState);
             if(gameState != ""){
                 presenter = new SudokuPresenter(this, new SudokuStats(username), gridSize, difficulty, gameState);

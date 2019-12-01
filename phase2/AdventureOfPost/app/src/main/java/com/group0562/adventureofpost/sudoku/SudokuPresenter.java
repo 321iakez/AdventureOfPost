@@ -73,7 +73,7 @@ public class SudokuPresenter {
 
     public void saveBoard(Context context){
         DatabaseHelper db = new DatabaseHelper(context);
-        db.insertSudokuState(gameBoard.getBoardData());
+        db.insertGameState("sudoku", gameBoard.getBoardData());
     }
 
     private int[][] getLockedFromString(String gameState, int gridSize){
