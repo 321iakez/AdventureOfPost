@@ -1,33 +1,41 @@
 package com.group0562.adventureofpost.trivia;
 
 
-public class TriviaStats {
+import android.content.Context;
+
+class TriviaStats {
 
     private int correct;
     private int incorrect;
     private int score;
     private int op;
     private int diff;
+    private String username;
 
-    TriviaStats(int op, int diff) {
+    TriviaStats(String username, int op, int diff) {
         this.correct = 0;
         this.incorrect = 0;
         this.score = 0;
         this.op = op;
         this.diff = diff;
+        this.username = username;
     }
 
-    TriviaStats(int op, int diff, int correct, int incorrect) {
+    TriviaStats(String username, int op, int diff, int correct, int incorrect) {
         this.correct = correct;
         this.incorrect = incorrect;
         this.op = op;
         this.diff = diff;
         this.score = (correct * op * diff * 10) - (incorrect * 5);
-
+        this.username = username;
     }
 
     String saveGame() {
         return this.op + " " + this.diff + " " + this.correct + " " + this.incorrect;
+    }
+
+    void saveToDatabase(Context context){
+
     }
 
 
