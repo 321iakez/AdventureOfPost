@@ -14,6 +14,11 @@ import com.group0562.adventureofpost.R;
 import com.group0562.adventureofpost.trivia.Question;
 import com.group0562.adventureofpost.trivia.TriviaPresenter;
 
+/**
+ * This is the main activity class of the Trivia game
+ * it will give questions to the user which they will
+ * have to answer
+ */
 public class TriviaActivity extends AppCompatActivity {
 
     /**

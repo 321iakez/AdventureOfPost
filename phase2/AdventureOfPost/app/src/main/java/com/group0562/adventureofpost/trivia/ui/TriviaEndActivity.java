@@ -12,6 +12,10 @@ import com.group0562.adventureofpost.R;
 import com.group0562.adventureofpost.trivia.Trivia;
 import com.group0562.adventureofpost.trivia.TriviaPresenter;
 
+/**
+ * This is the end screen for the Trivia game
+ * It will display the end stats of the user once they have completed the game
+ */
 public class TriviaEndActivity extends AppCompatActivity {
 
     /**

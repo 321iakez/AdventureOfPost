@@ -12,6 +12,11 @@ import androidx.preference.PreferenceFragmentCompat;
 
 import com.group0562.adventureofpost.R;
 
+/**
+ * This is the Settings screen of the Trivia game
+ * It will allow the user to select the customization settings
+ * they would like to have for the game
+ */
 public class TriviaSettingsActivity extends AppCompatActivity {
 
     @Override

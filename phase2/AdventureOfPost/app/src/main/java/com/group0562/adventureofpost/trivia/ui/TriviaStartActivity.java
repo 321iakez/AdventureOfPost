@@ -10,6 +10,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.group0562.adventureofpost.R;
 import com.group0562.adventureofpost.ScoreboardActivity;
 
+/**
+ * This is the start screen for the game Trivia
+ * It will allow users to select the type of questions
+ * they would like to be asked and the difficulty of the questions
+ */
 public class TriviaStartActivity extends AppCompatActivity {
 
     private final String[] OP_OPTIONS = new String[]{"Addition", "Subtraction", "Multiplication"};

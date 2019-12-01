@@ -11,6 +11,12 @@ import com.group0562.adventureofpost.GameActivity;
 import com.group0562.adventureofpost.R;
 import com.group0562.adventureofpost.trivia.TriviaPresenter;
 
+/**
+ * This is the Pause screen for the trivia game
+ * It will let the user select if they would like to save
+ * the current game and exit to main menu or if they would
+ * like to resume the game
+ */
 public class TriviaPauseActivity extends AppCompatActivity {
 
     @Override
