@@ -26,6 +26,7 @@ public class SudokuActivity extends AppCompatActivity implements SudokuView, Obs
 
     private TextView moveStats;
     private TextView conflictStats;
+    private TextView timeStats;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +37,8 @@ public class SudokuActivity extends AppCompatActivity implements SudokuView, Obs
         String difficulty = getIntent().getStringExtra("difficulty");
         String username = getIntent().getStringExtra("username");
 
-        presenter = new SudokuPresenter(this, new SudokuStats(), gridSize, difficulty, username);
+        // Create presenter
+        presenter = new SudokuPresenter(this, new SudokuStats(username), gridSize, difficulty);
         presenter.addObserver(this);
 
         // Call helper methods to initialize components
@@ -48,8 +50,8 @@ public class SudokuActivity extends AppCompatActivity implements SudokuView, Obs
         addListenerResetButton();
         addListenerExitButton();
 
-        // Display initial board values
-        presenter.update();
+        // Update the board to insert board data into newly generated grid
+        updateBoard();
     }
 
     /**
@@ -83,7 +85,7 @@ public class SudokuActivity extends AppCompatActivity implements SudokuView, Obs
     private void initSudokuNumpad() {
         numPadView = findViewById(R.id.numPad);
         numPadView.setPresenter(presenter);
-        numPadView.createTileButtons(this, gridView);
+        numPadView.createTileButtons(this);
         numPadView.setNumColumns(presenter.getDim());
 
         // Observer sets up desired dimensions as well as calls our displayGrid function
@@ -108,27 +110,17 @@ public class SudokuActivity extends AppCompatActivity implements SudokuView, Obs
 
         conflictStats = findViewById(R.id.statsConflictNum);
         conflictStats.setText("0");
+
+        timeStats = findViewById(R.id.statsTime);
+        timeStats.setText("0");
     }
 
     private void addListenerRemoveButton() {
-        findViewById(R.id.removeButton).setOnClickListener(v -> {
-            presenter.removeNum();
-
-            // Update
-            presenter.update();
-        });
-
-        SudokuEndDialog dialog = new SudokuEndDialog();
-        dialog.show(getSupportFragmentManager(), "end dialog");
+        findViewById(R.id.removeButton).setOnClickListener(v -> presenter.removeNum());
     }
 
     private void addListenerResetButton() {
-        findViewById(R.id.resetButton).setOnClickListener(v -> {
-            presenter.resetGameBoard();
-
-            // Update
-            presenter.update();
-        });
+        findViewById(R.id.resetButton).setOnClickListener(v -> presenter.resetGameBoard());
     }
 
     private void addListenerExitButton() {
@@ -136,6 +128,19 @@ public class SudokuActivity extends AppCompatActivity implements SudokuView, Obs
             SudokuPauseDialog pauseDialog = new SudokuPauseDialog();
             pauseDialog.show(getSupportFragmentManager(), "pause dialog");
         });
+    }
+
+    private void updateBoard() {
+        for (int row = 0; row < presenter.getDim(); row++) {
+            for (int col = 0; col < presenter.getDim(); col++) {
+                String loadValue = "";
+                if (presenter.getCellValue(row, col) != 0) {
+                    loadValue = String.valueOf(presenter.getCellValue(row, col));
+                }
+
+                gridView.loadValues(row, col, loadValue);
+            }
+        }
     }
 
     @Override
@@ -203,18 +208,12 @@ public class SudokuActivity extends AppCompatActivity implements SudokuView, Obs
      */
     @Override
     public void update(Observable o, Object arg) {
+        // Update stats display
         moveStats.setText(String.valueOf(presenter.getMoves()));
         conflictStats.setText(String.valueOf(presenter.getConflicts()));
+        timeStats.setText(String.valueOf(presenter.getTime()));
 
-        for (int row = 0; row < presenter.getDim(); row++) {
-            for (int col = 0; col < presenter.getDim(); col++) {
-                String loadValue = "";
-                if (presenter.getCellValue(row, col) != 0) {
-                    loadValue = String.valueOf(presenter.getCellValue(row, col));
-                }
-
-                gridView.loadValues(row, col, loadValue);
-            }
-        }
+        // Update board display
+        updateBoard();
     }
 }

@@ -15,7 +15,6 @@ import java.util.Arrays;
 public class SudokuNumPadGridView extends GridView {
 
     private SudokuPresenter presenter;
-    private SudokuCellGridView gridView;
 
     private Button[] numPad;
 
@@ -29,12 +28,8 @@ public class SudokuNumPadGridView extends GridView {
 
     /**
      * Create the buttons for displaying the tiles.
-     *
-     * @param gridView the context
      */
-    public void createTileButtons(Context context, SudokuCellGridView gridView) {
-        this.gridView = gridView;
-
+    void createTileButtons(Context context) {
         numPad = new Button[presenter.getDim()];
         for (int num = 0; num != presenter.getDim(); num++) {
             Button cell = new Button(context);
@@ -63,18 +58,14 @@ public class SudokuNumPadGridView extends GridView {
 
         // Load value on board
         if (updateSuccess) {
-//            gridView.loadValues(presenter.getCurrRow(), presenter.getCurrCol(), newValue);
             presenter.addMoves();
         } else {
             Toast.makeText(getContext(), "Conflict detected!", Toast.LENGTH_SHORT).show();
             presenter.addConflicts();
         }
-
-        // Update
-        presenter.update();
     }
 
-    public ArrayList<Button> getTileButtons() {
+    ArrayList<Button> getTileButtons() {
         return new ArrayList<>(Arrays.asList(numPad));
     }
 }

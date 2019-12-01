@@ -64,6 +64,10 @@
 
     <string name="move_stats_header">Moves</string>
     <string name="conflict_stats_header">Conflicts</string>
+    <string name="time_stats_header">Time(s)</string>
+
+    <string name="player_scoreboard_button">Player Scores</string>
+    <string name="global_scoreboard_button">Global Scores</string>
 
     <!-- Trivia texts -->
     <string name="TriviaDiff1">Easy</string>
@@ -86,5 +90,12 @@
     <string name="TriviaMult">Multiplication</string>
     <string name="TriviaSub">Subtraction</string>
     <string name="TriviaAdd">Addition</string>
+
+    <!-- Scoreboard texts -->
+    <string name="player_score">Player Score:</string>
+    <string name="rank">#</string>
+    <string name="player">Player</string>
+    <string name="score">Score</string>
+    <string name="global_score_band">Global Score:</string>
 
 </resources>

@@ -33,14 +33,33 @@ public class SudokuStartActivity extends AppCompatActivity {
                 R.layout.support_simple_spinner_dropdown_item, DIFFICULTY_OPTIONS);
         difficulty.setAdapter(difficultyOptionAdaptor);
 
-        findViewById(R.id.startButton).setOnClickListener(this::onClickStart);
+        addListenerStart();
+        addListenerScore();
     }
 
-    void onClickStart(View view) {
-        Intent intent = new Intent(this, SudokuActivity.class);
-        intent.putExtra("gridSize", gridSize.getSelectedItem().toString());
-        intent.putExtra("difficulty", difficulty.getSelectedItem().toString());
-        intent.putExtra("username", getIntent().getStringExtra("username"));
-        startActivity(intent);
+    void addListenerStart() {
+        findViewById(R.id.startButton).setOnClickListener(v -> {
+            Intent intent = new Intent(this, SudokuActivity.class);
+            intent.putExtra("gridSize", gridSize.getSelectedItem().toString());
+            intent.putExtra("difficulty", difficulty.getSelectedItem().toString());
+            intent.putExtra("username", getIntent().getStringExtra("username"));
+            startActivity(intent);
+        });
+    }
+
+    void addListenerScore() {
+        findViewById(R.id.playerScoreButton).setOnClickListener(v -> {
+            Intent intent = new Intent(this, SudokuScoreboardActivity.class);
+            intent.putExtra("perPlayer", true);
+            intent.putExtra("username", getIntent().getStringExtra("username"));
+            startActivity(intent);
+        });
+
+        findViewById(R.id.globalScoreButton).setOnClickListener(v -> {
+            Intent intent = new Intent(this, SudokuScoreboardActivity.class);
+            intent.putExtra("perPlayer", false);
+            intent.putExtra("username", getIntent().getStringExtra("username"));
+            startActivity(intent);
+        });
     }
 }
