@@ -3,7 +3,7 @@ package com.group0562.adventureofpost.trivia;
 
 import android.content.Context;
 
-class TriviaStats {
+public class TriviaStats {
 
     public final static String TRIVIA_STAT1 = "correct";
     public final static String TRIVIA_STAT2 = "incorrect";
