@@ -1,6 +1,7 @@
 package com.group0562.adventureofpost.sudoku;
 
 import android.content.Context;
+import android.provider.ContactsContract;
 
 import com.group0562.adventureofpost.database.DatabaseHelper;
 
@@ -69,6 +70,16 @@ public class SudokuPresenter {
         };
         timer.start();
     }
+
+    public void saveResumeStats(Context context){
+        DatabaseHelper db = new DatabaseHelper(context);
+        db.insertResumeStats(statsToString(gameStats));
+    }
+
+    public String statsToString(SudokuStats gameStats){
+        return gameStats.getMoves() + "," + gameStats.getConflicts() + "," + gameStats.getGameTime() + "," + gameStats.getUsername();
+    }
+
 
     public void saveBoard(Context context, String username) {
         DatabaseHelper db = new DatabaseHelper(context);
