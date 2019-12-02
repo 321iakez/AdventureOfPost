@@ -16,9 +16,19 @@ import com.group0562.adventureofpost.auth.AuthPresenter;
 import com.group0562.adventureofpost.auth.AuthView;
 
 public class LoginActivity extends AppCompatActivity implements AuthView {
-
+    /**
+     * The username of the player logging in
+     */
     private EditText username;
+
+    /**
+     * The password of the player logging in
+     */
     private EditText password;
+
+    /**
+     * The presenter object which controls the login view.
+     */
     private AuthPresenter presenter;
 
     @Override

@@ -8,6 +8,7 @@ import com.group0562.adventureofpost.database.DatabaseHelper;
 
 public class AuthInteractor {
 
+
     interface AuthListener {
         void onUsernameError();
 

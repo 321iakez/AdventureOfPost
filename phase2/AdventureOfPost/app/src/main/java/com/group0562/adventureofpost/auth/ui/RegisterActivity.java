@@ -16,9 +16,24 @@ import com.group0562.adventureofpost.auth.AuthView;
 
 public class RegisterActivity extends AppCompatActivity implements AuthView {
 
+    /**
+     * The username of the player logging in.
+     */
     private EditText username;
+
+    /**
+     * The password of the player logging in.
+     */
     private EditText password;
+
+    /**
+     * Confirmation of the password.
+     */
     private EditText confPassword;
+
+    /**
+     * The presenter that controls this view.
+     */
     private AuthPresenter presenter;
 
     @Override
