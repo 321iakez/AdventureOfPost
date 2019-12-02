@@ -12,6 +12,20 @@ import java.util.Map;
 
 class GameManager {
 
+    /**
+     * Insert given stats into given database.
+     *
+     * @param db        the database to store the stats.
+     * @param username  the username of the user.
+     * @param stat1     the first stats category.
+     * @param stat2     the second stats category.
+     * @param stat3     the third stats category
+     * @param stat1Name the first stats category name.
+     * @param stat2Name the second stats category name.
+     * @param stat3Name the third stats category name.
+     * @param tableName the name of the table to insert the stats in.
+     * @return the row number in the table that the data is inserted into.
+     */
     long insertStats(SQLiteDatabase db, String username, int stat1, int stat2, int stat3,
                      String stat1Name, String stat2Name, String stat3Name, String tableName) {
         ContentValues contentValues = new ContentValues();
@@ -22,6 +36,17 @@ class GameManager {
         return db.insert(tableName, null, contentValues);
     }
 
+    /**
+     * Read from database and retrieve player stats to be displayed on score board.
+     *
+     * @param db        the database to read the stats.
+     * @param username  the username of the user.
+     * @param stat1     the first stats category.
+     * @param stat2     the second stats category.
+     * @param stat3     the third stats category.
+     * @param tableName the table to read the stats from.
+     * @return a map where the key is the name of stats category and value is a list of stats.
+     */
     Map<String, List<Integer>> playerStats(SQLiteDatabase db, String username, String stat1, String stat2, String stat3, String tableName) {
         String sql = "SELECT * FROM " + tableName + " WHERE username=? ORDER BY id DESC LIMIT 10";
         try (Cursor cursor = db.rawQuery(sql, new String[]{username})) {

@@ -43,8 +43,8 @@ public class SudokuActivity extends AppCompatActivity implements SudokuView, Obs
         boolean resume = getIntent().getBooleanExtra("resume", false);
 
         // Create presenter
-        if (! resume){
-            presenter = new SudokuPresenter(this, new SudokuStats(username), gridSize, difficulty,  "");
+        if (!resume) {
+            presenter = new SudokuPresenter(this, new SudokuStats(username), gridSize, difficulty, "");
         } else {
             DatabaseHelper db = new DatabaseHelper(this);
             String gameState = db.retrieveGameState("sudoku", username);
@@ -52,11 +52,11 @@ public class SudokuActivity extends AppCompatActivity implements SudokuView, Obs
             String game_stats = db.retrieveResumeStats();
             List<String> result = Arrays.asList(game_stats.split("\\s*,\\s*"));
 
-            if(!gameState.equals("")){
+            if (!gameState.equals("")) {
                 presenter = new SudokuPresenter(this, new SudokuStats(result), gridSize, difficulty, gameState);
             } else {
                 presenter = new SudokuPresenter(this, new SudokuStats(username), gridSize, difficulty, "");
-                Toast.makeText(getApplicationContext(),"No saved games, new game created!",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "No saved games, new game created!", Toast.LENGTH_SHORT).show();
             }
         }
 
@@ -172,7 +172,6 @@ public class SudokuActivity extends AppCompatActivity implements SudokuView, Obs
             intent.putExtra("username", getIntent().getStringExtra("username"));
             startActivity(intent);
         } else if (mode.equals(SudokuPauseDialog.Modes.EXIT_SAVE)) {
-            System.out.println("returned with save");
             presenter.saveResumeStats(this);
             presenter.saveBoard(this, getIntent().getStringExtra("username"));
 
