@@ -3,18 +3,17 @@ package com.group0562.adventureofpost.shapeClicker;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 
-import static java.lang.Math.*;
+import static java.lang.Math.pow;
+import static java.lang.Math.random;
+import static java.lang.Math.sqrt;
 
 public class Circle extends Shape {
-    private Paint paint;
-    final String message = "Circle";
 
     /**
      * Constructor of a Circle, including setting the coordinates of its center.
      */
     Circle(double x, double y, Paint p) {
-        super(x, y);
-        this.paint = p;
+        super(x, y, p);
     }
 
     /**
@@ -22,7 +21,7 @@ public class Circle extends Shape {
      */
     @Override
     public void draw(Canvas canvas) {
-        canvas.drawCircle((float) this.coordinate_x, (float) this.coordinate_y, (float) this.radius, this.paint);
+        canvas.drawCircle((float) getCoordinate_x(), (float) getCoordinate_y(), (float) getRadius(), getPaint());
     }
 
     /**
@@ -30,8 +29,8 @@ public class Circle extends Shape {
      */
     @Override
     public void setLocation() {
-        this.coordinate_x = random() * (SCNormalMode.bound[1] - 2 * this.radius) + this.radius;
-        this.coordinate_y = random() * (SCNormalMode.bound[3] - 2 * this.radius) + this.radius;
+        setCoordinate_x(random() * (SCNormalMode.bound[1] - 2 * getRadius()) + getRadius());
+        setCoordinate_y(random() * (SCNormalMode.bound[3] - 2 * getRadius()) + getRadius());
     }
 
     /**
@@ -41,6 +40,6 @@ public class Circle extends Shape {
      */
     @Override
     boolean checkWithin(double cursor_x, double cursor_y) {
-        return (sqrt(pow(this.coordinate_x - cursor_x, 2) + pow(this.coordinate_y - cursor_y, 2)) <= this.radius);
+        return (sqrt(pow(getCoordinate_x() - cursor_x, 2) + pow(getCoordinate_y() - cursor_y, 2)) <= getRadius());
     }
 }

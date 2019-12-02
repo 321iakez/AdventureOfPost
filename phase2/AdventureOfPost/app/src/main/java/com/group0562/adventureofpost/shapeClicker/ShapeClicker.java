@@ -4,17 +4,21 @@ import android.content.Context;
 import android.graphics.Canvas;
 
 
-public abstract class ShapeClicker{
-    ShapeClickerStats puzzleStats;
+public abstract class ShapeClicker {
+    private ShapeClickerStats puzzleStats;
     private boolean puzzleComplete = false;
+
     static double[] bound;
 
 
     ShapeClicker(ShapeClickerStats statsInst) {
-            puzzleStats = statsInst;
+        puzzleStats = statsInst;
     }
-    abstract void draw(Canvas canvas);
-    abstract void checkWithinBall(double cursor_x, double cursor_y);
+
+    public abstract void draw(Canvas canvas);
+
+    public abstract void checkWithinBall(double cursor_x, double cursor_y);
+
     public abstract void checkComplete();
 
     public void update() {
@@ -31,7 +35,7 @@ public abstract class ShapeClicker{
         }
     }
 
-    static void setBound(double[] bound) {
+    public static void setBound(double[] bound) {
         ShapeClicker.bound = bound;
     }
 
@@ -47,4 +51,7 @@ public abstract class ShapeClicker{
         puzzleStats.saveStats(context);
     }
 
+    public ShapeClickerStats getPuzzleStats() {
+        return puzzleStats;
+    }
 }

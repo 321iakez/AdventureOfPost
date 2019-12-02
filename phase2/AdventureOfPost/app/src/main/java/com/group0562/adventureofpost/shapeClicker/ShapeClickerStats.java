@@ -6,15 +6,11 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.Log;
 
-import com.group0562.adventureofpost.AdventureOfPost;
 import com.group0562.adventureofpost.database.DatabaseHelper;
 
-import java.util.Observable;
 
-
-public class ShapeClickerStats{
+public class ShapeClickerStats {
     private Paint paint;
-    private static long TIME_LIMIT;
     private String username;
     private long time;
     private long startTime;
@@ -29,29 +25,16 @@ public class ShapeClickerStats{
      *
      * @param time the time limit for SCNormalMode
      */
-    public ShapeClickerStats(long time, String username) {
+    ShapeClickerStats(long time, String username) {
         this.time = time;
         this.points = 0;
         this.startTime = System.currentTimeMillis();
         this.lives = 10;
-        TIME_LIMIT = time;
         this.username = SCSetting.getUsername();
         this.paint = new Paint();
         this.paint.setColor(Color.BLACK);
         this.paint.setStrokeWidth(3);
         this.paint.setTextSize(50);
-    }
-
-    /**
-     * update the time and points for the SCNormalMode
-     */
-    public void update(Observable o, Object arg) {
-        updateTime();
-        updatePoints();
-    }
-
-    public void updatePoints() {
-        setPoints(1);
     }
 
     /**
@@ -75,29 +58,25 @@ public class ShapeClickerStats{
         canvas.drawText(combined, 25, 40, paint);
     }
 
-    public void setLives(int lives) {
+    void setLives(int lives) {
         this.lives -= lives;
     }
 
-    public void setPoints(int pt) {
+    void setPoints(int pt) {
         this.points += pt;
     }
 
-    public void setTime(long time){this.time = time;}
-
-    public int getPoints() {
+    int getPoints() {
         return points;
     }
 
-    public int getLives() {
+    int getLives() {
         return lives;
     }
 
-    public double getTime() {
+    double getTime() {
         return time;
     }
-
-    public long getStartTime(){return startTime;}
 
     public void updateTime() {
         long currTime = System.currentTimeMillis();
@@ -107,7 +86,7 @@ public class ShapeClickerStats{
 
     void saveStats(Context context) {
         DatabaseHelper db = new DatabaseHelper(context);
-        long newRowId = db.insertShapeClickerStats(this.username, (long)getTime(), getPoints(), getLives());
+        long newRowId = db.insertShapeClickerStats(this.username, (long) getTime(), getPoints(), getLives());
         Log.i("ShapeClicker", "Stats inserted at row" + newRowId);
     }
 }

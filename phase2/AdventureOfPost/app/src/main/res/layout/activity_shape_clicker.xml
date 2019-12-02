@@ -21,7 +21,7 @@
 
     <view
         android:id="@+id/scview"
-        class="com.group0562.adventureofpost.shapeClicker.ShapeClickerGameView"
+        class="com.group0562.adventureofpost.shapeClicker.ui.ShapeClickerGameView"
         android:layout_width="385dp"
         android:layout_height="563dp"
         app:layout_constraintBottom_toBottomOf="parent"

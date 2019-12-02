@@ -7,16 +7,12 @@ import static java.lang.Math.*;
 
 
 public class Square extends Shape {
-    private Paint paint;
-    static final String message = "Square";
 
     /**
      * Constructor of a Square, including setting the coordinates of its center
      */
     Square(double x, double y, Paint p) {
-        super(x, y);
-        this.paint = p;
-
+        super(x, y, p);
     }
 
     /**
@@ -24,8 +20,8 @@ public class Square extends Shape {
      */
     @Override
     public void setLocation() {
-        this.coordinate_x = random() * (SCNormalMode.bound[1] - 2 * this.radius) + this.radius;
-        this.coordinate_y = random() * (SCNormalMode.bound[3] - 2 * this.radius) + this.radius;
+        setCoordinate_x(random() * (SCNormalMode.bound[1] - 2 * getRadius()) + getRadius());
+        setCoordinate_y(random() * (SCNormalMode.bound[3] - 2 * getRadius()) + getRadius());
     }
 
     /**
@@ -35,21 +31,24 @@ public class Square extends Shape {
      */
     @Override
     boolean checkWithin(double cursor_x, double cursor_y) {
-        if (cursor_x < this.coordinate_x - this.radius)
+        if (cursor_x < getCoordinate_x() - getRadius())
             return false;
-        else if (cursor_x > this.coordinate_x + this.radius)
+        else if (cursor_x > getCoordinate_x() + getRadius())
             return false;
-        else if (cursor_y < this.coordinate_y - this.radius)
+        else if (cursor_y < getCoordinate_y() - getRadius())
             return false;
-        else return !(cursor_y > this.coordinate_y + this.radius);
+        else return !(cursor_y > getCoordinate_y() + getRadius());
     }
 
     /**
      * draw the square using its center and coordinates of four sides.
      */
     public void draw(Canvas canvas) {
-        canvas.drawRect((float) (this.coordinate_x - super.radius), (float) (this.coordinate_y - super.radius),
-                (float) (this.coordinate_x + super.radius), (float) (this.coordinate_y + super.radius), this.paint);
+        canvas.drawRect((float) (getCoordinate_x() - super.getRadius()),
+                (float) (getCoordinate_y() - super.getRadius()),
+                (float) (getCoordinate_x() + super.getRadius()),
+                (float) (getCoordinate_y() + super.getRadius()),
+                getPaint());
     }
 
 }

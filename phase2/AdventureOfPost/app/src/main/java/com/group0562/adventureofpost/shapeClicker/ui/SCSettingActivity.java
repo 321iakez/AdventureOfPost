@@ -11,8 +11,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.PreferenceFragmentCompat;
 
 import com.group0562.adventureofpost.R;
-import com.group0562.adventureofpost.shapeClicker.SCSetting;
 import com.group0562.adventureofpost.ScoreboardActivity;
+import com.group0562.adventureofpost.shapeClicker.SCSetting;
 
 
 public class SCSettingActivity extends AppCompatActivity {
@@ -41,20 +41,15 @@ public class SCSettingActivity extends AppCompatActivity {
         }
     }
 
-    /*to switch the settings and go back to the game page*/
+    /* to switch the settings and go back to the game page */
     public void onClickStartSC(View view) {
-        SharedPreferences sc_color_list = PreferenceManager.getDefaultSharedPreferences(this);
-        SharedPreferences sc_shape_list = PreferenceManager.getDefaultSharedPreferences(this);
-        SharedPreferences sc_difficulty_list = PreferenceManager.getDefaultSharedPreferences(this);
-        SharedPreferences sc_mode_list = PreferenceManager.getDefaultSharedPreferences(this);
-        String color_choice = sc_color_list.getString(getString(R.string.sc_color_key), "Black");
-        String shape_choice = sc_shape_list.getString(getString(R.string.sc_shape_key), "Circle");
-        String difficulty_choice = sc_difficulty_list.getString(getString(R.string.sc_difficulty_key), "Easy");
-        String mode_choice = sc_mode_list.getString(getString(R.string.sc_mode_key), "Normal");
-        SCSetting.setColor(color_choice);
-        SCSetting.setDifficulty(difficulty_choice);
-        SCSetting.setShape(shape_choice);
-        SCSetting.setMode(mode_choice);
+        SharedPreferences manager = PreferenceManager.getDefaultSharedPreferences(this);
+
+        SCSetting.setColor(manager.getString(getString(R.string.sc_color_key), "Black"));
+        SCSetting.setDifficulty(manager.getString(getString(R.string.sc_difficulty_key), "Easy"));
+        SCSetting.setShape(manager.getString(getString(R.string.sc_shape_key), "Circle"));
+        SCSetting.setMode(manager.getString(getString(R.string.sc_mode_key), "Normal"));
+
         Intent intent = new Intent(this, ShapeClickerActivity.class);
         intent.putExtra("username", getIntent().getStringExtra("username"));
         SCSetting.setUsername(getIntent().getStringExtra("username"));

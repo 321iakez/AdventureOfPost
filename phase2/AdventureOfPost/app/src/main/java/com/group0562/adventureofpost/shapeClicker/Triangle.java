@@ -4,11 +4,10 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
 
-import static java.lang.Math.*;
+import static java.lang.Math.random;
+import static java.lang.Math.sqrt;
 
 public class Triangle extends Shape {
-    private Paint paint;
-    final String message = "Triangle";
 
     /**
      * three vertices of this triangle.
@@ -21,12 +20,11 @@ public class Triangle extends Shape {
      * constructor for a triangle, including setting the coordinates of its three vertices and
      * mid point of an edge
      */
-    public Triangle(double x, double y, Paint p) {
-        super(x, y);
-        this.paint = p;
-        this.v1 = new Vertex();
-        this.v2 = new Vertex();
-        this.v3 = new Vertex();
+    Triangle(double x, double y, Paint p) {
+        super(x, y, p);
+        v1 = new Vertex();
+        v2 = new Vertex();
+        v3 = new Vertex();
     }
 
     /**
@@ -34,20 +32,19 @@ public class Triangle extends Shape {
      */
     @Override
     public void draw(Canvas canvas) {
-        v1.x = this.coordinate_x - this.radius;
-        v1.y = this.coordinate_y;
-        v2.x = this.coordinate_x;
-        v2.y = this.coordinate_y + sqrt(3) * this.radius;
-        v3.x = this.coordinate_x + this.radius;
-        v3.y = this.coordinate_y;
+        v1.setX(getCoordinate_x() - getRadius());
+        v1.setY(getCoordinate_y());
+        v2.setX(getCoordinate_x());
+        v2.setY(getCoordinate_y() + sqrt(3) * getRadius());
+        v3.setX(getCoordinate_x() + getRadius());
+        v3.setY(getCoordinate_y());
         Path path = new Path();
         path.setFillType(Path.FillType.EVEN_ODD);
-        path.moveTo((float) v1.x, (float) v1.y);
-        path.lineTo((float) v2.x, (float) v2.y);
-        path.lineTo((float) v3.x, (float) v3.y);
+        path.moveTo((float) v1.getX(), (float) v1.getY());
+        path.lineTo((float) v2.getX(), (float) v2.getY());
+        path.lineTo((float) v3.getX(), (float) v3.getY());
         path.close();
-        canvas.drawPath(path, this.paint);
-
+        canvas.drawPath(path, getPaint());
     }
 
     /**
@@ -55,15 +52,14 @@ public class Triangle extends Shape {
      */
     @Override
     public void setLocation() {
-        this.coordinate_x = random() * (SCNormalMode.bound[1] - 2 * this.radius) + this.radius;
-        this.coordinate_y = random() * (SCNormalMode.bound[3] - 2 * this.radius);
-        v1.x = this.coordinate_x - this.radius;
-        v1.y = this.coordinate_y;
-        v2.x = this.coordinate_x;
-        v2.y = this.coordinate_y + sqrt(3) * this.radius;
-        v3.x = this.coordinate_x + this.radius;
-        v3.y = this.coordinate_y;
-
+        setCoordinate_x(random() * (SCNormalMode.bound[1] - 2 * getRadius()) + getRadius());
+        setCoordinate_y(random() * (SCNormalMode.bound[3] - 2 * getRadius()));
+        v1.setX(getCoordinate_x() - getRadius());
+        v1.setY(getCoordinate_y());
+        v2.setX(getCoordinate_x());
+        v2.setY(getCoordinate_y() + sqrt(3) * getRadius());
+        v3.setX(getCoordinate_x() + getRadius());
+        v3.setY(getCoordinate_y());
     }
 
     /**
@@ -73,16 +69,40 @@ public class Triangle extends Shape {
      */
     @Override
     boolean checkWithin(double cursor_x, double cursor_y) {
-        if (cursor_x < v1.x)
+        if (cursor_x < v1.getX() || cursor_x > v3.getX() || cursor_y < v1.getY() || cursor_y > v2.getY()) {
             return false;
-        else if (cursor_x > v3.x)
+        } else if (cursor_x <= getCoordinate_x() & cursor_y - getCoordinate_y() > sqrt(3) * (cursor_x - v1.getX())) {
             return false;
-        else if (cursor_y < v1.y)
-            return false;
-        else if (cursor_y > v2.y)
-            return false;
-        else if (cursor_x <= this.coordinate_x & cursor_y - this.coordinate_y > sqrt(3) * (cursor_x - v1.x))
-            return false;
-        else return !(cursor_x > this.coordinate_x & cursor_y - this.coordinate_y > sqrt(3) * (v3.x - cursor_x));
+        } else {
+            return !(cursor_x > getCoordinate_x() & cursor_y - getCoordinate_y() > sqrt(3) * (v3.getX() - cursor_x));
+        }
+    }
+
+    class Vertex {
+        /**
+         * x coordinate of this vertex
+         */
+        private double x;
+
+        /**
+         * y coordinate of this vertex
+         */
+        private double y;
+
+        void setY(double y) {
+            this.y = y;
+        }
+
+        void setX(double x) {
+            this.x = x;
+        }
+
+        double getX() {
+            return x;
+        }
+
+        double getY() {
+            return y;
+        }
     }
 }
