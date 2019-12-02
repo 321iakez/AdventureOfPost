@@ -54,19 +54,16 @@ public class ShapeClickerActivity extends AppCompatActivity implements SCPauseDi
     @Override
     public void saveGame(String mode) {
         if (mode.equals(RETURN_NO_SAVE)) {
-            System.out.println("returned without save");
             Intent intent = new Intent(this, GameActivity.class);
             intent.putExtra("username", getIntent().getStringExtra("username"));
             startActivity(intent);
 
         } else if (mode.equals(RETURN_SAVE)) {
-            System.out.println("returned with save");
             sc_view.getClicker().saveShapeClicker(this);
             Intent intent = new Intent(this, GameActivity.class);
             intent.putExtra("username", getIntent().getStringExtra("username"));
             startActivity(intent);
         } else {
-            System.out.println("Resumed");
             sc_view.puzzleStats.setTime(time_pause);
         }
     }
