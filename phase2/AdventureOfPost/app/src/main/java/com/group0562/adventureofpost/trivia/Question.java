@@ -26,50 +26,23 @@ public class Question {
      * Question constructor initializes variables by processing input string content
      * the question is randomly generated based on difficulty and operation
      *
-     * @param diff the string for the difficulty
-     * @param op   the arithmetic operation
+     * @param diff the difficulty
+     * @param op  the arithmetic operation
      */
     Question(int diff, int op) {
-        int bound, option;
+        int option;
         Random rand = new Random();
 
-        switch (diff) {
-            case 1:
-                bound = 10;
-                break;
-            case 2:
-                bound = 100;
-                break;
-            case 3:
-                bound = 1000;
-                break;
-            default:
-                bound = 0;
-                break;
-        }
-        String[] tempQuestions;
-        switch (op) {
+        //generates bound (maximum randomly generated number) based on difficulty
+        int bound = generateBound(diff);
 
-            case 1:
-                tempQuestions = createAdditionQuestion(bound);
-                break;
-            case 2:
-                tempQuestions = createSubtractionQuestion(bound);
-                break;
-            default:
-                if (bound == 1000) {
-                    tempQuestions = createMultiplicationQuestion(bound / 10);
-                } else if (bound == 100) {
-                    tempQuestions = createMultiplicationQuestion(bound / 5);
-                } else {
-                    tempQuestions = createMultiplicationQuestion(bound);
-                }
-                break;
-        }
+        //creates question based on user-selected operation
+        String[] tempQuestions = generateQuestion(op, bound);
 
         question = tempQuestions[0];
         this.answer = tempQuestions[1];
 
+        //adds randomly-generated (incorrect) options to array
         for (int i = 0; i <= 3; i++) {
             option = Integer.parseInt(this.answer) + rand.nextInt(bound) - rand.nextInt(bound);
             if (option != Integer.parseInt(this.answer)) {
@@ -82,6 +55,56 @@ public class Question {
         shuffleOptions(this.options);
     }
 
+
+
+    /**
+     * Constructor helper that generates a bound based on the user-inputted difficulty
+     *
+     * @param diff the int for the difficulty
+     *
+     */
+    private int generateBound(int diff) {
+        switch (diff) {
+            case 1:
+                return 10;
+            case 2:
+                return 100;
+            case 3:
+                return 1000;
+            default:
+                return 0;
+        }
+
+    }
+
+    /**
+     * Constructor helper that generates a question based on the operation and difficulty
+     *
+     * @param bound the maximum randomly-generated integer
+     * @param op   the arithmetic operation
+     */
+    private String[] generateQuestion(int op, int bound){
+
+        switch (op) {
+
+            case 1:
+                return createAdditionQuestion(bound);
+
+            case 2:
+                return createSubtractionQuestion(bound);
+
+            default:
+                if (bound == 1000) {
+                    return createMultiplicationQuestion(bound / 10);
+                } else if (bound == 100) {
+                    return createMultiplicationQuestion(bound / 5);
+                } else {
+                    return createMultiplicationQuestion(bound);
+                }
+
+        }
+
+    }
 
     /**
      * Helper function to create an addition question
