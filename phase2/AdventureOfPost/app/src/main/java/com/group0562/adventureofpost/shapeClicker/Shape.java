@@ -3,6 +3,7 @@ package com.group0562.adventureofpost.shapeClicker;
 import android.graphics.Paint;
 import android.graphics.Canvas;
 
+/** this is the parent class of all shapes, have some attributes, methods for cleaner designs and easier usages for its child classes */
 public abstract class Shape {
 
     /**
@@ -37,6 +38,7 @@ public abstract class Shape {
         this.paint = p;
     }
 
+    /** getters and setters for this class and its child classes */
     double getCoordinate_x() {
         return coordinate_x;
     }
@@ -78,6 +80,7 @@ public abstract class Shape {
      */
     public abstract void draw(Canvas canvas);
 
+    /** two abstract methods that needs to be implemented by its child classes */
     public abstract void setLocation();
 
     abstract boolean checkWithin(double cursor_x, double cursor_y);

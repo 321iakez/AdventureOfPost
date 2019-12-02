@@ -5,7 +5,7 @@ import android.graphics.Paint;
 
 import com.group0562.adventureofpost.shapeClicker.ui.SCEndResultView;
 
-
+/** this class is the presenter for one of the mode of the game shapeClicker */
 public class SCNormalMode extends ShapeClicker {
 
     /**

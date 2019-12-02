@@ -9,6 +9,7 @@ import android.view.View;
 
 import androidx.annotation.Nullable;
 
+/** this is the result view that tells you if you lost or win */
 public class SCEndResultView extends View {
     private Paint paint;
     private static final float Stroke_Thickness = 3;
@@ -41,7 +42,7 @@ public class SCEndResultView extends View {
         }
     }
 
-
+    /** to determine if you beat the game or not */
     public static void setBeat_the_game(boolean t) {
         SCEndResultView.beat_the_game = t;
     }

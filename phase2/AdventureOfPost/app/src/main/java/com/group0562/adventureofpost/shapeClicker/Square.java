@@ -5,7 +5,7 @@ import android.graphics.Paint;
 
 import static java.lang.Math.*;
 
-
+/** this class represents one of the shape that is drawn in the shapeClicker game */
 public class Square extends Shape {
 
     /**

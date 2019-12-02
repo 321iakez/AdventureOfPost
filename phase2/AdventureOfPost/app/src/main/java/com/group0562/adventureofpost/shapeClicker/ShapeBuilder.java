@@ -5,18 +5,18 @@ import android.graphics.Paint;
 import java.util.ArrayList;
 import java.util.Random;
 
+/** this is a class to build bunch of shapes for the fancymode presenter for the shapeClicker game */
 public class ShapeBuilder {
 
     private ArrayList<Shape> s_objects;
 
-    ShapeBuilder(int goal, int num_of_shapes, Paint paint) {
+    /**constructor of this class */
+    ShapeBuilder(Paint paint) {
         s_objects = new ArrayList<>();
-        randomShapeGenerator(goal, num_of_shapes, paint);
+        shapeGenerator(paint);
     }
 
-    private void randomShapeGenerator(int goal, int num_of_shapes, Paint paint) {
-        //algorithm that makes the most to least number of circle, square and then triangle, and then create them
-
+    private void shapeGenerator(Paint paint) {
         double[] temp_location = {50, 125};
         double x_interval = 100;
         double y_interval = 150;
@@ -37,6 +37,7 @@ public class ShapeBuilder {
         }
     }
 
+    /**getters and setters for this class */
     ArrayList<Shape> getS_objects() {
         return this.s_objects;
     }

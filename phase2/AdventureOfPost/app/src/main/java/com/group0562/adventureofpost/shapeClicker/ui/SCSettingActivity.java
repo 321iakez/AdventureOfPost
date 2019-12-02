@@ -14,7 +14,7 @@ import com.group0562.adventureofpost.R;
 import com.group0562.adventureofpost.ScoreboardActivity;
 import com.group0562.adventureofpost.shapeClicker.SCSetting;
 
-
+/**this class serves as the setting page for SC shape clicker */
 public class SCSettingActivity extends AppCompatActivity {
 
     @Override
@@ -44,7 +44,6 @@ public class SCSettingActivity extends AppCompatActivity {
     /* to switch the settings and go back to the game page */
     public void onClickStartSC(View view) {
         SharedPreferences manager = PreferenceManager.getDefaultSharedPreferences(this);
-
         SCSetting.setColor(manager.getString(getString(R.string.sc_color_key), "Black"));
         SCSetting.setDifficulty(manager.getString(getString(R.string.sc_difficulty_key), "Easy"));
         SCSetting.setShape(manager.getString(getString(R.string.sc_shape_key), "Circle"));
@@ -52,10 +51,25 @@ public class SCSettingActivity extends AppCompatActivity {
 
         Intent intent = new Intent(this, ShapeClickerActivity.class);
         intent.putExtra("username", getIntent().getStringExtra("username"));
+        intent.putExtra("Resume", "no");
         SCSetting.setUsername(getIntent().getStringExtra("username"));
         startActivity(intent);
     }
 
+    public void onClickResumeSC(View view){
+        SharedPreferences manager = PreferenceManager.getDefaultSharedPreferences(this);
+        SCSetting.setColor(manager.getString(getString(R.string.sc_color_key), "Black"));
+        SCSetting.setDifficulty(manager.getString(getString(R.string.sc_difficulty_key), "Easy"));
+        SCSetting.setShape(manager.getString(getString(R.string.sc_shape_key), "Circle"));
+        SCSetting.setMode(manager.getString(getString(R.string.sc_mode_key), "Normal"));
+        Intent intent = new Intent(this, ShapeClickerActivity.class);
+        intent.putExtra("username", getIntent().getStringExtra("username"));
+        intent.putExtra("Resume", "yes");
+        SCSetting.setUsername(getIntent().getStringExtra("username"));
+        startActivity(intent);
+    }
+
+    /* this is for the scoreboard for SC */
     private void addListenerScoreboard() {
         findViewById(R.id.playerScoreButton).setOnClickListener(v -> {
             Intent intent = new Intent(this, ScoreboardActivity.class);
