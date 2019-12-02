@@ -37,7 +37,7 @@ public class SudokuActivity extends AppCompatActivity implements SudokuView, Obs
         int gridSize = getIntent().getStringExtra("gridSize").equals("6x6") ? 6 : 9;
         String difficulty = getIntent().getStringExtra("difficulty");
         String username = getIntent().getStringExtra("username");
-        Boolean resume = getIntent().getExtras().getBoolean("resume");
+        boolean resume = getIntent().getBooleanExtra("resume", false);
 
         // Create presenter
         if (! resume){
@@ -46,7 +46,7 @@ public class SudokuActivity extends AppCompatActivity implements SudokuView, Obs
             DatabaseHelper db = new DatabaseHelper(this);
             String gameState = db.retrieveGameState("sudoku", username);
             System.out.println(gameState);
-            if(gameState != ""){
+            if(!gameState.equals("")){
                 presenter = new SudokuPresenter(this, new SudokuStats(username), gridSize, difficulty, gameState);
             } else {
                 presenter = new SudokuPresenter(this, new SudokuStats(username), gridSize, difficulty, "");
