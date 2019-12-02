@@ -62,6 +62,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "username TEXT, FOREIGN KEY (username) REFERENCES users (username))"); // time, score, lives
 
         db.execSQL("CREATE TABLE game_saves (gameId text primary key, username text, gameState text)");
+
+        db.execSQL("CREATE TABLE game_stats (id text primary key, stats text)");
     }
 
 
@@ -80,6 +82,28 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 SUDOKU_STAT1, SUDOKU_STAT2, SUDOKU_STAT3, SUDOKU_TABLE);
     }
 
+    public long insertResumeStats(String stats){
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("id", "resume_stats");
+        contentValues.put("stats", stats);
+        db.execSQL("delete from game_stats where id = ?", new String[]{"resume_stats"});
+        return db.insert("game_stats", null, contentValues);
+    }
+
+    public String retrieveResumeStats(){
+        SQLiteDatabase db = getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM game_stats WHERE id =?", new String[]{"resume_stats"});
+        String game_stats = "";
+        if (cursor.moveToFirst()) {
+            while (!cursor.isAfterLast()) {
+                String name = cursor.getString(cursor.getColumnIndex("stats"));
+                game_stats = name;
+                cursor.moveToNext();
+            }
+        }
+        return game_stats;
+    }
 
     public long insertGameState(String gameId, String username, String gameState){
         SQLiteDatabase db = getWritableDatabase();

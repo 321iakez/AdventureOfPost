@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.ViewTreeObserver;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -17,6 +18,8 @@ import com.group0562.adventureofpost.sudoku.SudokuView;
 import java.io.InputStream;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.List;
+import java.util.Arrays;
 
 public class SudokuActivity extends AppCompatActivity implements SudokuView, Observer,
         SudokuPauseDialog.PauseDialogListener, SudokuEndDialog.EndDialogListener {
@@ -46,10 +49,14 @@ public class SudokuActivity extends AppCompatActivity implements SudokuView, Obs
             DatabaseHelper db = new DatabaseHelper(this);
             String gameState = db.retrieveGameState("sudoku", username);
             System.out.println(gameState);
+            String game_stats = db.retrieveResumeStats();
+            List<String> result = Arrays.asList(game_stats.split("\\s*,\\s*"));
+
             if(gameState != ""){
-                presenter = new SudokuPresenter(this, new SudokuStats(username), gridSize, difficulty, gameState);
+                presenter = new SudokuPresenter(this, new SudokuStats(result), gridSize, difficulty, gameState);
             } else {
                 presenter = new SudokuPresenter(this, new SudokuStats(username), gridSize, difficulty, "");
+                Toast.makeText(getApplicationContext(),"No saved games, new game created!",Toast.LENGTH_SHORT).show();
             }
         }
 
@@ -166,7 +173,7 @@ public class SudokuActivity extends AppCompatActivity implements SudokuView, Obs
             startActivity(intent);
         } else if (mode.equals(SudokuPauseDialog.Modes.EXIT_SAVE)) {
             System.out.println("returned with save");
-            presenter.saveStats(this);
+            presenter.saveResumeStats(this);
             presenter.saveBoard(this, getIntent().getStringExtra("username"));
 
             Intent intent = new Intent(this, GameActivity.class);

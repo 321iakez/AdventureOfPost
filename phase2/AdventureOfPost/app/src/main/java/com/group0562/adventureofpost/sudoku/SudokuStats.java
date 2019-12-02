@@ -7,6 +7,7 @@ import android.util.Log;
 
 import com.group0562.adventureofpost.database.DatabaseHelper;
 
+import java.util.List;
 import java.util.Observable;
 
 
@@ -49,6 +50,19 @@ public class SudokuStats extends Observable {
         this.username = username;
     }
 
+    public SudokuStats(List<String> game_stats){
+        moves = Integer.parseInt(game_stats.get(0));
+        conflicts = Integer.parseInt(game_stats.get(1));
+        gameTime = Integer.parseInt(game_stats.get(2));
+        username = game_stats.get(3);
+        System.out.println(moves);
+        System.out.println(conflicts);
+        System.out.println(moves);
+        System.out.println(conflicts);
+        System.out.println(moves);
+        System.out.println(conflicts);
+    }
+
     /* ========== Getters ========== */
     int getMoves() {
         return moves;
@@ -62,6 +76,7 @@ public class SudokuStats extends Observable {
         return gameTime;
     }
 
+    String getUsername(){return username;}
     /* ========== Update Methods ========== */
     void updateTime(int time) {
         gameTime = time;
