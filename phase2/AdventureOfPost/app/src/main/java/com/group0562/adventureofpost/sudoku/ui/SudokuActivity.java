@@ -44,7 +44,7 @@ public class SudokuActivity extends AppCompatActivity implements SudokuView, Obs
             presenter = new SudokuPresenter(this, new SudokuStats(username), gridSize, difficulty,  "");
         } else {
             DatabaseHelper db = new DatabaseHelper(this);
-            String gameState = db.retrieveGameState("sudoku");
+            String gameState = db.retrieveGameState("sudoku", username);
             System.out.println(gameState);
             if(gameState != ""){
                 presenter = new SudokuPresenter(this, new SudokuStats(username), gridSize, difficulty, gameState);
@@ -167,7 +167,7 @@ public class SudokuActivity extends AppCompatActivity implements SudokuView, Obs
         } else if (mode.equals(SudokuPauseDialog.Modes.EXIT_SAVE)) {
             System.out.println("returned with save");
             presenter.saveStats(this);
-            presenter.saveBoard(this);
+            presenter.saveBoard(this, getIntent().getStringExtra("username"));
 
             Intent intent = new Intent(this, GameActivity.class);
             intent.putExtra("username", getIntent().getStringExtra("username"));
