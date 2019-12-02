@@ -1,14 +1,15 @@
 # Adventure of POSt
 
-
-General game:
+## General game:
 
 You must first create an account before logging in. Once you are logged in, a scoreboard for each game keeps track of your highest scores, so you always know what you’re aiming for when playing.
 
-Sudoku:
+## Sudoku:
+
 Players can play sudoku on a 6x6 or 9x9 grid, with varying difficulties ranging from easy to hard. The game keeps track of your time, moves, and conflicts so your performance can always be improved! The game can be paused and resumed safely so you can take a break, since sudoku games can get long and tiring and we know that it might take multiple tries to figure a puzzle out.
 
-ShapeClicker:
+## ShapeClicker:
+
 For the ShapeClicker game, you are supposed to click on the shapes appearing on the screen one by one to obtain points. You must press the finish button when you want to end the game(either you meet the required points or time is up). The passing mark is set as 70.
 
 There are three stats for a ShapeClicker game: time, points, life. Using up time or life will fail the game, and you want to obtain as many points as possible. The time limit is 1 minute and you are given 10 lives. Each misclick will take off 1 life.
@@ -19,7 +20,7 @@ You can pause in the middle of a ShapeClicker game. It can be either resumed or 
 
 Also, you can try the fancy mode of ShapeClicker, which fills the screen with different shapes with different points from the beginning of the game, and you can see how many combos you clicked in a row. There is also a scoreboard which shows the top player of ShapeClicker.
 
-Trivia:
+## Trivia:
 
 A trivia game that tests your basic math knowledge. You will answer ten multiple choice addition/subtraction/multiplication questions of varying difficulty.
 
