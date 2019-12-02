@@ -25,10 +25,11 @@ public class ShapeClickerActivity extends AppCompatActivity implements SCPauseDi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shape_clicker);
         String username = getIntent().getStringExtra("username");
+        String resume = getIntent().getStringExtra("Resume");
         DatabaseHelper db = new DatabaseHelper(this);
         String gameState = db.retrieveGameState("shapeClicker", username);
         sc_view = findViewById(R.id.scview);
-        if (!gameState.equals("")) {
+        if (!gameState.equals("") && resume.equals("yes")) {
             sc_view.getClicker().getPuzzleStats().setLoadData(gameState);
         }
     }

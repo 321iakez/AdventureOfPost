@@ -52,7 +52,7 @@ public class TriviaPresenter {
     }
 
     /**
-     * The constructor for a new game
+     * The constructor for a saved game
      *
      * @param username  the username of the player
      * @param saveState a String of saved info containing user's game progress and customization
@@ -123,11 +123,21 @@ public class TriviaPresenter {
         this.game = new Trivia(op, diff, correct + incorrect);
     }
 
+    /**
+     * stores a saved state to the database indexed to the username
+     * @param saveState a string containing vital gameinfo data
+     * @param username  the user's username
+     */
     public void insertToDatabase(Context context, String saveState, String username) {
         DatabaseHelper db = new DatabaseHelper(context);
         db.insertGameState("trivia", username, saveState);
     }
 
+
+    /**
+     * loads a saved state to the database indexed to the username
+     * @param username  the user's username
+     */
     public void loadFromDatabase(Context context, String username) {
         DatabaseHelper db = new DatabaseHelper(context);
         String saveState = db.retrieveGameState("trivia", username);
