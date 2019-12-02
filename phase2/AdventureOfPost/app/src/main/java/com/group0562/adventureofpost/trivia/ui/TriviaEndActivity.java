@@ -18,6 +18,7 @@ import com.group0562.adventureofpost.trivia.TriviaPresenter;
  */
 public class TriviaEndActivity extends AppCompatActivity {
 
+    private TriviaPresenter presenter;
     /**
      * Displays stats of user after they have completed all 10 questions
      *
@@ -27,8 +28,7 @@ public class TriviaEndActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trivia_end);
-        TriviaPresenter presenter = new TriviaPresenter(getIntent().getStringExtra("username"), getIntent().getStringExtra("saveState"));
-        presenter.saveToDatabase(this);
+        presenter = new TriviaPresenter(getIntent().getStringExtra("username"), getIntent().getStringExtra("saveState"));
         int[] values = presenter.getStats();
         //the player stats
         String correct, incorrect, score;
@@ -45,6 +45,7 @@ public class TriviaEndActivity extends AppCompatActivity {
         TextView scoreTextView = findViewById(R.id.Score);
         scoreTextView.setText(score);
 
+        presenter.insertToDatabase(this, "");
     }
 
     /**
@@ -52,9 +53,23 @@ public class TriviaEndActivity extends AppCompatActivity {
      *
      * @param view the view
      */
-    public void onClickNext(View view) {
+    public void onClickYes(View view) {
         Intent intent = new Intent(this, GameActivity.class);
         intent.putExtra("username", getIntent().getStringExtra("username"));
         startActivity(intent);
     }
+
+    /**
+     * Returns user to puzzles screen
+     * will also save user score into database for scoreboard
+     * @param view the view
+     */
+    public void onClickNo(View view) {
+        presenter.saveToDatabase(this);
+
+        Intent intent = new Intent(this, GameActivity.class);
+        intent.putExtra("username", getIntent().getStringExtra("username"));
+        startActivity(intent);
+    }
+
 }

@@ -123,9 +123,9 @@ public class TriviaPresenter {
         this.game = new Trivia(op, diff, correct + incorrect);
     }
 
-    public void insertToDatabase(Context context) {
+    public void insertToDatabase(Context context, String saveState) {
         DatabaseHelper db = new DatabaseHelper(context);
-        db.insertGameState("trivia", saveGame());
+        db.insertGameState("trivia", saveState);
     }
 
     public void loadFromDatabase(Context context, String username){

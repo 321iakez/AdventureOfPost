@@ -50,7 +50,7 @@ public class TriviaPauseActivity extends AppCompatActivity {
     public void onClickSave(View view) {
         Intent intent = new Intent(this, GameActivity.class);
         TriviaPresenter presenter = new TriviaPresenter(getIntent().getStringExtra("username"), getIntent().getStringExtra("saveState"));
-        presenter.insertToDatabase(this);
+        presenter.insertToDatabase(this, getIntent().getStringExtra("saveState"));
         intent.putExtra("saveState", getIntent().getStringExtra("saveState"));
         intent.putExtra("username", getIntent().getStringExtra("username"));
         startActivity(intent);

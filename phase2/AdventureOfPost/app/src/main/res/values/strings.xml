@@ -119,5 +119,8 @@
     <string name="global_score_band">Global Score:</string>
     <string name="settings">Settings</string>
     <string name="start_resume">Start/Resume</string>
+    <string name="save_score">Save Score?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 
 </resources>
