@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 /** this is a class to build bunch of shapes for the fancymode presenter for the shapeClicker game */
-public class ShapeBuilder {
+class ShapeBuilder {
 
     private ArrayList<Shape> s_objects;
 
