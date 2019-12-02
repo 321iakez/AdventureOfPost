@@ -128,13 +128,14 @@ public class TriviaPresenter {
         db.insertGameState("trivia", username, saveState);
     }
 
-    public void loadFromDatabase(Context context, String username){
+    public void loadFromDatabase(Context context, String username) {
         DatabaseHelper db = new DatabaseHelper(context);
         String saveState = db.retrieveGameState("trivia", username);
-        if (!(saveState.isEmpty())){
+        if (!(saveState.isEmpty())) {
             loadGame(username, saveState);
         }
     }
+
     /**
      * Sets the background color
      *
