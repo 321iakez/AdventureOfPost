@@ -3,6 +3,8 @@ package com.group0562.adventureofpost.shapeClicker;
 import android.content.Context;
 import android.graphics.Canvas;
 
+import com.group0562.adventureofpost.database.DatabaseHelper;
+
 
 public abstract class ShapeClicker {
     private ShapeClickerStats puzzleStats;
@@ -53,5 +55,10 @@ public abstract class ShapeClicker {
 
     public ShapeClickerStats getPuzzleStats() {
         return puzzleStats;
+    }
+
+    public void saveShapeClicker(Context context) {
+        DatabaseHelper db = new DatabaseHelper(context);
+        db.insertGameState("shapeClicker", SCSetting.getUsername(), puzzleStats.getSCData());
     }
 }

@@ -9,6 +9,7 @@ import com.group0562.adventureofpost.GameActivity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.group0562.adventureofpost.R;
+import com.group0562.adventureofpost.database.DatabaseHelper;
 
 public class ShapeClickerActivity extends AppCompatActivity implements SCPauseDialog.SCPauseDialogListener {
     public final static String EXTRA_MESSAGE = "com.group0562.AdventureOfPost.MESSAGE";
@@ -23,9 +24,13 @@ public class ShapeClickerActivity extends AppCompatActivity implements SCPauseDi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shape_clicker);
-        //String username = getIntent().getStringExtra("username");
-        //SCSetting.setUsername(username);
+        String username = getIntent().getStringExtra("username");
+        DatabaseHelper db = new DatabaseHelper(this);
+        String gameState = db.retrieveGameState("shapeClicker", username);
         sc_view = findViewById(R.id.scview);
+        if (!gameState.equals("")) {
+            sc_view.getClicker().getPuzzleStats().setLoadData(gameState);
+        }
     }
 
     /*to start the setting screen once clicked*/
@@ -53,7 +58,7 @@ public class ShapeClickerActivity extends AppCompatActivity implements SCPauseDi
 
         } else if (mode.equals(RETURN_SAVE)) {
             System.out.println("returned with save");
-            //sc_view.getClicker().saveStats(this);
+            sc_view.getClicker().saveShapeClicker(this);
             Intent intent = new Intent(this, GameActivity.class);
             intent.putExtra("username", getIntent().getStringExtra("username"));
             startActivity(intent);

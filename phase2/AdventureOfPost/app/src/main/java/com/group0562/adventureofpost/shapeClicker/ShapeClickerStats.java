@@ -89,4 +89,15 @@ public class ShapeClickerStats {
         long newRowId = db.insertShapeClickerStats(this.username, (long) getTime(), getPoints(), getLives());
         Log.i("ShapeClicker", "Stats inserted at row" + newRowId);
     }
+
+    String getSCData(){
+        return String.valueOf(getTime()) + "," + String.valueOf(getPoints()) + "," + String.valueOf(getLives());
+    }
+
+    public void setLoadData(String data){
+        String[] data_list = data.split(",");
+        this.time = (long) Double.parseDouble(data_list[0]);
+        this.points = Integer.parseInt(data_list[1]);
+        this.lives = Integer.parseInt(data_list[2]);
+    }
 }

@@ -10,6 +10,7 @@ import android.view.View;
 
 import androidx.annotation.Nullable;
 
+import com.group0562.adventureofpost.database.DatabaseHelper;
 import com.group0562.adventureofpost.shapeClicker.SCFancyMode;
 import com.group0562.adventureofpost.shapeClicker.SCNormalMode;
 import com.group0562.adventureofpost.shapeClicker.SCSetting;
@@ -56,7 +57,6 @@ public class ShapeClickerGameView extends View {
         } else {
             clicker = new SCFancyMode(60000, ShapeClickerGameView.paint);
         }
-
         puzzleStats = clicker.getPuzzleStats();
     }
 
