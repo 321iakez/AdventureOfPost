@@ -36,11 +36,6 @@ public class SudokuStats extends Observable {
     private long gameTime = 0;
 
     /**
-     * The time when the game starts.
-     */
-    private final long startTime = System.currentTimeMillis();
-
-    /**
      * The username of the user currently playing the game.
      */
     private String username;
