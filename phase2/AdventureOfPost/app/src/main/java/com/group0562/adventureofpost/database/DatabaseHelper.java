@@ -61,6 +61,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 SC_STAT3 + " INTEGER," +
                 "username TEXT, FOREIGN KEY (username) REFERENCES users (username))"); // time, score, lives
 
+        // table for storing saved game states
         db.execSQL("CREATE TABLE game_saves (gameId text primary key, username text, gameState text)");
 
         db.execSQL("CREATE TABLE game_stats (id text primary key, stats text)");
@@ -76,13 +77,28 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
+    /**
+     * Stores a string representing sudoku stats of a game in the database.
+     *
+     * @param username:  username of player
+     * @param time:      current time in game
+     * @param conflicts: number of conflicts accrued
+     * @param moves:     moves used
+     * @return returns a long specifying if insert was successful
+     */
     public long insertSudokuStats(String username, long time, int conflicts, int moves) {
         SQLiteDatabase db = getWritableDatabase();
         return gameManager.insertStats(db, username, (int) time, moves, conflicts,
                 SUDOKU_STAT1, SUDOKU_STAT2, SUDOKU_STAT3, SUDOKU_TABLE);
     }
 
-    public long insertResumeStats(String stats){
+    /**
+     * Stores the stats of a game that will be resumable in the database.
+     *
+     * @param stats: a string that represents Sudoku stats of a game.
+     * @return returns a long specifying if insert was successful
+     */
+    public long insertResumeStats(String stats) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("id", "resume_stats");
@@ -91,7 +107,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return db.insert("game_stats", null, contentValues);
     }
 
-    public String retrieveResumeStats(){
+    /**
+     * retrieves the resumable game stats that were stored previously.
+     *
+     * @return returns a string representing the stats of the resumable game.
+     */
+    public String retrieveResumeStats() {
         SQLiteDatabase db = getWritableDatabase();
         try (Cursor cursor = db.rawQuery("SELECT * FROM game_stats WHERE id =?", new String[]{"resume_stats"})) {
             String game_stats = "";
@@ -105,7 +126,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    public long insertGameState(String gameId, String username, String gameState){
+    /**
+     * This method stores the state of the sudoku game.
+     *
+     * @param gameId: stores the type of game
+     * @param username: username of the player
+     * @param gameState: string representing the state of the board
+     * @return returns a long specifying if insert was successful
+     */
+    public long insertGameState(String gameId, String username, String gameState) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("gameId", gameId);
@@ -115,8 +144,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return db.insert("game_saves", null, contentValues);
     }
 
-
-    public String retrieveGameState(String gameId, String username){
+    /**
+     * retrieves a previously saved game state.
+     *
+     * @param gameId: type of game
+     * @param username: username of player
+     * @return returns a string representing the saved game state.
+     */
+    public String retrieveGameState(String gameId, String username) {
         SQLiteDatabase db = getWritableDatabase();
         try (Cursor cursor = db.rawQuery("SELECT * FROM game_saves WHERE gameId = ? and username = ?", new String[]{gameId, username})) {
             String gameState = "";
@@ -134,6 +169,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
+    /**
+     * method for returning the stats across a given game.
+     *
+     * @param username: username of the player
+     * @param game: the type of game
+     * @return returns a map containing all the player stats for a certain game.
+     */
     public Map<String, List<Integer>> playerStats(String username, String game) {
         SQLiteDatabase db = getReadableDatabase();
 
@@ -146,12 +188,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
+    /**
+     * inserts stats for trivia game into database
+     */
     public long insertTriviaStats(String username, int correct, int incorrect, int score) {
         SQLiteDatabase db = getWritableDatabase();
         return gameManager.insertStats(db, username, correct, incorrect, score, TRIVIA_STAT1,
                 TRIVIA_STAT2, TRIVIA_STAT3, TRIVIA_TABLE);
     }
 
+    /**
+     * inserts stats for shape clicker game.
+     */
     public long insertShapeClickerStats(String username, long time, int points, int lives) {
         SQLiteDatabase db = getWritableDatabase();
         return gameManager.insertStats(db, username, (int) time, points, lives, SC_STAT1, SC_STAT2,
