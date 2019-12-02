@@ -67,7 +67,7 @@ public class ShapeClickerStats {
 
     /**to put the data in a form that is readable in database */
     public String getSCData(){
-        return String.valueOf(getTime()) + "," + String.valueOf(getPoints()) + "," + String.valueOf(getLives());
+        return getTime() + "," + getPoints() + "," + getLives();
     }
 
     /**to set the data if you want to load meaning resume the game u quit before */
