@@ -94,7 +94,7 @@ public class TriviaStats {
     /**
      * Saves the data to the database
      */
-    void saveToDatabase(Context context, String saveString) {
+    void saveToDatabase(Context context) {
         DatabaseHelper db = new DatabaseHelper(context);
         long newRowId = db.insertTriviaStats(username, correct, incorrect, score);
         Log.i("TriviaPresenter", "Stats inserted at row" + newRowId);

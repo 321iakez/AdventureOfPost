@@ -2,6 +2,8 @@ package com.group0562.adventureofpost.trivia;
 
 import android.content.Context;
 
+import com.group0562.adventureofpost.database.DatabaseHelper;
+
 /**
  * This is the presenter class for Trivia, it handles all the
  * interactions with the Trivia object and TriviaStats class
@@ -64,7 +66,7 @@ public class TriviaPresenter {
      * Calls saveToDatabase method in triviaStats
      */
     public void saveToDatabase(Context context) {
-        gameStats.saveToDatabase(context, saveGame());
+        gameStats.saveToDatabase(context);
     }
 
     /**
@@ -121,6 +123,18 @@ public class TriviaPresenter {
         this.game = new Trivia(op, diff, correct + incorrect);
     }
 
+    public void insertToDatabase(Context context) {
+        DatabaseHelper db = new DatabaseHelper(context);
+        db.insertGameState("trivia", saveGame());
+    }
+
+    public void loadFromDatabase(Context context, String username){
+        DatabaseHelper db = new DatabaseHelper(context);
+        String saveState = db.retrieveGameState("trivia");
+        if (!(saveState.isEmpty())){
+            loadGame(username, saveState);
+        }
+    }
     /**
      * Sets the background color
      *

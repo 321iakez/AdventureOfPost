@@ -70,6 +70,9 @@ public class TriviaActivity extends AppCompatActivity {
             presenter = new TriviaPresenter(getIntent().getStringExtra("username"), op, diff);
         }
 
+        //checks if user has save stored in database and will load it
+        presenter.loadFromDatabase(this, getIntent().getStringExtra("username"));
+
         //checks for if settings activity has passed any settings that need to be changed
         if (getIntent().hasExtra("backgroundColor")) {
             presenter.setBackgroundColor(getIntent().getStringExtra("backgroundColor"));
@@ -80,6 +83,7 @@ public class TriviaActivity extends AppCompatActivity {
         if (getIntent().hasExtra("textColor")) {
             presenter.setTextColor(getIntent().getStringExtra("textColor"));
         }
+
 
         //changes view background color
         setActivityBackgroundColor();
