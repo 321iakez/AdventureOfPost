@@ -54,6 +54,7 @@ public class TriviaEndActivity extends AppCompatActivity {
      * @param view the view
      */
     public void onClickYes(View view) {
+        presenter.saveToDatabase(this);
         Intent intent = new Intent(this, GameActivity.class);
         intent.putExtra("username", getIntent().getStringExtra("username"));
         startActivity(intent);
@@ -65,8 +66,6 @@ public class TriviaEndActivity extends AppCompatActivity {
      * @param view the view
      */
     public void onClickNo(View view) {
-        presenter.saveToDatabase(this);
-
         Intent intent = new Intent(this, GameActivity.class);
         intent.putExtra("username", getIntent().getStringExtra("username"));
         startActivity(intent);
