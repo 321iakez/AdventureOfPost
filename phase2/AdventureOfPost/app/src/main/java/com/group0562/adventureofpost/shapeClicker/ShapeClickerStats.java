@@ -8,7 +8,7 @@ import android.util.Log;
 
 import com.group0562.adventureofpost.database.DatabaseHelper;
 
-
+/*this class serves as the class that stores all the stats we want to track for this game */
 public class ShapeClickerStats {
     private Paint paint;
     private String username;
@@ -58,6 +58,28 @@ public class ShapeClickerStats {
         canvas.drawText(combined, 25, 40, paint);
     }
 
+    /**update the time with the system*/
+    public void updateTime() {
+        long currTime = System.currentTimeMillis();
+        time -= (currTime - startTime);
+        startTime = currTime;
+    }
+
+    /**to put the data in a form that is readable in database */
+    public String getSCData(){
+        return String.valueOf(getTime()) + "," + String.valueOf(getPoints()) + "," + String.valueOf(getLives());
+    }
+
+    /**to set the data if you want to load meaning resume the game u quit before */
+    public void setLoadData(String data){
+        String[] data_list = data.split(",");
+        this.time = (long) Double.parseDouble(data_list[0]);
+        this.points = Integer.parseInt(data_list[1]);
+        this.lives = Integer.parseInt(data_list[2]);
+    }
+
+
+    /** basically the setters and getters for this class, but has slightly different functionalities */
     void setLives(int lives) {
         this.lives -= lives;
     }
@@ -80,28 +102,5 @@ public class ShapeClickerStats {
 
     public long getTime() {
         return time;
-    }
-
-    public void updateTime() {
-        long currTime = System.currentTimeMillis();
-        time -= (currTime - startTime);
-        startTime = currTime;
-    }
-
-    void saveStats(Context context) {
-        DatabaseHelper db = new DatabaseHelper(context);
-        long newRowId = db.insertShapeClickerStats(this.username, (long) getTime(), getPoints(), getLives());
-        Log.i("ShapeClicker", "Stats inserted at row" + newRowId);
-    }
-
-    String getSCData(){
-        return String.valueOf(getTime()) + "," + String.valueOf(getPoints()) + "," + String.valueOf(getLives());
-    }
-
-    public void setLoadData(String data){
-        String[] data_list = data.split(",");
-        this.time = (long) Double.parseDouble(data_list[0]);
-        this.points = Integer.parseInt(data_list[1]);
-        this.lives = Integer.parseInt(data_list[2]);
     }
 }

@@ -8,6 +8,7 @@ import com.group0562.adventureofpost.shapeClicker.ui.SCEndResultView;
 
 import java.util.ArrayList;
 
+/** this class is the presenter for one of the mode of the game shapeClicker */
 public class SCFancyMode extends ShapeClicker {
 
     /**
@@ -20,12 +21,21 @@ public class SCFancyMode extends ShapeClicker {
      */
     private long combo;
 
+    /**
+     * to see which object needs to be erased in the arrayList
+     */
     private int to_erase_object;
 
     private static Paint textPaint;
 
+    /**
+     * to see if any objects in the arrayList is clicked
+     */
     private boolean within;
 
+    /**
+     * to remember which type of shapes is clicked
+     */
     private int clicked_score;
 
     /**
@@ -40,7 +50,7 @@ public class SCFancyMode extends ShapeClicker {
         textPaint.setColor(Color.BLACK);
         textPaint.setStrokeWidth(3);
         textPaint.setTextSize(50);
-        ShapeBuilder builder = new ShapeBuilder(50, 50, p);
+        ShapeBuilder builder = new ShapeBuilder(p);
         s_object = builder.getS_objects();
         setDifficulty(SCSetting.getDifficulty());
     }
@@ -133,7 +143,6 @@ public class SCFancyMode extends ShapeClicker {
         }
     }
 
-    private long getCombos() {
-        return this.combo;
-    }
+    /** getters and setters for this class */
+    private long getCombos() {return this.combo;}
 }

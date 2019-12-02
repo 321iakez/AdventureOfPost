@@ -11,14 +11,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.group0562.adventureofpost.R;
 import com.group0562.adventureofpost.database.DatabaseHelper;
 
+/* this is the main page of the game that controls most of the things */
 public class ShapeClickerActivity extends AppCompatActivity implements SCPauseDialog.SCPauseDialogListener {
-    public final static String EXTRA_MESSAGE = "com.group0562.AdventureOfPost.MESSAGE";
     Button sc_done;
     ShapeClickerGameView sc_view;
 
     private final String RETURN_NO_SAVE = "RETURN_NO_SAVE";
     private final String RETURN_SAVE = "RETURN_SAVE";
-    private final String RESUME = "RESUME";
     private long time_pause;
 
     @Override
@@ -39,18 +38,18 @@ public class ShapeClickerActivity extends AppCompatActivity implements SCPauseDi
         SCPauseDialog pauseDialog = new SCPauseDialog();
         pauseDialog.show(getSupportFragmentManager(), "pause dialog");
         time_pause = sc_view.puzzleStats.getTime();
-        //sc_view.setWillNotDraw(true);
     }
 
     /*to start the finish screen once clicked*/
     public void onClickSCDone(View view) {
         Intent intent = new Intent(this, ShapeClickerEndActivity.class);
         sc_done = findViewById(R.id.sc_finish_button);
-        sc_view.getClicker().saveStats(this);
         intent.putExtra("username", getIntent().getStringExtra("username"));
+        intent.putExtra("data", sc_view.getClicker().getPuzzleStats().getSCData());
         startActivity(intent);
     }
 
+    /**Implement the saveGame method to decide what to do when each choice is called */
     @Override
     public void saveGame(String mode) {
         if (mode.equals(RETURN_NO_SAVE)) {
@@ -68,7 +67,6 @@ public class ShapeClickerActivity extends AppCompatActivity implements SCPauseDi
         } else {
             System.out.println("Resumed");
             sc_view.puzzleStats.setTime(time_pause);
-            //sc_view.setWillNotDraw(false);
         }
     }
 }

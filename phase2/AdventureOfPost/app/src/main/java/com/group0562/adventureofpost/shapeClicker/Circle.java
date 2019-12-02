@@ -7,6 +7,7 @@ import static java.lang.Math.pow;
 import static java.lang.Math.random;
 import static java.lang.Math.sqrt;
 
+/** this class represents one of the shape that is drawn in the shapeClicker game */
 public class Circle extends Shape {
 
     /**

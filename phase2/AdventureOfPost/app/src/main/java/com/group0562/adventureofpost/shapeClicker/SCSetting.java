@@ -1,5 +1,7 @@
 package com.group0562.adventureofpost.shapeClicker;
 
+/** this class is for a easier access of the setting the user chose, it is meant to be accessed by
+ * the model classes to store and get values they needed to know to set up the classes */
 public class SCSetting {
     private static String color;
     private static String shape;
@@ -15,6 +17,8 @@ public class SCSetting {
         SCSetting.username = "";
     }
 
+
+    /**getters and setters for this class */
     public static void setColor(String color) {
         SCSetting.color = color;
     }

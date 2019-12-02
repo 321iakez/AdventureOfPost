@@ -17,6 +17,7 @@ import com.group0562.adventureofpost.shapeClicker.SCSetting;
 import com.group0562.adventureofpost.shapeClicker.ShapeClicker;
 import com.group0562.adventureofpost.shapeClicker.ShapeClickerStats;
 
+/** this class directly correspond to the view of the game, connects to the presenters */
 public class ShapeClickerGameView extends View {
 
     /**
@@ -50,7 +51,7 @@ public class ShapeClickerGameView extends View {
         setColor(SCSetting.getColor());
         ShapeClickerGameView.paint.setStrokeWidth(ShapeClickerGameView.Stroke_Thickness);
 
-        double[] bounds = {0, 1000, 30, 1500};
+        double[] bounds = {30, 1000, 30, 1500};
         ShapeClicker.setBound(bounds);
         if (SCSetting.getMode().equals("Normal")) {
             clicker = new SCNormalMode(60000, ShapeClickerGameView.paint);
