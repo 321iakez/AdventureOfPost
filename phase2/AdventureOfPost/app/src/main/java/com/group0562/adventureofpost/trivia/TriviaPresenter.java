@@ -123,14 +123,14 @@ public class TriviaPresenter {
         this.game = new Trivia(op, diff, correct + incorrect);
     }
 
-    public void insertToDatabase(Context context, String saveState) {
+    public void insertToDatabase(Context context, String saveState, String username) {
         DatabaseHelper db = new DatabaseHelper(context);
-        db.insertGameState("trivia", saveState);
+        db.insertGameState("trivia", username, saveState);
     }
 
     public void loadFromDatabase(Context context, String username){
         DatabaseHelper db = new DatabaseHelper(context);
-        String saveState = db.retrieveGameState("trivia");
+        String saveState = db.retrieveGameState("trivia", username);
         if (!(saveState.isEmpty())){
             loadGame(username, saveState);
         }

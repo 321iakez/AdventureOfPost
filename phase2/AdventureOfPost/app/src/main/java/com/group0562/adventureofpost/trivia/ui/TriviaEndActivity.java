@@ -45,7 +45,7 @@ public class TriviaEndActivity extends AppCompatActivity {
         TextView scoreTextView = findViewById(R.id.Score);
         scoreTextView.setText(score);
 
-        presenter.insertToDatabase(this, "");
+        presenter.insertToDatabase(this, "", getIntent().getStringExtra("username"));
     }
 
     /**
