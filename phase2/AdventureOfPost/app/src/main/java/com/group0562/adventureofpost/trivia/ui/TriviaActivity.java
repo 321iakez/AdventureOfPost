@@ -158,13 +158,19 @@ public class TriviaActivity extends AppCompatActivity {
                 colorValue = 0xFFFFFFFF;
                 break;
             case "Blue":
-                colorValue = 0xFFB8D5D6;
+                colorValue = 0xFF1CF7F5;
                 break;
             case "Green":
                 colorValue = 0xFF00FF00;
                 break;
             case "Yellow":
                 colorValue = 0xFFFFFF00;
+                break;
+            case "Red":
+                colorValue = 0xFFF71C1C;
+                break;
+            case "Pink":
+                colorValue = 0xFFF71CE6;
                 break;
         }
         return colorValue;

@@ -16,10 +16,10 @@ import com.group0562.adventureofpost.sudoku.SudokuStats;
 import com.group0562.adventureofpost.sudoku.SudokuView;
 
 import java.io.InputStream;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
-import java.util.List;
-import java.util.Arrays;
 
 public class SudokuActivity extends AppCompatActivity implements SudokuView, Observer,
         SudokuPauseDialog.PauseDialogListener, SudokuEndDialog.EndDialogListener {
@@ -48,12 +48,11 @@ public class SudokuActivity extends AppCompatActivity implements SudokuView, Obs
         } else {
             DatabaseHelper db = new DatabaseHelper(this);
             String gameState = db.retrieveGameState("sudoku", username);
-            System.out.println(gameState);
 
             String game_stats = db.retrieveResumeStats();
             List<String> result = Arrays.asList(game_stats.split("\\s*,\\s*"));
 
-            if(gameState != ""){
+            if(!gameState.equals("")){
                 presenter = new SudokuPresenter(this, new SudokuStats(result), gridSize, difficulty, gameState);
             } else {
                 presenter = new SudokuPresenter(this, new SudokuStats(username), gridSize, difficulty, "");

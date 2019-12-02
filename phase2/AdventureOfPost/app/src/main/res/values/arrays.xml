@@ -43,6 +43,8 @@
         <item>Blue</item>
         <item>Green</item>
         <item>Yellow</item>
+        <item>Red</item>
+        <item>Pink</item>
     </string-array>
 
     <string-array name="trivia_background_color_values">
@@ -50,6 +52,8 @@
         <item>Blue</item>
         <item>Green</item>
         <item>Yellow</item>
+        <item>Red</item>
+        <item>Pink</item>
     </string-array>
 
     <string-array name="trivia_button_color_entries">
@@ -57,6 +61,8 @@
         <item>Blue</item>
         <item>Green</item>
         <item>Yellow</item>
+        <item>Black</item>
+        <item>Pink</item>
     </string-array>
 
     <string-array name="trivia_button_color_values">
@@ -64,6 +70,8 @@
         <item>Blue</item>
         <item>Green</item>
         <item>Yellow</item>
+        <item>Black</item>
+        <item>Pink</item>
     </string-array>
 
     <string-array name="trivia_text_color_entries">
@@ -71,6 +79,8 @@
         <item>Blue</item>
         <item>Green</item>
         <item>Yellow</item>
+        <item>Black</item>
+        <item>Pink</item>
     </string-array>
 
     <string-array name="trivia_text_color_values">
@@ -78,6 +88,8 @@
         <item>Blue</item>
         <item>Green</item>
         <item>Yellow</item>
+        <item>Black</item>
+        <item>Pink</item>
     </string-array>
 
     <string-array name="sc_mode_entries">

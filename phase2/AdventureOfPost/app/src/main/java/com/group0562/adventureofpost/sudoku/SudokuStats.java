@@ -36,11 +36,6 @@ public class SudokuStats extends Observable {
     private long gameTime = 0;
 
     /**
-     * The time when the game starts.
-     */
-    private final long startTime = System.currentTimeMillis();
-
-    /**
      * The username of the user currently playing the game.
      */
     private String username;
@@ -55,12 +50,6 @@ public class SudokuStats extends Observable {
         conflicts = Integer.parseInt(game_stats.get(1));
         gameTime = Integer.parseInt(game_stats.get(2));
         username = game_stats.get(3);
-        System.out.println(moves);
-        System.out.println(conflicts);
-        System.out.println(moves);
-        System.out.println(conflicts);
-        System.out.println(moves);
-        System.out.println(conflicts);
     }
 
     /* ========== Getters ========== */

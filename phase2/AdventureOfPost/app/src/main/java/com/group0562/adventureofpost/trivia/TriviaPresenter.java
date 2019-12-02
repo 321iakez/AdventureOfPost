@@ -44,9 +44,9 @@ public class TriviaPresenter {
      * @param diff     the difficulty
      */
     public TriviaPresenter(String username, int op, int diff) {
-        backgroundColor = "White";
+        backgroundColor = "Yellow";
         textColor = "Black";
-        buttonColor = "Yellow";
+        buttonColor = "Pink";
         game = new Trivia(op, diff);
         gameStats = new TriviaStats(username, op, diff);
     }
