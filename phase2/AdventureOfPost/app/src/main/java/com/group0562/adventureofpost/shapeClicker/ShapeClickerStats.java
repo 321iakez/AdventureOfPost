@@ -66,6 +66,10 @@ public class ShapeClickerStats {
         this.points += pt;
     }
 
+    public void setTime(long time){
+        this.time = time;
+    }
+
     int getPoints() {
         return points;
     }
@@ -74,7 +78,7 @@ public class ShapeClickerStats {
         return lives;
     }
 
-    double getTime() {
+    public long getTime() {
         return time;
     }
 

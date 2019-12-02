@@ -19,6 +19,7 @@ public class ShapeClickerActivity extends AppCompatActivity implements SCPauseDi
     private final String RETURN_NO_SAVE = "RETURN_NO_SAVE";
     private final String RETURN_SAVE = "RETURN_SAVE";
     private final String RESUME = "RESUME";
+    private long time_pause;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +38,8 @@ public class ShapeClickerActivity extends AppCompatActivity implements SCPauseDi
     public void onClickSCExit(View view) {
         SCPauseDialog pauseDialog = new SCPauseDialog();
         pauseDialog.show(getSupportFragmentManager(), "pause dialog");
+        time_pause = sc_view.puzzleStats.getTime();
+        //sc_view.setWillNotDraw(true);
     }
 
     /*to start the finish screen once clicked*/
@@ -64,6 +67,8 @@ public class ShapeClickerActivity extends AppCompatActivity implements SCPauseDi
             startActivity(intent);
         } else {
             System.out.println("Resumed");
+            sc_view.puzzleStats.setTime(time_pause);
+            //sc_view.setWillNotDraw(false);
         }
     }
 }
