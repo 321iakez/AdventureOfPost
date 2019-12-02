@@ -1,4 +1,4 @@
-package com.group0562.adventureofpost.shapeClicker;
+package com.group0562.adventureofpost.shapeClicker.ui;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -8,8 +8,13 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
-
 import androidx.annotation.Nullable;
+
+import com.group0562.adventureofpost.shapeClicker.SCFancyMode;
+import com.group0562.adventureofpost.shapeClicker.SCNormalMode;
+import com.group0562.adventureofpost.shapeClicker.SCSetting;
+import com.group0562.adventureofpost.shapeClicker.ShapeClicker;
+import com.group0562.adventureofpost.shapeClicker.ShapeClickerStats;
 
 public class ShapeClickerGameView extends View {
 
@@ -39,18 +44,20 @@ public class ShapeClickerGameView extends View {
      */
     public ShapeClickerGameView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
+
         ShapeClickerGameView.paint = new Paint();
-        this.setColor(SCSetting.getColor());
+        setColor(SCSetting.getColor());
         ShapeClickerGameView.paint.setStrokeWidth(ShapeClickerGameView.Stroke_Thickness);
+
         double[] bounds = {0, 1000, 30, 1500};
         ShapeClicker.setBound(bounds);
-        if(SCSetting.getMode().equals("Normal")) {
+        if (SCSetting.getMode().equals("Normal")) {
             clicker = new SCNormalMode(60000, ShapeClickerGameView.paint);
-        }
-        else{
+        } else {
             clicker = new SCFancyMode(60000, ShapeClickerGameView.paint);
         }
-        this.puzzleStats = clicker.puzzleStats;
+
+        puzzleStats = clicker.getPuzzleStats();
     }
 
     /**
@@ -59,16 +66,22 @@ public class ShapeClickerGameView extends View {
      * @param color the color being changed to
      */
     public void setColor(String color) {
-        if (color.equals("Black")) {
-            ShapeClickerGameView.paint.setColor(Color.BLACK);
-        } else if (color.equals("White")) {
-            ShapeClickerGameView.paint.setColor(Color.WHITE);
-        } else if (color.equals("Blue")) {
-            ShapeClickerGameView.paint.setColor(Color.BLUE);
-        } else if (color.equals("Yellow")) {
-            ShapeClickerGameView.paint.setColor(Color.YELLOW);
-        } else {
-            ShapeClickerGameView.paint.setColor(Color.GREEN);
+        switch (color) {
+            case "Black":
+                ShapeClickerGameView.paint.setColor(Color.BLACK);
+                break;
+            case "White":
+                ShapeClickerGameView.paint.setColor(Color.WHITE);
+                break;
+            case "Blue":
+                ShapeClickerGameView.paint.setColor(Color.BLUE);
+                break;
+            case "Yellow":
+                ShapeClickerGameView.paint.setColor(Color.YELLOW);
+                break;
+            default:
+                ShapeClickerGameView.paint.setColor(Color.GREEN);
+                break;
         }
     }
 
@@ -78,9 +91,9 @@ public class ShapeClickerGameView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         canvas.drawColor(Color.CYAN);
-        this.clicker.draw(canvas);
-        this.puzzleStats.draw(canvas);
-        this.puzzleStats.updateTime();
+        clicker.draw(canvas);
+        puzzleStats.draw(canvas);
+        puzzleStats.updateTime();
         invalidate();
     }
 
@@ -94,7 +107,7 @@ public class ShapeClickerGameView extends View {
     public boolean onTouchEvent(MotionEvent event) {
         double x = event.getX();
         double y = event.getY();
-        this.clicker.checkWithinBall(x, y);
+        clicker.checkWithinBall(x, y);
         invalidate();
         return super.onTouchEvent(event);
     }

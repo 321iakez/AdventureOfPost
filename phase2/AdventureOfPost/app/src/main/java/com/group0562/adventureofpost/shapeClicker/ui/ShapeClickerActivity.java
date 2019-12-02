@@ -9,7 +9,6 @@ import com.group0562.adventureofpost.GameActivity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.group0562.adventureofpost.R;
-import com.group0562.adventureofpost.shapeClicker.ShapeClickerGameView;
 
 public class ShapeClickerActivity extends AppCompatActivity implements SCPauseDialog.SCPauseDialogListener {
     public final static String EXTRA_MESSAGE = "com.group0562.AdventureOfPost.MESSAGE";
