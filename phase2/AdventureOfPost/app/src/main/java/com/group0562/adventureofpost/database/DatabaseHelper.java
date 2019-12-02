@@ -93,16 +93,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public String retrieveResumeStats(){
         SQLiteDatabase db = getWritableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM game_stats WHERE id =?", new String[]{"resume_stats"});
-        String game_stats = "";
-        if (cursor.moveToFirst()) {
-            while (!cursor.isAfterLast()) {
-                String name = cursor.getString(cursor.getColumnIndex("stats"));
-                game_stats = name;
-                cursor.moveToNext();
+        try (Cursor cursor = db.rawQuery("SELECT * FROM game_stats WHERE id =?", new String[]{"resume_stats"})) {
+            String game_stats = "";
+            if (cursor.moveToFirst()) {
+                while (!cursor.isAfterLast()) {
+                    game_stats = cursor.getString(cursor.getColumnIndex("stats"));
+                    cursor.moveToNext();
+                }
             }
+            return game_stats;
         }
-        return game_stats;
     }
 
     public long insertGameState(String gameId, String username, String gameState){
@@ -118,19 +118,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public String retrieveGameState(String gameId, String username){
         SQLiteDatabase db = getWritableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM game_saves WHERE gameId = ? and username = ?", new String[]{gameId, username});
-        String gameState = "";
-        if (cursor.getCount() < 1) {
-            return gameState;
-        } else {
-            if (cursor.moveToFirst()) {
-                while (!cursor.isAfterLast()) {
-                    String state = cursor.getString(cursor.getColumnIndex("gameState"));
-                    gameState = state;
-                    cursor.moveToNext();
+        try (Cursor cursor = db.rawQuery("SELECT * FROM game_saves WHERE gameId = ? and username = ?", new String[]{gameId, username})) {
+            String gameState = "";
+            if (cursor.getCount() < 1) {
+                return gameState;
+            } else {
+                if (cursor.moveToFirst()) {
+                    while (!cursor.isAfterLast()) {
+                        gameState = cursor.getString(cursor.getColumnIndex("gameState"));
+                        cursor.moveToNext();
+                    }
                 }
+                return gameState;
             }
-            return gameState;
         }
     }
 
