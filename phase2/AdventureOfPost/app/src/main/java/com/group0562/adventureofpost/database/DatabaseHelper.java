@@ -61,7 +61,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 SC_STAT3 + " INTEGER," +
                 "username TEXT, FOREIGN KEY (username) REFERENCES users (username))"); // time, score, lives
 
-        db.execSQL("CREATE TABLE game_saves (gameId text primary key, gameState text)");
+        db.execSQL("CREATE TABLE game_saves (gameId text primary key, username text, gameState text)");
     }
 
 
@@ -81,19 +81,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
-    public long insertGameState(String gameId, String gameState){
+    public long insertGameState(String gameId, String username, String gameState){
         SQLiteDatabase db = getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("gameId", gameId);
+        contentValues.put("username", username);
         contentValues.put("gameState", gameState);
-        db.execSQL("delete from game_saves where gameId = ?", new String[]{gameId});
+        db.execSQL("delete from game_saves where gameId = ? and username = ?", new String[]{gameId, username});
         return db.insert("game_saves", null, contentValues);
     }
 
 
-    public String retrieveGameState(String gameId){
+    public String retrieveGameState(String gameId, String username){
         SQLiteDatabase db = getWritableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM game_saves WHERE gameId = ?", new String[]{gameId});
+        Cursor cursor = db.rawQuery("SELECT * FROM game_saves WHERE gameId = ? and username = ?", new String[]{gameId, username});
         String gameState = "";
         if (cursor.getCount() < 1) {
             return gameState;

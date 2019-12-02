@@ -70,9 +70,9 @@ public class SudokuPresenter {
         timer.start();
     }
 
-    public void saveBoard(Context context) {
+    public void saveBoard(Context context, String username) {
         DatabaseHelper db = new DatabaseHelper(context);
-        db.insertGameState("sudoku", gameBoard.getBoardData());
+        db.insertGameState("sudoku", username, gameBoard.getBoardData());
     }
 
     /**
