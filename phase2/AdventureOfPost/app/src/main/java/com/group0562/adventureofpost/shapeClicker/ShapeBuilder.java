@@ -5,12 +5,16 @@ import android.graphics.Paint;
 import java.util.ArrayList;
 import java.util.Random;
 
-/** this is a class to build bunch of shapes for the fancymode presenter for the shapeClicker game */
+/**
+ * this is a class to build bunch of shapes for the fancymode presenter for the shapeClicker game
+ */
 class ShapeBuilder {
 
     private ArrayList<Shape> s_objects;
 
-    /**constructor of this class */
+    /**
+     * constructor of this class
+     */
     ShapeBuilder(Paint paint) {
         s_objects = new ArrayList<>();
         shapeGenerator(paint);
@@ -37,7 +41,9 @@ class ShapeBuilder {
         }
     }
 
-    /**getters and setters for this class */
+    /**
+     * getters and setters for this class
+     */
     ArrayList<Shape> getS_objects() {
         return this.s_objects;
     }

@@ -38,7 +38,7 @@ class Board extends Observable {
         loadBoard(board);
     }
 
-    Board(int[][] puzzleBoard, int[][] lockedBoard, int rowDim, int colDim){
+    Board(int[][] puzzleBoard, int[][] lockedBoard, int rowDim, int colDim) {
         rows = rowDim;
         cols = colDim;
         this.board = new Cell[rowDim][colDim];
@@ -46,15 +46,11 @@ class Board extends Observable {
         savedLoadBoard(puzzleBoard, lockedBoard);
     }
 
-    private void savedLoadBoard(int[][] puzzleBoard, int[][] lockedBoard){
+    private void savedLoadBoard(int[][] puzzleBoard, int[][] lockedBoard) {
         for (int row = 0; row < rows; row++) {
             for (int col = 0; col < cols; col++) {
-                Boolean isLocked;
-                if(lockedBoard[row][col] == 1){
-                    isLocked = false;
-                } else {
-                    isLocked = true;
-                }
+                boolean isLocked;
+                isLocked = lockedBoard[row][col] != 1;
                 Cell cell = new Cell(puzzleBoard[row][col], isLocked);
                 this.board[row][col] = cell;
             }
@@ -100,7 +96,7 @@ class Board extends Observable {
 
         for (int row = 0; row < rows; row++) {
             for (int col = 0; col < cols; col++) {
-                if (board[row][col].isLocked()){
+                if (board[row][col].isLocked()) {
                     strBoard.append(0);
                 } else {
                     strBoard.append(1);

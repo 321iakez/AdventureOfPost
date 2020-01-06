@@ -45,7 +45,7 @@ public class SudokuStats extends Observable {
         this.username = username;
     }
 
-    public SudokuStats(List<String> game_stats){
+    public SudokuStats(List<String> game_stats) {
         moves = Integer.parseInt(game_stats.get(0));
         conflicts = Integer.parseInt(game_stats.get(1));
         gameTime = Integer.parseInt(game_stats.get(2));
@@ -65,7 +65,10 @@ public class SudokuStats extends Observable {
         return gameTime;
     }
 
-    String getUsername(){return username;}
+    String getUsername() {
+        return username;
+    }
+
     /* ========== Update Methods ========== */
     void updateTime(int time) {
         gameTime = time;

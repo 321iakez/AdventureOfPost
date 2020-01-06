@@ -125,6 +125,7 @@ public class TriviaPresenter {
 
     /**
      * stores a saved state to the database indexed to the username
+     *
      * @param saveState a string containing vital gameinfo data
      * @param username  the user's username
      */
@@ -136,7 +137,8 @@ public class TriviaPresenter {
 
     /**
      * loads a saved state to the database indexed to the username
-     * @param username  the user's username
+     *
+     * @param username the user's username
      */
     public void loadFromDatabase(Context context, String username) {
         DatabaseHelper db = new DatabaseHelper(context);

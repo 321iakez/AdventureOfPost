@@ -1,17 +1,12 @@
 package com.group0562.adventureofpost.shapeClicker;
 
-import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.util.Log;
-
-import com.group0562.adventureofpost.database.DatabaseHelper;
 
 /*this class serves as the class that stores all the stats we want to track for this game */
 public class ShapeClickerStats {
     private Paint paint;
-    private String username;
     private long time;
     private long startTime;
     private int points;
@@ -25,12 +20,11 @@ public class ShapeClickerStats {
      *
      * @param time the time limit for SCNormalMode
      */
-    ShapeClickerStats(long time, String username) {
+    ShapeClickerStats(long time) {
         this.time = time;
         this.points = 0;
         this.startTime = System.currentTimeMillis();
         this.lives = 10;
-        this.username = SCSetting.getUsername();
         this.paint = new Paint();
         this.paint.setColor(Color.BLACK);
         this.paint.setStrokeWidth(3);
@@ -58,20 +52,26 @@ public class ShapeClickerStats {
         canvas.drawText(combined, 25, 40, paint);
     }
 
-    /**update the time with the system*/
+    /**
+     * update the time with the system
+     */
     public void updateTime() {
         long currTime = System.currentTimeMillis();
         time -= (currTime - startTime);
         startTime = currTime;
     }
 
-    /**to put the data in a form that is readable in database */
-    public String getSCData(){
+    /**
+     * to put the data in a form that is readable in database
+     */
+    public String getSCData() {
         return getTime() + "," + getPoints() + "," + getLives();
     }
 
-    /**to set the data if you want to load meaning resume the game u quit before */
-    public void setLoadData(String data){
+    /**
+     * to set the data if you want to load meaning resume the game u quit before
+     */
+    public void setLoadData(String data) {
         String[] data_list = data.split(",");
         this.time = (long) Double.parseDouble(data_list[0]);
         this.points = Integer.parseInt(data_list[1]);
@@ -79,7 +79,9 @@ public class ShapeClickerStats {
     }
 
 
-    /** basically the setters and getters for this class, but has slightly different functionalities */
+    /**
+     * basically the setters and getters for this class, but has slightly different functionalities
+     */
     void setLives(int lives) {
         this.lives -= lives;
     }
@@ -88,7 +90,7 @@ public class ShapeClickerStats {
         this.points += pt;
     }
 
-    public void setTime(long time){
+    public void setTime(long time) {
         this.time = time;
     }
 

@@ -10,14 +10,15 @@ import android.view.View;
 
 import androidx.annotation.Nullable;
 
-import com.group0562.adventureofpost.database.DatabaseHelper;
 import com.group0562.adventureofpost.shapeClicker.SCFancyMode;
 import com.group0562.adventureofpost.shapeClicker.SCNormalMode;
 import com.group0562.adventureofpost.shapeClicker.SCSetting;
 import com.group0562.adventureofpost.shapeClicker.ShapeClicker;
 import com.group0562.adventureofpost.shapeClicker.ShapeClickerStats;
 
-/** this class directly correspond to the view of the game, connects to the presenters */
+/**
+ * this class directly correspond to the view of the game, connects to the presenters
+ */
 public class ShapeClickerGameView extends View {
 
     /**

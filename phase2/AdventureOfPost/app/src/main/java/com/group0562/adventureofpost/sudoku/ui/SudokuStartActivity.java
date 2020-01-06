@@ -10,8 +10,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.group0562.adventureofpost.R;
 import com.group0562.adventureofpost.ScoreboardActivity;
 
-import java.security.KeyStore;
-
 public class SudokuStartActivity extends AppCompatActivity {
 
     private final String[] GRID_OPTIONS = new String[]{"6x6", "9x9"};

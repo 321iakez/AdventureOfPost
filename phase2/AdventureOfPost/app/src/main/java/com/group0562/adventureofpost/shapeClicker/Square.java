@@ -3,9 +3,11 @@ package com.group0562.adventureofpost.shapeClicker;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 
-import static java.lang.Math.*;
+import static java.lang.Math.random;
 
-/** this class represents one of the shape that is drawn in the shapeClicker game */
+/**
+ * this class represents one of the shape that is drawn in the shapeClicker game
+ */
 public class Square extends Shape {
 
     /**

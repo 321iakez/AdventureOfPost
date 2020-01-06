@@ -39,7 +39,7 @@ public class GameActivity extends AppCompatActivity {
 
     public void onClickTrivia(View view) {
         Intent intent;
-        if (getIntent().hasExtra("saveState")){
+        if (getIntent().hasExtra("saveState")) {
             intent = new Intent(this, TriviaActivity.class);
             intent.putExtra("saveState", getIntent().getStringExtra("saveState"));
         } else {

@@ -8,7 +8,9 @@ import com.group0562.adventureofpost.shapeClicker.ui.SCEndResultView;
 
 import java.util.ArrayList;
 
-/** this class is the presenter for one of the mode of the game shapeClicker */
+/**
+ * this class is the presenter for one of the mode of the game shapeClicker
+ */
 public class SCFancyMode extends ShapeClicker {
 
     /**
@@ -45,7 +47,7 @@ public class SCFancyMode extends ShapeClicker {
      * @param p    the paint for the shapes
      */
     public SCFancyMode(long time, Paint p) {
-        super(new ShapeClickerStats(time, SCSetting.getUsername()));
+        super(new ShapeClickerStats(time));
         textPaint = new Paint();
         textPaint.setColor(Color.BLACK);
         textPaint.setStrokeWidth(3);
@@ -143,6 +145,10 @@ public class SCFancyMode extends ShapeClicker {
         }
     }
 
-    /** getters and setters for this class */
-    private long getCombos() {return this.combo;}
+    /**
+     * getters and setters for this class
+     */
+    private long getCombos() {
+        return this.combo;
+    }
 }

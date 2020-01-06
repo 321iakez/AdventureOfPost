@@ -5,9 +5,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.group0562.adventureofpost.GameActivity;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.group0562.adventureofpost.GameActivity;
 import com.group0562.adventureofpost.R;
 import com.group0562.adventureofpost.database.DatabaseHelper;
 
@@ -50,7 +50,9 @@ public class ShapeClickerActivity extends AppCompatActivity implements SCPauseDi
         startActivity(intent);
     }
 
-    /**Implement the saveGame method to decide what to do when each choice is called */
+    /**
+     * Implement the saveGame method to decide what to do when each choice is called
+     */
     @Override
     public void saveGame(String mode) {
         if (mode.equals(RETURN_NO_SAVE)) {

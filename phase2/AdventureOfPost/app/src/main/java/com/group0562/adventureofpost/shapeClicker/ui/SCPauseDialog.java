@@ -13,13 +13,18 @@ import androidx.appcompat.app.AppCompatDialogFragment;
 
 import com.group0562.adventureofpost.R;
 
-/** this class serves as the dialogue that lets you choose if you wanna pause and leave the game in the middle of the game */
+/**
+ * this class serves as the dialogue that lets you choose if you wanna pause and leave the game in the middle of the game
+ */
 public class SCPauseDialog extends AppCompatDialogFragment {
 
     private final String RETURN_NO_SAVE = "RETURN_NO_SAVE";
     private final String RETURN_SAVE = "RETURN_SAVE";
     private final String RESUME = "RESUME";
-    /** this serves as the connection to the gameActivity class */
+
+    /**
+     * this serves as the connection to the gameActivity class
+     */
     private SCPauseDialog.SCPauseDialogListener listener;
 
     @NonNull
@@ -47,7 +52,9 @@ public class SCPauseDialog extends AppCompatDialogFragment {
         }
     }
 
-    /** since we want the gameActivity to implement saveGame*/
+    /**
+     * since we want the gameActivity to implement saveGame
+     */
     interface SCPauseDialogListener {
         void saveGame(String mode);
     }

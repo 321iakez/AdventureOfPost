@@ -27,7 +27,7 @@ public class Question {
      * the question is randomly generated based on difficulty and operation
      *
      * @param diff the difficulty
-     * @param op  the arithmetic operation
+     * @param op   the arithmetic operation
      */
     Question(int diff, int op) {
         int option;
@@ -56,12 +56,10 @@ public class Question {
     }
 
 
-
     /**
      * Constructor helper that generates a bound based on the user-inputted difficulty
      *
      * @param diff the int for the difficulty
-     *
      */
     private int generateBound(int diff) {
         switch (diff) {
@@ -81,9 +79,9 @@ public class Question {
      * Constructor helper that generates a question based on the operation and difficulty
      *
      * @param bound the maximum randomly-generated integer
-     * @param op   the arithmetic operation
+     * @param op    the arithmetic operation
      */
-    private String[] generateQuestion(int op, int bound){
+    private String[] generateQuestion(int op, int bound) {
 
         switch (op) {
 

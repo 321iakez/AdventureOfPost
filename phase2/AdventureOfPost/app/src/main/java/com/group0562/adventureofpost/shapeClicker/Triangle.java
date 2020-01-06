@@ -7,7 +7,9 @@ import android.graphics.Path;
 import static java.lang.Math.random;
 import static java.lang.Math.sqrt;
 
-/** this class represents one of the shape that is drawn in the shapeClicker game */
+/**
+ * this class represents one of the shape that is drawn in the shapeClicker game
+ */
 public class Triangle extends Shape {
 
     /**

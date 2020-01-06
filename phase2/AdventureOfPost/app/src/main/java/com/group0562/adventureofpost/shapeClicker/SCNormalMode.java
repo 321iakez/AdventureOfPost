@@ -5,7 +5,9 @@ import android.graphics.Paint;
 
 import com.group0562.adventureofpost.shapeClicker.ui.SCEndResultView;
 
-/** this class is the presenter for one of the mode of the game shapeClicker */
+/**
+ * this class is the presenter for one of the mode of the game shapeClicker
+ */
 public class SCNormalMode extends ShapeClicker {
 
     /**
@@ -40,7 +42,7 @@ public class SCNormalMode extends ShapeClicker {
      * @param p    the paint for the shapes
      */
     public SCNormalMode(long time, Paint p) {
-        super(new ShapeClickerStats(time, SCSetting.getUsername()));
+        super(new ShapeClickerStats(time));
         paint = p;
         s_object = new Circle(50, 50, paint);
         setShape(SCSetting.getShape());

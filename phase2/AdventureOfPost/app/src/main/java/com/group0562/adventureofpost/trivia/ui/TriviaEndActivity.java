@@ -9,7 +9,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.group0562.adventureofpost.GameActivity;
 import com.group0562.adventureofpost.R;
-import com.group0562.adventureofpost.trivia.Trivia;
 import com.group0562.adventureofpost.trivia.TriviaPresenter;
 
 /**
@@ -19,6 +18,7 @@ import com.group0562.adventureofpost.trivia.TriviaPresenter;
 public class TriviaEndActivity extends AppCompatActivity {
 
     private TriviaPresenter presenter;
+
     /**
      * Displays stats of user after they have completed all 10 questions
      *
@@ -63,6 +63,7 @@ public class TriviaEndActivity extends AppCompatActivity {
     /**
      * Returns user to puzzles screen
      * will also save user score into database for scoreboard
+     *
      * @param view the view
      */
     public void onClickNo(View view) {

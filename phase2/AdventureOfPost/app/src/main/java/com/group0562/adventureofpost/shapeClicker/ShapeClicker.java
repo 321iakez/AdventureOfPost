@@ -5,18 +5,24 @@ import android.graphics.Canvas;
 
 import com.group0562.adventureofpost.database.DatabaseHelper;
 
-/** this serves as the parent class of two child classes who are also a presenter, this class serves as a easier usage and cleaner design */
+/**
+ * this serves as the parent class of two child classes who are also a presenter, this class serves as a easier usage and cleaner design
+ */
 public abstract class ShapeClicker {
     private ShapeClickerStats puzzleStats;
     private boolean puzzleComplete = false;
     static double[] bound;
 
-    /** constructor for this class */
+    /**
+     * constructor for this class
+     */
     ShapeClicker(ShapeClickerStats statsInst) {
         puzzleStats = statsInst;
     }
 
-    /** to update and see if the puzzle is complete */
+    /**
+     * to update and see if the puzzle is complete
+     */
     public void update() {
         checkComplete();
 
@@ -25,14 +31,18 @@ public abstract class ShapeClicker {
         }
     }
 
-    /** to set the game as lost */
+    /**
+     * to set the game as lost
+     */
     private void onStop() {
         if (!puzzleComplete) {
             puzzleStats.setLives(0);
         }
     }
 
-    /**getters and setters for this class */
+    /**
+     * getters and setters for this class
+     */
     public static void setBound(double[] bound) {
         ShapeClicker.bound = bound;
     }
@@ -41,21 +51,21 @@ public abstract class ShapeClicker {
         this.puzzleComplete = b;
     }
 
-    public boolean getPuzzleComplete() {
-        return this.puzzleComplete;
-    }
-
     public ShapeClickerStats getPuzzleStats() {
         return puzzleStats;
     }
 
-    /** this method is for saving the gameState for a user so next time he/she gets to resume his/her game */
+    /**
+     * this method is for saving the gameState for a user so next time he/she gets to resume his/her game
+     */
     public void saveShapeClicker(Context context) {
         DatabaseHelper db = new DatabaseHelper(context);
         db.insertGameState("shapeClicker", SCSetting.getUsername(), puzzleStats.getSCData());
     }
 
-    /** three abstract methods that its child needs to implement */
+    /**
+     * three abstract methods that its child needs to implement
+     */
     public abstract void draw(Canvas canvas);
 
     public abstract void checkWithinBall(double cursor_x, double cursor_y);

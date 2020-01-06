@@ -2,23 +2,21 @@ package com.group0562.adventureofpost.trivia.ui;
 
 //import statements
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.group0562.adventureofpost.R;
 import com.group0562.adventureofpost.trivia.Question;
 import com.group0562.adventureofpost.trivia.TriviaPresenter;
 
 /**
- * This is the main activity class of the Trivia game
- * it will give questions to the user which they will
- * have to answer
+ * This is the main activity class of the Trivia game it will give questions to the user which they
+ * will have to answer
  */
 public class TriviaActivity extends AppCompatActivity {
 

@@ -1,6 +1,7 @@
 package com.group0562.adventureofpost.sudoku;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.group0562.adventureofpost.database.DatabaseHelper;
 
@@ -72,7 +73,8 @@ public class SudokuPresenter {
 
     public void saveResumeStats(Context context) {
         DatabaseHelper db = new DatabaseHelper(context);
-        db.insertResumeStats(statsToString(gameStats));
+        long row = db.insertResumeStats(statsToString(gameStats));
+        Log.i("SudokuPresenter", "Data inserted at row " + row);
     }
 
     private String statsToString(SudokuStats gameStats) {
@@ -82,7 +84,8 @@ public class SudokuPresenter {
 
     public void saveBoard(Context context, String username) {
         DatabaseHelper db = new DatabaseHelper(context);
-        db.insertGameState("sudoku", username, gameBoard.getBoardData());
+        long row = db.insertGameState("sudoku", username, gameBoard.getBoardData());
+        Log.i("SudokuPresenter", "Data inserted at row " + row);
     }
 
     /**

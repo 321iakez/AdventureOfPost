@@ -79,4 +79,35 @@ class GameManager {
             return result;
         }
     }
+
+    /**
+     * Stores the stats of a game that will be resumable in the database.
+     *
+     * @param stats: a string that represents Sudoku stats of a game.
+     * @return returns a long specifying if insert was successful
+     */
+    long insertResumeStats(SQLiteDatabase db, String stats) {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("id", "resume_stats");
+        contentValues.put("stats", stats);
+        db.execSQL("delete from game_stats where id = ?", new String[]{"resume_stats"});
+        return db.insert("game_stats", null, contentValues);
+    }
+
+    /**
+     * This method stores the state of the sudoku game.
+     *
+     * @param gameId:    stores the type of game
+     * @param username:  username of the player
+     * @param gameState: string representing the state of the board
+     * @return returns a long specifying if insert was successful
+     */
+    long insertGameState(SQLiteDatabase db, String gameId, String username, String gameState) {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("gameId", gameId);
+        contentValues.put("username", username);
+        contentValues.put("gameState", gameState);
+        db.execSQL("delete from game_saves where gameId = ? and username = ?", new String[]{gameId, username});
+        return db.insert("game_saves", null, contentValues);
+    }
 }
